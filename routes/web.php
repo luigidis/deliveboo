@@ -19,4 +19,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware('auth')
+    ->prefix('admin')  //questo mi da il prefisso su admin/home in get
+    ->name('admin.')    //questo mi da il "prefisso" per il name in admin.home
+    ->namespace('Admin')    //questo mi da il prefisso per arrivare al Controller di riferimento Admin\HomeController
+    ->group(function () {
+
+        Route::get('/home', 'HomeController@index')->name('home');
+    });
