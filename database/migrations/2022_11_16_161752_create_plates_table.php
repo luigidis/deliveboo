@@ -18,7 +18,7 @@ class CreatePlatesTable extends Migration
             $table->string('name');
             $table->string('img')->nullable();
             $table->text('description');
-            $table->smallInteger('price');
+            $table->double('price',4,2);
             $table->boolean('visible');
             $table->string('slug')->unique();
             $table->timestamps();
