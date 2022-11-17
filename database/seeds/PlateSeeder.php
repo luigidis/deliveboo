@@ -14,10 +14,10 @@ class PlateSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i = 0; $i < 50; $i++) { 
+        for ($i = 0; $i < 50; $i++) {
             $plate = new Plate();
-            $plate->name = $faker->words(rand(1,5),true);
-            $plate->description = $faker->paragraphs(rand(2,10),true);
+            $plate->name = $faker->unique()->words(rand(1, 5), true);
+            $plate->description = $faker->paragraphs(rand(2, 10), true);
             $plate->price = $faker->randomFloat(2, 2, 50);
             $plate->is_visible = $faker->boolean();
             $plate->slug = Str::slug($plate->name);
