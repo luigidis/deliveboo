@@ -15,19 +15,19 @@ class OrderPlateSeeder extends Seeder
     public function run()
     {
 
-        $plate = Plate::all()->pluck('id');
+        $plateIds = Plate::all()->pluck('id');
 
         for ($i = 0; $i < 50; $i++) {
-            $ordersIds = Order::find($i + 1);
+            $order = Order::find($i + 1);
             $plates = [];
             for ($j = 0; $j < rand(2, 5); $j++) {
                 $k = rand(0, 49);
-                while (in_array($plate[$k], $plates)) {
+                while (in_array($plateIds[$k], $plates)) {
                     $k = rand(1, 49);
                 }
-                $plates[] = $plate[$k];
+                $plates[] = $plateIds[$k];
             }
-            $ordersIds->plates()->sync($plates);
+            $order->plates()->sync($plates);
         }
     }
 }
