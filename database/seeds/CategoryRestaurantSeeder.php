@@ -15,7 +15,7 @@ class CategoryRestaurantSeeder extends Seeder
     {
         $categoriesIds = Category::all()->pluck('id');
 
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $restaurant = Restaurant::find($i + 1);
             $categories = [];
             for ($j = 0; $j < rand(1, 3); $j++) {

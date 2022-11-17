@@ -16,7 +16,7 @@ class RestaurantSeeder extends Seeder
     {
         $userIds = User::all()->pluck('id');
 
-        for ($i=0; $i < 51; $i++ ) {
+        for ($i=0; $i < 10; $i++ ) {
 
             $restaurant = new Restaurant();
             $restaurant->name = $faker->words( rand(2,10), true);
