@@ -20,13 +20,13 @@ class UserSeeder extends Seeder
             'password' => Hash::make('pippo123'),
         ]);
 
-        for ($i = 0; $i < 50; $i++) {
-            $user = new User();
-            $user->name = $faker->unique()->words(rand(5, 10), true);
-            $user->email = $faker->unique()->email();
-            $user->password = Hash::make($faker->word());
+        // for ($i = 0; $i < 50; $i++) {
+        //     $user = new User();
+        //     $user->name = $faker->unique()->words(rand(5, 10), true);
+        //     $user->email = $faker->unique()->email();
+        //     $user->password = Hash::make($faker->word());
 
-            $user->save();
-        }
+        //     $user->save();
+        // }
     }
 }
