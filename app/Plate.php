@@ -14,4 +14,8 @@ class Plate extends Model
         'visible',
         'slug'
     ];
+
+    public function orders() {
+        return $this->belongsToMany('App\Order');
+    }
 }

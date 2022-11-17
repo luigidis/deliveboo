@@ -19,7 +19,7 @@ class CreatePlatesTable extends Migration
             $table->string('img')->nullable();
             $table->text('description');
             $table->double('price',4,2);
-            $table->boolean('visible');
+            $table->boolean('is_visible');
             $table->string('slug')->unique();
             $table->timestamps();
         });
