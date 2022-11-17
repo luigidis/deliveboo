@@ -23,6 +23,7 @@ class CreateOrdersTable extends Migration
             $table->string('address_client', '255');
             $table->string('phone_client', '20');
             $table->string('email_client', '255');
+            $table->tinyInteger('time_ready'); // tempo di preparazione da aggiungere al timestamps (created_at)
             // $table->time('hour-delivery'); possiamo volendo ricavarci l'ora dal timestamps in fondo
             $table->timestamps();
         });
