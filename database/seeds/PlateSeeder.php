@@ -19,7 +19,7 @@ class PlateSeeder extends Seeder
             $plate->name = $faker->words(rand(1,5),true);
             $plate->description = $faker->paragraphs(rand(2,10),true);
             $plate->price = $faker->randomFloat(2, 2, 50);
-            $plate->visible = $faker->boolean();
+            $plate->is_visible = $faker->boolean();
             $plate->slug = Str::slug($plate->name);
 
             $plate->save();
