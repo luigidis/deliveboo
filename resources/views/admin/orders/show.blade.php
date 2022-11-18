@@ -22,9 +22,9 @@
                             <h3>
                                 {{ $fullname_client }}
                             </h3>
-                            <h4 class="mb-0">
+                            <span class="h4 mb-0">
                                 {{ $order->total }}$
-                            </h4>
+                            </span>
                         </div>
                         <p class="card-text">{{ $order->address_client }}</p>
                         <div class="d-flex p-2 flex-wrap align-items-center justify-content-between">

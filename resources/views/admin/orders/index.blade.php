@@ -15,51 +15,38 @@
                     </a>
                 </div>
             </div>
-            <div class="body_content py-2">
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>#</th>
-                                <th>Status</th>
-                                <th>Total</th>
-                                <th>Full Name</th>
-                                <th>Address</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-                                <th>Date</th>
-                                <th colspan="3" class="text-center">Action</th>
-                            </tr>
-                        </thead>
-                        @foreach ($orders as $item)
-                            <tr>
-                                <td> {{ $item->id }} </td>
-                                <td> {{ $item->status }} </td>
-                                <td> {{ $item->total }}$</td>
-                                <td> {{ $item->name_client }} {{ $item->surname_client }} </td>
-                                <td> {{ $item->address_client }} </td>
-                                <td> {{ $item->phone_client }} </td>
-                                <td> {{ $item->email_client }} </td>
-                                <td> {{ $item->created_at }} </td>
-                                <td class="align-middle">
-                                    <a class="btn btn-outline-secondary" href="{{ route('admin.orders.show', $item) }}">
-                                        Show
-                                    </a>
-                                </td>
-                                <td class="align-middle"> 
-                                    <a class="btn btn-outline-primary" href="#">
-                                        Edit
-                                    </a>
-                                </td>
-                                <td class="align-middle">
-                                    <a class="btn btn-outline-danger" href="#">
-                                        End
-                                    </a>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </table>
-                </div>
+            <div class="body_content py-5 d-flex flex-wrap justify-content-center">
+                @foreach ($orders as $order)
+                    @php
+                        $fullname_client = $order->name_client . ' ' . $order->surname_client;
+                    @endphp
+                    <div class="card m-3 overflow-hidden" style="max-width: 320px; max-height: 400px; flex-grow:1;">
+                        <div class="card-body d-flex flex-column">
+                            <span class="h6">
+                                {{ $order->status }}
+                            </span>
+                            <div class="d-flex flex-wrap align-items-center justify-content-between">
+                                <h3>
+                                    {{ $fullname_client }}
+                                </h3>
+                                <span class="h4">
+                                    {{ $order->total }}$
+                                </span>
+                            </div>
+                            <ul class="list-group overflow-hidden" style="flex-grow:1;">
+                                <li class="list-group-item overflow-auto">{{ $order->address_client }}</li>
+                                <li class="list-group-item">{{ $order->phone_client }}</li>
+                                <li class="list-group-item">{{ $order->email_client }}</li>
+                                <li class="list-group-item">{{ $order->created_at }}</li>
+                              </ul>
+                            <div class="d-flex p-2 flex-wrap align-items-center justify-content-between">
+                                <a href="{{route('admin.orders.show', $order)}}" class="btn btn-secondary my-2">Show</a>
+                                <a href="#" class="btn btn-outline-primary my-2">Update</a>
+                                <a href="#" class="btn btn-outline-success my-2">Complete</a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
     </section>
 @endsection

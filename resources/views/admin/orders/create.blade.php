@@ -33,9 +33,9 @@
                                     <h3 class="text-capitalize">
                                         {{ $plate->name }}
                                     </h3>
-                                    <h4 class="mb-0">
+                                    <span class="h4 mb-0">
                                         {{ $plate->price }} $
-                                    </h4>
+                                    </span>
                                 </div>
                             </div>
                             <p class="card-text overflow-auto">{{ $plate->description }}</p>
