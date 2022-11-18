@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -24,6 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.home');
+        $id = Auth::user()->id;
+        $restaurant = Restaurant::where('user_id', $id)->first();
+        return view('admin.home', compact('restaurant'));
     }
 }

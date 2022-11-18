@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Restaurant;
+use App\User;
 use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
@@ -13,11 +14,11 @@ class RestaurantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        // query che ritorna restaurant legato al mio user
-        // mostrarla
-    }
+    // public function index()
+    // {
+    //     // query che ritorna restaurant legato al mio user
+    //     // mostrarla
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -83,5 +84,8 @@ class RestaurantController extends Controller
     public function destroy(Restaurant $restaurant)
     {
         //
+        // $userId = $restaurant->user_id;
+        // $user = User::find($userId);
+        // $user->delete();
     }
 }
