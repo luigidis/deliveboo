@@ -21,6 +21,7 @@
                                 <th>Phone</th>
                                 <th>Email</th>
                                 <th>Date</th>
+                                <th colspan="3">Action</th>
                             </tr>
                         </thead>
                         @foreach ($orders as $item)
@@ -33,6 +34,13 @@
                                 <td> {{ $item->phone_client }} </td>
                                 <td> {{ $item->email_client }} </td>
                                 <td> {{ $item->created_at }} </td>
+                                <td> 
+                                    <a class="btn btn-outline-secondary" href="{{route('admin.orders.show', $item)}}">
+                                        Show
+                                    </a>
+                                </td>
+                                <td>  </td>
+                                <td>  </td>
                             </tr>
                         @endforeach
                     </table>
