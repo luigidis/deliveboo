@@ -38,8 +38,13 @@
                                 </div>
                             </div>
                             <p class="card-text overflow-auto">{{ $plate->description }}</p>
-                            <a href="#" class="d-flex btn btn-primary my-2 justify-content-center"
-                                title="Buy {{ $plate->name }} by {{ $restaurant->name }}">Buy</a>
+                            <form action="{{route('admin.orders.store', $plate)}}" method="POST">
+                                @csrf
+
+                                <button type="submit" class="d-flex btn btn-primary my-2 justify-content-center">
+                                    Buy
+                                </button>
+                            </form>
                         </div>
                     </div>
                 @endforeach
