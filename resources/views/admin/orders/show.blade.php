@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@php
-    $fullname_client = $order->name_client . ' ' . $order->surname_client;
-@endphp
-
 @section('content')
     <section>
         <div class="container">

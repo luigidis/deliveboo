@@ -49,7 +49,9 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        return view('admin.orders.show', compact('order'));
+        $fullname_client = $order->name_client . ' ' . $order->surname_client;
+
+        return view('admin.orders.show', compact('order', 'fullname_client'));
     }
 
     /**
