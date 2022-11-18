@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Order;
+use App\Plate;
+use App\Restaurant;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -27,7 +29,10 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        $plates = Plate::all();
+        $restaurants = Restaurant::all();
+        
+        return view ('admin.orders.create', compact('plates', 'restaurants'));
     }
 
     /**

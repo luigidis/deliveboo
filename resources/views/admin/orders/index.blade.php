@@ -3,12 +3,19 @@
 @section('content')
     <section>
         <div class="container">
-            <div class="head_content10">
-                <h1>
-                    Orders
-                </h1>
+            <div class="header_content d-flex flex-wrap justify-content-between">
+                <div>
+                    <h1>
+                        Orders
+                    </h1>
+                </div>
+                <div class="d-flex align-items-center justify-content-end">
+                    <a href="{{ route('admin.orders.create') }}" class="btn btn-primary" title="Add order">
+                        Add order
+                    </a>
+                </div>
             </div>
-            <div class="body_content">
+            <div class="body_content py-2">
                 <div class="table-responsive">
                     <table class="table table-striped table-hover">
                         <thead class="thead-dark">
@@ -21,7 +28,7 @@
                                 <th>Phone</th>
                                 <th>Email</th>
                                 <th>Date</th>
-                                <th colspan="3">Action</th>
+                                <th colspan="3" class="text-center">Action</th>
                             </tr>
                         </thead>
                         @foreach ($orders as $item)
@@ -34,13 +41,21 @@
                                 <td> {{ $item->phone_client }} </td>
                                 <td> {{ $item->email_client }} </td>
                                 <td> {{ $item->created_at }} </td>
-                                <td> 
-                                    <a class="btn btn-outline-secondary" href="{{route('admin.orders.show', $item)}}">
+                                <td class="align-middle">
+                                    <a class="btn btn-outline-secondary" href="{{ route('admin.orders.show', $item) }}">
                                         Show
                                     </a>
                                 </td>
-                                <td>  </td>
-                                <td>  </td>
+                                <td class="align-middle"> 
+                                    <a class="btn btn-outline-primary" href="#">
+                                        Edit
+                                    </a>
+                                </td>
+                                <td class="align-middle">
+                                    <a class="btn btn-outline-danger" href="#">
+                                        End
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
                     </table>
