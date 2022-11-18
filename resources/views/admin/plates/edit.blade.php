@@ -66,7 +66,7 @@
     <div class="form-group">
       <label for="availability">Availability</label><br>
       <input type="radio" name="available">
-      <label for="sì">available</label>
+      <label for="yes">available</label>
       <input type="radio" name="not available">
       <label for="no">not available</label><br>
     </div>        

@@ -26,7 +26,7 @@ class PlateController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.plates.create');
     }
 
     /**
@@ -37,13 +37,25 @@ class PlateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $params = $request->validate([
+            'name' => 'required|max:255|min:5',
+            'description' => 'required',
+            'img' => 'nullable|image|max:2048',
+            'price' => 'required|numeric|min:0|max:50',
+            'is_visible' => 'required'
+        ]);
+
+        $params['slug'] = str_replace(' ','-',$params['name']);
+
+        $plate = Plate::create($params);
+
+        return redirect()->route('admin.plates.show', $plate);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Plate $plate
      * @return \Illuminate\Http\Response
      */
     public function show(Plate $plate)
@@ -54,7 +66,7 @@ class PlateController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Plate $plate
      * @return \Illuminate\Http\Response
      */
     public function edit(Plate $plate)
@@ -66,7 +78,7 @@ class PlateController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Plate $plate
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Plate $plate)
@@ -90,7 +102,7 @@ class PlateController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Plate $plate
      * @return \Illuminate\Http\Response
      */
     public function destroy(Plate $plate)
