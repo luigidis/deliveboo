@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Restaurant;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        //
+        // query che ritorna restaurant legato al mio user
+        // mostrarla
     }
 
     /**
@@ -22,10 +24,10 @@ class RestaurantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+    // public function create()
+    // {
+    //     //
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -33,10 +35,10 @@ class RestaurantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    // public function store(Request $request)
+    // {
+    //     //
+    // }
 
     /**
      * Display the specified resource.
@@ -44,10 +46,10 @@ class RestaurantController extends Controller
      * @param  \App\Restaurant  $restaurant
      * @return \Illuminate\Http\Response
      */
-    public function show(Restaurant $restaurant)
-    {
-        //
-    }
+    // public function show(Restaurant $restaurant)
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.

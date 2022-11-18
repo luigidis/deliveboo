@@ -61,6 +61,64 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="restaurant_name" class="col-md-4 col-form-label text-md-right">Nome Attività</label>
+
+                            <div class="col-md-6">
+                                <input id="restaurant_name" type="string" name="restaurant_name" class="form-control
+                                @error('restaurant_name') is-invalid @enderror" required>
+                                
+                                @error('restaurant_name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                                
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="address" class="col-md-4 col-form-label text-md-right">Indirizzo</label>
+
+                            <div class="col-md-6">
+                                <input id="address" type="string" name="address" class="form-control @error('address') is-invalid @enderror" required>
+                                
+                                @error('address')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="phone" class="col-md-4 col-form-label text-md-right">Numero di telefono</label>
+
+                            <div class="col-md-6">
+                                <input id="phone" type="tel" name="phone" class="form-control @error('phone') is-invalid @enderror" required>
+                                
+                                @error('phone')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="p_iva" class="col-md-4 col-form-label text-md-right">Partita Iva</label>
+
+                            <div class="col-md-6">
+                                <input id="p_iva" type="string" name="p_iva" class="form-control @error('p_iva') is-invalid @enderror" required>
+                                
+                                @error('p_iva')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
