@@ -11,7 +11,7 @@ class Plate extends Model
         'img',
         'description',
         'price',
-        'visible',
+        'is_visible',
         'slug'
     ];
 

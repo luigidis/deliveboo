@@ -22,7 +22,7 @@ class PlateSeeder extends Seeder
         for ($i = 0; $i < 50; $i++) {
             $plate = new Plate();
             $plate->name = $faker->unique()->words(rand(1, 5), true);
-            $plate->description = $faker->paragraphs(rand(2, 10), true);
+            $plate->description = $faker->paragraphs(rand(1, 2), true);
             $plate->price = $faker->randomFloat(2, 2, 50);
             $plate->is_visible = $faker->boolean();
             $plate->slug = Str::slug($plate->name);
