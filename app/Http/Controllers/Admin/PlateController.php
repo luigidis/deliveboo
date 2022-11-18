@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Plate;
+use App\Restaurant;
 use Illuminate\Http\Request;
 
 class PlateController extends Controller
@@ -37,18 +38,21 @@ class PlateController extends Controller
      */
     public function store(Request $request)
     {
+        
+
         $params = $request->validate([
             'name' => 'required|max:255|min:5',
             'description' => 'required',
             'img' => 'nullable|image|max:2048',
             'price' => 'required|numeric|min:0|max:50',
-            'is_visible' => 'required'
+            'is_visible' =>'required'
         ]);
 
         $params['slug'] = str_replace(' ','-',$params['name']);
 
+        
         $plate = Plate::create($params);
-
+        
         return redirect()->route('admin.plates.show', $plate);
     }
 

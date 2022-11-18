@@ -1,19 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     <div class="col-8">
       <h1>Edit plate : {{ $plate->name }}</h1>
     </div>
   </div>
 </div>
-<div class="container-fluid">
+<div class="container">
   <form action="{{ route('admin.plates.update',$plate) }}" method="POST">
   
     @csrf
     @method('PUT')
-
+    <input type="hidden" name="restaurant_id" value="{{ $plate->restaurant_id }}">
     <div class="form-group">
       <label for="img">Img</label>
 
@@ -62,15 +62,10 @@
       @enderror
 
     </div>
-
     <div class="form-group">
-      <label for="availability">Availability</label><br>
-      <input type="radio" name="available">
-      <label for="yes">available</label>
-      <input type="radio" name="not available">
-      <label for="no">not available</label><br>
-    </div>        
-    
+      <label for="is_visible">Availability</label>
+      <input type="number" name="is_visible" class="form-control @error('is_visible') is-invalid @enderror" id="is_visible" placeholder="Enter the availability" min="0" max="1" value="{{ $plate->is_visible }}" required>
+    </div>
     <button type="submit" class="btn btn-secondary">Edit</button>
   </form>
 </div>
