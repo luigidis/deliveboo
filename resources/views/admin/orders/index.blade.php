@@ -25,6 +25,9 @@
                             <span class="h6">
                                 {{ $order->status }}
                             </span>
+                            <span class="h6 text-capitalize">
+                                {{ $restaurant->name }}
+                            </span>
                             <div class="d-flex flex-wrap align-items-center justify-content-between">
                                 <h3>
                                     {{ $fullname_client }}
@@ -33,14 +36,14 @@
                                     {{ $order->total }}$
                                 </span>
                             </div>
-                            <ul class="list-group overflow-hidden" style="flex-grow:1;">
-                                <li class="list-group-item overflow-auto">{{ $order->address_client }}</li>
+                            <ul class="list-group overflow-auto" style="flex-grow:1;">
+                                <li class="list-group-item">{{ $order->address_client }}</li>
                                 <li class="list-group-item">{{ $order->phone_client }}</li>
                                 <li class="list-group-item">{{ $order->email_client }}</li>
                                 <li class="list-group-item">{{ $order->created_at }}</li>
-                              </ul>
+                            </ul>
                             <div class="d-flex p-2 flex-wrap align-items-center justify-content-between">
-                                <a href="{{route('admin.orders.show', $order)}}" class="btn btn-secondary my-2">Show</a>
+                                <a href="{{ route('admin.orders.show', $order) }}" class="btn btn-secondary my-2">Show</a>
                                 <a href="#" class="btn btn-outline-primary my-2">Update</a>
                                 <a href="#" class="btn btn-outline-success my-2">Complete</a>
                             </div>

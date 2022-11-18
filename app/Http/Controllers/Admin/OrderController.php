@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Order;
+use App\OrderPlate;
 use App\Plate;
 use App\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -17,9 +19,15 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
-
-        return view('admin.orders.index', compact('orders'));
+        $userId = Auth::id();
+        $restaurant = Restaurant::where('user_id', $userId)->first();
+        $orders = Order::join('order_plate', 'orders.id', '=', 'order_plate.order_id')
+                        ->join('plates', 'order_plate.plate_id', '=', 'plates.id')
+                        ->join('restaurants', 'plates.id', '=', 'restaurants.id')
+                        ->where('restaurants.id', $restaurant->id)
+                        ->get();
+        
+        return view('admin.orders.index', compact('orders', 'restaurant'));
     }
 
     /**
@@ -29,10 +37,11 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $plates = Plate::all();
-        $restaurants = Restaurant::all();
+        $userId = Auth::id();
+        $restaurant = Restaurant::where('user_id', $userId)->first();
+        $plates = Plate::where('restaurant_id', $restaurant->id)->get();
         
-        return view ('admin.orders.create', compact('plates', 'restaurants'));
+        return view ('admin.orders.create', compact('plates', 'restaurant'));
     }
 
     /**

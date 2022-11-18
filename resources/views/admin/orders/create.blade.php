@@ -17,9 +17,6 @@
             </div>
             <div class="body_content py-5 d-flex flex-wrap align-items-center justify-content-center">
                 @foreach ($plates as $plate)
-                    @php
-                        $restaurant = $restaurants->find($plate->restaurant_id);
-                    @endphp
                     <div class="card m-3 @if (!$plate->is_visible) d-none @endif overflow-hidden"
                         style="max-width: 320px; max-height: 400px;">
                         <div class="card-body d-flex flex-column">
@@ -28,8 +25,10 @@
                                 <div class="d-flex flex-wrap align-items-center justify-content-between position-relative">
                                     <a href="#" class="position-absolute"
                                         style="top: 0; left: 0; right: 0; bottom: 0;"></a>
-                                    <img class="card-img-top" src="{{ $plate->img }}"
-                                        alt="Image plates: {{ $plate->name }}">
+                                    @if ($plate->img)
+                                        <img class="card-img-top" src="{{ $plate->img }}"
+                                            alt="Image plates: {{ $plate->name }}">
+                                    @endif
                                     <h3 class="text-capitalize">
                                         {{ $plate->name }}
                                     </h3>
