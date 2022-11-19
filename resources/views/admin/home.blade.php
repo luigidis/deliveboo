@@ -1,11 +1,46 @@
 @extends('layouts.app')
 
 @section('content')
+    {{-- CREARE LA VISTA DEL RISTORANTE --}}
 
-{{-- CREARE LA VISTA DEL RISTORANTE --}}
+    
+    
+   
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center py-5">
+                <h1>Sei loggato come {{ $user->name}}</h1>
+              
+            </div>
+            <div class="col-12  d-flex justify-content-center">
+                <ul style="list-style: none; font-size: 25px">
+                    <li>
+                        Nome: {{ $restaurant->name}}
+                    </li>
+                    <li>
+                        Indirizzo: {{ $restaurant->address }}
+                    </li>
+                    <li>
+                        Numero di Telefono: {{ $restaurant->phone}}
+                    </li>
+                    <li>
+                        Numero P.IVA: {{ $restaurant->p_iva }}
+                    </li>
+                    <li>
+                        Email: {{ $user->email }}
+                    </li>
+                </ul>
+            </div>
 
 
-{{-- <div class="container">
+
+        </div>
+
+    </div>
+
+
+    {{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
