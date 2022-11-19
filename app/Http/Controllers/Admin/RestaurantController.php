@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
 use App\Http\Controllers\Controller;
 use App\Restaurant;
 use App\User;
@@ -60,7 +61,9 @@ class RestaurantController extends Controller
      */
     public function edit(Restaurant $restaurant)
     {
-        //
+        $categories  = Category::orderBy('name', 'asc')->get();
+
+        return view('admin.restaurant.edit', compact('restaurant', 'categories'));
     }
 
     /**
@@ -72,7 +75,21 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, Restaurant $restaurant)
     {
-        //
+        // dd($restaurant);
+
+        $params = $request->validate([
+            'name' => 'required|max:255',
+            'address' => 'required|max:255',
+            'phone' => 'required|max:255',
+            'p_iva' => 'required|max:255',
+            // 'category_id' => 'nullable|exists:App\Category,id',
+            // 'image' => 'nullable|image|max:2048'
+        ]);
+
+        // dd($params);
+        $restaurant->update($params);
+
+        return redirect()->route('admin.home');
     }
 
     /**
@@ -83,9 +100,12 @@ class RestaurantController extends Controller
      */
     public function destroy(Restaurant $restaurant)
     {
-        //
-        // $userId = $restaurant->user_id;
-        // $user = User::find($userId);
-        // $user->delete();
+        $userId = $restaurant->user_id;
+        $user = User::find($userId);
+        
+        $restaurant->delete();
+        $user->delete();
+
+        return view('welcome');
     }
 }
