@@ -20,7 +20,7 @@
                 <th>Description</th>
                 <th>Price_€</th>
                 <th>Availability</th>
-                <th>Slug</th>
+                <th>Restaurant_id</th>
                 <th></th>
                 <th></th>
               </tr>
@@ -33,7 +33,7 @@
                 <td> {{ $plate->description }} </td>
                 <td> {{ $plate->price }} </td>
                 <td> {{ $plate->is_visible }} </td>
-                <td> {{ $plate->slug }} </td>
+                <td> {{ $plate->restaurant_id }} </td>
                 <td>
                   <a href="{{ route('admin.plates.show',$plate) }}" type="button" class="btn btn-secondary btn-sm">Show</a>
                 </td>

@@ -14,9 +14,9 @@ class PlateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Restaurant $restaurant)
     {
-        $plates = Plate::orderBy('id','desc')->get();
+        $plates = Plate::orderBy('restaurant_id')->get();
         return view('admin.plates.index',compact('plates'));
     }
 
@@ -96,7 +96,7 @@ class PlateController extends Controller
         ]);
 
         $params['slug'] = str_replace(' ','-',$params['name']);
-
+        
         $plate->update($params);
 
         return redirect()->route('admin.plates.show', $plate);
