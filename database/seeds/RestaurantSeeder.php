@@ -23,7 +23,7 @@ class RestaurantSeeder extends Seeder
             $restaurant->image = $faker->words(rand(1, 10), true);
             $restaurant->address = $faker->words(rand(2, 5), true);
             $restaurant->phone = $faker->numerify('+39-##########');
-            $restaurant->p_iva = $faker->numerify('p-iva-########');
+            $restaurant->p_iva = $faker->numerify('########');
             $restaurant->user_id = $userIds[$i];
 
             $restaurant->save();

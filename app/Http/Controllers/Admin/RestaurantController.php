@@ -61,7 +61,7 @@ class RestaurantController extends Controller
      */
     public function edit(Restaurant $restaurant)
     {
-        $categories  = Category::orderBy('name', 'asc')->get();
+        $categories = Category::orderBy('name', 'asc')->get();
 
         return view('admin.restaurant.edit', compact('restaurant', 'categories'));
     }
@@ -82,12 +82,18 @@ class RestaurantController extends Controller
             'address' => 'required|max:255',
             'phone' => 'required|max:255',
             'p_iva' => 'required|max:255',
-            // 'category_id' => 'nullable|exists:App\Category,id',
+            'categories' => 'exists:categories,id|required'
             // 'image' => 'nullable|image|max:2048'
         ]);
 
         // dd($params);
         $restaurant->update($params);
+
+        if (array_key_exists('categories', $params)) {
+            $restaurant->categories()->sync($params['categories']);
+        } else {
+            $restaurant->categories()->sync([]);
+        }
 
         return redirect()->route('admin.home');
     }
@@ -102,7 +108,7 @@ class RestaurantController extends Controller
     {
         $userId = $restaurant->user_id;
         $user = User::find($userId);
-        
+
         $restaurant->delete();
         $user->delete();
 

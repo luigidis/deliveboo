@@ -26,7 +26,9 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="form-group">
+
+
+                    {{-- <div class="form-group">
                         <label for="category">Categoria</label>
                         <select name="category_id" class="custom-select @error('category_id') is-invalid @enderror">
                             <option value="">-- nessuna -- </option>
@@ -41,7 +43,28 @@
                                 {{ $message }}
                             </div>
                         @enderror
+                    </div> --}}
+
+
+                    <div class="form-group">
+                        <label class="d-block" for="category">Categorie:</label>
+              
+                        <div class="@error('categories') is-invalid @enderror">
+
+                            @foreach($categories as $key => $category)
+                                <div class="form-check form-check-inline">
+                                <input class="form-check-input" name="categories[]" @if( in_array($category->id, old('categories', $restaurant->categories->pluck('id')->all()) ) ) checked @endif type="checkbox" id="category-{{$category->id}}" value="{{ $category->id }}">
+                                <label class="form-check-label" for="category-{{$category->id}}">{{ $category->name }}</label>
+                                </div>
+                            @endforeach
+                        </div>
+                        @error('categories')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
+
                     <div class="form-group">
                         <label for="address">Indirizzo</label>
                         <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"

@@ -31,6 +31,16 @@
                         Email: {{ $user->email }}
                     </li>
                     <li>
+                        Categorie: 
+                        <ul>
+                            @foreach ($restaurant->categories as $category) 
+                            <li>
+                                {{ $category->name }}
+                            </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                    <li>
                         <a href="{{ route('admin.restaurant.edit', $restaurant->id) }}" type="button"
                         class="btn btn-warning btn-sm">Modifica Ristorante</a>
                     </li>

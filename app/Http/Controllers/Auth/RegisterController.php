@@ -57,6 +57,7 @@ class RegisterController extends Controller
             'address' => ['required', 'string', 'min:4', 'max:255'],
             'phone' => ['required', 'int'],
             'p_iva' => ['required', 'int'],
+            'categories' => ['exists:categories,id', 'required']
         ]);
     }
 
@@ -73,13 +74,21 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-        Restaurant::create([
+
+        $restaurant = Restaurant::create([
             'name' => $data['restaurant_name'],
             'address' => $data['address'],
             'phone' => $data['phone'],
             'p_iva' => $data['p_iva'],
             'user_id' => $user->id,
         ]);
+
+        if (array_key_exists('categories', $data)) {
+            $restaurant->categories()->sync($data['categories']);
+        } else {
+            // TODO: qua credo serva bloccare tutto e dare errore perché le categorie passate devono esistere
+            $restaurant->categories()->sync([]);
+        }
 
         return $user;
     }
