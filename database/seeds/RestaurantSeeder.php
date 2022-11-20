@@ -17,11 +17,10 @@ class RestaurantSeeder extends Seeder
         $userIds = User::all()->pluck('id');
 
         for ($i = 0; $i < 10; $i++) {
-
+            $randomImg = rand(1, 300);
             $restaurant = new Restaurant();
             $restaurant->name = $faker->company();
-            // TODO: da fare
-            $restaurant->image = $faker->imageUrl('400', '200', 'food', true);
+            $restaurant->image = "https://picsum.photos/id/$randomImg/200/300";
             $restaurant->address = $faker->address();
             $restaurant->phone = $faker->phoneNumber();
             $restaurant->p_iva = $faker->numerify('###########');
