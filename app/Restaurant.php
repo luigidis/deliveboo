@@ -34,8 +34,7 @@ class Restaurant extends Model
     public function getImagePathAttribute()
     {
         if (filter_var($this->image, FILTER_VALIDATE_URL))
-            // return $this->image;
-            return 'diocane';
+            return $this->image;
         return $this->image ? asset('images/' . $this->image) : null;
     }
 }
