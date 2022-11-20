@@ -12,7 +12,15 @@
                         {{ $fullname_client }}
                     </h3>
                     <h3>
-                        {{ $order->total }} $
+                        {{-- TODO: QUI --}}
+                        {{-- {{ $order->total }} $ --}}
+                        <?php
+                        $tot = 0;
+                        foreach ($plates as $plate) {
+                            $tot+=$plate->price;
+                        }
+                        echo $tot . '€';
+                        ?>
                     </h3>
 
                 </div>
@@ -31,7 +39,7 @@
                                     {{ $plate->name }}
                                 </h3>
                                 <span class="h4 mb-0">
-                                    {{ $plate->price }}$
+                                    {{ $plate->price }}€
                                 </span>
                             </div>
                             <p class="card-text" style="flex-grow:1;">{{ $plate->address_client }}</p>
