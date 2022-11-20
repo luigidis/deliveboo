@@ -86,6 +86,7 @@ class RestaurantController extends Controller
         ]);
 
         if (array_key_exists('image', $params) && $params['image'] !== null) {
+            Storage::disk('images')->delete($restaurant->image);
             $img_path = Storage::disk('images')->put('restaurant_covers', $request->file('image'));
             $params['image'] = $img_path;
         } else {
@@ -113,6 +114,11 @@ class RestaurantController extends Controller
     {
         $userId = $restaurant->user_id;
         $user = User::find($userId);
+
+        if ($restaurant->image && Storage::disk('images')->exists($restaurant->image)) {
+            Storage::disk('images')->delete($restaurant->image);
+        }
+
 
         $restaurant->delete();
         $user->delete();
