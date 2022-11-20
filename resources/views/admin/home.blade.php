@@ -13,8 +13,8 @@
                 <h1>Sei loggato come {{ $user->name }}</h1>
 
             </div>
-            <div class="col-12  d-flex justify-content-center">
-                <img src="{{asset('images/' . $restaurant->image) }}" width="400" height="400" alt="">
+            <div class="col-12 d-flex justify-content-center">
+                <img src="{{ $restaurant->image_path }}" height="200" alt="">
                 <ul style="list-style: none; font-size: 25px">
                     <li>
                         Nome: {{ $restaurant->name }}

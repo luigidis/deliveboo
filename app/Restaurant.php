@@ -30,4 +30,12 @@ class Restaurant extends Model
     {
         return $this->hasMany('App\Plate');
     }
+
+    public function getImagePathAttribute()
+    {
+        if (filter_var($this->image, FILTER_VALIDATE_URL))
+            // return $this->image;
+            return 'diocane';
+        return $this->image ? asset('images/' . $this->image) : null;
+    }
 }
