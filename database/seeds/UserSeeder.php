@@ -22,8 +22,10 @@ class UserSeeder extends Seeder
 
         for ($i = 0; $i < 9; $i++) {
             $user = new User();
-            $user->name = "$faker->firstName $faker->lastName";
-            $user->email = $faker->unique()->email();
+            $name = $faker->firstName();
+            $lastName = $faker->lastName();
+            $user->name = "$name $lastName";
+            $user->email = strtolower($name) . strtolower($lastName) . '@gmail.com';
             $user->password = Hash::make($faker->password());
 
             $user->save();
