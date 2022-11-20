@@ -19,14 +19,13 @@ class CategoryRestaurantSeeder extends Seeder
             $restaurant = Restaurant::find($i + 1);
             $categories = [];
             for ($j = 0; $j < rand(1, 3); $j++) {
-                $k = rand(0, 5);
+                $k = rand(0, count($categoriesIds) - 1);
                 while (in_array($categoriesIds[$k], $categories)) {
-                    $k = rand(0, 5);
+                    $k = rand(0, count($categoriesIds) - 1);
                 }
                 $categories[] = $categoriesIds[$k];
             }
             $restaurant->categories()->sync($categories);
         }
     }
-    
 }
