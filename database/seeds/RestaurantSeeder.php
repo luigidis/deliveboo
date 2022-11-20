@@ -20,7 +20,7 @@ class RestaurantSeeder extends Seeder
             $randomImg = rand(1, 300);
             $restaurant = new Restaurant();
             $restaurant->name = $faker->company();
-            $restaurant->image = "https://picsum.photos/id/$randomImg/200/300";
+            $restaurant->image = "https://picsum.photos/id/$randomImg/400/200";
             $restaurant->address = $faker->address();
             $restaurant->phone = $faker->phoneNumber();
             $restaurant->p_iva = $faker->numerify('###########');
