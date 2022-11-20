@@ -13,14 +13,14 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        $categories = ['Asiatico', 'Indiano', 'Brasiliano', 'Italiano', 'Giapponese', 'Cinese'];
+        $categories = ['Asiatico', 'Indiano', 'Brasiliano', 'Italiano', 'Giapponese', 'Cinese', 'Pasta', 'Pizza', 'Spagnolo', 'Bavarese', 'Messicano', 'Fast Food', 'Hamburger', 'Sushi'];
 
-        foreach($categories as $category) {
-            $c = new Category(); 
+        foreach ($categories as $category) {
+            $c = new Category();
 
             $c->name = $category;
             $c->slug = Str::slug($category);
-            
+
             $c->save();
         }
     }

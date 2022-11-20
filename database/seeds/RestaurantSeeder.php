@@ -16,15 +16,16 @@ class RestaurantSeeder extends Seeder
     {
         $userIds = User::all()->pluck('id');
 
-        for ($i=0; $i < 10; $i++ ) {
+        for ($i = 0; $i < 10; $i++) {
 
             $restaurant = new Restaurant();
-            $restaurant->name = $faker->words( rand(2,10), true);
-            $restaurant->image = $faker->words( rand(1,10), true);
-            $restaurant->address = $faker->words(rand(2,5), true);
-            $restaurant->phone = $faker->numerify('+39-##########');
-            $restaurant->p_iva = $faker->numerify('p-iva-########');
-            $restaurant->user_id = $faker->randomElement($userIds);
+            $restaurant->name = $faker->company();
+            // TODO: da fare
+            $restaurant->image = $faker->words(rand(1, 10), true);
+            $restaurant->address = $faker->address();
+            $restaurant->phone = $faker->phoneNumber();
+            $restaurant->p_iva = $faker->numerify('###########');
+            $restaurant->user_id = $userIds[$i];
 
             $restaurant->save();
         }
