@@ -9,6 +9,7 @@
     <h3>
       {{ $plate->slug }}
     </h3>
+    <img src="{{ $plate->img }}" width="400" alt="">
     <p>
       {{ $plate->description }}
     </p>
