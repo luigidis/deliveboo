@@ -52,7 +52,17 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $params = $request->validate([
+            'status' => 'required|max:255',
+            'total' => 'required|numeric',
+            'name_client' => 'required|max:255',
+            'surname_client' => 'required|max:255',
+            'address_client' => 'required|max:255',
+            'phone_client' => 'required|max:15|integer',
+            'email_client' => 'required|max:255|email',
+        ]);
+
+        return redirect()->route('admin.orders.show', compact('newOrder'));
     }
 
     /**
@@ -103,6 +113,8 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $order->delete();
+        
+        return redirect()->route('admin.orders.index');
     }
 }

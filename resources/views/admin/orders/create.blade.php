@@ -15,7 +15,7 @@
                     </a>
                 </div>
             </div>
-            <div class="body_content py-5 d-flex flex-wrap align-items-center justify-content-center">
+            <div class="body_content py-5 d-flex flex-wrap justify-content-center">
                 @foreach ($plates as $plate)
                     <div class="card m-3 @if (!$plate->is_visible) d-none @endif overflow-hidden"
                         style="max-width: 320px; max-height: 400px;">
@@ -38,10 +38,10 @@
                                 </div>
                             </div>
                             <p class="card-text overflow-auto">{{ $plate->description }}</p>
-                            <form action="{{route('admin.orders.store', $plate)}}" method="POST">
+                            <form action="{{route('admin.orders.store', $plate)}}" method="POST" style="flex-grow: 1;" class="d-flex align-items-end">
                                 @csrf
 
-                                <button type="submit" class="d-flex btn btn-primary my-2 justify-content-center">
+                                <button type="submit" class="btn btn-primary">
                                     Buy
                                 </button>
                             </form>

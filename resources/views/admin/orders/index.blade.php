@@ -46,6 +46,14 @@
                                 <a href="{{ route('admin.orders.show', $order) }}" class="btn btn-secondary my-2">Show</a>
                                 <a href="#" class="btn btn-outline-primary my-2">Update</a>
                                 <a href="#" class="btn btn-outline-success my-2">Complete</a>
+                                <form action="{{ route('admin.orders.destroy', $order) }}" method="POST" style="flex-basis: 100%;">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="btn btn-outline-danger" style="width: 100%">
+                                        Delete
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
