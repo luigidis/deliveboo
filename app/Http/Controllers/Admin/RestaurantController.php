@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Restaurant;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class RestaurantController extends Controller
 {
@@ -75,18 +76,22 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, Restaurant $restaurant)
     {
-        // dd($restaurant);
-
         $params = $request->validate([
             'name' => 'required|max:255',
             'address' => 'required|max:255',
             'phone' => 'required|max:255',
             'p_iva' => 'required|max:255',
-            'categories' => 'exists:categories,id|required'
-            // 'image' => 'nullable|image|max:2048'
+            'categories' => 'exists:categories,id|required',
+            'image' => 'nullable|image|max:2048'
         ]);
 
-        // dd($params);
+        if (array_key_exists('image', $params) && $params['image'] !== null) {
+            $img_path = Storage::disk('images')->put('restaurant_covers', $request->file('image'));
+            $params['image'] = $img_path;
+        } else {
+            $params['image'] = $restaurant->image;
+        }
+
         $restaurant->update($params);
 
         if (array_key_exists('categories', $params)) {
