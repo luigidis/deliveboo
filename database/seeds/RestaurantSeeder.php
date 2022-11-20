@@ -21,7 +21,7 @@ class RestaurantSeeder extends Seeder
             $restaurant = new Restaurant();
             $restaurant->name = $faker->company();
             // TODO: da fare
-            $restaurant->image = $faker->words(rand(1, 10), true);
+            $restaurant->image = $faker->imageUrl('400', '200', 'food', true);
             $restaurant->address = $faker->address();
             $restaurant->phone = $faker->phoneNumber();
             $restaurant->p_iva = $faker->numerify('###########');
