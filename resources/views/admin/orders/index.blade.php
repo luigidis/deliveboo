@@ -3,40 +3,61 @@
 @section('content')
     <section>
         <div class="container">
-            <div class="head_content10">
-                <h1>
-                    Orders
-                </h1>
-            </div>
-            <div class="body_content">
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>#</th>
-                                <th>Status</th>
-                                <th>Total</th>
-                                <th>Full Name</th>
-                                <th>Address</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        @foreach ($orders as $item)
-                            <tr>
-                                <td> {{ $item->id }} </td>
-                                <td> {{ $item->status }} </td>
-                                <td> {{ $item->total }}$</td>
-                                <td> {{ $item->name_client }} {{ $item->surname_client }} </td>
-                                <td> {{ $item->address_client }} </td>
-                                <td> {{ $item->phone_client }} </td>
-                                <td> {{ $item->email_client }} </td>
-                                <td> {{ $item->created_at }} </td>
-                            </tr>
-                        @endforeach
-                    </table>
+            <div class="header_content d-flex flex-wrap justify-content-between">
+                <div>
+                    <h1>
+                        Orders
+                    </h1>
                 </div>
+                <div class="d-flex align-items-center justify-content-end">
+                    <a href="{{ route('admin.orders.create') }}" class="btn btn-primary" title="Add order">
+                        Add order
+                    </a>
+                </div>
+            </div>
+            <div class="body_content py-5 d-flex flex-wrap justify-content-center">
+                @foreach ($orders as $order)
+                    @php
+                        $fullname_client = $order->name_client . ' ' . $order->surname_client;
+                    @endphp
+                    <div class="card m-3 overflow-hidden" style="max-width: 320px; max-height: 400px; flex-grow:1;">
+                        <div class="card-body d-flex flex-column">
+                            <span class="h6">
+                                {{ $order->status }}
+                            </span>
+                            <span class="h6 text-capitalize">
+                                {{ $restaurant->name }}
+                            </span>
+                            <div class="d-flex flex-wrap align-items-center justify-content-between">
+                                <h3>
+                                    {{ $fullname_client }}
+                                </h3>
+                                <span class="h4">
+                                    {{ $order->total }}$
+                                </span>
+                            </div>
+                            <ul class="list-group overflow-auto" style="flex-grow:1;">
+                                <li class="list-group-item">{{ $order->address_client }}</li>
+                                <li class="list-group-item">{{ $order->phone_client }}</li>
+                                <li class="list-group-item">{{ $order->email_client }}</li>
+                                <li class="list-group-item">{{ $order->created_at }}</li>
+                            </ul>
+                            <div class="d-flex p-2 flex-wrap align-items-center justify-content-between">
+                                <a href="{{ route('admin.orders.show', $order) }}" class="btn btn-secondary my-2">Show</a>
+                                <a href="#" class="btn btn-outline-primary my-2">Update</a>
+                                <a href="#" class="btn btn-outline-success my-2">Complete</a>
+                                <form action="{{ route('admin.orders.destroy', $order) }}" method="POST" style="flex-basis: 100%;">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="btn btn-outline-danger" style="width: 100%">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
     </section>
 @endsection

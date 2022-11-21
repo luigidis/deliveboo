@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Order;
+use App\OrderPlate;
+use App\Plate;
+use App\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -15,9 +19,15 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
+        $userId = Auth::id();
+        $restaurant = Restaurant::where('user_id', $userId)->first();
+        $orders = Order::join('order_plate', 'orders.id', '=', 'order_plate.order_id')
+            ->join('plates', 'order_plate.plate_id', '=', 'plates.id')
+            ->join('restaurants', 'plates.id', '=', 'restaurants.id')
+            ->where('restaurants.id', $restaurant->id)
+            ->get();
 
-        return view('admin.orders.index', compact('orders'));
+        return view('admin.orders.index', compact('orders', 'restaurant'));
     }
 
     /**
@@ -27,7 +37,11 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        $userId = Auth::id();
+        $restaurant = Restaurant::where('user_id', $userId)->first();
+        $plates = Plate::where('restaurant_id', $restaurant->id)->get();
+
+        return view('admin.orders.create', compact('plates', 'restaurant'));
     }
 
     /**
@@ -38,7 +52,17 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $params = $request->validate([
+            'status' => 'required|max:255',
+            'total' => 'required|numeric',
+            'name_client' => 'required|max:255',
+            'surname_client' => 'required|max:255',
+            'address_client' => 'required|max:255',
+            'phone_client' => 'required|max:15|integer',
+            'email_client' => 'required|max:255|email',
+        ]);
+
+        return redirect()->route('admin.orders.show', compact('newOrder'));
     }
 
     /**
@@ -49,7 +73,13 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        $fullname_client = $order->name_client . ' ' . $order->surname_client;
+        $order_plate = OrderPlate::where('order_id', $order->id)->get();    
+        foreach($order_plate as $plate){
+            $plates[] = Plate::find($plate->plate_id);
+        }
+        // dd($plates);
+        return view('admin.orders.show', compact('order', 'fullname_client', 'plates'));
     }
 
     /**
@@ -83,6 +113,8 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $order->delete();
+        
+        return redirect()->route('admin.orders.index');
     }
 }
