@@ -2,9 +2,12 @@
 
 @section('content')
 <div class="container">
-  <div class="row">
+  <div class="row d-flex justify-content-between">
     <div class="col-8">
       <h1>Modifica il piatto : {{ $plate->name }}</h1>
+    </div>
+    <div>
+      <a href="{{ route('admin.plates.index') }}"><button type="button" class="btn btn-warning btn-lg">Torna indietro</button></a>   
     </div>
   </div>
 </div>

@@ -3,12 +3,19 @@
 @section('content')
 
   <div class="container">
-    <h1>
-      {{ $plate->name }}
-    </h1>
-    <h3>
-      {{ $plate->slug }}
-    </h3>
+    <div class="d-flex justify-content-between">
+      <div>
+        <h1>
+          {{ $plate->name }}
+        </h1>
+        <h3>
+          {{ $plate->slug }}
+        </h3>
+      </div>
+      <div>
+        <a href="{{ route('admin.plates.index') }}"><button type="button" class="btn btn-warning btn-lg">Torna indietro</button></a>   
+      </div>
+    </div>
     <img class="py-3" src="{{ $plate->image_path }}" width="400" alt="{{ $plate->name }}">
     <p>
       {{ $plate->description }}

@@ -7,7 +7,10 @@
         <h1>
             Lista dei piatti
         </h1>
-        <a href="{{ route('admin.plates.create') }}"><button type="button" class="btn btn-secondary btn-lg">Aggiungi un nuovo piatto</button></a>   
+        <div>
+          <a href="{{ route('admin.home') }}"><button type="button" class="btn btn-warning btn-lg">Torna alla home</button></a>   
+          <a href="{{ route('admin.plates.create') }}"><button type="button" class="btn btn-secondary btn-lg">Aggiungi un nuovo piatto</button></a>   
+        </div>
       </div>
       <div class="body_content">
         <div class="table-responsive">

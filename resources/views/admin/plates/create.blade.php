@@ -3,8 +3,11 @@
 @section('content')
 <div class="container">
   <div class="row">
-    <div class="col-8">
+    <div class="col-8 d-flex justify-content-between">
       <h1>Aggiungi un nuovo piatto al menù</h1>
+      <div>
+        <a href="{{ route('admin.plates.index') }}"><button type="button" class="btn btn-warning btn-lg">Torna indietro</button></a>   
+      </div>
     </div>
   </div>
 </div>
