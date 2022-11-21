@@ -6,16 +6,35 @@ use Illuminate\Database\Eloquent\Model;
 
 class Restaurant extends Model
 {
-    public function user() {
+
+    protected $fillable = [
+        'name',
+        'phone',
+        'address',
+        'p_iva',
+        'user_id',
+        'image'
+    ];
+
+    public function user()
+    {
         return $this->hasOne('App\User');
     }
 
-    public function categories() {
+    public function categories()
+    {
         return $this->belongsToMany('App\Category');
     }
 
-    public function plates() {
+    public function plates()
+    {
         return $this->hasMany('App\Plate');
     }
 
+    public function getImagePathAttribute()
+    {
+        if (filter_var($this->image, FILTER_VALIDATE_URL))
+            return $this->image;
+        return $this->image ? asset('images/' . $this->image) : null;
+    }
 }
