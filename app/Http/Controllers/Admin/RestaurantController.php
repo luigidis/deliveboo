@@ -120,9 +120,9 @@ class RestaurantController extends Controller
         }
 
 
-        $restaurant->delete();
-        $user->delete();
+        // $restaurant->delete();
+        // $user->delete();
 
-        return view('welcome');
+        return redirect('/');
     }
 }
