@@ -28,5 +28,6 @@ Route::middleware('auth')
         Route::get('/home', 'HomeController@index')->name('home');
         Route::resource('restaurant', 'RestaurantController')->only(['edit', 'update', 'destroy']);
         Route::resource('orders', 'OrderController')->only(['index', 'show']);
+        Route::resource('categories', 'CategoryController')->only(['index']);
         Route::resource('plates', 'PlateController');
     });
