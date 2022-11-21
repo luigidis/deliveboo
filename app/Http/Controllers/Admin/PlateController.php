@@ -17,9 +17,12 @@ class PlateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Restaurant $restaurant)
+    public function index(Request $request)
     {
-        $user = Auth::user();
+        if ($request['id'])
+            $user = User::where('id', $request['id'])->first();
+        else
+            $user = Auth::user();
         $restaurant = Restaurant::where('user_id', $user->id)->first();
         $plates = Plate::orderby('name', 'asc')->where('restaurant_id', $restaurant->id)->get();
 
