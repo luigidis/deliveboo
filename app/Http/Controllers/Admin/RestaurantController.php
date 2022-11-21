@@ -119,13 +119,13 @@ class RestaurantController extends Controller
         if ($restaurant->image && Storage::disk('images')->exists($restaurant->image)) {
             Storage::disk('images')->delete($restaurant->image);
         }
-
+        
         $restaurant->delete();
         $user->delete();
 
         if (Auth::user()->is_admin)
             return redirect()->route('admin.home');
-
+            
         return redirect('/');
     }
 }
