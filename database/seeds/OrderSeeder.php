@@ -14,7 +14,7 @@ class OrderSeeder extends Seeder
     public function run(Faker $faker)
     {
 
-        $status = ['Completato', 'In lavorazione', 'In consegna', 'In elaborazione'];
+        $status = ['Cancellato' ,'In elaborazione', 'In lavorazione', 'Completato', 'In transito', 'In consegna'];
 
         for ($i = 0; $i < 50; $i++) {
             $order = new Order();

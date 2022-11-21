@@ -118,7 +118,19 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $params = $request->validate([
+            'status' => 'required|max:255',
+            // 'total' => 'required|numeric',
+            // 'name_client' => 'required|max:255',
+            // 'surname_client' => 'required|max:255',
+            // 'address_client' => 'required|max:255',
+            // 'phone_client' => 'required|max:15|integer',
+            // 'email_client' => 'required|max:255|email',
+        ]);
+
+        $order->update($params);
+
+        return redirect()->route('admin.orders.index');
     }
 
     /**
