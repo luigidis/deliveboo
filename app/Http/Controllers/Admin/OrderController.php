@@ -35,6 +35,7 @@ class OrderController extends Controller
             }
         }
 
+        rsort($ordersId);
         // dd($ordersId);
         foreach ($ordersId as $id) {
             $orders[] = Order::where('id', $id)->first();
@@ -126,10 +127,10 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    // public function destroy(Order $order)
-    // {
-    //     $order->delete();
+    public function destroy(Order $order)
+    {
+        $order->delete();
 
-    //     return redirect()->route('admin.orders.index');
-    // }
+        return redirect()->route('admin.orders.index');
+    }
 }

@@ -34,7 +34,7 @@
     </div>
     <div>
       <p><strong>Prezzo</strong> : {{ $plate->price }} € </p>
-      <p><strong>Ristorante</strong> : #{{ $plate->restaurant_id }}, {{ $plate->restaurant->name }} </p>
+      {{-- <p><strong>Ristorante</strong> : #{{ $plate->restaurant_id }}, {{ $plate->restaurant->name }} </p> --}}
     </div>
     <div class="d-flex justify-content-between">
       <a href="{{ route('admin.plates.edit',$plate) }}" type="button" class="btn btn-secondary btn-lg">Modifica il piatto</a>
