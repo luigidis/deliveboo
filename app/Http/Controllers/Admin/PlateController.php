@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Plate;
 use App\Restaurant;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PlateController extends Controller
 {
@@ -16,7 +19,10 @@ class PlateController extends Controller
      */
     public function index(Restaurant $restaurant)
     {
-        $plates = Plate::orderBy('restaurant_id')->get();
+        $user = Auth::user();
+        $restaurant = Restaurant::where('user_id', $user->id)->first();
+        $plates = Plate::where('restaurant_id', $restaurant->id)->get();
+
         return view('admin.plates.index',compact('plates'));
     }
 
@@ -39,20 +45,27 @@ class PlateController extends Controller
     public function store(Request $request)
     {
         
+        $user = Auth::user();
+        $restaurant = Restaurant::where('user_id', $user->id)->first();
 
         $params = $request->validate([
             'name' => 'required|max:255|min:5',
             'description' => 'required',
-            'img' => 'nullable|image|max:2048',
+            'img' => 'required|image|max:2048',
             'price' => 'required|numeric|min:0|max:50',
             'is_visible' =>'required'
         ]);
 
         $params['slug'] = str_replace(' ','-',$params['name']);
-
+        $params['restaurant_id'] = $restaurant->id;
+        
+        if (array_key_exists('image', $params)) {
+            $img_path = Storage::disk('images')->put('plate_covers', $request->file('image'));
+            $params['img'] = $img_path;
+        }
         
         $plate = Plate::create($params);
-        
+
         return redirect()->route('admin.plates.show', $plate);
     }
 
@@ -96,6 +109,15 @@ class PlateController extends Controller
         ]);
 
         $params['slug'] = str_replace(' ','-',$params['name']);
+
+        if (array_key_exists('img', $params) && $params['img'] !== null) {
+            Storage::disk('images')->delete($plate->img);
+            $img_path = Storage::disk('images')->put('restaurant_covers', $request->file('img'));
+            $params['img'] = $img_path;
+        } else {
+            $params['img'] = $plate->img;
+        }
+
         
         $plate->update($params);
 

@@ -10,9 +10,9 @@
                     </h1>
                 </div>
                 <div class="d-flex align-items-center justify-content-end">
-                    <a href="{{ route('admin.orders.create') }}" class="btn btn-primary" title="Add order">
+                    {{-- <a href="{{ route('admin.orders.create') }}" class="btn btn-primary" title="Add order">
                         Add order
-                    </a>
+                    </a> --}}
                 </div>
             </div>
             <div class="body_content py-5 d-flex flex-wrap justify-content-center">
@@ -46,14 +46,14 @@
                                 <a href="{{ route('admin.orders.show', $order) }}" class="btn btn-secondary my-2">Show</a>
                                 <a href="#" class="btn btn-outline-primary my-2">Update</a>
                                 <a href="#" class="btn btn-outline-success my-2">Complete</a>
-                                <form action="{{ route('admin.orders.destroy', $order) }}" method="POST" style="flex-basis: 100%;">
+                                {{-- <form action="{{ route('admin.orders.destroy', $order) }}" method="POST" style="flex-basis: 100%;">
                                     @csrf
                                     @method('DELETE')
 
                                     <button type="submit" class="btn btn-outline-danger" style="width: 100%">
                                         Delete
                                     </button>
-                                </form>
+                                </form> --}}
                             </div>
                         </div>
                     </div>

@@ -9,7 +9,7 @@
   </div>
 </div>
 <div class="container">
-  <form action="{{ route('admin.plates.update',$plate) }}" method="POST">
+  <form action="{{ route('admin.plates.update',$plate) }}" method="POST" enctype="multipart/form-data">
   
     @csrf
     @method('PUT')

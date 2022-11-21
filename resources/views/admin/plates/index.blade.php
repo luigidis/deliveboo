@@ -15,12 +15,12 @@
             <thead class="thead-dark">
               <tr>
                 <th>#</th>
-                <th>Src</th>
+                {{-- <th>Src</th> --}}
                 <th>Name</th>
                 <th>Description</th>
                 <th>Price_€</th>
                 <th>Availability</th>
-                <th>Restaurant_id</th>
+                <th>Restaurant Name</th>
                 <th></th>
                 <th></th>
               </tr>
@@ -28,12 +28,12 @@
             @foreach ($plates as $plate)
               <tr>
                 <td> {{ $plate->id }} </td>
-                <td> {{ $plate->img }} </td>
+                {{-- <td> {{ $plate->img }} </td> --}}
                 <td> {{ $plate->name }} </td>
                 <td> {{ $plate->description }} </td>
                 <td> {{ $plate->price }} </td>
                 <td> {{ $plate->is_visible }} </td>
-                <td> {{ $plate->restaurant_id }} </td>
+                <td> {{ $plate->restaurant->name }} </td>
                 <td>
                   <a href="{{ route('admin.plates.show',$plate) }}" type="button" class="btn btn-secondary btn-sm">Show</a>
                 </td>

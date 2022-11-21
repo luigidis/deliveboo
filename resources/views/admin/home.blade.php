@@ -42,6 +42,14 @@
                         </ul>
                     </li>
                     <li>
+                        <a href="{{ route('admin.plates.index') }}" type="button"
+                        class="btn btn-warning btn-sm">I tuoi piatti</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.orders.index') }}" type="button"
+                        class="btn btn-warning btn-sm">I tuoi ordini</a>
+                    </li>
+                    <li>
                         <a href="{{ route('admin.restaurant.edit', $restaurant->id) }}" type="button"
                         class="btn btn-warning btn-sm">Modifica Ristorante</a>
                     </li>

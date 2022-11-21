@@ -9,10 +9,10 @@
   </div>
 </div>
 <div class="container">
-  <form action="{{ route('admin.plates.store') }}" method="POST">
+  <form action="{{ route('admin.plates.store') }}" method="POST" enctype="multipart/form-data">
   
     @csrf
-    
+   
     <div class="form-group">
       <label for="img">Img</label>
 
