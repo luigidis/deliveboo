@@ -90,12 +90,13 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         $fullname_client = $order->name_client . ' ' . $order->surname_client;
+        $status = ['Cancellato', 'In elaborazione', 'In lavorazione', 'Completato', 'In transito', 'In consegna'];
         $order_plate = OrderPlate::where('order_id', $order->id)->get();
         foreach ($order_plate as $plate) {
             $plates[] = Plate::find($plate->plate_id);
         }
         // dd($plates);
-        return view('admin.orders.show', compact('order', 'fullname_client', 'plates'));
+        return view('admin.orders.show', compact('order', 'fullname_client', 'plates', 'status'));
     }
 
     /**

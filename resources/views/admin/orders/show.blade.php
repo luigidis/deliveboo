@@ -11,21 +11,49 @@
                     <h3>
                         {{ $fullname_client }}
                     </h3>
-                    <h3>
-                        {{-- TODO: QUI --}}
-                        {{-- {{ $order->total }} $ --}}
+                    <span class="d-block">
+                        Data creazione ordine: {{ $order->created_at }}
+                    </span>
+                    <span class="d-block">
+                        Data ultima modifica ordine: {{ $order->updated_at }}
+                    </span>
+                    <span class="d-block">
+                        {{ $order->address_client }}
+                    </span>
+                    <span>
                         <?php
                         $tot = 0;
                         foreach ($plates as $plate) {
-                            $tot+=$plate->price;
+                            $tot += $plate->price;
                         }
                         echo $tot . '€';
                         ?>
-                    </h3>
-
+                    </span>
                 </div>
-                <div class="d-flex align-items-end justify-content-end">
-                    <a href="{{ route('admin.orders.index') }}" class="btn btn-danger" title="Back to order">
+                <div class="d-flex  flex-wrap align-items-center justify-content-end">
+                    <form action="{{ route('admin.orders.update', $order) }}" method="POST" class="d-flex mb-2" style="flex-grow: 1;">
+                        @csrf
+                        @method('PUT')
+
+                        <select class="custom-select mr-3 @error('status') is-invalid @enderror"  id="status"
+                            name="status">
+                            @foreach ($status as $item)
+                                <option @if (old('status', $order->status) == $item) selected @endif>
+                                    {{ $item }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('status')
+                            <div id="status" class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+
+                        <button type="submit" class="btn btn-success">
+                            Conferma
+                        </button>
+                    </form>
+                    <a href="{{ route('admin.orders.index') }}" class="btn btn-danger col-12" title="Torna agli ordini">
                         Back to orders
                     </a>
                 </div>
@@ -42,18 +70,13 @@
                                     {{ $plate->price }}€
                                 </span>
                             </div>
-                            <p class="card-text" style="flex-grow:1;">{{ $plate->address_client }}</p>
+                            <p class="card-text overflow-auto" style="flex-grow: 1;">
+                                {{ $plate->description }}
+                            </p>
                             <div class="d-flex p-2 flex-wrap align-items-center justify-content-between">
-                                <a href="#" class="btn btn-primary my-2">Update</a>
-                                <a href="#" class="btn btn-outline-success my-2">Complete</a>
-                                {{-- <form action="{{ route('admin.orders.destroy', $plate) }}" method="POST" style="flex-basis: 100%;">
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button type="submit" class="btn btn-outline-danger" style="width: 100%">
-                                        Delete
-                                    </button>
-                                </form> --}}
+                                <a href="{{ route('admin.plates.show', $plate) }}" class="btn btn-primary my-2">
+                                    Vedi Piatto
+                                </a>
                             </div>
                         </div>
                     </div>
