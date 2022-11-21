@@ -23,4 +23,11 @@ class Plate extends Model
     public function restaurant() {
         return $this->belongsTo('App\Restaurant');
     }
+
+    public function getImagePathAttribute()
+    {
+        if (filter_var($this->img, FILTER_VALIDATE_URL))
+            return $this->img;
+        return $this->img ? asset('images/' . $this->img) : null;
+    }
 }
