@@ -65,7 +65,11 @@
 
     <div class="form-group">
       <label for="is_visible">Disponibilità</label>
-      <input type="number" name="is_visible" class="form-control @error('is_visible') is-invalid @enderror" id="is_visible" placeholder="Inserisci disponibilità" min="0" max="1" value="" required>
+      {{-- <input type="number" name="is_visible" class="form-control @error('is_visible') is-invalid @enderror" id="is_visible" placeholder="Inserisci disponibilità" min="0" max="1" value="" required> --}}
+      <select name="is_visible" class="form-control @error('is_visible') is-invalid @enderror" id="is_visible">
+        <option value="1" default>Disponibile</option>
+        <option value="0">Non Disponibile</option>
+      </select>
     </div>
 
     <button type="submit" class="btn btn-secondary">Aggiungi</button>
