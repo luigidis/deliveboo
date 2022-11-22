@@ -9,6 +9,7 @@ use App\Plate;
 use App\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class OrderController extends Controller
 {
@@ -75,26 +76,34 @@ class OrderController extends Controller
             $orders[] = Order::where('id', $id)->first();
         }
 
-        $dates = array();
+        // Date
+        $dates = [];
         foreach ($orders as $order) {
-            if (!in_array($order->created_at, $dates)) {
-                array_push($dates, $order->created_at);
+            $current_date = $order->created_at->toDateString();
+            if (!in_array($current_date, $dates)) {
+                $dates[] = $current_date;
             }
         }
 
-        $count = array();
-        $tot_order = 0;
+        // conto gli ordini per data
+        $count = [];
         foreach ($dates as $date) {
+            $tot_order = 0;
             foreach ($orders as $order) {
-                if ($date == $order->created_at) {
+                $current_date = $order->created_at->toDateString();
+                if ($date == $current_date) {
                     $tot_order++;
                 }
             }
-            array_push($count, $tot_order);
+            $count[] = $tot_order;
         }
-        // dd($data);
+        $data = [];
+        $data[] = array_combine($dates, $count);
 
-        return view('admin.orders.analytics', ['date' => $dates, 'orders' => $count]);
+        ksort($data[0]);
+        // dd($data[0]);
+        // dd($dates, $count);
+        return view('admin.orders.analytics', ['date' => array_keys($data[0]), 'orders' => array_values($data[0])]);
     }
 
     /**
