@@ -13,11 +13,11 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Category $category)
     {
         $categories = Category::all();
 
-        return view('admin.categories.index', compact('categories'));
+        return view('admin.categories.index', compact('categories','category'));
     }
 
     /**
@@ -27,7 +27,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+
+        return view('admin.categories.create', compact('categories'));
     }
 
     /**
@@ -38,7 +40,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $params = $request->validate([
+            'name' => 'required|max:255|min:2',
+        ]);
+
+        $params['slug'] = str_replace(' ','-',$params['name']);
+
+        $category = Category::create($params);
+
+       return redirect()->route('admin.categories.index', $category);
     }
 
     /**
@@ -60,7 +70,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -72,7 +82,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $params = $request->validate([
+            'name' => 'required|max:255|min:2',
+        ]);
+
+        $params['slug'] = str_replace(' ','-',$params['name']);
+
+        $category->update($params);
+
+        return redirect()->route('admin.categories.index', $category);
     }
 
     /**
@@ -83,6 +101,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('admin.categories.index');
     }
 }
