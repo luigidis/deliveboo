@@ -6,15 +6,18 @@
             <div class="header_content d-flex flex-wrap justify-content-between">
                 <div>
                     <h1>
-                        Orders
+                        Ordini
                     </h1>
                 </div>
-                <div class="d-flex align-items-center justify-content-end">
+                <div class="d-flex flex-wrap align-items-center justify-content-end">
                     {{-- <a href="{{ route('admin.orders.create') }}" class="btn btn-primary" title="Add order">
                         Add order
                     </a> --}}
-                    <a href="{{ route('admin.home') }}" class="btn btn-primary">
+                    <a href="{{ route('admin.home') }}" class="btn btn-primary col-12 mb-2">
                         Torna alla home
+                    </a>
+                    <a href="{{ route('admin.chart') }}" class="btn btn-success col-12">
+                        Statistiche ordini
                     </a>
                 </div>
             </div>
@@ -22,7 +25,7 @@
                 @foreach ($orders as $order)
                     @php
                         $fullname_client = $order->name_client . ' ' . $order->surname_client;
-                        $status = ['Cancellato' ,'In elaborazione', 'In lavorazione', 'Completato', 'In transito', 'In consegna'];
+                        $status = ['Cancellato', 'In elaborazione', 'In lavorazione', 'Completato', 'In transito', 'In consegna'];
                     @endphp
                     <div class="card m-3 overflow-hidden" style="max-width: 320px; max-height: 400px; flex-grow:1;">
                         <div class="card-body d-flex flex-column">
@@ -33,14 +36,8 @@
                                 @csrf
                                 @method('PUT')
 
-                                {{-- <input type="hidden" name="total">
-                                <input type="hidden" name="name_client">
-                                <input type="hidden" name="surname_client">
-                                <input type="hidden" name="address_client">
-                                <input type="hidden" name="phone_client">
-                                <input type="hidden" name="email_client"> --}}
-
-                                <select class="custom-select mr-3 @error('status') is-invalid @enderror" id="status" name="status" >
+                                <select class="custom-select mr-3 @error('status') is-invalid @enderror" id="status"
+                                    name="status">
                                     @foreach ($status as $item)
                                         <option @if (old('status', $order->status) == $item) selected @endif>
                                             {{ $item }}
@@ -83,7 +80,7 @@
                                     @method('DELETE')
 
                                     <button type="submit" class="btn btn-outline-danger">
-                                        Delete
+                                        Elimina ordine
                                     </button>
                                 </form>
                             </div>

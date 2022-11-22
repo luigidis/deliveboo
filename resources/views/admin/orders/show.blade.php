@@ -6,7 +6,7 @@
             <div class="header_content d-flex flex-wrap justify-content-between">
                 <div>
                     <h1>
-                        Order #{{ $order->id }}
+                        Ordine #{{ $order->id }}
                     </h1>
                     <h3>
                         {{ $fullname_client }}
@@ -18,7 +18,7 @@
                         Data ultima modifica ordine: {{ $order->updated_at }}
                     </span>
                     <span class="d-block">
-                        {{ $order->address_client }}
+                        Indirizzo: {{ $order->address_client }}
                     </span>
                     <span>
                         <?php
@@ -26,7 +26,7 @@
                         foreach ($plates as $plate) {
                             $tot += $plate->price;
                         }
-                        echo $tot . '€';
+                        echo 'Totale: ' . $tot . '€';
                         ?>
                     </span>
                 </div>
@@ -54,7 +54,7 @@
                         </button>
                     </form>
                     <a href="{{ route('admin.orders.index') }}" class="btn btn-danger col-12" title="Torna agli ordini">
-                        Back to orders
+                        Torna agli ordini
                     </a>
                 </div>
             </div>

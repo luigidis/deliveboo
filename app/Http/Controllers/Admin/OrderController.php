@@ -47,6 +47,57 @@ class OrderController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function chart()
+    {
+        $userId = Auth::id();
+        $restaurant = Restaurant::where('user_id', $userId)->first();
+
+        // dd($restaurant);
+        // dd($restaurant->plates->orders);
+
+        $plates = $restaurant->plates;
+        $ordersId = [];
+
+        foreach ($plates as $plate) {
+            foreach ($plate->orders->pluck('id') as $id) {
+                if (!in_array($id, $ordersId))
+                    $ordersId[] = $id;
+            }
+        }
+
+        rsort($ordersId);
+        // dd($ordersId);
+        foreach ($ordersId as $id) {
+            $orders[] = Order::where('id', $id)->first();
+        }
+
+        $dates = array();
+        foreach ($orders as $order) {
+            if (!in_array($order->created_at, $dates)) {
+                array_push($dates, $order->created_at);
+            }
+        }
+
+        $count = array();
+        $tot_order = 0;
+        foreach ($dates as $date) {
+            foreach ($orders as $order) {
+                if ($date == $order->created_at) {
+                    $tot_order++;
+                }
+            }
+            array_push($count, $tot_order);
+        }
+        // dd($data);
+
+        return view('admin.orders.analytics', ['date' => $dates, 'orders' => $count]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
