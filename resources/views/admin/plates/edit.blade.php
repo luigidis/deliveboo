@@ -7,7 +7,7 @@
       <h1>Modifica il piatto : {{ $plate->name }}</h1>
     </div>
     <div>
-      <a href="{{ route('admin.plates.index') }}"><button type="button" class="btn btn-warning btn-lg">Torna indietro</button></a>   
+      <a href="{{ route('admin.plates.show',$plate) }}"><button type="button" class="btn btn-warning btn-lg">Torna indietro</button></a>   
     </div>
   </div>
 </div>
