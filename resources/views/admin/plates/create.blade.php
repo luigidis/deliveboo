@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="container">
-  <div class="row">
-    <div class="col-8 d-flex justify-content-between">
-      <h1>Aggiungi un nuovo piatto al menù</h1>
-      <div>
-        <a href="{{ route('admin.plates.index') }}"><button type="button" class="btn btn-warning btn-lg">Torna indietro</button></a>   
-      </div>
+  <div class="row justify-content-between">
+    <div class="col-8">
+      <h1 class="title">Aggiungi un nuovo piatto al menù</h1>
+    </div>
+    <div class="btn-y">
+      <a href="{{ route('admin.plates.index') }}"><button type="button" class="btn btn-warning btn-lg">Torna indietro</button></a>   
     </div>
   </div>
 </div>
@@ -76,3 +76,15 @@
   </form>
 </div>
 @endsection
+
+<style>
+  @media all and (max-width:576px) {
+    .title {
+      font-size: 1.5rem;
+    }
+    .btn {
+      scale: 0.8;
+    }
+  }
+
+</style>
