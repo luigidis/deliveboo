@@ -26,10 +26,9 @@ Route::middleware('auth')
     ->group(function () {
 
         Route::get('/home', 'HomeController@index')->name('home');
-        Route::get('/orders/analytics', 'OrderController@chart')->name('chart');
-
         Route::resource('restaurant', 'RestaurantController')->only(['edit', 'update', 'destroy']);
-        Route::resource('orders', 'OrderController')->only(['index', 'show', 'edit', 'update', 'destroy']);
-        Route::resource('categories', 'CategoryController')->only(['index']);
+        Route::resource('orders', 'OrderController');
+        Route::get('/orders/analytics', 'OrderController@chart')->name('chart');
+        Route::resource('categories', 'CategoryController');
         Route::resource('plates', 'PlateController');
     });

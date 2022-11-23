@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="container">
-  <div class="row d-flex justify-content-between">
-    <div class="col-8">
-      <h1>Modifica il piatto : {{ $plate->name }}</h1>
+  <div class="row justify-content-between">
+    <div class="col-8 ">
+      <h1 class="title">Modifica il piatto : {{ $plate->name }}</h1>
     </div>
-    <div>
-      <a href="{{ route('admin.plates.index') }}"><button type="button" class="btn btn-warning btn-lg">Torna indietro</button></a>   
+    <div class="btn-y">
+      <a href="{{ route('admin.plates.show',$plate) }}"><button type="button" class="btn btn-warning btn-lg">Torna indietro</button></a>   
     </div>
   </div>
 </div>
@@ -77,3 +77,15 @@
   </form>
 </div>
 @endsection
+
+<style>
+  @media all and (max-width:576px) {
+    .title {
+      font-size: 1.5rem;
+    }
+    .btn {
+      scale: 0.8;
+    }
+  }
+
+</style>
