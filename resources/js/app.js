@@ -31,4 +31,4 @@ const app = new Vue({
     el: '#app',
 });
 
-import validationReg from './validations/register';
+
