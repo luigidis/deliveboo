@@ -205,8 +205,10 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
+        $plates = $order->plates;
+        $restId = $plates[0]->restaurant_id;
         $order->delete();
 
-        return redirect()->route('admin.orders.index');
+        return redirect()->route('admin.orders.index', ['id' => $restId]);
     }
 }

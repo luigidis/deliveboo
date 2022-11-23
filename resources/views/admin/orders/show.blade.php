@@ -53,7 +53,7 @@
                             Conferma
                         </button>
                     </form>
-                    <a href="{{ route('admin.orders.index') }}" class="btn btn-danger col-12" title="Torna agli ordini">
+                    <a href="{{ route('admin.orders.index', ['id' => $plates[0]->restaurant_id]) }}" class="btn btn-danger col-12" title="Torna agli ordini">
                         Torna agli ordini
                     </a>
                 </div>
