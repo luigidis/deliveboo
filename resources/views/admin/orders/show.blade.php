@@ -46,14 +46,14 @@
                             <div class="d-flex p-2 flex-wrap align-items-center justify-content-between">
                                 <a href="#" class="btn btn-primary my-2">Update</a>
                                 <a href="#" class="btn btn-outline-success my-2">Complete</a>
-                                <form action="{{ route('admin.orders.destroy', $plate) }}" method="POST" style="flex-basis: 100%;">
+                                {{-- <form action="{{ route('admin.orders.destroy', $plate) }}" method="POST" style="flex-basis: 100%;">
                                     @csrf
                                     @method('DELETE')
 
                                     <button type="submit" class="btn btn-outline-danger" style="width: 100%">
                                         Delete
                                     </button>
-                                </form>
+                                </form> --}}
                             </div>
                         </div>
                     </div>

@@ -7,6 +7,7 @@ use App\Order;
 use App\OrderPlate;
 use App\Plate;
 use App\Restaurant;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,15 +18,32 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $userId = Auth::id();
-        $restaurant = Restaurant::where('user_id', $userId)->first();
-        $orders = Order::join('order_plate', 'orders.id', '=', 'order_plate.order_id')
-            ->join('plates', 'order_plate.plate_id', '=', 'plates.id')
-            ->join('restaurants', 'plates.id', '=', 'restaurants.id')
-            ->where('restaurants.id', $restaurant->id)
-            ->get();
+        if ($request['id'])
+            $user = User::where('id', $request['id'])->first();
+        else
+            $user = Auth::user();
+        $restaurant = Restaurant::where('user_id', $user->id)->first();
+
+        $plates = $restaurant->plates;
+        $ordersId = [];
+
+        foreach ($plates as $plate) {
+            foreach ($plate->orders->pluck('id') as $id) {
+                if (!in_array($id, $ordersId))
+                    $ordersId[] = $id;
+            }
+        }
+
+        rsort($ordersId);
+        // dd($ordersId);
+        $orders = [];
+        foreach ($ordersId as $id) {
+            $orders[] = Order::where('id', $id)->first();
+        }
+
+        // dd($orders);
 
         return view('admin.orders.index', compact('orders', 'restaurant'));
     }
@@ -35,14 +53,14 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        $userId = Auth::id();
-        $restaurant = Restaurant::where('user_id', $userId)->first();
-        $plates = Plate::where('restaurant_id', $restaurant->id)->get();
+    // public function create()
+    // {
+    //     $userId = Auth::id();
+    //     $restaurant = Restaurant::where('user_id', $userId)->first();
+    //     $plates = Plate::where('restaurant_id', $restaurant->id)->get();
 
-        return view('admin.orders.create', compact('plates', 'restaurant'));
-    }
+    //     return view('admin.orders.create', compact('plates', 'restaurant'));
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -74,8 +92,8 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         $fullname_client = $order->name_client . ' ' . $order->surname_client;
-        $order_plate = OrderPlate::where('order_id', $order->id)->get();    
-        foreach($order_plate as $plate){
+        $order_plate = OrderPlate::where('order_id', $order->id)->get();
+        foreach ($order_plate as $plate) {
             $plates[] = Plate::find($plate->plate_id);
         }
         // dd($plates);
@@ -114,7 +132,7 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         $order->delete();
-        
+
         return redirect()->route('admin.orders.index');
     }
 }
