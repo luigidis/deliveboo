@@ -5,10 +5,10 @@
         <div class="row justify-content-center">
             <div class="col-12 text-center py-5">
                 <h1>Sei loggato come {{ $user->name }}</h1>
-
             </div>
         </div>
     </div>
+
     <div class="col-12 d-flex justify-content-center container flex-wrap">
         <img src="{{ $restaurant->image_path }}" height="200" alt="" class="col-12 col-md-6">
         <ul style="list-style: none; font-size: 25px" class="col-12 col-md-6">
@@ -62,5 +62,5 @@
 
 
 
-    </div>
+    
 @endsection

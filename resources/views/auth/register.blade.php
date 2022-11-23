@@ -8,12 +8,13 @@
                     <div class="card-header">{{ __('Register') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" id="form">
                             @csrf
 
                             <div class="form-group row">
                                 <label for="name"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                                <div class="error"></div>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
@@ -31,6 +32,7 @@
                             <div class="form-group row">
                                 <label for="email"
                                     class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                <div class="error"></div>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
@@ -48,7 +50,8 @@
                             <div class="form-group row">
                                 <label for="password"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
+                                <div class="error"></div>
+                                
                                 <div class="col-md-6">
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
@@ -65,6 +68,7 @@
                             <div class="form-group row">
                                 <label for="password-confirm"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                                <div class="error"></div>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
@@ -75,6 +79,7 @@
                             <div class="form-group row">
                                 <label for="restaurant_name" class="col-md-4 col-form-label text-md-right">Nome
                                     Attività</label>
+                                <div class="error"></div>
 
                                 <div class="col-md-6">
                                     <input id="restaurant_name" type="string" name="restaurant_name"
@@ -93,6 +98,7 @@
 
                             <div class="form-group row">
                                 <label for="address" class="col-md-4 col-form-label text-md-right">Indirizzo</label>
+                                <div class="error"></div>
 
                                 <div class="col-md-6">
                                     <input id="address" type="string" name="address"
@@ -109,6 +115,7 @@
                             <div class="form-group row">
                                 <label for="phone" class="col-md-4 col-form-label text-md-right">Numero di
                                     telefono</label>
+                                <div class="error"></div>
 
                                 <div class="col-md-6">
                                     <input id="phone" type="tel" name="phone"
@@ -124,6 +131,7 @@
 
                             <div class="form-group row">
                                 <label for="p_iva" class="col-md-4 col-form-label text-md-right">Partita Iva</label>
+                                <div class="error"></div>
 
                                 <div class="col-md-6">
                                     <input id="p_iva" type="string" name="p_iva"
@@ -135,7 +143,9 @@
                                         </span>
                                     @enderror
                                 </div>
+
                             </div>
+
 
                             <?php
                             use App\Category;
@@ -150,15 +160,15 @@
 
                                         @foreach ($categories as $key => $category)
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" name="categories[]"
+                                                <input class="form-check-input" name="categories[]" required
                                                     @if (in_array($category->id, old('categories', []))) checked @endif type="checkbox"
                                                     id="category-{{ $category->id }}" value="{{ $category->id }}">
                                                 <label class="form-check-label"
                                                     for="category-{{ $category->id }}">{{ $category->name }}</label>
                                             </div>
                                         @endforeach
-
                                     </div>
+
                                     @error('categories')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -168,8 +178,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="image"
-                                    class="col-md-4 col-form-label text-md-right">Scegli
+                                <label for="image" class="col-md-4 col-form-label text-md-right">Scegli
                                     immagine</label>
                                 <div class="col-md-6">
                                     <input type="file" class="form-control-file @error('image') is-invalid @enderror"
