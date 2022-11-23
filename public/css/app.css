@@ -10932,11 +10932,16 @@ a.text-dark:focus {
   }
 }
 
-.error {
+.input-control.success {
+  border-color: green;
+}
+
+.input-control.error {
   border-color: red;
+}
+
+.error {
   color: red;
-  font-size: 20px;
-  height: 20px;
 }
 
 img {

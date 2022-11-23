@@ -18,9 +18,9 @@
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
-                                        class="form-control input-control @error('name') is-invalid @enderror" name="name"
-                                        value="{{ old('name') }}" autocomplete="name" autofocus>
-                                        <div class="error"></div>
+                                        class="form-control input-control @error('name') is-invalid @enderror"
+                                        name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
+                                    <div class="error"></div>
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -36,9 +36,9 @@
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
-                                        class="form-control input-control @error('email') is-invalid @enderror" name="email"
-                                        value="{{ old('email') }}" autocomplete="email">
-                                        <div class="error"></div>
+                                        class="form-control input-control @error('email') is-invalid @enderror"
+                                        name="email" value="{{ old('email') }}" autocomplete="email">
+                                    <div class="error"></div>
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -55,9 +55,9 @@
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
-                                        class="form-control input-control @error('password') is-invalid @enderror" name="password"
-                                        autocomplete="new-password">
-                                        <div class="error"></div>
+                                        class="form-control input-control @error('password') is-invalid @enderror"
+                                        name="password" autocomplete="new-password">
+                                    <div class="error"></div>
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -73,9 +73,9 @@
 
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control input-control" 
+                                    <input id="password-confirm" type="password" class="form-control input-control"
                                         name="password_confirmation" autocomplete="new-password">
-                                        <div class="error"></div>
+                                    <div class="error"></div>
                                 </div>
                             </div>
 
@@ -88,7 +88,7 @@
                                     <input id="restaurant_name" type="string" name="restaurant_name"
                                         class="form-control input-control
                                 @error('restaurant_name') is-invalid @enderror">
-                                <div class="error"></div>
+                                    <div class="error"></div>
                                     @error('restaurant_name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -105,7 +105,7 @@
                                 <div class="col-md-6">
                                     <input id="address" type="string" name="address"
                                         class="form-control input-control @error('address') is-invalid @enderror">
-                                        <div class="error"></div>
+                                    <div class="error"></div>
                                     @error('address')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -122,7 +122,7 @@
                                 <div class="col-md-6">
                                     <input id="phone" type="tel" name="phone"
                                         class="form-control input-control @error('phone') is-invalid @enderror">
-                                        <div class="error">Errore script</div>
+                                    <div class="error">Errore Script</div>
                                     @error('phone')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -217,15 +217,7 @@
     <script>
         console.log('yo');
 
-        const form = document.getElementById('form');
-        const username = document.getElementById('name');
-        const email = document.getElementById('email');
-        const password = document.getElementById('password');
-        const password2 = document.getElementById('password-confirm');
-        const restaurant = document.getElementById('restaurant_name');
-        const address = document.getElementById('address');
-        const phone = document.getElementById('phone');
-        const pIva = document.getElementById('p_iva')
+
 
         // form.addEventListener('sumbit', e => {
         //     e.preventDefault();
@@ -241,6 +233,18 @@
         // })
 
         window.addEventListener('load', () => {
+            const form = document.getElementById('form');
+            const username = document.getElementById('name');
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
+            const password2 = document.getElementById('password-confirm');
+            const restaurant = document.getElementById('restaurant_name');
+            const address = document.getElementById('address');
+            const phone = document.getElementById('phone');
+            const pIva = document.getElementById('p_iva');
+            console.log(pIva)
+            const image = document.getElementById('image')
+            console.log(image, 'img')
             const submitButton = document.getElementById('submit');
             submitButton.addEventListener('click', e => {
                 e.preventDefault();
@@ -249,96 +253,128 @@
                 validateInputs();
                 //form.submit();
             })
+            const setError = (element, message) => {
+                console.log('entrato su setError');
+                // console.log(message, 'message');
+                const inputControl = element.parentElement;
+                // console.log(inputControl);
+                const errorDisplay = inputControl.querySelector('.error');
+
+                // console.log(errorDisplay, 'errorDIsplay');
+
+                errorDisplay.innerText = message;
+                // inputControl.querySelector('.error').innerHTML = message;
+                // console.log(inputControl, 'InputControl')
+                inputControl.classList.add('error');
+                inputControl.classList.remove('success');
+
+            }
+
+
+
+
+
+
+
+            const setSuccess = (element) => {
+                const inputControl = element.parentElement;
+                console.log('entrato su setSuccess')
+                // console.log(inputControl);
+                const errorDisplay = inputControl.querySelector('.error');
+                // console.log(successDisplay);
+
+                errorDisplay.innerText = '';
+                inputControl.classList.add('success');
+                inputControl.classList.remove('error');
+
+            }
+
+            function validateInputs() {
+                const usernameValue = username.value.trim();
+                const emailValue = email.value.trim();
+                const passwordValue = password.value.trim();
+                const password2Value = password2.value.trim();
+                const restaurantValue = restaurant.value.trim();
+                const addressValue = address.value.trim();
+                const phoneValue = phone.value.trim();
+                // console.log(phoneValue)
+                const phoneInt = parseInt(phoneValue);
+                // console.log(phoneInt)
+                const pIvaValue = pIva.value.trim();
+
+
+                if (usernameValue === '') {
+                    setError(username, 'Campo obbligatorio');
+                } else {
+                    setSuccess(username);
+                }
+
+                if (emailValue === '') {
+                    setError(email, 'Campo obbligatorio');
+                } else if (!isValidEmail(emailValue)) {
+                    setError(email, 'Metti un indirizzo email valido')
+                } else {
+                    setSuccess(email);
+                }
+
+
+                if (passwordValue === '') {
+                    setError(password, 'Campo obbligatorio');
+                } else if (passwordValue.length < 8) {
+                    setError(password, 'La Password deve contenere almeno 8 caratteri')
+                } else {
+                    setSuccess(password);
+                }
+
+                if (password2Value === '') {
+                    setError(password2, 'Conferma la tua password');
+                } else if (password2Value !== passwordValue) {
+                    setError(password2, 'La Password non coincide')
+                } else {
+                    setSuccess(password2);
+                }
+
+
+                if (restaurantValue === '') {
+                    setError(restaurant, 'Campo obbligatorio');
+                } else if (restaurantValue.length < 2) {
+                    setError(restaurant, 'Il nome deve contenere almeno 2 caratteri')
+                } else if (restaurantValue.length > 255) {
+                    setError(restaurant, 'Il nome non può contenere più di 255 caratteri')
+                } else {
+                    setSuccess(restaurant);
+                }
+
+                if (addressValue === '') {
+                    setError(address, 'Campo obbligatorio');
+                } else if (addressValue.length < 2) {
+                    setError(address, 'Deve contenere almeno 4 caratteri')
+                } else if (addressValue.length > 255) {
+                    setError(address, 'Non può contenere più di 255 caratteri')
+                } else {
+                    setSuccess(address);
+                }
+
+                if (isNaN(phoneInt)) {
+                    setError(phone, 'Inserire dei numeri')
+                } else {
+                    setSuccess(phone);
+                }
+
+
+                if (pIvaValue === '') {
+                    setError(pIva, 'Campo obbligatorio');
+                } else {
+                    setSuccess(pIva);
+                }
+            }
         })
 
+        function ValidateEmail(email) {
 
+            const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+            return validRegex.test(String(email).toLoweCase());
 
-
-
-        const setError = (element, message) => {
-            console.log('entrato su setError');
-            // console.log(message);
-            const inputControl = element.parentElement;
-            // console.log(inputControl);
-            const errorDisplay = inputControl.querySelector('.error');
-            console.log(errorDisplay);
-
-            errorDisplay.innerText = message;
-            console.log(inputControl)
-            inputControl.classList.add('error');
-            inputControl.classList.remove('success');
-            
-        }
-
-        const setSuccess = (element) => {
-            const inputControl = element.parentElement;
-            // console.log(inputControl);
-            const errorDisplay = inputControl.querySelector('.error');
-            // console.log(successDisplay);
-
-            errorDisplay.innerText = '';
-            inputControl.classList.add('success');
-            inputControl.classList.remove('error');
-
-        }
-
-        function validateInputs() {
-            const usernameValue = username.value.trim();
-            const emailValue = email.value.trim();
-            const passwordValue = password.value.trim();
-            const password2Value = password2.value.trim();
-            const restaurantValue = restaurant.value.trim();
-            const addressValue = address.value.trim();
-            const phoneValue = phone.value.trim();
-            const pIvaValue = pIva.value.trim();
-
-            if (usernameValue === '') {
-                setError(username, 'Campo obbligatorio');
-            } else {
-                setSuccess(username);
-            }
-
-            if (emailValue === '') {
-                setError(email, 'Campo obbligatorio');
-            } else {
-                setSuccess(email);
-            }
-
-            if (passwordValue === '') {
-                setError(password, 'Campo obbligatorio');
-            } else {
-                setSuccess(password);
-            }
-
-            if (password2Value === '') {
-                setError(password2, 'Campo obbligatorio');
-            } else {
-                setSuccess(password2);
-            }
-
-            if (restaurantValue === '') {
-                setError(restaurant, 'Campo obbligatorio');
-            } else {
-                setSuccess(restaurant);
-            }
-
-            if (addressValue === '') {
-                setError(address, 'Campo obbligatorio');
-            } else {
-                setSuccess(address);
-            }
-
-            if (phoneValue === '') {
-                setError(phone, 'Campo obbligatorio');
-            } else {
-                setSuccess(phone);
-            }
-
-            if (pIvaValue === '') {
-                setError(pIva, 'Campo obbligatorio');
-            } else {
-                setSuccess(pIva);
-            }
         }
     </script>
 @endsection
