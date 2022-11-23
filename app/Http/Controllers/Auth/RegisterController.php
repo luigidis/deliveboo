@@ -73,6 +73,8 @@ class RegisterController extends Controller
     {
         $params = $this->validator($data);
 
+        $params['password'] = Hash::make($params['password']);
+
         $user = User::create($params);
 
         if (array_key_exists('image', $params)) {

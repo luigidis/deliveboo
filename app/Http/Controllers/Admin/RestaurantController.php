@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Restaurant;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class RestaurantController extends Controller
@@ -118,11 +119,13 @@ class RestaurantController extends Controller
         if ($restaurant->image && Storage::disk('images')->exists($restaurant->image)) {
             Storage::disk('images')->delete($restaurant->image);
         }
-
-
+        
         $restaurant->delete();
         $user->delete();
 
-        return view('welcome');
+        if (Auth::user()->is_admin)
+            return redirect()->route('admin.home');
+            
+        return redirect('/');
     }
 }

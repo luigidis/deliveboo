@@ -10,9 +10,10 @@
                     </h1>
                 </div>
                 <div class="d-flex align-items-center justify-content-end">
-                    <a href="{{ route('admin.orders.create') }}" class="btn btn-primary" title="Add order">
+                    {{-- <a href="{{ route('admin.orders.create') }}" class="btn btn-primary" title="Add order">
                         Add order
-                    </a>
+                    </a> --}}
+                    <a href="{{ route('admin.home') }}"><button type="button" class="btn btn-warning btn-lg">Torna alla home</button></a>
                 </div>
             </div>
             <div class="body_content py-5 d-flex flex-wrap justify-content-center">

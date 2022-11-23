@@ -3,13 +3,16 @@
 @section('content')
 
     <div class="container">
+        
         <div class="row justify-content-center">
+            @foreach ($restaurants as $key => $restaurant)
             <div class="col-12 text-center py-5">
-                <h1>Sei loggato come {{ $user->name }}</h1>
-
+                <h1>Nome utente: {{ $users[$key]->name }}</h1>
             </div>
-            <div class="col-12 d-flex justify-content-center">
-                <img src="{{ $restaurant->image_path }}" height="200" alt="">
+            <div class="col-12 col-md-6 d-flex align-items-center align-items-md-start justify-content-center">
+                <img class="d-block" src="{{ $restaurant->image_path }}" alt="">
+            </div>
+            <div class="col-12 col-md-6 d-flex justify-content-center">
                 <ul style="list-style: none; font-size: 25px">
                     <li>
                         Nome: {{ $restaurant->name }}
@@ -24,7 +27,7 @@
                         Numero P.IVA: {{ $restaurant->p_iva }}
                     </li>
                     <li>
-                        Email: {{ $user->email }}
+                        Email: {{ $users[$key]->email }}
                     </li>
                     <li>
                         Categorie: 
@@ -37,15 +40,17 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="{{ route('admin.plates.index') }}" type="button"
-                        class="btn btn-warning btn-sm">I tuoi piatti</a>
+                        <a href="{{ route('admin.plates.index',
+                        ['id' => $restaurant->id]) }}"
+                        class="btn btn-warning btn-sm">Piatti</a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.orders.index') }}" type="button"
-                        class="btn btn-warning btn-sm">I tuoi ordini</a>
+                        <a href="{{ route('admin.orders.index',
+                        ['id' => $restaurant->id]) }}"
+                        class="btn btn-warning btn-sm">Ordini</a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.restaurant.edit', $restaurant->id) }}" type="button"
+                        <a href="{{ route('admin.restaurant.edit', $restaurant->id) }}"
                         class="btn btn-warning btn-sm">Modifica Ristorante</a>
                     </li>
                     <li>
@@ -58,8 +63,7 @@
                     </li>
                 </ul>
             </div>
-
-
+            @endforeach
 
         </div>
 

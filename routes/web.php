@@ -26,10 +26,8 @@ Route::middleware('auth')
     ->group(function () {
 
         Route::get('/home', 'HomeController@index')->name('home');
-
         Route::resource('restaurant', 'RestaurantController')->only(['edit', 'update', 'destroy']);
         Route::resource('orders', 'OrderController');
         Route::resource('categories', 'CategoryController');
         Route::resource('plates', 'PlateController');
-
     });
