@@ -14,7 +14,7 @@ class OrderSeeder extends Seeder
     public function run(Faker $faker)
     {
 
-        $status = ['Completato', 'In lavorazione', 'In consegna', 'In elaborazione'];
+        $status = ['Cancellato' ,'In elaborazione', 'In lavorazione', 'Completato', 'In transito', 'In consegna'];
 
         for ($i = 0; $i < 50; $i++) {
             $order = new Order();
@@ -25,6 +25,7 @@ class OrderSeeder extends Seeder
             $order->address_client = $faker->address();
             $order->phone_client = $faker->numerify('+39 ### ### ####');
             $order->email_client = $faker->email();
+            $order->created_at = $faker->dateTimeBetween('2022-01-01 00:00:00');
 
             $order->save();
         }

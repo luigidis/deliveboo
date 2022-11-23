@@ -10,6 +10,7 @@ use App\Restaurant;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class OrderController extends Controller
 {
@@ -46,6 +47,65 @@ class OrderController extends Controller
         // dd($orders);
 
         return view('admin.orders.index', compact('orders', 'restaurant'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function chart()
+    {
+        $userId = Auth::id();
+        $restaurant = Restaurant::where('user_id', $userId)->first();
+
+        // dd($restaurant);
+        // dd($restaurant->plates->orders);
+
+        $plates = $restaurant->plates;
+        $ordersId = [];
+
+        foreach ($plates as $plate) {
+            foreach ($plate->orders->pluck('id') as $id) {
+                if (!in_array($id, $ordersId))
+                    $ordersId[] = $id;
+            }
+        }
+
+        rsort($ordersId);
+        // dd($ordersId);
+        foreach ($ordersId as $id) {
+            $orders[] = Order::where('id', $id)->first();
+        }
+
+        // Date
+        $dates = [];
+        foreach ($orders as $order) {
+            $current_date = $order->created_at->toDateString();
+            if (!in_array($current_date, $dates)) {
+                $dates[] = $current_date;
+            }
+        }
+
+        // conto gli ordini per data
+        $count = [];
+        foreach ($dates as $date) {
+            $tot_order = 0;
+            foreach ($orders as $order) {
+                $current_date = $order->created_at->toDateString();
+                if ($date == $current_date) {
+                    $tot_order++;
+                }
+            }
+            $count[] = $tot_order;
+        }
+        $data = [];
+        $data[] = array_combine($dates, $count);
+
+        ksort($data[0]);
+        // dd($data[0]);
+        // dd($dates, $count);
+        return view('admin.orders.analytics', ['date' => array_keys($data[0]), 'orders' => array_values($data[0])]);
     }
 
     /**
@@ -92,12 +152,13 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         $fullname_client = $order->name_client . ' ' . $order->surname_client;
+        $status = ['Cancellato', 'In elaborazione', 'In lavorazione', 'Completato', 'In transito', 'In consegna'];
         $order_plate = OrderPlate::where('order_id', $order->id)->get();
         foreach ($order_plate as $plate) {
             $plates[] = Plate::find($plate->plate_id);
         }
         // dd($plates);
-        return view('admin.orders.show', compact('order', 'fullname_client', 'plates'));
+        return view('admin.orders.show', compact('order', 'fullname_client', 'plates', 'status'));
     }
 
     /**
@@ -120,7 +181,19 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $params = $request->validate([
+            'status' => 'required|max:255',
+            // 'total' => 'required|numeric',
+            // 'name_client' => 'required|max:255',
+            // 'surname_client' => 'required|max:255',
+            // 'address_client' => 'required|max:255',
+            // 'phone_client' => 'required|max:15|integer',
+            // 'email_client' => 'required|max:255|email',
+        ]);
+
+        $order->update($params);
+
+        return redirect()->route('admin.orders.index');
     }
 
     /**

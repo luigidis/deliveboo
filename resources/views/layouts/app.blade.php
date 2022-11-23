@@ -83,5 +83,8 @@
             @yield('content')
         </main>
     </div>
+    @yield('chart')
+    @stack('script-cdn')
+    @yield('script-js')
 </body>
 </html>
