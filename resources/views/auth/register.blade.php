@@ -14,13 +14,13 @@
                             <div class="form-group row">
                                 <label for="name"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-                                <div class="error"></div>
+
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
-                                        class="form-control @error('name') is-invalid @enderror" name="name"
+                                        class="form-control input-control @error('name') is-invalid @enderror" name="name"
                                         value="{{ old('name') }}" autocomplete="name" autofocus>
-
+                                        <div class="error"></div>
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -32,12 +32,13 @@
                             <div class="form-group row">
                                 <label for="email"
                                     class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-                                <div class="error"></div>
+
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
-                                        class="form-control @error('email') is-invalid @enderror" name="email"
+                                        class="form-control input-control @error('email') is-invalid @enderror" name="email"
                                         value="{{ old('email') }}" autocomplete="email">
+                                        <div class="error"></div>
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -50,12 +51,13 @@
                             <div class="form-group row">
                                 <label for="password"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-                                <div class="error"></div>
+
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror" name="password"
+                                        class="form-control input-control @error('password') is-invalid @enderror" name="password"
                                         autocomplete="new-password">
+                                        <div class="error"></div>
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -68,24 +70,25 @@
                             <div class="form-group row">
                                 <label for="password-confirm"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-                                <div class="error"></div>
+
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control"
+                                    <input id="password-confirm" type="password" class="form-control input-control" 
                                         name="password_confirmation" autocomplete="new-password">
+                                        <div class="error"></div>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="restaurant_name" class="col-md-4 col-form-label text-md-right">Nome
                                     Attività</label>
-                                <div class="error"></div>
+
 
                                 <div class="col-md-6">
                                     <input id="restaurant_name" type="string" name="restaurant_name"
-                                        class="form-control
+                                        class="form-control input-control
                                 @error('restaurant_name') is-invalid @enderror">
-
+                                <div class="error"></div>
                                     @error('restaurant_name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -97,12 +100,12 @@
 
                             <div class="form-group row">
                                 <label for="address" class="col-md-4 col-form-label text-md-right">Indirizzo</label>
-                                <div class="error"></div>
+
 
                                 <div class="col-md-6">
                                     <input id="address" type="string" name="address"
-                                        class="form-control @error('address') is-invalid @enderror">
-
+                                        class="form-control input-control @error('address') is-invalid @enderror">
+                                        <div class="error"></div>
                                     @error('address')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -114,12 +117,12 @@
                             <div class="form-group row">
                                 <label for="phone" class="col-md-4 col-form-label text-md-right">Numero di
                                     telefono</label>
-                                <div class="error"></div>
+
 
                                 <div class="col-md-6">
                                     <input id="phone" type="tel" name="phone"
-                                        class="form-control @error('phone') is-invalid @enderror">
-
+                                        class="form-control input-control @error('phone') is-invalid @enderror">
+                                        <div class="error">Errore script</div>
                                     @error('phone')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -130,12 +133,12 @@
 
                             <div class="form-group row">
                                 <label for="p_iva" class="col-md-4 col-form-label text-md-right">Partita Iva</label>
-                                <div class="error"></div>
+
 
                                 <div class="col-md-6">
                                     <input id="p_iva" type="string" name="p_iva"
-                                        class="form-control @error('p_iva') is-invalid @enderror">
-
+                                        class="form-control input-control @error('p_iva') is-invalid @enderror">
+                                    <div class="error"></div>
                                     @error('p_iva')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -218,7 +221,7 @@
         const username = document.getElementById('name');
         const email = document.getElementById('email');
         const password = document.getElementById('password');
-        const password2 = document.getElementById('passworld-confirm');
+        const password2 = document.getElementById('password-confirm');
         const restaurant = document.getElementById('restaurant_name');
         const address = document.getElementById('address');
         const phone = document.getElementById('phone');
@@ -229,7 +232,7 @@
         //     console.log('sumbit');
         //     validateInputs();
         // });
-        
+
         // console.log(provaButton);
 
         // submitButton.addEventListener('mouseover', function() {
@@ -241,9 +244,9 @@
             const submitButton = document.getElementById('submit');
             submitButton.addEventListener('click', e => {
                 e.preventDefault();
-                
-                console.log('cliccato su prova')
 
+                console.log('bloccato submit')
+                validateInputs();
                 //form.submit();
             })
         })
@@ -253,15 +256,18 @@
 
 
         const setError = (element, message) => {
+            console.log('entrato su setError');
+            // console.log(message);
             const inputControl = element.parentElement;
-            console.log(inputControl);
+            // console.log(inputControl);
             const errorDisplay = inputControl.querySelector('.error');
             console.log(errorDisplay);
 
             errorDisplay.innerText = message;
+            console.log(inputControl)
             inputControl.classList.add('error');
             inputControl.classList.remove('success');
-
+            
         }
 
         const setSuccess = (element) => {
@@ -287,49 +293,49 @@
             const pIvaValue = pIva.value.trim();
 
             if (usernameValue === '') {
-                setError(username, 'Username is ');
+                setError(username, 'Campo obbligatorio');
             } else {
                 setSuccess(username);
             }
 
             if (emailValue === '') {
-                setError(email, 'email is ');
+                setError(email, 'Campo obbligatorio');
             } else {
                 setSuccess(email);
             }
 
             if (passwordValue === '') {
-                setError(password, 'password is ');
+                setError(password, 'Campo obbligatorio');
             } else {
                 setSuccess(password);
             }
 
             if (password2Value === '') {
-                setError(password2, 'password2 is ');
+                setError(password2, 'Campo obbligatorio');
             } else {
                 setSuccess(password2);
             }
 
             if (restaurantValue === '') {
-                setError(restaurant, 'restaurant is ');
+                setError(restaurant, 'Campo obbligatorio');
             } else {
                 setSuccess(restaurant);
             }
 
             if (addressValue === '') {
-                setError(address, 'address is ');
+                setError(address, 'Campo obbligatorio');
             } else {
                 setSuccess(address);
             }
 
             if (phoneValue === '') {
-                setError(phone, 'phone is ');
+                setError(phone, 'Campo obbligatorio');
             } else {
                 setSuccess(phone);
             }
 
             if (pIvaValue === '') {
-                setError(pIva, 'pIva is ');
+                setError(pIva, 'Campo obbligatorio');
             } else {
                 setSuccess(pIva);
             }
