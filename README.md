@@ -26,7 +26,7 @@ public function register(Request $request)
             : redirect($this->redirectPath());
     }
 
-- con lo UserSeeder verrò creato un user admin con email admin.01@gmail.com e password pippo123, questo utente è un admin del sito che possiede un ristorante, ma in grado di vedere e modificare i ristoranti, i piatti e gli ordini di tutti gli altri utenti. Questa funzione è gestibile solamente da chi controlla il DB, l'unico modo per avere un amministratore o trasformando un utente in esso è di intervenire direttamente dul DB.
+- con lo UserSeeder verrà creato un user admin con email admin.01@gmail.com e password pippo123, questo utente è un admin del sito che possiede un ristorante, ma in grado di vedere e modificare gli altri ristoranti, i piatti e gli ordini di tutti. Questa funzione è gestibile solamente da chi controlla il DB, l'unico modo per avere un amministratore o trasformando un utente in esso è di intervenire direttamente dal DB.
 
 ## About Laravel
 

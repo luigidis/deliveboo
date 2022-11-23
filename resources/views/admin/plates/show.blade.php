@@ -13,7 +13,7 @@
         </h3>
       </div>
       <div>
-        <a href="{{ route('admin.plates.index') }}"><button type="button" class="btn btn-warning btn-lg">Torna indietro</button></a>   
+        <a href="{{ route('admin.plates.index', ['id' => $plate->restaurant_id]) }}"><button type="button" class="btn btn-warning btn-lg">Torna indietro</button></a>   
       </div>
     </div>
     <img class="py-3" src="{{ $plate->image_path }}" width="400" alt="{{ $plate->name }}">

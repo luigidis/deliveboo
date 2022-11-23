@@ -136,6 +136,6 @@ class PlateController extends Controller
     public function destroy(Plate $plate)
     {
         $plate->delete();
-        return redirect()->route('admin.plates.index');
+        return redirect()->route('admin.plates.index', ['id' => $plate->restaurant_id]);
     }
 }
