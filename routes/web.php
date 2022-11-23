@@ -28,7 +28,7 @@ Route::middleware('auth')
         Route::get('/home', 'HomeController@index')->name('home');
         Route::resource('restaurant', 'RestaurantController')->only(['edit', 'update', 'destroy']);
         Route::resource('orders', 'OrderController');
-        Route::get('/orders/analytics', 'OrderController@chart')->name('chart');
+        Route::get('/orders{id}/analytics', 'OrderController@chart')->name('chart');
         Route::resource('categories', 'CategoryController');
         Route::resource('plates', 'PlateController');
     });

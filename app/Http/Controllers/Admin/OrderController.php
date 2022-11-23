@@ -54,13 +54,13 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function chart()
+    public function chart(Request $request)
     {
-        $userId = Auth::id();
-        $restaurant = Restaurant::where('user_id', $userId)->first();
-
-        // dd($restaurant);
-        // dd($restaurant->plates->orders);
+        if ($request['id'])
+            $user = User::where('id', $request['id'])->first();
+        else
+            $user = Auth::user();
+        $restaurant = Restaurant::where('user_id', $user->id)->first();
 
         $plates = $restaurant->plates;
         $ordersId = [];
@@ -74,6 +74,7 @@ class OrderController extends Controller
 
         rsort($ordersId);
         // dd($ordersId);
+        $orders = [];
         foreach ($ordersId as $id) {
             $orders[] = Order::where('id', $id)->first();
         }
@@ -105,7 +106,7 @@ class OrderController extends Controller
         ksort($data[0]);
         // dd($data[0]);
         // dd($dates, $count);
-        return view('admin.orders.analytics', ['date' => array_keys($data[0]), 'orders' => array_values($data[0])]);
+        return view('admin.orders.analytics', ['date' => array_keys($data[0]), 'orders' => array_values($data[0])], compact('restaurant'));
     }
 
     /**

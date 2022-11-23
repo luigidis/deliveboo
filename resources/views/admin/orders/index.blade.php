@@ -16,7 +16,7 @@
                     <a href="{{ route('admin.home') }}" class="btn btn-primary col-12 mb-2">
                         Torna alla home
                     </a>
-                    <a href="{{ route('admin.chart') }}" class="btn btn-success col-12">
+                    <a href="{{ route('admin.chart', $restaurant->id) }}" class="btn btn-success col-12">
                         Statistiche ordini
                     </a>
                 </div>
