@@ -21,10 +21,16 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request['id'])
-            $user = User::where('id', $request['id'])->first();
-        else
-            $user = Auth::user();
+        if ($request['id']) {
+            $auth_user = Auth::user();
+            if ($auth_user->is_admin) {
+                $user = User::where('id', $request['id'])->first();
+            } else {
+                $user = User::where('id', $auth_user->id)->first();
+            }
+        } else $user = Auth::user();
+
+
         $restaurant = Restaurant::where('user_id', $user->id)->first();
 
         $plates = $restaurant->plates;
@@ -56,10 +62,15 @@ class OrderController extends Controller
      */
     public function chart(Request $request)
     {
-        if ($request['id'])
-            $user = User::where('id', $request['id'])->first();
-        else
-            $user = Auth::user();
+        if ($request['id']) {
+            $auth_user = Auth::user();
+            if ($auth_user->is_admin) {
+                $user = User::where('id', $request['id'])->first();
+            } else {
+                $user = User::where('id', $auth_user->id)->first();
+            }
+        } else $user = Auth::user();
+
         $restaurant = Restaurant::where('user_id', $user->id)->first();
 
         $plates = $restaurant->plates;
@@ -152,14 +163,21 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        $fullname_client = $order->name_client . ' ' . $order->surname_client;
-        $status = ['Cancellato', 'In elaborazione', 'In lavorazione', 'Completato', 'In transito', 'In consegna'];
-        $order_plate = OrderPlate::where('order_id', $order->id)->get();
-        foreach ($order_plate as $plate) {
-            $plates[] = Plate::find($plate->plate_id);
-        }
-        // dd($plates);
-        return view('admin.orders.show', compact('order', 'fullname_client', 'plates', 'status'));
+        $plates_order = OrderPlate::where('order_id', $order->id)->get();
+        $auth_user = Auth::user();
+        $restaurant = Restaurant::where('user_id', $auth_user->id)->first();
+
+        if ($plates_order[0]->restaurant_id === $restaurant->id || $auth_user->is_admin) {
+
+            $fullname_client = $order->name_client . ' ' . $order->surname_client;
+            $status = ['Cancellato', 'In elaborazione', 'In lavorazione', 'Completato', 'In transito', 'In consegna'];
+            $order_plate = OrderPlate::where('order_id', $order->id)->get();
+            foreach ($order_plate as $plate) {
+                $plates[] = Plate::find($plate->plate_id);
+            }
+            // dd($plates);
+            return view('admin.orders.show', compact('order', 'fullname_client', 'plates', 'status'));
+        } else return redirect()->route('admin.home');
     }
 
     /**
@@ -205,10 +223,10 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        $plates = $order->plates;
-        $restId = $plates[0]->restaurant_id;
-        $order->delete();
+        // $plates = $order->plates;
+        // $restId = $plates[0]->restaurant_id;
+        // $order->delete();
 
-        return redirect()->route('admin.orders.index', ['id' => $restId]);
+        // return redirect()->route('admin.orders.index', ['id' => $restId]);
     }
 }

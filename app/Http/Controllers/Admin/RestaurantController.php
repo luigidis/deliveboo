@@ -64,9 +64,14 @@ class RestaurantController extends Controller
     public function edit(Restaurant $restaurant)
     {
         $categories = Category::orderBy('name', 'asc')->get();
+        $auth_user = Auth::user();
 
-        return view('admin.restaurant.edit', compact('restaurant', 'categories'));
+
+        if ($restaurant->user_id === $auth_user->id) {
+            return view('admin.restaurant.edit', compact('restaurant', 'categories'));
+        } else return redirect()->route('admin.home');
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -113,19 +118,20 @@ class RestaurantController extends Controller
      */
     public function destroy(Restaurant $restaurant)
     {
-        $userId = $restaurant->user_id;
-        $user = User::find($userId);
+        $auth_user = Auth::user();
 
-        if ($restaurant->image && Storage::disk('images')->exists($restaurant->image)) {
-            Storage::disk('images')->delete($restaurant->image);
-        }
-        
-        $restaurant->delete();
-        $user->delete();
 
-        if (Auth::user()->is_admin)
-            return redirect()->route('admin.home');
-            
-        return redirect('/');
+        if ($auth_user->is_admin || $auth_user->id === $restaurant->id) {
+            $userId = $restaurant->user_id;
+            $user = User::find($userId);
+            if ($restaurant->image && Storage::disk('images')->exists($restaurant->image)) {
+                Storage::disk('images')->delete($restaurant->image);
+            }
+            $restaurant->delete();
+            $user->delete();
+            if ($auth_user->is_admin)
+                return redirect()->route('admin.home');
+            return redirect('/');
+        } else return redirect()->route('admin.home');
     }
 }

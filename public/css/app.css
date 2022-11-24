@@ -10995,10 +10995,8 @@ a.text-dark:focus {
   border-color: red;
 }
 
-.inpunt-control .error {
+.error {
   color: red;
-  font-size: 9px;
-  height: 13px;
 }
 
 .navbar.stroke_bottom {
