@@ -10,7 +10,7 @@ use App\Restaurant;
         <div class="row">
             @foreach ($users as $key => $user)
                 <?php
-                    $restaurant = Restaurant::where('user_id', $user->id)->first();
+                $restaurant = Restaurant::where('user_id', $user->id)->first();
                 ?>
                 {{-- <div class="col-12 text-center py-5">
                 <h1>Nome utente: {{ $user->name }}</h1>
@@ -56,19 +56,19 @@ use App\Restaurant;
                             </li>
                         </ul>
                         <div class="d-flex justify-content-between align-items-center flex-wrap px-2 py-3 stroke_bottom">
-                            <a href="{{ route('admin.orders.index', $restaurant->id) }}" type="button"
+                            <a href="{{ route('admin.orders.index', ['id' => $restaurant->user_id]) }}"
                                 class="bg_text_color c_prim_color box_shadow_stroke_small py-1 px-2 m-1 card_button card_button_dark"
-                                title="Modifica il tuo Ristorante">
+                                title="Visualizza gli ordini tuo Ristorante">
                                 Visualizza Ordini
                             </a>
-                            <a href="{{ route('admin.plates.index', $restaurant->id) }}" type="button"
+                            <a href="{{ route('admin.plates.index', ['id' => $restaurant->user_id]) }}"
                                 class="bg_text_color c_prim_color box_shadow_stroke_small py-1 px-2 m-1 card_button card_button_dark"
-                                title="Modifica il tuo Ristorante">
+                                title="Visualizza i piatti del tuo Ristorante">
                                 Visualizza Piatti
                             </a>
                         </div>
                         <div class="d-flex justify-content-between align-items-center flex-wrap px-2 py-3">
-                            <a href="{{ route('admin.restaurant.edit', $restaurant->id) }}" type="button"
+                            <a href="{{ route('admin.restaurant.edit', $restaurant->id) }}"
                                 class="bg_link_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button"
                                 title="Modifica il tuo Ristorante">
                                 Modifica Ristorante

@@ -48,14 +48,17 @@
                 </ul>
                 <div class="d-flex justify-content-between align-items-center flex-wrap px-2 py-3">
                     <a href="{{ route('admin.restaurant.edit', $restaurant->id) }}" type="button"
-                        class="bg_link_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button" title="Modifica il tuo Ristorante">
+                        class="bg_link_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button"
+                        title="Modifica il tuo Ristorante">
                         Modifica Ristorante
                     </a>
                     <form action="{{ route('admin.restaurant.destroy', $restaurant) }}" method="POST">
                         @csrf
                         @method('DELETE')
 
-                        <button type="submit" class="bg_seco_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button" title="Elimina il tuo Ristorante">
+                        <button type="submit"
+                            class="bg_seco_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button"
+                            title="Elimina il tuo Ristorante">
                             Elimina ristorante
                         </button>
                     </form>
