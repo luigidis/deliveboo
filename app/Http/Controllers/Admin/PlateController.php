@@ -19,10 +19,15 @@ class PlateController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request['id'])
-            $user = User::where('id', $request['id'])->first();
-        else
-            $user = Auth::user();
+        if ($request['id']) {
+            $auth_user = Auth::user();
+            if ($auth_user->is_admin) {
+                $user = User::where('id', $request['id'])->first();
+            } else {
+                $user = User::where('id', $auth_user->id)->first();
+            }
+        } else $user = Auth::user();
+
         $restaurant = Restaurant::where('user_id', $user->id)->first();
         $plates = Plate::orderby('name', 'asc')->where('restaurant_id', $restaurant->id)->get();
 
@@ -80,7 +85,12 @@ class PlateController extends Controller
      */
     public function show(Plate $plate)
     {
-        return view('admin.plates.show', compact('plate'));
+        $auth_user = Auth::user();
+        $restaurant = Restaurant::where('user_id', $auth_user->id)->first();
+
+        if ($restaurant->id === $plate->restaurant_id) {
+            return view('admin.plates.show', compact('plate'));
+        } else return redirect()->route('admin.home');
     }
 
     /**
@@ -91,7 +101,12 @@ class PlateController extends Controller
      */
     public function edit(Plate $plate)
     {
-        return view('admin.plates.edit', compact('plate'));
+        $auth_user = Auth::user();
+        $restaurant = Restaurant::where('user_id', $auth_user->id)->first();
+
+        if ($restaurant->id === $plate->restaurant_id) {
+            return view('admin.plates.edit', compact('plate'));
+        } else return redirect()->route('admin.home');
     }
 
     /**
@@ -135,7 +150,12 @@ class PlateController extends Controller
      */
     public function destroy(Plate $plate)
     {
-        $plate->delete();
-        return redirect()->route('admin.plates.index', ['id' => $plate->restaurant_id]);
+        $auth_user = Auth::user();
+        $restaurant = Restaurant::where('user_id', $auth_user->id)->first();
+
+        if ($restaurant->id === $plate->restaurant_id) {
+            $plate->delete();
+            return redirect()->route('admin.plates.index', ['id' => $plate->restaurant_id]);
+        } else return redirect()->route('admin.home');
     }
 }

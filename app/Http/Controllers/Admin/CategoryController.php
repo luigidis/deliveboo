@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -16,8 +17,11 @@ class CategoryController extends Controller
     public function index(Category $category)
     {
         $categories = Category::all();
+        $auth_user = Auth::user();
 
-        return view('admin.categories.index', compact('categories','category'));
+        if ($auth_user->is_admin) {
+            return view('admin.categories.index', compact('categories', 'category'));
+        } else return redirect()->route('admin.home');
     }
 
     /**
@@ -28,8 +32,11 @@ class CategoryController extends Controller
     public function create()
     {
         $categories = Category::all();
+        $auth_user = Auth::user();
 
-        return view('admin.categories.create', compact('categories'));
+        if ($auth_user->is_admin) {
+            return view('admin.categories.create', compact('categories'));
+        } else return redirect()->route('admin.home');
     }
 
     /**
@@ -44,11 +51,11 @@ class CategoryController extends Controller
             'name' => 'required|max:255|min:2',
         ]);
 
-        $params['slug'] = str_replace(' ','-',$params['name']);
+        $params['slug'] = str_replace(' ', '-', $params['name']);
 
         $category = Category::create($params);
 
-       return redirect()->route('admin.categories.index', $category);
+        return redirect()->route('admin.categories.index', $category);
     }
 
     /**
@@ -70,7 +77,11 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('admin.categories.edit', compact('category'));
+        $auth_user = Auth::user();
+
+        if ($auth_user->is_admin) {
+            return view('admin.categories.edit', compact('category'));
+        } else return redirect()->route('admin.home');
     }
 
     /**
@@ -86,7 +97,7 @@ class CategoryController extends Controller
             'name' => 'required|max:255|min:2',
         ]);
 
-        $params['slug'] = str_replace(' ','-',$params['name']);
+        $params['slug'] = str_replace(' ', '-', $params['name']);
 
         $category->update($params);
 
@@ -101,7 +112,11 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $category->delete();
-        return redirect()->route('admin.categories.index');
+        $auth_user = Auth::user();
+
+        if ($auth_user->is_admin) {
+            $category->delete();
+            return redirect()->route('admin.categories.index');
+        } else return redirect()->route('admin.home');
     }
 }
