@@ -4,7 +4,7 @@
             <div class="container py-4">
                 <input type="text" name="" id="" v-model="filter" class="border-2 border-rose-500">
 
-                <div v-for="(category,i) in categories" :key="20-i">
+                <div v-for="(category,                                                                                                                                                                                                     i) in categories" :key="20                                                                                                                                                                                                     -                                                                                                                                                                                                     i">
                     <input type="checkbox" :name="category.name" :value="category.id" @click="addfilCat(category.name)">
                     <label :for="category.name">
                         {{ category.name }}
@@ -32,7 +32,7 @@
                                 {{ restaurant.p_iva }}
                             </div>
                             <ul>
-                                <li v-for="(category,i) in restaurant.categories" :key="1000-i">
+                                <li v-for="(category,                                                                                                                                                                                                     i) in restaurant.categories" :key="1000                                                                                                                                                                                                     -                                                                                                                                                                                                     i">
                                     {{ category.name }}
                                 </li>
                             </ul>
@@ -53,7 +53,6 @@ export default {
             categories: new Array,
             filter: '',
             filterCat: new Array,
-            // bool: true
         }
     },
     computed: {
@@ -62,14 +61,12 @@ export default {
                 const name = el.name.toLowerCase()
                 const filter = this.filter.toLowerCase()
                 const categories = el.categories;
-                let bool = false;
 
-                categories.forEach(element => {
-                    if(this.filterCat.includes(element.name))
-                        bool = true;
+                const categoriesName = categories.map(element => {
+                    return element.name
                 });
 
-                if (name.includes(filter) && bool) {
+                if (name.includes(filter) && this.arrayContains(categoriesName, this.filterCat)) {
                     return true
                 }
                 return false
@@ -81,22 +78,30 @@ export default {
             axios.get('/api/restaurants').then(res => {
                 this.restaurants = res.data.result.data;
                 this.categories = res.data.categories;
-                console.log(res.data.result.data);
+                // console.log(res.data.result.data);
                 // console.log(res.data.categories);
-            }).catch(err =>{
+            }).catch(err => {
                 // console.log(err);
                 this.$router.push({ name: '404' });
             })
         },
         addfilCat(category) {
             // this.bool = !this.bool;
-            if(!this.filterCat.includes(category)) {
+            if (!this.filterCat.includes(category)) {
                 this.filterCat.push(category);
             } else {
                 const index = this.filterCat.indexOf(category);
                 this.filterCat.splice(index, 1);
             }
             // console.log(this.filterCat);
+        },
+        arrayContains(a, s) {
+            for (var i = 0, l = s.length; i < l; i++) {
+                if (!~a.indexOf(s[i])) {
+                    return false;
+                }
+            }
+            return true;
         }
     },
     beforeMount() {

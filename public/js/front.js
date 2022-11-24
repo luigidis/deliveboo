@@ -1929,10 +1929,8 @@ __webpack_require__.r(__webpack_exports__);
       categories: new Array(),
       filter: '',
       filterCat: new Array()
-      // bool: true
     };
   },
-
   computed: {
     filteredRestaurants: function filteredRestaurants() {
       var _this = this;
@@ -1940,11 +1938,10 @@ __webpack_require__.r(__webpack_exports__);
         var name = el.name.toLowerCase();
         var filter = _this.filter.toLowerCase();
         var categories = el.categories;
-        var bool = false;
-        categories.forEach(function (element) {
-          if (_this.filterCat.includes(element.name)) bool = true;
+        var categoriesName = categories.map(function (element) {
+          return element.name;
         });
-        if (name.includes(filter) && bool) {
+        if (name.includes(filter) && _this.arrayContains(categoriesName, _this.filterCat)) {
           return true;
         }
         return false;
@@ -1957,7 +1954,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/api/restaurants').then(function (res) {
         _this2.restaurants = res.data.result.data;
         _this2.categories = res.data.categories;
-        console.log(res.data.result.data);
+        // console.log(res.data.result.data);
         // console.log(res.data.categories);
       })["catch"](function (err) {
         // console.log(err);
@@ -1975,6 +1972,14 @@ __webpack_require__.r(__webpack_exports__);
         this.filterCat.splice(index, 1);
       }
       // console.log(this.filterCat);
+    },
+    arrayContains: function arrayContains(a, s) {
+      for (var i = 0, l = s.length; i < l; i++) {
+        if (!~a.indexOf(s[i])) {
+          return false;
+        }
+      }
+      return true;
     }
   },
   beforeMount: function beforeMount() {
@@ -18615,7 +18620,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _pages_Home_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pages/Home.vue */ "./resources/js/pages/Home.vue");
+/* harmony import */ var _pages_Home_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../pages/Home.vue */ "./resources/js/pages/Home.vue");
 /* harmony import */ var _pages_404_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../pages/404.vue */ "./resources/js/pages/404.vue");
 
 // import ContactUs from '../pages/ContactUs.vue';
@@ -18626,7 +18631,7 @@ __webpack_require__.r(__webpack_exports__);
 var routes = [{
   path: '/',
   name: 'home',
-  component: _pages_Home_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  component: _pages_Home_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
 },
 // {
 //     path: '/contatti',
@@ -18734,7 +18739,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\franc\Documents\boolean-dev\full-stack-dev\php\deliveboo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! /Users/giusscos/dev/boolean/progetto_finale/deliveboo/resources/js/front.js */"./resources/js/front.js");
 
 
 /***/ })
