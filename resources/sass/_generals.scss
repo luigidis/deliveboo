@@ -1,0 +1,49 @@
+@import 'variables';
+
+.bg_prim_color {
+    background-color: $prim-color;
+}
+
+.bg_seco_color {
+    background-color: $seco-color;
+}
+
+.bg_link_color {
+    background-color: $link-color;
+}
+
+.bg_text_color {
+    background-color: $text-color;
+}
+
+.c_prim_color {
+    color: $prim-color;
+}
+
+.c_seco_color {
+    color: $seco-color;
+}
+
+.c_link_color {
+    color: $link-color;
+}
+
+.c_text_color {
+    color: $text-color;
+}
+
+.box_shadow_stroke{
+    border: 3px solid $prim-color;
+    box-shadow: 5px 5px 0px $prim-color;
+}
+.box_shadow_stroke_small{
+    border: 2px solid $prim-color;
+    box-shadow: 3px 3px 0px $prim-color;
+}
+.stroke_bottom{
+    border-bottom: 2px solid $prim-color;
+}
+
+.font_standard{
+    font-size: 1.5rem;
+}

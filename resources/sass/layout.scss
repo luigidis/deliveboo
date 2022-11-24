@@ -1,0 +1,125 @@
+.navbar {
+    &.stroke_bottom {
+        border-bottom: 3px solid $prim-color;
+        // box-shadow: 0px 0px 5px $prim-color;
+    }
+}
+
+.navbar-brand {
+    &.font_big {
+        font-size: 2.5rem;
+        color: $prim-color;
+    }
+}
+
+.navbar-nav {
+    a {
+        color: $prim-color;
+        font-size: 1.25rem;
+    }
+}
+
+.dropdown-menu {
+    &.bg_text_color {
+        background-color: $text-color;
+        color: $prim-color;
+    }
+
+    &.stroke_full {
+        border-radius: 0px;
+        border: 2px solid $prim-color;
+        box-shadow: 3px 3px 0px $prim-color;
+    }
+}
+
+.navbar-toggler {
+    &.bg_prim_color {
+        background-color: $prim-color;
+    }
+}
+
+.img_cover {
+    min-height: 500px;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+ul {
+    &.flex_grow {
+        flex-grow: 1;
+    }
+
+    &.stroke_bottom {
+        border-bottom: 3px solid $prim-color;
+    }
+}
+
+h3 {
+    &.stroke_bottom {
+        border-bottom: 3px solid $prim-color;
+    }
+}
+
+div {
+    &.stroke_bottom {
+        border-bottom: 3px solid $prim-color;
+    }
+}
+
+a,
+button {
+    transition: 300ms ease-in-out;
+
+    &.card_button {
+        font-size: 1.25rem;
+
+        &:hover {
+            color: $text-color;
+            text-decoration: none;
+            border: 2px solid $prim-color;
+            box-shadow: 1px 1px 0px $prim-color;
+        }
+    }
+
+    &.card_button_dark {
+        &:hover {
+            color: $prim-color;
+        }
+    }
+}
+
+.card_content {
+    max-width: 320px;
+    max-height: 500px;
+    flex-grow: 1;
+
+    .card_button_wrapper{
+        flex-grow: 1;
+    }
+    .card_select{
+        cursor: pointer;
+        font-size: 1.25rem;
+    }
+
+    .card_description{
+        font-size: 1.25rem;
+        line-height: 1.1;
+        flex-grow: 1;
+        height: 300px;
+    }
+}
+
+.list_wrapper{
+    flex-grow: 1;
+    .list_item{
+        padding: 0.5rem 1rem;
+        font-size: 1.25rem;
+        line-height: 1.1;
+        border: 1px solid $prim-color;
+    }
+}

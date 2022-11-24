@@ -25,7 +25,7 @@ class OrderSeeder extends Seeder
             $order->address_client = $faker->address();
             $order->phone_client = $faker->numerify('+39 ### ### ####');
             $order->email_client = $faker->email();
-            $order->created_at = $faker->dateTimeBetween('2022-01-01 00:00:00');
+            $order->created_at = $faker->dateTimeBetween('2022-11-01 00:00:00');
 
             $order->save();
         }
