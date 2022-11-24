@@ -5,9 +5,10 @@
         <div class="container">
             <div class="head_content10">
                 <h1>
-                    Categories
+                    Categorie
                 </h1>
-                <a href="{{ route('admin.categories.create') }}"><button type="button" class="btn btn-secondary btn-lg">Aggiungi Categoria</button></a>
+                <a href="{{ route('admin.categories.create') }}"><button type="button" class="btn btn-secondary btn-lg mt-3 mb-3">Aggiungi Categoria</button></a>
+                <a href="{{ route('admin.home') }}"><button type="button" class="btn btn-warning btn-lg btn__header__item mt-3 mb-3">Torna alla home</button></a>   
             </div>
             <div class="body_content">
                 <div class="table-responsive">
@@ -35,7 +36,7 @@
                                     <form action="{{ route('admin.categories.destroy', $item) }}" method="POST">
                                       @csrf
                                       @method('DELETE')
-                                      <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+                                      <input type="submit" value="Elimina" class="btn btn-danger btn-sm">
                                     </form>
                                 </td>
                             </tr>

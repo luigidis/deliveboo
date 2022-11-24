@@ -5,9 +5,11 @@
         <div class="container">
             <div class="row">
                 <div class="head_content10">
+                    <a href="{{ route('admin.categories.index') }}"><button type="button" class="btn btn-warning btn-lg btn__header__item mt-3 mb-3">Torna indietro</button></a>   
                     <h1>
                         Modifica Categoria
                     </h1>
+                    
                 </div>
             </div>
             <div class="container">
@@ -17,7 +19,7 @@
                     
                         <div class="form-group">
                             <label for="name">Nome Categoria</label>
-                            <input type="text" class="form-control @error('name')is-invalid @enderror" id="name" value="{{ old('name') }}" name="name" aria-describedby="helpName">
+                            <input type="text" class="form-control @error('name')is-invalid @enderror" id="name" value="{{ old('name',$category->name) }}" name="name" aria-describedby="helpName">
 
                             @error('name')
                               <div id="name" class="invalid-feedback">
