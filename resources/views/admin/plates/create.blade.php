@@ -33,9 +33,11 @@
 
     <div class="form-group">
       <label for="name">Nome del piatto</label>
-      <input type="text" class="form-control @error('name')is-invalid @enderror" id="name" value="{{ old('name') }}" name="name" aria-describedby="helpName">
+      <div class="error"></div>
+      <input type="text" class="form-control input-control @error('name')is-invalid @enderror" id="name1" value="{{ old('name') }}" name="name" autocomplete="name" autofocus aria-describedby="helpName">
+      <div class="error"></div>
       @error('name')
-        <div id="name" class="invalid-feedback">
+        <div id="name" class="invalid-feedback" role="alert">
           {{ $message }}
         </div>    
       @enderror
@@ -71,9 +73,12 @@
         <option value="0">Non Disponibile</option>
       </select>
     </div>
-
-    <button type="submit" class="btn btn-secondary">Aggiungi</button>
+    <div class="form-group">
+      <button type="submit" class="btn btn-secondary" id="submit">Aggiungi</button>
+    </div> 
   </form>
+
+ 
 </div>
 @endsection
 
@@ -87,4 +92,117 @@
     }
   }
 
+
+  .input-control.success {
+    border-color: green;
+  }
+
+  .input-control.error {
+      border-color: red;
+  }
+
+  .inpunt-control .error {
+      color: red;
+      font-size: 9px;
+      height: 13px;
+      
+  }
+
 </style>
+
+
+@section('script-js')
+  <script>
+    console.log('ciao');
+    
+    
+    // submitButton.addEventListener('click', function() {
+    //   form.preventDefault();
+
+    //   validateForm();
+    // });
+
+    window.addEventListener('load', () => {
+
+      const form = document.getElementById('form');
+      const namePlate = document.getElementById('name1');
+      console.log(namePlate);
+      const description = document.getElementById('description');
+      
+      const price = document.getElementById('price');
+      const isVisible = document.getElementById('is_visible');
+      const submitButton = document.getElementById('submit');
+      submitButton.addEventListener('click', e => {
+        e.preventDefault();
+        if (validateInputs())
+          form.submit();
+        
+        
+
+        //form.submit();
+      })
+    })
+
+    const setError = (element, message) => {
+      const inputControl = element.parentElement;
+      const errorDisplay = inputControl.querySelector('.error');
+      
+      errorDisplay.innerText = message;
+      inputControl.classList.add('error');
+      inputControl.classList.remove('success');
+      
+    }
+
+    const setSuccess = (element) => {
+
+      const inputControl = element.parentElement;
+      const errorDIsplay = inputControl.querySelector('.error');
+      
+      errorInput.innerText = '';
+      inputControl.classList.add('success');
+      inputControl.classList.remove('error');
+      
+    }
+
+    function validateInputs() {
+      
+      let validate = true;
+      
+      const nameValue = namePlate.value.trim();
+      const descriptionValue = description.value.trim();
+      const priceValue = price.value.trim();
+      const priceFloat = parsFloat(priceValue);
+      const isVisibleVlue = isVisible.value.trim();
+      
+
+      if(nameValue === '') {
+        setError(name, 'name is required');
+        validate = false;
+      } else {
+        setSuccess(name);
+      }
+
+      if(descriptionValue === '') {
+        setError(description, 'description is required');
+        validate = false;
+      } else {
+        setSuccess(description);
+      }  
+
+      if(priceValue === '') {
+        setError(price, 'price is required');
+        validate = false;
+      } else {
+        setSuccess(price);
+      }
+
+      return validate;
+    }
+    
+  </script>    
+@endsection
+
+
+
+
+    
