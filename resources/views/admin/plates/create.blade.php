@@ -82,7 +82,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-secondary" id="submit">Aggiungi</button>
+                <button type="submit" class="btn btn-secondary" id="submitButton">Aggiungi</button>
             </div>
         </form>
 
@@ -137,22 +137,22 @@
 
             // const price = document.getElementById('price');
             // const isVisible = document.getElementById('is_visible');
-            const submitButton = document.getElementById('submit');
+            const submitButton = document.getElementById('submitButton');
             submitButton.addEventListener('click', e => {
                 e.preventDefault();
                 if (validateInputs())
                     form.submit();
-
-
-
-                //form.submit();
+                })
             })
-        })
+
+
+
+                
 
         const setError = (element, message) => {
             const inputControl = element.parentElement;
             console.log(inputControl)
-            const errorDisplay = inputControl.querySelector('.error');
+            const errorDisplay = document.querySelector('.error');
             console.log(errorDisplay)
 
             errorDisplay.innerText = message;
@@ -162,11 +162,11 @@
         }
 
         const setSuccess = (element) => {
-
+            console.log(element)
             const inputControl = element.parentElement;
-            const errorDisplay = inputControl.querySelector('.error');
-
-            errorInput.innerText = '';
+            const errorDisplay = document.querySelector('.error');
+            console.log(inputControl)
+            errorDisplay.innerText = '';
             inputControl.classList.add('success');
             inputControl.classList.remove('error');
 
@@ -200,7 +200,7 @@
                 setError(nameHtml, 'Campo Obbligatorio');
                 validate = false;
             } else {
-                setSuccess(name);
+                setSuccess(nameHtml);
             }
 
             if (descriptionValue === '') {
