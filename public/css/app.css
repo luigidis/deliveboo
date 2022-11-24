@@ -11126,6 +11126,30 @@ button.card_button_dark:hover {
   flex-grow: 1;
 }
 
+.card_form {
+  max-width: 500px;
+}
+
+.card_form .form-group.row {
+  flex-grow: 1;
+}
+
+.card_form .form-group.row > .col-md-6 {
+  margin-left: auto;
+}
+
+.card_form label {
+  font-weight: bold;
+  font-size: 1.05rem;
+  line-height: 1.1;
+}
+
+.card_form input {
+  border: 2px solid #4C5355;
+  border-radius: 0;
+  margin-left: auto;
+}
+
 html body {
   min-width: 320px;
   font-weight: 300;

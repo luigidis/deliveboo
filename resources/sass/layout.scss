@@ -139,3 +139,25 @@ button {
         flex-grow: 1;
     }
 }
+
+.card_form{
+    max-width: 500px;
+    .form-group.row{
+        flex-grow: 1;
+        >.col-md-6{
+            margin-left: auto;
+        }
+    }
+
+    label{
+        font-weight: bold;
+        font-size: 1.05rem;
+        line-height: 1.1;
+    }
+
+    input{
+        border: 2px solid $prim-color;
+        border-radius: 0;
+        margin-left: auto;
+    }
+}
