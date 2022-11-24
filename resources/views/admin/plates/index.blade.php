@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    <?php
+    if(isset($_GET)) {
+        $id = $_GET['id']; // è lo user id del proprietario del ristorante
+    }
+    ?>
     <section>
         <div class="container">
             <div class="header_content d-flex flex-wrap justify-content-between align-items-center">
@@ -10,7 +15,7 @@
                     </h1>
                 </div>
                 <div class="d-flex flex-lg-wrap align-items-center justify-content-center box_shadow_stroke p-3">
-                    <a href="{{ route('admin.plates.create') }}"
+                    <a href="{{ route('admin.plates.create', ['id' => $id]) }}"
                         class="bg_link_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2">
                         Aggiungi un nuovo piatto
                     </a>
@@ -25,12 +30,6 @@
             @foreach ($plates as $plate)
                 <div class="m-3 card_content box_shadow_stroke py-3">
                     <div class="d-flex flex-column h-100">
-                        {{-- <span class="h6">
-                            # {{ $plate->id }}
-                        </span> --}}
-                        {{-- <span class="h6 text-capitalize">
-                            {{ $plate->restaurant->name }}
-                        </span> --}}
                         <div class="d-flex flex-wrap align-items-center justify-content-between stroke_bottom">
                             <h3 class="pl-2 col-8">
                                 {{ $plate->name }}
