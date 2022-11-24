@@ -25,7 +25,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md bg_text_color stroke_bottom">
             <div class="container">
-                <a class="navbar-brand font-weight-bold font_big" href="{{ url('/') }}">
+                <a class="navbar-brand font-weight-bold font_big" href="{{ url('/admin') }}">
                     Delive<span class="c_seco_color">Boo</span>
                 </a>
                 <button class="navbar-toggler bg_prim_color" type="button" data-toggle="collapse"

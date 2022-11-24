@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::middleware('auth')->get('/admin', function () {
     return view('welcome');
 });
 
@@ -23,12 +23,17 @@ Route::middleware('auth')
     ->prefix('admin')  //questo mi da il prefisso su admin/home in get
     ->name('admin.')    //questo mi da il "prefisso" per il name in admin.home
     ->namespace('Admin')    //questo mi da il prefisso per arrivare al Controller di riferimento Admin\HomeController
-    ->group(function () {
+    ->group(
+        function () {
+            Route::get('/home', 'HomeController@index')->name('home');
+            Route::resource('restaurant', 'RestaurantController')->only(['edit', 'update', 'destroy']);
+            Route::resource('orders', 'OrderController');
+            Route::get('/orders{id}/analytics', 'OrderController@chart')->name('chart');
+            Route::resource('categories', 'CategoryController');
+            Route::resource('plates', 'PlateController');
+        }
+    );
 
-        Route::get('/home', 'HomeController@index')->name('home');
-        Route::resource('restaurant', 'RestaurantController')->only(['edit', 'update', 'destroy']);
-        Route::resource('orders', 'OrderController');
-        Route::get('/orders{id}/analytics', 'OrderController@chart')->name('chart');
-        Route::resource('categories', 'CategoryController');
-        Route::resource('plates', 'PlateController');
-    });
+Route::get('{any?}', function () {
+    return view('guest.home');
+})->where('any', '.*');
