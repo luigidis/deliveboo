@@ -211,5 +211,5 @@
 @endsection
 
 @section('script-js')
-    <script src={{asset('js/auth.js')}}></script>
+    <script src={{asset('js/register.js')}}></script>
 @endsection
