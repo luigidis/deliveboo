@@ -41,6 +41,7 @@
         }
 
         .links>a {
+            padding: 0 0.5rem;
             font-size: 1.25rem;
             font-weight: bold;
             text-decoration: none;
