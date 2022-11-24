@@ -3,24 +3,24 @@
 @section('content')
     <section>
         <div class="container">
-            <div class="header_content d-flex flex-wrap justify-content-between">
-                <div>
-                    <h1>
+            <div class="header_content d-flex flex-wrap justify-content-between align-items-start">
+                <div class="box_shadow_stroke py-2 px-3 mb-3">
+                    <h1 class="m-0">
                         Ordine #{{ $order->id }}
                     </h1>
                     <h3>
                         {{ $fullname_client }}
                     </h3>
-                    <span class="d-block">
+                    <span class="h5 d-block">
                         Data creazione ordine: {{ $order->created_at }}
                     </span>
-                    <span class="d-block">
+                    <span class="h5 d-block">
                         Data ultima modifica ordine: {{ $order->updated_at }}
                     </span>
-                    <span class="d-block">
+                    <span class="h5 d-block">
                         Indirizzo: {{ $order->address_client }}
                     </span>
-                    <span>
+                    <span class="h4">
                         <?php
                         $tot = 0;
                         foreach ($plates as $plate) {
@@ -30,13 +30,15 @@
                         ?>
                     </span>
                 </div>
-                <div class="d-flex  flex-wrap align-items-center justify-content-end">
-                    <form action="{{ route('admin.orders.update', $order) }}" method="POST" class="d-flex mb-2" style="flex-grow: 1;">
+                <div class="d-flex flex-column align-items-end justify-content-end">
+                    <form action="{{ route('admin.orders.update', $order) }}" method="POST"
+                        class="my-2 d-flex align-items-center">
                         @csrf
                         @method('PUT')
 
-                        <select class="custom-select mr-3 @error('status') is-invalid @enderror"  id="status"
-                            name="status">
+                        <select
+                            class="h5 card_select bg_text_color c_prim_color box_shadow_stroke_small py-1 px-2 m-1 mb-2 @error('status') is-invalid @enderror"
+                            id="status" name="status">
                             @foreach ($status as $item)
                                 <option @if (old('status', $order->status) == $item) selected @endif>
                                     {{ $item }}
@@ -48,34 +50,38 @@
                                 {{ $message }}
                             </div>
                         @enderror
-
-                        <button type="submit" class="btn btn-success">
+                        <button type="submit"
+                            class="bg_text_color c_prim_color box_shadow_stroke_small px-1 m-1 card_button card_button_dark mb-2">
                             Conferma
                         </button>
                     </form>
-                    <a href="{{ route('admin.orders.index', ['id' => $plates[0]->restaurant_id]) }}" class="btn btn-danger col-12" title="Torna agli ordini">
+                    <a href="{{ route('admin.orders.index', ['id' => $plates[0]->restaurant_id]) }}"
+                        class="bg_seco_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2"
+                        title="Torna agli ordini">
                         Torna agli ordini
                     </a>
                 </div>
             </div>
             <div class="body_content py-5 d-flex flex-wrap justify-content-center">
                 @foreach ($plates as $plate)
-                    <div class="card mx-auto mb-3" style="max-width: 320px; max-height: 400px; flex-grow:1;">
-                        <div class="card-body d-flex flex-column">
-                            <div class="d-flex flex-wrap align-items-center justify-content-between">
-                                <h3 class="text-capitalize">
+                    <div class="m-3 card_content box_shadow_stroke pt-3">
+                        <div class="d-flex flex-column h-100">
+                            <div class="d-flex flex-wrap align-items-center justify-content-between stroke_bottom flex_grow">
+                                <h3 class="pl-2 col-8">
                                     {{ $plate->name }}
                                 </h3>
-                                <span class="h4 mb-0">
+                                <span class="h4 pr-2 col-4">
                                     {{ $plate->price }}€
                                 </span>
                             </div>
-                            <p class="card-text overflow-auto" style="flex-grow: 1;">
+                            <p class="overflow-auto stroke_bottom px-2 card_description py-2 m-0">
                                 {{ $plate->description }}
                             </p>
-                            <div class="d-flex p-2 flex-wrap align-items-center justify-content-between">
-                                <a href="{{ route('admin.plates.show', $plate) }}" class="btn btn-primary my-2">
-                                    Vedi Piatto
+                            <div
+                                class="d-flex p-2 flex-wrap align-items-center justify-content-between card_button_wrapper flex_grow">
+                                <a href="{{ route('admin.plates.show', $plate) }}"
+                                    class="bg_link_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button">
+                                    Vedi piatto
                                 </a>
                             </div>
                         </div>
