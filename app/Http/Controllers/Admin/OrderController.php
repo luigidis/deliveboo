@@ -10,7 +10,7 @@ use App\Restaurant;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
+
 
 class OrderController extends Controller
 {
@@ -205,8 +205,10 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
+        $plates = $order->plates;
+        $restId = $plates[0]->restaurant_id;
         $order->delete();
 
-        return redirect()->route('admin.orders.index');
+        return redirect()->route('admin.orders.index', ['id' => $restId]);
     }
 }

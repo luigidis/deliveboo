@@ -7,6 +7,27 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+##### Per un corretto funzionamento:
+
+- in /vendor/laravel/ui/auth-backend modificare il file RegistersUsers.php sostituendo la funzione register con quanto segue:
+
+public function register(Request $request)
+    {
+        event(new Registered($user = $this->create($request)));
+
+        $this->guard()->login($user);
+
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+            ? new JsonResponse([], 201)
+            : redirect($this->redirectPath());
+    }
+
+- con lo UserSeeder verrà creato un user admin con email admin.01@gmail.com e password pippo123, questo utente è un admin del sito che possiede un ristorante, ma in grado di vedere e modificare gli altri ristoranti, i piatti e gli ordini di tutti. Questa funzione è gestibile solamente da chi controlla il DB, l'unico modo per avere un amministratore o trasformando un utente in esso è di intervenire direttamente dal DB.
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:

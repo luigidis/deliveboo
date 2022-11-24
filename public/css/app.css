@@ -10932,6 +10932,18 @@ a.text-dark:focus {
   }
 }
 
+.input-control.success {
+  border-color: green;
+}
+
+.input-control.error {
+  border-color: red;
+}
+
+.error {
+  color: red;
+}
+
 img {
   max-width: 100%;
 }
