@@ -2,7 +2,7 @@
 
 @section('content')
     <section>
-        <div class="container ">
+        <div class="container">
             <div class="header_content d-flex flex-wrap justify-content-between align-items-center">
                 <div class="box_shadow_stroke py-2 px-3 mb-3">
                     <h1 class="m-0">
@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-        <div class="body_content py-5 d-flex flex-wrap justify-content-center">
+        <div class="body_content py-5 d-flex flex-wrap container justify-content-center">
             @foreach ($plates as $plate)
                 <div class="m-3 card_content box_shadow_stroke py-3">
                     <div class="d-flex flex-column h-100">

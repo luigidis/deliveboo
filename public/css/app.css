@@ -51,6 +51,10 @@
   font-size: 1.5rem;
 }
 
+.flex_grow {
+  flex-grow: 1;
+}
+
 /*!
  * Bootstrap v4.6.2 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors
@@ -11108,6 +11112,20 @@ button.card_button_dark:hover {
   font-size: 1.25rem;
   line-height: 1.1;
   border: 1px solid #4C5355;
+}
+
+.card_description {
+  font-size: 1.25rem;
+  line-height: 1.1;
+  flex-grow: 1;
+  height: 300px;
+}
+
+.card_description.plates {
+  height: 300px;
+  font-size: 1.5rem;
+  line-height: 1.1;
+  flex-grow: 1;
 }
 
 html body {
