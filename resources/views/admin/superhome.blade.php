@@ -12,15 +12,13 @@ use App\Restaurant;
                 <?php
                 $restaurant = Restaurant::where('user_id', $user->id)->first();
                 ?>
-                {{-- <div class="col-12 text-center py-5">
-                <h1>Nome utente: {{ $user->name }}</h1>
-            </div> --}}
+                
                 <div class="col-12 text-lg-center p-3 pt-5">
                     <h2 class="px-3">
                         Nome utente <span class="text-capitalize c_seco_color font-weight-bold">{{ $user->name }}</span>
                     </h2>
                 </div>
-                <div class="col-12 d-flex justify-content-center flex-wrap py-3">
+                <div class="col-12 d-flex justify-content-center flex-wrap py-3 main_card">
                     <div class="col-12 col-lg-5 img_cover box_shadow_stroke px-0 mb-3 mx-lg-3">
                         <img src="{{ $restaurant->image_path }}" alt="Foto {{ $restaurant->name }}">
                     </div>
@@ -73,19 +71,48 @@ use App\Restaurant;
                                 title="Modifica il tuo Ristorante">
                                 Modifica Ristorante
                             </a>
-                            <form action="{{ route('admin.restaurant.destroy', $restaurant) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-
-                                <button type="submit"
-                                    class="bg_seco_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button"
-                                    title="Elimina il tuo Ristorante">
-                                    Elimina ristorante
-                                </button>
-                            </form>
+                            <!-- Button trigger modal -->
+                            <button type="button" data-toggle="modal" data-target="{{ '#popup' . $key }}"
+                                class="bg_seco_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button">
+                                Elimina
+                            </button>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="{{ 'popup' . $key }}" tabindex="-1" aria-labelledby="popupLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="popupLabel">Elimina Ristorante</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Eliminare il ristorante? Cancellerai anche il tuo account...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary btn-sm"
+                                            data-dismiss="modal">Annulla</button>
+                                        <form action="{{ route('admin.restaurant.destroy', $restaurant) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="submit" class="btn btn-danger btn-sm" value="Elimina">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
             @endforeach
         </div>
     </div>
 @endsection
+
+                        
+
+
+
+
+
+

@@ -13,6 +13,9 @@
 // Pagina Layout
 @import './layout.scss';
 
+// Stile per l'errore
+@import './delete.scss';
+
 html body {
 min-width: 320px;
 font-weight: 300;
