@@ -36,13 +36,12 @@ export default {
             restaurantsArray: new Array,
         }
     },
-    props: {
-        restaurants: Array,
-    },
+    // props: {
+    //     restaurants: Array,
+    // },
     methods: {
         fetchRestaurants() {
-            console.log(this.restaurants);
-            const par = this.restaurants;
+            const par = this.$route.query.categories;
             axios.get(`/api/restaurants/categories/${par}`).then(res => {
                 this.restaurantsArray = res.data.finalRestaurants;
                 // this.categories = res.data.categories;
@@ -55,6 +54,8 @@ export default {
         },
     },
     mounted() {
+        console.log(this.$route.query.categories);
+        console.log(this.$route.query.name);
         this.fetchRestaurants()
     }
 }

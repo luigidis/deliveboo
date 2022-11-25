@@ -11,7 +11,8 @@
                     </label>
                 </div>
                 <!-- <input type="button" value="VAI" @click="fetchRestaurants"> -->
-                <router-link :to="{name: 'restaurants.search', params: { restaurants: filterCat, porco: 'zio' }}">
+                <router-link :to="{name: 'restaurants.search', 
+                query: {categories: filterCat, name: filter}}">
                     Vai
                 </router-link>
             </div>

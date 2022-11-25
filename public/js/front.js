@@ -1928,14 +1928,13 @@ __webpack_require__.r(__webpack_exports__);
       restaurantsArray: new Array()
     };
   },
-  props: {
-    restaurants: Array
-  },
+  // props: {
+  //     restaurants: Array,
+  // },
   methods: {
     fetchRestaurants: function fetchRestaurants() {
       var _this = this;
-      console.log(this.restaurants);
-      var par = this.restaurants;
+      var par = this.$route.query.categories;
       axios.get("/api/restaurants/categories/".concat(par)).then(function (res) {
         _this.restaurantsArray = res.data.finalRestaurants;
         // this.categories = res.data.categories;
@@ -1948,6 +1947,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
+    console.log(this.$route.query.categories);
+    console.log(this.$route.query.name);
     this.fetchRestaurants();
   }
 });
@@ -2193,9 +2194,9 @@ var render = function render() {
     attrs: {
       to: {
         name: "restaurants.search",
-        params: {
-          restaurants: _vm.filterCat,
-          porco: "zio"
+        query: {
+          categories: _vm.filterCat,
+          name: _vm.filter
         }
       }
     }
@@ -18917,7 +18918,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/giusscos/dev/boolean/progetto_finale/deliveboo/resources/js/front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\franc\Documents\boolean-dev\full-stack-dev\php\deliveboo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
