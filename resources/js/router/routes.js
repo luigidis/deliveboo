@@ -5,6 +5,7 @@ import Home from '../pages/Home.vue';
 // import PostsShow from '../pages/Posts.show.vue';
 import AdvancedSearch from '../pages/AdvancedSearch.vue';
 import Page404 from '../pages/404.vue';
+import ProductList from '../pages/ProductList.vue';
 
 const routes = [
     {
@@ -27,6 +28,11 @@ const routes = [
     //     name: 'posts.index',
     //     component: PostsIndex
     // },
+    {
+        path: '/products',
+        name: 'products',
+        component: ProductList,
+    },
     {
         path: '/ricerca',
         name: 'restaurants.search',
