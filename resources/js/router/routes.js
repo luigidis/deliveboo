@@ -3,6 +3,7 @@ import Home from '../pages/Home.vue';
 // import AboutUs from '../pages/AboutUs.vue';
 // import PostsIndex from '../pages/Posts.index.vue';
 // import PostsShow from '../pages/Posts.show.vue';
+import AdvancedSearch from '../pages/AdvancedSearch.vue';
 import Page404 from '../pages/404.vue';
 
 const routes = [
@@ -26,12 +27,12 @@ const routes = [
     //     name: 'posts.index',
     //     component: PostsIndex
     // },
-    // {
-    //     path: '/blog/:slug',
-    //     name: 'posts.show',
-    //     component: PostsShow,
-    //     props: true
-    // },
+    {
+        path: '/ricerca',
+        name: 'restaurants.search',
+        component: AdvancedSearch,
+        props: true
+    },
     {
         path: '*',
         name: '404',
