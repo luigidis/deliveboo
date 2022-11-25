@@ -1,5 +1,5 @@
 <template>
-    <div class="flex w-full items-center justify-center flex-column gap-5 py-5">
+    <div class="flex w-full items-center justify-center flex-column gap-5 py-3">
         <input type="text" v-model="filter" class="box_shadow_stroke_small text-3xl font-normal" style="width: 300px;">
 
         <div class="flex gap-4 w-2/3 flex-wrap justify-center">

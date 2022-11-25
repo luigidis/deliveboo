@@ -2130,7 +2130,7 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "flex w-full items-center justify-center flex-column gap-5 py-5"
+    staticClass: "flex w-full items-center justify-center flex-column gap-5 py-3"
   }, [_c("input", {
     directives: [{
       name: "model",
@@ -2207,7 +2207,7 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("header", {
-    staticClass: "main_heder py-2 px-3 fixed w-full top-0"
+    staticClass: "main_heder py-2 px-3 fixed w-full top-0 bg_text_color stroke_bottom"
   }, [_c("div", {
     staticClass: "container flex"
   }, [_c("div", {
@@ -2263,9 +2263,15 @@ var render = function render() {
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("h1", [_vm._v("\n    Delive"), _c("span", {
+  return _c("div", {
+    staticClass: "text-center font-bold"
+  }, [_c("h1", {
+    staticClass: "text-5xl"
+  }, [_vm._v("\n        Delive"), _c("span", {
     staticClass: "c_seco_color"
-  }, [_vm._v("Boo")])]);
+  }, [_vm._v("Boo")])]), _vm._v(" "), _c("h2", {
+    staticClass: "text-xl"
+  }, [_vm._v("\n        Cerca il tuo ristorante o la tua categoria di ristorante preferito\n    ")])]);
 }];
 render._withStripped = true;
 
@@ -2319,21 +2325,28 @@ var render = function render() {
   return _c("main", {
     staticClass: "container"
   }, [_c("section", {
-    staticClass: "py-20"
+    staticClass: "py-20 flex justify-center"
   }, [_c("div", {
-    staticClass: "card-wrap grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+    staticClass: "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
   }, _vm._l(_vm.restaurantsArray, function (restaurant, i) {
     return _c("div", {
       key: i,
-      staticClass: "card"
+      staticClass: "card_content card_restaurant box_shadow_stroke"
+    }, [_c("div", {
+      staticClass: "h-1/2"
     }, [_c("img", {
+      staticClass: "block object-cover w-full h-full",
       attrs: {
         src: restaurant.image,
         alt: ""
       }
-    }), _vm._v(" "), _c("div", {
+    })]), _vm._v(" "), _c("div", {
       staticClass: "desc p-2"
-    }, [_c("div", [_vm._v("\n                        " + _vm._s(restaurant.name) + "\n                    ")]), _vm._v(" "), _c("div", [_vm._v("\n                        " + _vm._s(restaurant.address) + "\n                    ")]), _vm._v(" "), _c("div", [_vm._v("\n                        " + _vm._s(restaurant.phone) + "\n                    ")]), _vm._v(" "), _c("div", [_vm._v("\n                        " + _vm._s(restaurant.p_iva) + "\n                    ")]), _vm._v(" "), _c("ul", _vm._l(restaurant.categories, function (category, i) {
+    }, [_c("h3", {
+      staticClass: "text-lg font-bold"
+    }, [_vm._v("\n                        " + _vm._s(restaurant.name) + "\n                    ")]), _vm._v(" "), _c("div", [_vm._v("\n                        " + _vm._s(restaurant.address) + "\n                    ")]), _vm._v(" "), _c("div", [_vm._v("\n                        " + _vm._s(restaurant.phone) + "\n                    ")]), _vm._v(" "), _c("div", [_vm._v("\n                        " + _vm._s(restaurant.p_iva) + "\n                    ")]), _vm._v(" "), _c("ul", {
+      staticClass: "flex flex-wrap gap-5"
+    }, _vm._l(restaurant.categories, function (category, i) {
       return _c("li", {
         key: 1000 - i
       }, [_vm._v("\n                            " + _vm._s(category.name) + "\n                        ")]);
@@ -2362,9 +2375,7 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("main", {
     staticClass: "container min-h-screen flex flex-column justify-center items-center"
-  }, [_c("TheLogo", {
-    staticClass: "text-5xl font-bold"
-  }), _vm._v(" "), _c("RestaurantSearch")], 1);
+  }, [_c("TheLogo"), _vm._v(" "), _c("RestaurantSearch")], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;

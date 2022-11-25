@@ -1,13 +1,15 @@
 <template>
     <main class="container">
-        <section class="py-20">
-            <div class="card-wrap grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                <div class="card" v-for="(restaurant, i) in restaurantsArray" :key="i">
-                    <img :src="restaurant.image" alt="">
+        <section class="py-20 flex justify-center">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div class="card_content card_restaurant box_shadow_stroke" v-for="(restaurant, i) in restaurantsArray" :key="i">
+                    <div class="h-1/2">
+                        <img class="block object-cover w-full h-full" :src="restaurant.image" alt="">
+                    </div>
                     <div class="desc p-2">
-                        <div>
+                        <h3 class="text-lg font-bold">
                             {{ restaurant.name }}
-                        </div>
+                        </h3>
                         <div>
                             {{ restaurant.address }}
                         </div>
@@ -17,7 +19,7 @@
                         <div>
                             {{ restaurant.p_iva }}
                         </div>
-                        <ul>
+                        <ul class="flex flex-wrap gap-5">
                             <li v-for="(category, i) in restaurant.categories" :key="1000 - i">
                                 {{ category.name }}
                             </li>

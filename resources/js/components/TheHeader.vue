@@ -1,5 +1,5 @@
 <template>
-    <header class="main_heder py-2 px-3 fixed w-full top-0">
+    <header class="main_heder py-2 px-3 fixed w-full top-0 bg_text_color stroke_bottom">
         <div class="container flex">
             <div class="logo_wrapper">
                 <h1 class="logo text-3xl font-bold relative">

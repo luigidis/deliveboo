@@ -31,11 +31,15 @@
 .c_text_color {
     color: $text-color;
 }
+.card{
+    border: 0px solid transparent;
+}
 
 .box_shadow_stroke{
     border: 3px solid $prim-color;
     box-shadow: 5px 5px 0px $prim-color;
 }
+
 .box_shadow_stroke_small{
     border: 2px solid $prim-color;
     box-shadow: 3px 3px 0px $prim-color;

@@ -33,6 +33,10 @@
   color: #f7f7f7;
 }
 
+.card {
+  border: 0px solid transparent;
+}
+
 .box_shadow_stroke {
   border: 3px solid #4C5355;
   box-shadow: 5px 5px 0px #4C5355;
@@ -11087,6 +11091,11 @@ button.card_button_dark:hover {
   max-width: 320px;
   max-height: 500px;
   flex-grow: 1;
+}
+
+.card_content.card_restaurant {
+  max-width: 400px;
+  min-height: 400px;
 }
 
 .card_content .card_button_wrapper {

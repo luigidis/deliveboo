@@ -1,6 +1,6 @@
 <template>
     <main class="container min-h-screen flex flex-column justify-center items-center">
-        <TheLogo class="text-5xl font-bold" />
+        <TheLogo />
         <RestaurantSearch />
     </main>
 </template>
