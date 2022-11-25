@@ -1949,18 +1949,31 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    fetchRestaurants: function fetchRestaurants() {
+    fetchCategories: function fetchCategories() {
       var _this2 = this;
-      axios.get('/api/restaurants').then(function (res) {
-        _this2.restaurants = res.data.result.data;
+      axios.get("/api/restaurants").then(function (res) {
+        // this.restaurants = res.data.result.data;
         _this2.categories = res.data.categories;
         // console.log(res.data.result.data);
-        // console.log(res.data.categories);
+        // console.log(res);
       })["catch"](function (err) {
         // console.log(err);
         _this2.$router.push({
           name: '404'
         });
+      });
+    },
+    fetchRestaurants: function fetchRestaurants() {
+      var _this3 = this;
+      var par = this.filterCat;
+      axios.get("/api/restaurants/categories/".concat(par)).then(function (res) {
+        _this3.restaurants = res.data.finalRestaurants;
+        // this.categories = res.data.categories;
+        // console.log(res.data.result.data);
+        console.log(res);
+      })["catch"](function (err) {
+        console.log(err);
+        // this.$router.push({ name: '404' });
       });
     },
     addfilCat: function addfilCat(category) {
@@ -1983,7 +1996,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   beforeMount: function beforeMount() {
-    this.fetchRestaurants();
+    this.fetchCategories();
   }
 });
 
@@ -2091,6 +2104,14 @@ var render = function render() {
         "for": category.name
       }
     }, [_vm._v("\n                    " + _vm._s(category.name) + "\n                ")])]);
+  }), _vm._v(" "), _c("input", {
+    attrs: {
+      type: "button",
+      value: "VAI"
+    },
+    on: {
+      click: _vm.fetchRestaurants
+    }
   })], 2)]), _vm._v(" "), _c("section", {
     staticClass: "relative"
   }, [_c("div", {
@@ -18739,7 +18760,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/giusscos/dev/boolean/progetto_finale/deliveboo/resources/js/front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\franc\Documents\boolean-dev\full-stack-dev\php\deliveboo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })

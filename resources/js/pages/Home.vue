@@ -4,12 +4,14 @@
             <div class="container py-4">
                 <input type="text" name="" id="" v-model="filter" class="border-2 border-rose-500">
 
-                <div v-for="(category,                                                                                                                                                                                                     i) in categories" :key="20                                                                                                                                                                                                     -                                                                                                                                                                                                     i">
+                <div v-for="(category, i) in categories" :key="20-i">
                     <input type="checkbox" :name="category.name" :value="category.id" @click="addfilCat(category.name)">
                     <label :for="category.name">
                         {{ category.name }}
                     </label>
                 </div>
+
+                <input type="button" value="VAI" @click="fetchRestaurants">
             </div>
         </section>
 
@@ -32,7 +34,7 @@
                                 {{ restaurant.p_iva }}
                             </div>
                             <ul>
-                                <li v-for="(category,                                                                                                                                                                                                     i) in restaurant.categories" :key="1000                                                                                                                                                                                                     -                                                                                                                                                                                                     i">
+                                <li v-for="(category, i) in restaurant.categories" :key="1000-i">
                                     {{ category.name }}
                                 </li>
                             </ul>
@@ -74,15 +76,27 @@ export default {
         }
     },
     methods: {
-        fetchRestaurants() {
-            axios.get('/api/restaurants').then(res => {
-                this.restaurants = res.data.result.data;
+        fetchCategories() {
+            axios.get(`/api/restaurants`).then(res => {
+                // this.restaurants = res.data.result.data;
                 this.categories = res.data.categories;
                 // console.log(res.data.result.data);
-                // console.log(res.data.categories);
+                // console.log(res);
             }).catch(err => {
                 // console.log(err);
                 this.$router.push({ name: '404' });
+            })
+        },
+        fetchRestaurants() {
+            const par = this.filterCat;
+            axios.get(`/api/restaurants/categories/${par}`).then(res => {
+                this.restaurants = res.data.finalRestaurants;
+                // this.categories = res.data.categories;
+                // console.log(res.data.result.data);
+                console.log(res);
+            }).catch(err => {
+                console.log(err);
+                // this.$router.push({ name: '404' });
             })
         },
         addfilCat(category) {
@@ -105,7 +119,7 @@ export default {
         }
     },
     beforeMount() {
-        this.fetchRestaurants();
+        this.fetchCategories();
     },
 }
 </script>
