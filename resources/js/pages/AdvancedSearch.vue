@@ -29,6 +29,8 @@
         </section>
 </template>
 <script>
+import { isArray } from 'util';
+
 export default {
     name: 'AdvancedSearch',
     data(){
@@ -41,12 +43,26 @@ export default {
     // },
     methods: {
         fetchRestaurants() {
-            const par = this.$route.query.categories;
+            let par = new Array;
+            if(this.$route.query.categories.length){
+                if(typeof this.$route.query.categories === 'object') {
+                    par = this.$route.query.categories;
+                } else {
+                    par.push(this.$route.query.categories);
+                }
+            }
+
+            if(this.$route.query.name !== '') {
+                console.log('SONO DENTRO');
+                par.push('%');
+                par.push(this.$route.query.name);
+            }
+            console.log(par);
             axios.get(`/api/restaurants/categories/${par}`).then(res => {
                 this.restaurantsArray = res.data.finalRestaurants;
                 // this.categories = res.data.categories;
                 // console.log(res.data.result.data);
-                // console.log(res);
+                console.log(res);
             }).catch(err => {
                 // console.log(err);
                 // this.$router.push({ name: '404' });
