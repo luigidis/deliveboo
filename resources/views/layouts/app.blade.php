@@ -60,7 +60,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link" href="{{ route('admin.plates.index', Auth::user()->id) }}"
+                                    <a class="nav-link" href="{{ route('admin.plates.index', ['id' => Auth::user()->id]) }}"
                                         role="button">
                                         Piatti
                                     </a>

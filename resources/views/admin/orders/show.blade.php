@@ -1,6 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+    <?php
+    // devo recuperarmi lo user id
+    use App\OrderPlate;
+    use App\Restaurant;
+    use App\Plate;
+
+    $plates_order = OrderPlate::where('order_id', $order->id)->get();
+    $plate_id = $plates_order[0]->plate_id;
+    $plate = Plate::where('id', $plate_id)->first();
+    $rest_id = $plate->restaurant_id;
+    $restaurant = Restaurant::where('id', $rest_id)->first();
+    $id = $restaurant->user_id;
+    ?>
+    
     <section>
         <div class="container">
             <div class="header_content d-flex flex-wrap justify-content-between align-items-start">
@@ -50,6 +64,12 @@
                                 {{ $message }}
                             </div>
                         @enderror
+
+                        {{-- aggiungo campo id alla request se settato --}}
+                        @if(isset($id)) :
+                        <input type="hidden" value="{{ $id }}" name="id">
+                        @endif
+
                         <button type="submit"
                             class="bg_text_color c_prim_color box_shadow_stroke_small px-1 m-1 card_button card_button_dark mb-2">
                             Conferma

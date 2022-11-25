@@ -67,7 +67,7 @@ class RestaurantController extends Controller
         $auth_user = Auth::user();
 
 
-        if ($restaurant->user_id === $auth_user->id) {
+        if ($restaurant->user_id === $auth_user->id || $auth_user->is_admin) {
             return view('admin.restaurant.edit', compact('restaurant', 'categories'));
         } else return redirect()->route('admin.home');
     }

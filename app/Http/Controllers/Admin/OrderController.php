@@ -161,7 +161,7 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show(Order $order,  Request $request)
     {
         $plates_order = OrderPlate::where('order_id', $order->id)->get();
         $auth_user = Auth::user();
@@ -200,6 +200,14 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
+        if ($request['id']) {
+            $auth_user = Auth::user();
+            if ($auth_user->is_admin) {
+                $id = User::where('id', $request['id'])->first();
+            } else {
+                $id = User::where('id', $auth_user->id)->first();
+            }
+        } else $id = Auth::user();
         $params = $request->validate([
             'status' => 'required|max:255',
             // 'total' => 'required|numeric',
@@ -212,7 +220,7 @@ class OrderController extends Controller
 
         $order->update($params);
 
-        return redirect()->route('admin.orders.index');
+        return redirect()->route('admin.orders.index', compact('id'));
     }
 
     /**

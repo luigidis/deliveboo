@@ -1,19 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
+    <?php
+    if(isset($_GET['id'])) {
+        $id = $_GET['id']; // è lo user id del proprietario del ristorante
+    }
+    ?>
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-8">
                 <h1 class="title">Aggiungi un nuovo piatto al menù</h1>
             </div>
             <div class="btn-y">
-                <a href="{{ route('admin.plates.index') }}"><button type="button" class="btn btn-warning btn-lg">Torna
+                <a href="{{ route('admin.plates.index',  [
+                    'id' => isset($id) ? $id : ''
+                    ]) }}"><button type="button" class="btn btn-warning btn-lg">Torna
                         indietro</button></a>
             </div>
         </div>
     </div>
     <div class="container">
-        <form action="{{ route('admin.plates.store') }}" method="POST" id="form" enctype="multipart/form-data">
+        <form action="{{ route('admin.plates.store', ['id' => $id]) }}" method="POST" id="form" enctype="multipart/form-data">
 
             @csrf
 

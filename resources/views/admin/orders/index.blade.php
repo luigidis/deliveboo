@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    <?php
+    if(isset($_GET['id'])) {
+        $id = $_GET['id']; // è lo user id del proprietario del ristorante
+    }
+    ?>
     <section>
         <div class="container">
             <div class="header_content d-flex flex-wrap justify-content-between align-items-center">
@@ -72,6 +77,11 @@
                                             {{ $message }}
                                         </div>
                                     @enderror
+
+                                    {{-- aggiungo campo id alla request se settato --}}
+                                    @if(isset($id)) :
+                                    <input type="hidden" value="{{ $id }}" name="id">
+                                    @endif
 
                                     <button type="submit" class="bg_text_color c_prim_color box_shadow_stroke_small px-1 m-1 card_button card_button_dark mb-2">
                                         Conferma
