@@ -79,7 +79,7 @@ class RestaurantController extends Controller
             } else
                 $bool = true;
 
-            if (!str_contains($rest_name, $name))
+            if (!str_contains(strtolower($rest_name), strtolower($name)))
                 $bool = false;
 
             if ($bool)

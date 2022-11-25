@@ -43,6 +43,10 @@
   box-shadow: 3px 3px 0px #4C5355;
 }
 
+.box_shadow_stroke_small:focus {
+  outline: 1px solid #4C5355;
+}
+
 .stroke_bottom {
   border-bottom: 2px solid #4C5355;
 }

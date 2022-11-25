@@ -45,6 +45,9 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/') }}">Home page</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Accedi') }}</a>
                             </li>
                             @if (Route::has('register'))

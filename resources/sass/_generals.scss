@@ -39,6 +39,9 @@
 .box_shadow_stroke_small{
     border: 2px solid $prim-color;
     box-shadow: 3px 3px 0px $prim-color;
+    &:focus{
+        outline: 1px solid $prim-color;
+    }
 }
 .stroke_bottom{
     border-bottom: 2px solid $prim-color;
