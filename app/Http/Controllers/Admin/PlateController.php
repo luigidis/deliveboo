@@ -39,7 +39,7 @@ class PlateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         return view('admin.plates.create');
     }
@@ -52,8 +52,14 @@ class PlateController extends Controller
      */
     public function store(Request $request)
     {
-
-        $user = Auth::user();
+        if ($request['id']) {
+            $auth_user = Auth::user();
+            if ($auth_user->is_admin) {
+                $user = User::where('id', $request['id'])->first();
+            } else {
+                $user = User::where('id', $auth_user->id)->first();
+            }
+        } else $user = Auth::user();
         $restaurant = Restaurant::where('user_id', $user->id)->first();
 
         $params = $request->validate([
@@ -88,7 +94,7 @@ class PlateController extends Controller
         $auth_user = Auth::user();
         $restaurant = Restaurant::where('user_id', $auth_user->id)->first();
 
-        if ($restaurant->id === $plate->restaurant_id) {
+        if ($restaurant->id === $plate->restaurant_id || $auth_user->is_admin) {
             return view('admin.plates.show', compact('plate'));
         } else return redirect()->route('admin.home');
     }
@@ -104,7 +110,7 @@ class PlateController extends Controller
         $auth_user = Auth::user();
         $restaurant = Restaurant::where('user_id', $auth_user->id)->first();
 
-        if ($restaurant->id === $plate->restaurant_id) {
+        if ($restaurant->id === $plate->restaurant_id || $auth_user->is_admin) {
             return view('admin.plates.edit', compact('plate'));
         } else return redirect()->route('admin.home');
     }
@@ -153,7 +159,7 @@ class PlateController extends Controller
         $auth_user = Auth::user();
         $restaurant = Restaurant::where('user_id', $auth_user->id)->first();
 
-        if ($restaurant->id === $plate->restaurant_id) {
+        if ($restaurant->id === $plate->restaurant_id || $auth_user->is_admin) {
             $plate->delete();
             return redirect()->route('admin.plates.index', ['id' => $plate->restaurant_id]);
         } else return redirect()->route('admin.home');
