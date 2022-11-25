@@ -1940,9 +1940,9 @@ __webpack_require__.r(__webpack_exports__);
         _this.restaurantsArray = res.data.finalRestaurants;
         // this.categories = res.data.categories;
         // console.log(res.data.result.data);
-        console.log(res);
+        // console.log(res);
       })["catch"](function (err) {
-        console.log(err);
+        // console.log(err);
         // this.$router.push({ name: '404' });
       });
     }
@@ -2005,19 +2005,18 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     },
-    fetchRestaurants: function fetchRestaurants() {
-      var _this3 = this;
-      var par = this.filterCat;
-      axios.get("/api/restaurants/categories/".concat(par)).then(function (res) {
-        _this3.restaurants = res.data.finalRestaurants;
-        // this.categories = res.data.categories;
-        // console.log(res.data.result.data);
-        console.log(res);
-      })["catch"](function (err) {
-        console.log(err);
-        // this.$router.push({ name: '404' });
-      });
-    },
+    // fetchRestaurants() {
+    //     const par = this.filterCat;
+    //     axios.get(`/api/restaurants/categories/${par}`).then(res => {
+    //         this.restaurants = res.data.finalRestaurants;
+    //         // this.categories = res.data.categories;
+    //         // console.log(res.data.result.data);
+    //         console.log(res);
+    //     }).catch(err => {
+    //         console.log(err);
+    //         // this.$router.push({ name: '404' });
+    //     })
+    // },
     addfilCat: function addfilCat(category) {
       // this.bool = !this.bool;
       if (!this.filterCat.includes(category)) {
@@ -2195,7 +2194,8 @@ var render = function render() {
       to: {
         name: "restaurants.search",
         params: {
-          restaurants: _vm.filterCat
+          restaurants: _vm.filterCat,
+          porco: "zio"
         }
       }
     }

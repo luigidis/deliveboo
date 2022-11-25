@@ -47,9 +47,9 @@ export default {
                 this.restaurantsArray = res.data.finalRestaurants;
                 // this.categories = res.data.categories;
                 // console.log(res.data.result.data);
-                console.log(res);
+                // console.log(res);
             }).catch(err => {
-                console.log(err);
+                // console.log(err);
                 // this.$router.push({ name: '404' });
             })
         },

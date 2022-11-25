@@ -11,7 +11,7 @@
                     </label>
                 </div>
                 <!-- <input type="button" value="VAI" @click="fetchRestaurants"> -->
-                <router-link :to="{name: 'restaurants.search', params: { restaurants: filterCat }}">
+                <router-link :to="{name: 'restaurants.search', params: { restaurants: filterCat, porco: 'zio' }}">
                     Vai
                 </router-link>
             </div>
@@ -89,18 +89,18 @@ export default {
                 this.$router.push({ name: '404' });
             })
         },
-        fetchRestaurants() {
-            const par = this.filterCat;
-            axios.get(`/api/restaurants/categories/${par}`).then(res => {
-                this.restaurants = res.data.finalRestaurants;
-                // this.categories = res.data.categories;
-                // console.log(res.data.result.data);
-                console.log(res);
-            }).catch(err => {
-                console.log(err);
-                // this.$router.push({ name: '404' });
-            })
-        },
+        // fetchRestaurants() {
+        //     const par = this.filterCat;
+        //     axios.get(`/api/restaurants/categories/${par}`).then(res => {
+        //         this.restaurants = res.data.finalRestaurants;
+        //         // this.categories = res.data.categories;
+        //         // console.log(res.data.result.data);
+        //         console.log(res);
+        //     }).catch(err => {
+        //         console.log(err);
+        //         // this.$router.push({ name: '404' });
+        //     })
+        // },
         addfilCat(category) {
             // this.bool = !this.bool;
             if (!this.filterCat.includes(category)) {
