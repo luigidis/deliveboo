@@ -25,7 +25,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md bg_text_color stroke_bottom">
             <div class="container">
-                <a class="navbar-brand font-weight-bold font_big" href="{{ url('/') }}">
+                <a class="navbar-brand font-weight-bold font_big" href="{{ url('/admin') }}">
                     Delive<span class="c_seco_color">Boo</span>
                 </a>
                 <button class="navbar-toggler bg_prim_color" type="button" data-toggle="collapse"
@@ -44,6 +44,9 @@
                     <ul class="navbar-nav ml-auto font-weight-normal">
                         <!-- Authentication Links -->
                         @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/') }}">Home page</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Accedi') }}</a>
                             </li>
