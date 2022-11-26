@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use App\Restaurant;
 use App\User;
+use Illuminate\Support\Str;
 
 class RestaurantSeeder extends Seeder
 {
@@ -20,6 +21,7 @@ class RestaurantSeeder extends Seeder
             $randomImg = rand(1, 300);
             $restaurant = new Restaurant();
             $restaurant->name = $faker->company();
+            $restaurant->slug = Str::slug($restaurant->name);
             $restaurant->image = "https://picsum.photos/id/$randomImg/400/200";
             $restaurant->address = $faker->address();
             $restaurant->phone = $faker->phoneNumber();

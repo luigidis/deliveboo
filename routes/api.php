@@ -21,3 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resource('restaurants', 'Api\RestaurantController')->only('index', 'show');
 
 Route::get('restaurants/categories/{categories}', 'Api\RestaurantController@search')->name('restaurants.search');
+
+Route::get('plates/{slug}', 'Api\RestaurantController@plateShow')->name('restaurants.plateShow');

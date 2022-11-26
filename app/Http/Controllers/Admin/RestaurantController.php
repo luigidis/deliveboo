@@ -91,6 +91,10 @@ class RestaurantController extends Controller
             'image' => 'nullable|image|max:2048'
         ]);
 
+        if ($params['name'] !== $restaurant->name) {
+            $params['slug'] = Restaurant::getUniqueSlugFromTitle($params['title']);
+        }
+
         if (array_key_exists('image', $params) && $params['image'] !== null) {
             Storage::disk('images')->delete($restaurant->image);
             $img_path = Storage::disk('images')->put('restaurant_covers', $request->file('image'));

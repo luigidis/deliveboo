@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Category;
 use App\Http\Controllers\Controller;
+use App\Plate;
 use App\Restaurant;
 use Illuminate\Http\Request;
 
@@ -104,12 +105,47 @@ class RestaurantController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $restaurant = Restaurant::where('slug', $slug)->with('categories')->first();
+
+        if ($restaurant) {
+            $plates = Plate::where('restaurant_id', $restaurant->id)->get();
+            return response()->json([
+                'restaurant' => $restaurant,
+                'plates' => $plates,
+                'success' => true
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+            ], 404);
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  string  $slug
+     * @return \Illuminate\Http\Response
+     */
+    public function plateShow($slug)
+    {
+        $plate = Plate::where('slug', $slug)->first();
+
+        if ($plate) {
+            return response()->json([
+                'plate' => $plate,
+                'success' => true
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+            ], 404);
+        }
     }
 
     /**
