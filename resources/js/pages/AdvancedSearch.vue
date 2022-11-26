@@ -2,37 +2,19 @@
     <main class="container">
         <section class="py-20 flex justify-center">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                <div class="card_content card_restaurant box_shadow_stroke" v-for="(restaurant, i) in restaurantsArray" :key="i">
-                    <div class="h-1/2">
-                        <img class="block object-cover w-full h-full" :src="restaurant.image" alt="">
-                    </div>
-                    <div class="desc p-2">
-                        <h3 class="text-lg font-bold">
-                            {{ restaurant.name }}
-                        </h3>
-                        <div>
-                            {{ restaurant.address }}
-                        </div>
-                        <div>
-                            {{ restaurant.phone }}
-                        </div>
-                        <div>
-                            {{ restaurant.p_iva }}
-                        </div>
-                        <ul class="flex flex-wrap gap-5">
-                            <li v-for="(category, i) in restaurant.categories" :key="1000 - i">
-                                {{ category.name }}
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                <RestaurantCard :data="restaurant" v-for="(restaurant, i) in restaurantsArray" :key="i" />
             </div>
         </section>
     </main>
 </template>
 <script>
+import RestaurantCard from '../components/RestaurantCard.vue';
+
 export default {
     name: 'AdvancedSearch',
+    components: {
+        RestaurantCard
+    },
     data() {
         return {
             restaurantsArray: new Array,
