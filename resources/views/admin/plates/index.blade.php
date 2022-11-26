@@ -2,7 +2,7 @@
 
 @section('content')
     <?php
-    if(isset($_GET['id'])) {
+    if (isset($_GET['id'])) {
         $id = $_GET['id']; // è lo user id del proprietario del ristorante
     }
     ?>
@@ -15,9 +15,7 @@
                     </h1>
                 </div>
                 <div class="d-flex flex-lg-wrap align-items-center justify-content-center box_shadow_stroke p-3">
-                    <a href="{{ route('admin.plates.create', [
-                        'id' => isset($id) ? $id : ''
-                        ]) }}"
+                    <a href="{{ route('admin.plates.create', ['id' => isset($id) ? $id : '']) }}"
                         class="bg_link_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2">
                         Aggiungi un nuovo piatto
                     </a>
