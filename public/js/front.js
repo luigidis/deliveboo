@@ -2054,6 +2054,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'Cart',
   data: function data() {
     return {
       products: [{
@@ -2087,62 +2088,43 @@ __webpack_require__.r(__webpack_exports__);
         description: "lorem ipsum dolor sit amet",
         isInCart: false
       }],
-      cart: [],
-      currentProduct: null
+      cartPrice: null,
+      currentProduct: null,
+      productNumber: 0
     };
   },
-  mounted: function mounted() {
-    if (localStorage.cart) {
-      this.cart = localStorage.cart;
+  methods: {
+    getTheCart: function getTheCart(product) {
+      this.totalPrice(product);
+      this.cartNumber();
+    },
+    totalPrice: function totalPrice(product) {
+      if (this.cartPrice != null) {
+        this.cartPrice = parseInt(this.cartPrice);
+        localStorage.setItem('totalPrice', this.cartPrice + product.price);
+        return this.cartPrice = localStorage.getItem('totalPrice');
+      } else {
+        localStorage.setItem('totalPrice', product.price);
+        this.cartPrice = localStorage.getItem('totalPrice');
+      }
+    },
+    cartNumber: function cartNumber() {
+      this.productNumber = parseInt(this.productNumber);
+      if (this.productNumber) {
+        localStorage.setItem('cartNumber', this.productNumber + 1);
+        return this.productNumber = localStorage.getItem('cartNumber');
+      } else {
+        localStorage.setItem('cartNumber', 1);
+        return this.productNumber = localStorage.getItem('cartNumber');
+      }
+    },
+    onLoad: function onLoad() {
+      return this.productNumber = localStorage.getItem('cartNumber');
     }
   },
-  watch: {
-    cart: function cart(newCart) {
-      localStorage.cart = newCart;
-    }
+  created: function created() {
+    this.onLoad();
   }
-
-  // methods: {
-  //     getTheStore(price) {
-  //         // totalPrice(price)
-  //         cartNumber()
-  //     },
-
-  //     totalPrice(product) {
-  //         let cartPrice = localStorage.getItem('totalPrice');
-  //         if (cartPrice != null) {
-  //             //Se ho già qualcosa dentro il mio storage vado a sommare
-  //             cartPrice = parseInt(cartPrice);
-  //             localStorage.setItem('totalPrice', cartPrice + price);
-  //         } else {
-  //             localStorage.setItem('totalPrice', price)
-  //         }
-  //         return localStorage.storedData = this.cartPrice
-  //     },
-  //     cartNumber() {
-  //         //controllo se ho già in conto prodotti nel mio contatore
-  //         let productNumber = localStorage.getItem('cartNumber');
-  //         productNumber = parseInt(productNumber)
-  //         if (productNumber) {
-  //             localStorage.setItem('cartNumber', productNumber + 1);
-  //             document.querySelector('.count_item').textContent = productNumber + 1;
-
-  //         } else {
-  //             localStorage.setItem('cartNumber', 1);
-  //             document.querySelector('.count_item').textContent = 1;
-  //         }
-  //         return this.productNumber = localStorage.storedData;
-  //     }
-  // },
-  // computed: {
-  //     setCart() {
-  //         if (localStorage.this.cart) {
-  //            return  this.cart = localStorage.cart
-  //         }
-  //     },
-  // },
-
-  //   }
 });
 
 /***/ }),
@@ -2346,7 +2328,17 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_vm._m(0), _vm._v(" "), _c("div", {
+  return _c("div", [_c("div", {
+    staticClass: "container flex-wrap"
+  }, [_vm._v("\n        Go to Shop\n        "), _c("a", {
+    attrs: {
+      href: "#"
+    }
+  }, [_c("i", {
+    staticClass: "fa-solid fa-cart-shopping"
+  }), _vm._v(" "), _c("span", {
+    staticClass: "count_item"
+  }, [_vm._v(_vm._s(_vm.productNumber) + " in\n                Cart")])]), _vm._v(" "), _c("button", [_vm._v("View Cart")])]), _vm._v(" "), _c("div", {
     staticClass: "container d-flex my-5"
   }, _vm._l(_vm.products, function (product, i) {
     return _c("div", {
@@ -2374,26 +2366,14 @@ var render = function render() {
     }, [_vm._v("€")]), _vm._v(" "), _c("span", [_vm._v(_vm._s(product.price))])]), _vm._v(" "), _c("button", {
       staticClass: "btn btn-primary add_to_cart",
       on: {
-        click: _vm.createCart
+        click: function click($event) {
+          return _vm.getTheCart(product);
+        }
       }
     }, [_vm._v("Add to\n                    Cart")])])]);
   }), 0)]);
 };
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "container flex-wrap"
-  }, [_vm._v("\n        Go to Shop\n        "), _c("a", {
-    attrs: {
-      href: "#"
-    }
-  }, [_c("i", {
-    staticClass: "fa-solid fa-cart-shopping"
-  }), _vm._v(" "), _c("span", {
-    staticClass: "count_item"
-  }, [_vm._v("0")])])]);
-}];
+var staticRenderFns = [];
 render._withStripped = true;
 
 

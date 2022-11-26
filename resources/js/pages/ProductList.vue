@@ -2,7 +2,9 @@
     <div>
         <div class="container flex-wrap">
             Go to Shop
-            <a href="#"><i class="fa-solid fa-cart-shopping"></i> <span class="count_item">0</span></a>
+            <a href="#"><i class="fa-solid fa-cart-shopping"></i> <span class="count_item">{{ productNumber }} in
+                    Cart</span></a>
+            <button>View Cart</button>
         </div>
 
         <div class="container d-flex my-5 ">
@@ -14,8 +16,9 @@
                     <p class="card-text">{{ product.description }}</p>
                     <div class="price"><span class="euro">&euro;</span> <span>{{ product.price }}</span></div>
 
-                    <button @click="createCart" class="btn btn-primary add_to_cart">Add to
+                    <button v-on:click="getTheCart(product)" class="btn btn-primary add_to_cart">Add to
                         Cart</button>
+                    
                 </div>
             </div>
         </div>
@@ -23,8 +26,13 @@
 </template>
 
 <script>
+
+
 export default {
+    name: 'Cart',
+
     data() {
+
         return {
             products: [
                 {
@@ -64,73 +72,75 @@ export default {
                     isInCart: false
                 },
             ],
-            cart: [],
+            cartPrice: null,
             currentProduct: null,
+            productNumber: 0
+        }
+    },
+
+
+    methods: {
+        getTheCart(product) {
+            this.totalPrice(product);
+            this.cartNumber();
+        },
+
+        totalPrice(product) {
+            if (this.cartPrice != null) {
+                this.cartPrice = parseInt(this.cartPrice);
+                localStorage.setItem('totalPrice', this.cartPrice + product.price);
+                return this.cartPrice = localStorage.getItem('totalPrice')
+            } else {
+                localStorage.setItem('totalPrice', product.price)
+                this.cartPrice = localStorage.getItem('totalPrice')
+            }
+        },
+
+        cartNumber() {
+            this.productNumber = parseInt(this.productNumber);
+            if (this.productNumber) {
+                localStorage.setItem('cartNumber', this.productNumber + 1);
+                return this.productNumber = localStorage.getItem('cartNumber')
+            } else {
+                localStorage.setItem('cartNumber', 1);
+                return this.productNumber = localStorage.getItem('cartNumber');
+            }
+        },
+
+        onLoad() {
+            return this.productNumber = localStorage.getItem('cartNumber');
         }
     },
     
-    mounted() {
-        if (localStorage.cart) {
-            this.cart = localStorage.cart;
-        }
+    created() {
+        this.onLoad()
     },
+           
+            
+                
+                
+               
+           
+          
 
-    watch: {
-        cart(newCart) {
-            localStorage.cart = newCart
-        }
+               
 
-
-    },
-
-    // methods: {
-    //     getTheStore(price) {
-    //         // totalPrice(price)
-    //         cartNumber()
-    //     },
-
-    //     totalPrice(product) {
-    //         let cartPrice = localStorage.getItem('totalPrice');
-    //         if (cartPrice != null) {
-    //             //Se ho già qualcosa dentro il mio storage vado a sommare
-    //             cartPrice = parseInt(cartPrice);
-    //             localStorage.setItem('totalPrice', cartPrice + price);
-    //         } else {
-    //             localStorage.setItem('totalPrice', price)
-    //         }
-    //         return localStorage.storedData = this.cartPrice
-    //     },
-    //     cartNumber() {
-    //         //controllo se ho già in conto prodotti nel mio contatore
-    //         let productNumber = localStorage.getItem('cartNumber');
-    //         productNumber = parseInt(productNumber)
-    //         if (productNumber) {
-    //             localStorage.setItem('cartNumber', productNumber + 1);
-    //             document.querySelector('.count_item').textContent = productNumber + 1;
-
-    //         } else {
-    //             localStorage.setItem('cartNumber', 1);
-    //             document.querySelector('.count_item').textContent = 1;
-    //         }
-    //         return this.productNumber = localStorage.storedData;
-    //     }
-    // },
-    // computed: {
-    //     setCart() {
-    //         if (localStorage.this.cart) {
-    //            return  this.cart = localStorage.cart
-    //         }
-    //     },
-    // },
+               
+                
 
 
-    //   }
+    
+
+
+    
+
+
+
+
+
 
 
 }
-
-
-
 
 
 
