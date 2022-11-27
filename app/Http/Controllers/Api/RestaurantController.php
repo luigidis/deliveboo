@@ -17,8 +17,6 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        // $result = Restaurant::orderBy('name', 'asc')->with('categories')->paginate(10);
-        // $param = 'diocane';
         $success = true;
         $categories = Category::orderBy('name', 'asc')->get();
 
@@ -34,14 +32,12 @@ class RestaurantController extends Controller
         $categories = [];
         $name = '';
         $index = null;
-        // $prova = 'ciao';
 
         foreach (explode(',', $params) as $key => $category) {
             $new_cat[] = $category;
         }
 
         if (in_array('%', $new_cat)) {
-            // $prova = 'OPS';
             foreach ($new_cat as $key => $category) {
                 if ($category === '%') {
                     $index = $key + 1;
@@ -57,7 +53,6 @@ class RestaurantController extends Controller
 
 
         foreach ($restaurants as $key => $restaurant) {
-            // tutte le cat del ristorante
             $rest_cat = $restaurant->categories;
             $rest_cat_names = [];
 
@@ -88,7 +83,6 @@ class RestaurantController extends Controller
         }
 
         return response()->json(compact('finalRestaurants'));
-        // return response()->json(compact('new_cat'));
     }
 
     /**
@@ -146,6 +140,24 @@ class RestaurantController extends Controller
                 'success' => false,
             ], 404);
         }
+    }
+
+    public function cartPlates($id)
+    {
+        $idArray = [];
+        foreach (explode(',', $id) as $plate_id) {
+            $idArray[] = $plate_id;
+        }
+
+        $plates = [];
+
+        foreach ($idArray as $id) {
+            $plates[] = Plate::where('id', $id)->first();
+        }
+
+        $restaurant = Restaurant::where('id', $plates[0]->restaurant_id)->first();
+
+        return response()->json(compact('plates', 'restaurant'));
     }
 
     /**

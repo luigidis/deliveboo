@@ -23,3 +23,5 @@ Route::resource('restaurants', 'Api\RestaurantController')->only('index', 'show'
 Route::get('restaurants/categories/{categories}', 'Api\RestaurantController@search')->name('restaurants.search');
 
 Route::get('plates/{slug}', 'Api\RestaurantController@plateShow')->name('restaurants.plateShow');
+
+Route::get('cart/plates/{id}', 'Api\RestaurantController@cartPlates')->name('restaurants.cartPlates');
