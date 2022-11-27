@@ -75,6 +75,8 @@ class RegisterController extends Controller
 
         $params['password'] = Hash::make($params['password']);
 
+        $params['slug'] = Restaurant::getUniqueSlugFromTitle($params['restaurant_name']);
+
         $user = User::create($params);
 
         if (array_key_exists('image', $params)) {

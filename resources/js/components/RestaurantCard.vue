@@ -1,5 +1,10 @@
 <template>
-    <div class="card_content card_restaurant box_shadow_stroke">
+    <router-link
+    :to="{
+        name: 'restaurants.show',
+        params: { slug: data.slug }
+    }"
+    class="card_content card_restaurant box_shadow_stroke hover:no-underline hover:bg-red-500">
         <div class="h-1/3">
             <img class="block object-cover w-full h-full" :src="data.image" alt="">
         </div>
@@ -21,7 +26,7 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </router-link>
 </template>
 <script>
 export default {

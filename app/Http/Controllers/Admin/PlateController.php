@@ -70,7 +70,7 @@ class PlateController extends Controller
             'is_visible' => 'required'
         ]);
 
-        $params['slug'] = str_replace(' ', '-', $params['name']);
+        $params['slug'] = Plate::getUniqueSlugFromTitle($params['name']);
         $params['restaurant_id'] = $restaurant->id;
 
         if (array_key_exists('img', $params)) {
@@ -132,7 +132,9 @@ class PlateController extends Controller
             'is_visible' => 'required'
         ]);
 
-        $params['slug'] = str_replace(' ', '-', $params['name']);
+        if ($params['name'] !== $plate->name) {
+            $params['slug'] = Plate::getUniqueSlugFromTitle($params['title']);
+        }
 
         if (array_key_exists('img', $params) && $params['img'] !== null) {
             Storage::disk('images')->delete($plate->img);

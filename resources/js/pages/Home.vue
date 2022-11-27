@@ -6,15 +6,17 @@
 </template>
 
 <script>
-import TheLogo from '../components/TheLogo.vue'
-import RestaurantSearch from '../components/RestaurantSearch.vue'
 
-export default {
-    components: {
-        RestaurantSearch,
-        TheLogo,
+    import TheLogo from '../components/TheLogo.vue';
+    import RestaurantSearch from '../components/RestaurantSearch.vue';
+
+    export default {
+        components: {
+            RestaurantSearch,
+            TheLogo,
+        }
     }
-}
+
 </script>
 
 <style lang="scss" scoped>
