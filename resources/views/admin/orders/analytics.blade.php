@@ -36,12 +36,24 @@
                 // labels: month,
                 datasets: [{
                     label: 'Ordini giornalieri',
-                    backgroundColor: 'yellow',
+                    data: <?php echo json_encode($orders); ?>,
                     borderWidth: 3,
-                    borderColor: 'red',
-                    tension: 0.1,
-                    data: <?php echo json_encode($orders); ?>
+                    tension: 0.2,
+                    borderColor: '#4C5355',
+                    backgroundColor: '#C44B4F',
+                    pointStyle: 'circle',
+                    pointRadius: 3,
+                    pointHoverRadius: 10,
                 }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        min: 0,
+                        max: 10,
+                    },
+                },
             },
         }
         var ctx = document.getElementById('myChart');
