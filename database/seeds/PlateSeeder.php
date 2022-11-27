@@ -15,7 +15,7 @@ class PlateSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $restaurantIds = Restaurant::all()->pluck('id');
+        $restaurantIds = Restaurant::all()->pluck('id')->all();
 
         $plates = [
             'Risotto al salto, ricetta classica',
@@ -712,13 +712,13 @@ class PlateSeeder extends Seeder
             else
                 $plate->img = "https://picsum.photos/id/$randomImg/400/200";
 
-            $index = rand(0, count($restaurantIds) - 1);
-            $restaurantPlates = Plate::where('restaurant_id', $index)->pluck('name')->all();
-            while (in_array($plate->name, $restaurantPlates)) {
-                $index = rand(0, count($restaurantIds) - 1);
-                $restaurantPlates = Plate::where('restaurant_id', $index)->pluck('name')->all();
-            }
-            $plate->restaurant_id = $restaurantIds[$index];
+            // $index = rand(0, count($restaurantIds) - 1);
+            // $restaurantPlates = Plate::where('restaurant_id', $index)->pluck('name');
+            do {
+                $index = rand(1, count($restaurantIds));
+                $restaurantPlates = Plate::where('restaurant_id', $index)->pluck('name');
+            } while (in_array($plate->name, $restaurantPlates->all()));
+            $plate->restaurant_id = $restaurantIds[$index - 1];
 
             $plate->save();
         }
