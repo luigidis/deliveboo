@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             'is_admin' => true
         ]);
 
-        for ($i = 0; $i < 9; $i++) {
+        for ($i = 0; $i < 19; $i++) {
             $user = new User();
             $name = $faker->firstName();
             $lastName = $faker->lastName();
