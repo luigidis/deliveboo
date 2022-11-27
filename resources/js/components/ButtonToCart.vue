@@ -6,7 +6,7 @@
                     Cart</span></a>
             <button>View Cart</button>
         </div> -->
-        <button v-on:click="addCart(plate)" class="btn btn-primary add_to_cart">Add to Cart</button>
+        <button v-on:click="addCart(plate)" class="btn btn-primary add_to_cart text-sm">Aggiungi al carrello</button>
     </div>
 </template>
 

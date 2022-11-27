@@ -3,7 +3,7 @@
         <h1 class="text-4xl font-bold text-center pb-6">
             Ordiner per il ristorante: {{ restaurant.name }}
         </h1>
-        <div class="grid rid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div class="grid rid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
             <div class="card_restaurant box_shadow_stroke flex flex-column"
             v-for="plate, i in plates" :key="i">
                 <div class="">
@@ -24,6 +24,16 @@
                 </div>
             </div>
         </div>
+
+        <div class="flex items-center gap-4">
+            <span class="text-xl">
+                Totale: {{ totalPrice }}€
+            </span>
+            <router-link to="#" class="btn bg-sky-500 font-bold hover:bg-sky-800 text-white">
+                Checkout
+            </router-link>
+        </div>
+
     </div>
 </template>
 
@@ -35,6 +45,7 @@ export default {
             quantity: new Array,
             plates: '',
             restaurant: '',
+            totalPrice: 0,
         }
     },
     methods: {
@@ -61,6 +72,7 @@ export default {
         console.log(this.ids);
         console.log(this.quantity);
         this.fetchPlates();
+        this.totalPrice = localStorage.getItem('totalPrice');
     },
 }
 </script>

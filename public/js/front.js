@@ -2161,7 +2161,8 @@ __webpack_require__.r(__webpack_exports__);
       ids: new Array(),
       quantity: new Array(),
       plates: '',
-      restaurant: ''
+      restaurant: '',
+      totalPrice: 0
     };
   },
   methods: {
@@ -2190,6 +2191,7 @@ __webpack_require__.r(__webpack_exports__);
     console.log(this.ids);
     console.log(this.quantity);
     this.fetchPlates();
+    this.totalPrice = localStorage.getItem('totalPrice');
   }
 });
 
@@ -2361,13 +2363,13 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", [_c("button", {
-    staticClass: "btn btn-primary add_to_cart",
+    staticClass: "btn btn-primary add_to_cart text-sm",
     on: {
       click: function click($event) {
         return _vm.addCart(_vm.plate);
       }
     }
-  }, [_vm._v("Add to Cart")])]);
+  }, [_vm._v("Aggiungi al carrello")])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -2696,7 +2698,7 @@ var render = function render() {
   }, [_c("h1", {
     staticClass: "text-4xl font-bold text-center pb-6"
   }, [_vm._v("\n        Ordiner per il ristorante: " + _vm._s(_vm.restaurant.name) + "\n    ")]), _vm._v(" "), _c("div", {
-    staticClass: "grid rid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+    staticClass: "grid rid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8"
   }, _vm._l(_vm.plates, function (plate, i) {
     return _c("div", {
       key: i,
@@ -2716,7 +2718,16 @@ var render = function render() {
     }, [_vm._v("\n                        Quantità:" + _vm._s(_vm.quantity[i]) + "\n                    ")]), _vm._v(" "), _c("span", {
       staticClass: "font-normal block"
     }, [_vm._v("\n                        Totale: " + _vm._s((parseFloat(plate.price) * parseFloat(_vm.quantity[i])).toFixed(2)) + "€\n                    ")])])])]);
-  }), 0)]);
+  }), 0), _vm._v(" "), _c("div", {
+    staticClass: "flex items-center gap-4"
+  }, [_c("span", {
+    staticClass: "text-xl"
+  }, [_vm._v("\n            Totale: " + _vm._s(_vm.totalPrice) + "€\n        ")]), _vm._v(" "), _c("router-link", {
+    staticClass: "btn bg-sky-500 font-bold hover:bg-sky-800 text-white",
+    attrs: {
+      to: "#"
+    }
+  }, [_vm._v("\n            Checkout\n        ")])], 1)]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
