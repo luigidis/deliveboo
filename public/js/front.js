@@ -1910,37 +1910,52 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ButtonToCart',
-  props: ['plate', 'cartPrice', 'productNumber'],
+  props: ['plate'
+  // 'cartPrice',
+  // 'productNumber'
+  ],
   data: function data() {
-    return {};
+    return {
+      // plates: new Array,
+      cartPrice: null,
+      productNumber: 0
+    };
   },
   methods: {
-    getTheCart: function getTheCart(product) {
-      this.totalPrice(product);
-      this.cartNumber();
-    },
-    totalPrice: function totalPrice(product) {
-      console.log(this.cartPrice);
-      if (this.cartPrice != null) {
-        this.cartPrice = parseInt(this.cartPrice);
-        localStorage.setItem('totalPrice', this.cartPrice + product.price);
-        return this.cartPrice = localStorage.getItem('totalPrice');
-      } else {
-        localStorage.setItem('totalPrice', product.price);
-        return this.cartPrice = localStorage.getItem('totalPrice');
-      }
-    },
-    cartNumber: function cartNumber() {
-      console.log(this.productNumber);
-      this.productNumber = parseInt(this.productNumber);
-      if (this.productNumber !== 0) {
-        localStorage.setItem('cartNumber', this.productNumber + 1);
-        return this.productNumber = localStorage.getItem('cartNumber');
-      } else {
-        localStorage.setItem('cartNumber', 1);
-        return this.productNumber = localStorage.getItem('cartNumber');
-      }
-    } // onLoad() {
+    // getTheCart(product) {
+    //     this.totalPrice(product);
+    //     this.cartNumber();
+    // },
+    addCart: function addCart(plate) {
+      if (localStorage.totalPrice) localStorage.totalPrice = parseFloat(localStorage.totalPrice) + plate.price;else localStorage.setItem('totalPrice', plate.price);
+      // if(localStorage.arrayId)
+      //     localStorage.arrayId+=`,${plate.id}`;
+      // else
+      //     localStorage.setItem('arrayId', plate.id);
+      if (localStorage.getItem("quantity%".concat(plate.id))) localStorage.setItem("quantity%".concat(plate.id), parseFloat(localStorage.getItem("quantity%".concat(plate.id))) + 1);else localStorage.setItem("quantity%".concat(plate.id), 1);
+    } // totalPrice(product) {
+    //     console.log(this.cartPrice)
+    //     if (this.cartPrice != null) {
+    //         this.cartPrice = parseInt(this.cartPrice);
+    //         localStorage.setItem('totalPrice', this.cartPrice + product.price);
+    //         return this.cartPrice = localStorage.getItem('totalPrice')
+    //     } else {
+    //         localStorage.setItem('totalPrice', product.price)
+    //         return this.cartPrice = localStorage.getItem('totalPrice')
+    //     }
+    // },
+    // cartNumber() {
+    //     console.log(this.productNumber)
+    //     this.productNumber = parseInt(this.productNumber);
+    //     if (this.productNumber !== 0) {
+    //         localStorage.setItem('cartNumber', this.productNumber + 1);
+    //         return this.productNumber = localStorage.getItem('cartNumber')
+    //     } else {
+    //         localStorage.setItem('cartNumber', 1);
+    //         return this.productNumber = localStorage.getItem('cartNumber');
+    //     }
+    // },
+    // onLoad() {
     //     this.productNumber = localStorage.getItem('cartNumber');
     // },
   },
@@ -2232,11 +2247,12 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       restaurant: '',
-      plates: new Array(),
-      cartPrice: null,
-      productNumber: 0
+      plates: new Array()
+      // cartPrice: null,
+      // productNumber: 0,
     };
   },
+
   methods: {
     fetchRestaurant: function fetchRestaurant() {
       var _this = this;
@@ -2298,7 +2314,7 @@ var render = function render() {
     staticClass: "btn btn-primary add_to_cart",
     on: {
       click: function click($event) {
-        return _vm.getTheCart(_vm.plate);
+        return _vm.addCart(_vm.plate);
       }
     }
   }, [_vm._v("Add to Cart")])]);
@@ -2711,8 +2727,6 @@ var render = function render() {
     }, [_vm._v("\n                        " + _vm._s(plate.price) + "€\n                    ")])])]), _vm._v(" "), _c("ButtonToCart", {
       staticClass: "absolute bottom-0 z-10",
       attrs: {
-        cartPrice: _vm.cartPrice,
-        productNumber: _vm.productNumber,
         plate: plate
       }
     })], 1);
@@ -19892,7 +19906,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\webdev\deliveboo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\franc\Documents\boolean-dev\full-stack-dev\php\deliveboo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
