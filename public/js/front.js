@@ -1913,12 +1913,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ButtonToCart',
   props: ['plate'],
-  data: function data() {
-    return {
-      cartPrice: null,
-      productNumber: 0
-    };
-  },
   methods: {
     addCart: function addCart(plate) {
       if (localStorage.totalPrice) {

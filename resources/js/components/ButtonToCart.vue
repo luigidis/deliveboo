@@ -1,11 +1,5 @@
 <template>
     <div>
-        <!-- <div class="container flex-wrap">
-            Go to Shop
-            <a href="#"><i class="fa-solid fa-cart-shopping"></i> <span class="count_item">{{ productNumber }} in
-                    Cart</span></a>
-            <button>View Cart</button>
-        </div> -->
         <button v-on:click="addCart(plate)" class="btn btn-primary add_to_cart text-sm">Aggiungi al carrello</button>
     </div>
 </template>
@@ -19,13 +13,6 @@ export default {
     props: [
         'plate',
     ],
-    
-    data() {
-        return {
-            cartPrice: null,
-            productNumber: 0,
-        }
-    },
 
     methods: {
         addCart(plate) {
