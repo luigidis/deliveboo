@@ -79,7 +79,7 @@
 
                         <div class="form-group row">
                             <label for="restaurant_name" class="col-md-4 col-form-label">Nome
-                                Attività</label>
+                                ristorante</label>
                             <div class="col-md-6">
                                 <input id="restaurant_name" type="string" name="restaurant_name"
                                     value="{{ old('restaurant_name') }}"

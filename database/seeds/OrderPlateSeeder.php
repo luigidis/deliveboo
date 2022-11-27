@@ -23,7 +23,9 @@ class OrderPlateSeeder extends Seeder
             $plateIds[] = $plates;
         }
 
-        for ($i = 0; $i < 50; $i++) {
+        $orderNum = Order::count();
+
+        for ($i = 0; $i < $orderNum; $i++) {
             $order = Order::find($i + 1);
             $plates = [];
             $quantity = [];

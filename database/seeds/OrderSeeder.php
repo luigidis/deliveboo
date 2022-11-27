@@ -16,7 +16,7 @@ class OrderSeeder extends Seeder
 
         $status = ['Cancellato' ,'In elaborazione', 'In lavorazione', 'Completato', 'In transito', 'In consegna'];
 
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 200; $i++) {
             $order = new Order();
             $order->status = $faker->randomElement($status);
             $order->total = floatval($faker->numerify('###.##'));

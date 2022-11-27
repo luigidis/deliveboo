@@ -98,6 +98,11 @@ button {
     max-height: 500px;
     flex-grow: 1;
 
+    &.card_restaurant {
+        max-width: 400px;
+        min-height: 400px;
+    }
+
     .card_button_wrapper {
         flex-grow: 1;
     }
@@ -140,22 +145,25 @@ button {
     }
 }
 
-.card_form{
+.card_form {
     max-width: 500px;
-    .form-group.row{
+    min-width: 320px;
+
+    .form-group.row {
         flex-grow: 1;
-        >.col-md-6{
+
+        >.col-md-6 {
             margin-left: auto;
         }
     }
 
-    label{
+    label {
         font-weight: bold;
         font-size: 1.05rem;
         line-height: 1.1;
     }
 
-    input{
+    input {
         border: 2px solid $prim-color;
         border-radius: 0;
         margin-left: auto;

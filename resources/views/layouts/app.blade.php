@@ -63,7 +63,8 @@
                                     </a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link" href="{{ route('admin.plates.index', ['id' => Auth::user()->id]) }}"
+                                    <a class="nav-link"
+                                        href="{{ route('admin.plates.index', ['id' => Auth::user()->id]) }}"
                                         role="button">
                                         Piatti
                                     </a>
@@ -82,6 +83,9 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right bg_text_color stroke_full"
                                     aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ url('/') }}" role="button">
+                                        Home page
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('admin.home') }}" role="button">
                                         Dashboard
                                     </a>

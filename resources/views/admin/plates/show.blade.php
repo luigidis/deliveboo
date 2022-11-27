@@ -12,7 +12,7 @@
                         {{ $plate->slug }}
                     </h3> --}}
                 </div>
-                <div class="d-flex flex-column align-items-end justify-content-end">
+                <div class="d-flex flex-lg-wrap align-items-center justify-content-center box_shadow_stroke p-3">
                     <a href="{{ route('admin.plates.index', ['id' => $plate->restaurant_id]) }}"
                         class="bg_seco_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2">
                         Torna ai piatti
