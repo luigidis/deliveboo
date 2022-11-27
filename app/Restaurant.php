@@ -53,6 +53,6 @@ class Restaurant extends Model
     {
         if (filter_var($this->image, FILTER_VALIDATE_URL))
             return $this->image;
-        return $this->image ? asset('images/' . $this->image) : null;
+        return $this->image ? asset('images/' . $this->image) : '';
     }
 }
