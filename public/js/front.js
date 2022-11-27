@@ -1910,12 +1910,9 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ButtonToCart',
-  props: ['plate'],
+  props: ['plate', 'cartPrice', 'productNumber'],
   data: function data() {
-    return {
-      cartPrice: null,
-      productNumber: 0
-    };
+    return {};
   },
   methods: {
     getTheCart: function getTheCart(product) {
@@ -1923,31 +1920,32 @@ __webpack_require__.r(__webpack_exports__);
       this.cartNumber();
     },
     totalPrice: function totalPrice(product) {
+      console.log(this.cartPrice);
       if (this.cartPrice != null) {
         this.cartPrice = parseInt(this.cartPrice);
         localStorage.setItem('totalPrice', this.cartPrice + product.price);
-        this.cartPrice = localStorage.getItem('totalPrice');
+        return this.cartPrice = localStorage.getItem('totalPrice');
       } else {
         localStorage.setItem('totalPrice', product.price);
-        this.cartPrice = localStorage.getItem('totalPrice');
+        return this.cartPrice = localStorage.getItem('totalPrice');
       }
     },
     cartNumber: function cartNumber() {
+      console.log(this.productNumber);
       this.productNumber = parseInt(this.productNumber);
-      if (this.productNumber) {
+      if (this.productNumber !== 0) {
         localStorage.setItem('cartNumber', this.productNumber + 1);
-        this.productNumber = localStorage.getItem('cartNumber');
+        return this.productNumber = localStorage.getItem('cartNumber');
       } else {
         localStorage.setItem('cartNumber', 1);
-        this.productNumber = localStorage.getItem('cartNumber');
+        return this.productNumber = localStorage.getItem('cartNumber');
       }
-    },
-    onLoad: function onLoad() {
-      this.productNumber = localStorage.getItem('cartNumber');
-    }
+    } // onLoad() {
+    //     this.productNumber = localStorage.getItem('cartNumber');
+    // },
   },
   created: function created() {
-    this.onLoad();
+    // this.onLoad()
   }
 });
 
@@ -2234,7 +2232,9 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       restaurant: '',
-      plates: new Array()
+      plates: new Array(),
+      cartPrice: null,
+      productNumber: 0
     };
   },
   methods: {
@@ -2711,6 +2711,8 @@ var render = function render() {
     }, [_vm._v("\n                        " + _vm._s(plate.price) + "€\n                    ")])])]), _vm._v(" "), _c("ButtonToCart", {
       staticClass: "absolute bottom-0 z-10",
       attrs: {
+        cartPrice: _vm.cartPrice,
+        productNumber: _vm.productNumber,
         plate: plate
       }
     })], 1);

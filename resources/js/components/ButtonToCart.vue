@@ -14,13 +14,14 @@
 export default {
     name: 'ButtonToCart',
     props: [
-        'plate'
+        'plate',
+        'cartPrice',
+        'productNumber'
     ],
     
     data() {
         return {
-            cartPrice: null,
-            productNumber: 0,
+            
         }
     },
 
@@ -31,33 +32,35 @@ export default {
         },
 
         totalPrice(product) {
+            console.log(this.cartPrice)
             if (this.cartPrice != null) {
                 this.cartPrice = parseInt(this.cartPrice);
                 localStorage.setItem('totalPrice', this.cartPrice + product.price);
-                this.cartPrice = localStorage.getItem('totalPrice')
+                return this.cartPrice = localStorage.getItem('totalPrice')
             } else {
                 localStorage.setItem('totalPrice', product.price)
-                this.cartPrice = localStorage.getItem('totalPrice')
+                return this.cartPrice = localStorage.getItem('totalPrice')
             }
         },
 
         cartNumber() {
+            console.log(this.productNumber)
             this.productNumber = parseInt(this.productNumber);
-            if (this.productNumber) {
+            if (this.productNumber !== 0) {
                 localStorage.setItem('cartNumber', this.productNumber + 1);
-                this.productNumber = localStorage.getItem('cartNumber')
+                return this.productNumber = localStorage.getItem('cartNumber')
             } else {
                 localStorage.setItem('cartNumber', 1);
-                this.productNumber = localStorage.getItem('cartNumber');
+                return this.productNumber = localStorage.getItem('cartNumber');
             }
         },
 
-        onLoad() {
-            this.productNumber = localStorage.getItem('cartNumber');
-        },
+        // onLoad() {
+        //     this.productNumber = localStorage.getItem('cartNumber');
+        // },
     },
     created() {
-        this.onLoad()
+        // this.onLoad()
     },
 }
 </script>

@@ -28,7 +28,7 @@
                         </span>
                     </div>
                 </div>
-                <ButtonToCart class="absolute bottom-0 z-10" :plate="plate" />
+                <ButtonToCart :cartPrice="cartPrice" :productNumber="productNumber" class="absolute bottom-0 z-10" :plate="plate" />
             </div>
 
         </div>
@@ -49,6 +49,8 @@ export default {
         return {
             restaurant: '',
             plates: new Array,
+            cartPrice: null,
+            productNumber: 0,
         }
     },
     methods: {
