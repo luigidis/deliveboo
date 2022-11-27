@@ -21,37 +21,46 @@
                         {{ plate.price }}€
                     </span>
                 </div>
+               <ButtonToCart :plate="plate"/>
             </div>
-
+            
         </div>
 
     </div>
 </template>
 
 <script>
+import ButtonToCart from '../components/ButtonToCart.vue';
+
+
 export default {
-    props: ['slug'],
+    props: ["slug",],
+    
+    components: {
+        ButtonToCart,
+    },
     data() {
         return {
-            plate: '',
-        }
+            plate: "",
+        };
     },
     methods: {
-            fetchPlate() {
-                axios.get(`/api/plates/${this.slug}`).then(res => {
-                    console.log(res.data);
-                    this.plate = res.data.plate;
-                }).catch(err =>{
-                    console.log(err);
-                    //redirect to 404
-                    this.$router.push({ name: '404' });
-                })
-            }
-        },
-        beforeMount() {
-            console.log(this.$route)
-            this.fetchPlate();
+        fetchPlate() {
+            axios.get(`/api/plates/${this.slug}`).then(res => {
+                console.log(res.data);
+                this.plate = res.data.plate;
+            }).catch(err => {
+                console.log(err);
+                //redirect to 404
+                this.$router.push({ name: "404" });
+            });
         }
+    },
+    beforeMount() {
+        console.log(this.$route);
+        this.fetchPlate();
+    },
+    
 }
 
 </script>
