@@ -1,0 +1,29 @@
+<template>
+    <div class="card_restaurant box_shadow_stroke max-w-xl  mx-auto">
+        <div class="">
+            <img class="block object-cover w-full h-full" :src="plate.img" alt="">
+        </div>
+        <div class="desc p-2">
+            <div class="py-2">
+                <span class="font-normal text-lg block leading-none mb-2">
+                    {{ plate.description }}
+                </span>
+                <span class="font-bold text-xl block">
+                    {{ plate.price }}€
+                </span>
+            </div>
+            <ButtonToCart :plate="plate" />
+        </div>
+    </div>
+</template>
+<script>
+import ButtonToCart from './ButtonToCart.vue'
+
+export default{
+    name: 'PlateCardShow',
+    props: ['plate'],
+    components: {
+        ButtonToCart
+    }
+}
+</script>
