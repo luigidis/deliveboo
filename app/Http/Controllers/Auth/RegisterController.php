@@ -91,6 +91,7 @@ class RegisterController extends Controller
             'p_iva' => $params['p_iva'],
             'image' => $params['image'],
             'user_id' => $user->id,
+            'slug' => $params['slug']
         ]);
 
         if (array_key_exists('categories', $params)) {
