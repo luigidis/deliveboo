@@ -148,6 +148,36 @@ class RestaurantController extends Controller
         }
     }
 
+    public function cartPlates($id)
+    {
+        $idArray = [];
+        foreach (explode(',', $id) as $plate_id) {
+            $idArray[] = $plate_id;
+        }
+
+        $plates = [];
+
+        foreach ($idArray as $id) {
+            $plates[] = Plate::where('id', $id)->first();
+        }
+
+        $restaurant = Restaurant::where('id', $plates[0]->restaurant_id)->first();
+
+        return response()->json(compact('plates', 'restaurant'));
+        // $plate = Plate::where('slug', $slug)->first();
+
+        // if ($plate) {
+        //     return response()->json([
+        //         'plate' => $plate,
+        //         'success' => true
+        //     ]);
+        // } else {
+        //     return response()->json([
+        //         'success' => false,
+        //     ], 404);
+        // }
+    }
+
     /**
      * Update the specified resource in storage.
      *

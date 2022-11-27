@@ -1,12 +1,9 @@
 import Home from '../pages/Home.vue';
-// import ContactUs from '../pages/ContactUs.vue';
-// import AboutUs from '../pages/AboutUs.vue';
-// import PostsIndex from '../pages/Posts.index.vue';
-// import PostsShow from '../pages/Posts.show.vue';
 import AdvancedSearch from '../pages/AdvancedSearch.vue';
 import RestaurantsShow from '../pages/RestaurantsShow.vue';
 import PlateShow from '../pages/PlateShow.vue';
 import Page404 from '../pages/404.vue';
+import Cart from '../pages/Cart.vue';
 
 const routes = [
     {
@@ -30,6 +27,11 @@ const routes = [
         name: 'restaurants.plateShow',
         component: PlateShow,
         props: true
+    },
+    {
+        path: '/carrello',
+        name: 'cart',
+        component: Cart,
     },
     {
         path: '*',
