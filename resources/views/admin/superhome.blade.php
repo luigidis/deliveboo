@@ -12,9 +12,7 @@ use App\Restaurant;
                 <?php
                 $restaurant = Restaurant::where('user_id', $user->id)->first();
                 ?>
-                {{-- <div class="col-12 text-center py-5">
-                <h1>Nome utente: {{ $user->name }}</h1>
-            </div> --}}
+
                 <div class="col-12 text-lg-center p-3 pt-5">
                     <h2 class="px-3">
                         Nome utente <span class="text-capitalize c_seco_color font-weight-bold">{{ $user->name }}</span>
@@ -85,6 +83,7 @@ use App\Restaurant;
                             </form>
                         </div>
                     </div>
+                </div>
             @endforeach
         </div>
     </div>
