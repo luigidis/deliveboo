@@ -18,19 +18,19 @@ class OrderPlateSeeder extends Seeder
 
         // $plateIds = Plate::all()->pluck('id');
         $plateIds = [];
-        for ($i = 1; $i < 11; $i++) {
+        for ($i = 1; $i < 21; $i++) {
             $plates = Plate::where('restaurant_id', $i)->pluck('id');
             $plateIds[] = $plates;
         }
 
-        $orderNum = Order::count();
+        $orderNum = Order::count('id');
 
         for ($i = 0; $i < $orderNum; $i++) {
             $order = Order::find($i + 1);
             $plates = [];
             $quantity = [];
             // scelgo casualmente ristorante a cui collegare ordine
-            $k = rand(0, 9);
+            $k = rand(0, 19);
 
             for ($j = 0; $j < rand(1, 2); $j++) {
                 // scelgo casualmente quantità del piatto
