@@ -25,3 +25,6 @@ Route::get('restaurants/categories/{categories}', 'Api\RestaurantController@sear
 Route::get('plates/{slug}', 'Api\RestaurantController@plateShow')->name('restaurants.plateShow');
 
 Route::get('cart/plates/{id}', 'Api\RestaurantController@cartPlates')->name('restaurants.cartPlates');
+
+Route::get('orders/generate', 'Api\Orders\OrderController@generate');
+Route::post('orders/payment', 'Api\Orders\OrderController@payment');
