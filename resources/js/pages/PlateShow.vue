@@ -21,7 +21,7 @@
         </div> -->
         <PlateCardShow :plate="plate" />
 
-        <div class="layover" v-if="error">
+        <!-- <div class="layover" v-if="error">
             <div class="my_alert box_shadow_stroke ">
                 <span class="text-xl text-center font-bold">
                     Hai un ordine in corso per un altro ristorante, svuotare il carrello?
@@ -37,50 +37,53 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div> -->
+        <LayoverAlert />
     </div>
 </template>
 
 <script>
+import LayoverAlert from '../components/LayoverAlert.vue';
 import PlateCardShow from '../components/PlateCardShow.vue';
 import state from "../store"
 
 export default {
     props: ["slug",],
     components: {
-        PlateCardShow,
-    },
+    PlateCardShow,
+    LayoverAlert
+},
     data() {
         return {
             plate: "",
             plates: new Array,
         }
     },
-    computed: {
-        error() {
-            const bodyEl = document.querySelector('body')
-            if (state.error) {
-                bodyEl.style.overflowY = 'hidden';
-            } else {
-                bodyEl.style.overflowY = 'auto';
-            }
-            return state.error;
-        }
-    },
+    // computed: {
+    //     error() {
+    //         const bodyEl = document.querySelector('body')
+    //         if (state.error) {
+    //             bodyEl.style.overflowY = 'hidden';
+    //         } else {
+    //             bodyEl.style.overflowY = 'auto';
+    //         }
+    //         return state.error;
+    //     }
+    // },
     methods: {
-        clearCart(bool) {
-            if (!bool) {
-                state.error = false;
-            } else {
-                localStorage.clear();
-                localStorage.setItem('totalPrice', state.lastPlate.price);
-                localStorage.setItem('restaurantId', state.lastPlate.restaurant_id);
-                state.totalItems = 1;
-                localStorage.setItem('totalItems', 1);
-                localStorage.setItem(`quantity%${state.lastPlate.id}`, 1);
-                state.error = false;
-            }
-        },
+        // clearCart(bool) {
+        //     if (!bool) {
+        //         state.error = false;
+        //     } else {
+        //         localStorage.clear();
+        //         localStorage.setItem('totalPrice', state.lastPlate.price);
+        //         localStorage.setItem('restaurantId', state.lastPlate.restaurant_id);
+        //         state.totalItems = 1;
+        //         localStorage.setItem('totalItems', 1);
+        //         localStorage.setItem(`quantity%${state.lastPlate.id}`, 1);
+        //         state.error = false;
+        //     }
+        // },
         fetchPlate() {
             axios.get(`/api/plates/${this.slug}`).then(res => {
                 console.log(res.data);
@@ -98,31 +101,3 @@ export default {
     },
 }
 </script>
-
-<style lang="scss" scoped>
-.layover {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 100000;
-    background-color: #00000095;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-
-    .my_alert {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        padding: 5rem;
-        gap: 3rem;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        justify-content: center;
-        background-color: #f7f7f7;
-    }
-}
-</style>

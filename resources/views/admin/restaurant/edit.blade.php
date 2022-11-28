@@ -11,8 +11,8 @@
                 </div>
             </div>
 
-            <div class="body_content py-2 d-flex justify-content-center align-items-center">
-                <div class="box_shadow_stroke pt-3 card_form px-3">
+            <div class="body_content form_container">
+                <div class="box_shadow_stroke card_form">
                     <form action="{{ route('admin.restaurant.update', $restaurant) }}" method="POST"
                         enctype="multipart/form-data" class="d-flex flex-column justify-content-center">
                         @csrf
