@@ -2257,6 +2257,27 @@ __webpack_require__.r(__webpack_exports__);
           name: '404'
         });
       });
+    },
+    checkOut: function checkOut() {
+      var data = JSON.stringify({
+        "token": "fake-valid-nonce",
+        "amount": this.totalPrice
+      });
+      var config = {
+        method: 'post',
+        url: 'http://localhost:8000/api/orders/payment',
+        headers: {
+          'Content-Type': 'application/json'
+          // 'Cookie': 'XSRF-TOKEN=eyJpdiI6IkQ2YTUxSUU1REhaN0NzQ3RXaElrRkE9PSIsInZhbHVlIjoiU2VZTUFkSUJLZ3NwbDZYcVQ1cFdFdndWZ0I2K1RCM2ErVHgycktkVWU1UnhDMC9ueG9Ib2hQK3dxaVFVZ0xMVENtNzBiczZlL0cycU03UmtiMEV3dVhxakFRUmhSOWFkYjB4ZFR5Um5WUXp5R0RObzlZUy9nMVRxYnlYZS9OdWEiLCJtYWMiOiI0MzE0YzIxYjZkY2UxMzEzMmJmNWY2OGI1ZmY2NTA4YmJkOGNhNmZlYThlYjFlOTRjMWM1YmUyZmFiYWVkM2ZhIn0%3D; deliveboo_session=eyJpdiI6IkwvTlFlRFFhQm5WNXFDYWwyN3JwOEE9PSIsInZhbHVlIjoiWXlURExCaTJkUTR1R21hUHlsMWdma2xLQjkvN1hTTDUzMktYVnNhUkw5bUxoUGE0OW4vODZ0LzBrQ3JhMy9OdmhuVWt3Q0oveGlGbnFhcnVKR3lhWHVMdkRjeFhlRjljVXRFTnR4U050clB2VHFkNzJNaEJNS3VmNkIzWGRaUnMiLCJtYWMiOiJiZDQzYmNjNDJkMDNmMDY4NDZiMWI4NTM5MjZkY2VlMmY0YzY3MWJhNTlhYWQxM2MxNTgyNDNiNWM0ZjY4YzYwIn0%3D'
+        },
+
+        data: data
+      };
+      axios(config).then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   },
   mounted: function mounted() {
@@ -2987,15 +3008,15 @@ var render = function render() {
       staticClass: "font-normal block"
     }, [_vm._v("\n                        Totale: " + _vm._s((parseFloat(plate.price) * parseFloat(_vm.quantity[i])).toFixed(2)) + "€\n                    ")])])])]);
   }), 0), _vm._v(" "), _c("div", {
-    staticClass: "flex items-center gap-4"
-  }, [_c("span", {
+    staticClass: "flex flex-column gap-4 items-start"
+  }, [_c("div", {
     staticClass: "text-xl"
-  }, [_vm._v("\n            Totale: " + _vm._s(_vm.totalPrice) + "€\n        ")]), _vm._v(" "), _c("router-link", {
-    staticClass: "btn bg-sky-500 font-bold hover:bg-sky-800 text-white",
-    attrs: {
-      to: "#"
+  }, [_vm._v("\n            Totale: " + _vm._s(_vm.totalPrice) + "€\n        ")]), _vm._v(" "), _c("span", {
+    staticClass: "add_to_cart box_shadow_stroke_small bg_link_color c_text_color text-xl py-1 px-2 hover:shadow-none",
+    on: {
+      click: _vm.checkOut
     }
-  }, [_vm._v("\n            Checkout\n        ")])], 1)]);
+  }, [_vm._v("\n            Checkout\n        ")])])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
