@@ -169,3 +169,8 @@ button {
         margin-left: auto;
     }
 }
+
+.card_content,
+.card_restaurant{
+    transition: 800ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}

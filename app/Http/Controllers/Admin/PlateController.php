@@ -133,7 +133,7 @@ class PlateController extends Controller
         ]);
 
         if ($params['name'] !== $plate->name) {
-            $params['slug'] = Plate::getUniqueSlugFromTitle($params['title']);
+            $params['slug'] = Plate::getUniqueSlugFromTitle($params['name']);
         }
 
         if (array_key_exists('img', $params) && $params['img'] !== null) {

@@ -11172,6 +11172,11 @@ button.card_button_dark:hover {
   margin-left: auto;
 }
 
+.card_content,
+.card_restaurant {
+  transition: 800ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
 html body {
   min-width: 320px;
   font-weight: 300;
