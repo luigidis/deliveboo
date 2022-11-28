@@ -18,7 +18,7 @@
                         @method('PUT')
 
                         <div class="form-group">
-                            <label for="name">Nome Categoria</label>
+                            <label for="name">Nome Categoria*</label>
                             <input type="text"
                                 class="form-control @error('name')is-invalid @enderror box_shadow_stroke_small"
                                 id="name" value="{{ old('name', $category->name) }}" name="name"

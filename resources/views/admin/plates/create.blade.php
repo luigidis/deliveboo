@@ -22,7 +22,7 @@
                         @csrf
 
                         <div class="form-group">
-                            <label for="img" class="d-block">Foto del piatto</label>
+                            <label for="img" class="d-block">Foto del piatto*</label>
                             <input type="file" name="img" class="form-file-input @error('img')is-invalid @enderror box_shadow_stroke_small"
                                 id="img">
                             <div class="error"></div>
@@ -35,7 +35,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="name">Nome del piatto</label>
+                            <label for="name">Nome del piatto*</label>
 
                             <input type="text" class="form-control input-control @error('name')is-invalid @enderror box_shadow_stroke_small"
                                 id="name_1" value="{{ old('name') }}" name="name" autocomplete="name" autofocus
@@ -50,7 +50,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="description" class="d-block">Descrizione</label>
+                            <label for="description" class="d-block">Descrizione*</label>
                             <textarea class="@error('description')is-invalid @enderror box_shadow_stroke_small w-100" id="description"
                                 name="description" rows="5">{{ old('description') }}</textarea>
                             <div class="error"></div>
@@ -62,7 +62,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="price">Prezzo</label>
+                            <label for="price">Prezzo*</label>
                             <input type="text" class="form-control input-control @error('price')is-invalid @enderror box_shadow_stroke_small"
                                 id="price" value="{{ old('price') }}" name="price" aria-describedby="price">
                             <div class="error"></div>
@@ -75,7 +75,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="is_visible">Disponibilità</label>
+                            <label for="is_visible">Disponibilità*</label>
                             <select name="is_visible" class="form-control @error('is_visible') is-invalid @enderror box_shadow_stroke_small"
                                 id="is_visible">
                                 <option value="1" default>Disponibile</option>
