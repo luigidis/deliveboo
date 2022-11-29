@@ -23,7 +23,7 @@
 
                         <div class="form-group">
                             <label for="img" class="d-block">Foto del piatto</label>
-                            <input type="file" name="img" class="form-file-input @error('img')is-invalid @enderror box_shadow_stroke_small"
+                            <input type="file" name="img" value="{{ old('img') }}" class="form-file-input @error('img')is-invalid @enderror box_shadow_stroke_small"
                                 id="img">
                             <div class="error"></div>
                             @error('img')
@@ -35,18 +35,16 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="name">Nome del piatto</label>
+                            <label for="name_plate">Nome del piatto</label>
 
-                            <input type="text" class="form-control input-control @error('name')is-invalid @enderror box_shadow_stroke_small"
-                                id="name_1" value="{{ old('name') }}" name="name" autocomplete="name" autofocus
-                                aria-describedby="helpName">
+                            <input type="text" class="form-control input-control @error('name_plate')is-invalid @enderror box_shadow_stroke_small"
+                                id="name_plate" value="{{ old('name') }}" name="name_plate">    
                             <div class="error"></div>
-                            @error('name')
-                                <div id="name" class="invalid-feedback" role="alert">
-                                    {{ $message }}
-                                </div>
+                            @error('name_plate')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                             @enderror
-
                         </div>
 
                         <div class="form-group">
@@ -55,7 +53,7 @@
                                 name="description" rows="5">{{ old('description') }}</textarea>
                             <div class="error"></div>
                             @error('description')
-                                <div id="title" class="invalid-feedback">
+                                <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
@@ -63,11 +61,11 @@
 
                         <div class="form-group">
                             <label for="price">Prezzo</label>
-                            <input type="text" class="form-control input-control @error('price')is-invalid @enderror box_shadow_stroke_small"
-                                id="price" value="{{ old('price') }}" name="price" aria-describedby="price">
+                            <input type="string" class="form-control input-control @error('price')is-invalid @enderror box_shadow_stroke_small"
+                                id="price" value="{{ old('price') }}" name="price">
                             <div class="error"></div>
                             @error('price')
-                                <div id="price" class="invalid-feedback">
+                                <div class="invalid-feedback" role="alert">
                                     {{ $message }}
                                 </div>
                             @enderror
@@ -83,7 +81,7 @@
                             </select>
                         </div>
                         <div class="d-flex flex-wrap">
-                            <button type="button"
+                            <button type="button" id="submitBtn" 
                                 class="bg_link_color c_text_color box_shadow_stroke_small px-2 py-1 card_button mb-3"
                                 data-toggle="modal" data-target="#exampleModal">
                                 Aggiungi piatto
@@ -114,139 +112,110 @@
                             </a>
                         </div>
                     </form>
-
-
-
                 </div>
-            @endsection
+            </div>
+        </div>  
+    </section>          
+@endsection
 
-            <style>
-                @media all and (max-width:576px) {
-                    .title {
-                        font-size: 1.5rem;
-                    }
+    <style>
+        @media all and (max-width:576px) {
+            .title {
+                font-size: 1.5rem;
+            }
 
-                    .btn {
-                        scale: 0.8;
-                    }
-                }
+            .btn {
+                scale: 0.8;
+            }
+        }
 
-
-                /* .input-control.success {
+        .input-control.success {
         border-color: green;
-    }
+        }
 
-    .input-control.error {
-        border-color: red;
-    } */
-
-                .error {
-                    color: red;
-                }
-            </style>
-
-
-            @section('script-js')
-                <script>
-                    console.log('ciao');
+        .input-control.error {
+            border-color: red;
+        }
+        .error {
+            color: red;
+        }
+    </style>
 
 
-                    // submitButton.addEventListener('click', function() {
-                    //   form.preventDefault();
+{{-- @section('script-js')
+    <script>
+        console.log('ciao');
 
-                    //   validateForm();
-                    // });
+        window.addEventListener('load', () => {
 
-                    window.addEventListener('load', () => {
-                        const form = document.getElementById('form');
+            const form = document.getElementById('form');
 
-                        // const namePlate = document.getElementById('name_1');
-                        // console.log(namePlate);
-                        // const description = document.getElementById('description');
-
-                        // const price = document.getElementById('price');
-                        // const isVisible = document.getElementById('is_visible');
-                        const submitButton = document.getElementById('submitButton');
-                        submitButton.addEventListener('click', e => {
-                            e.preventDefault();
-                            if (validateInputs())
-                                form.submit();
-                        })
-                    })
+            const namePlate = document.getElementById('name_plate')
+            const description = document.getElementById('description');
+            const price = document.getElementById('price');
+            const isVisible = document.getElementById('is_visible');
+            const submitButton = document.getElementById('submitBtn');
+            submitButton.addEventListener('click', e => {
+                e.preventDefault();
+                if (validateInputs())
+                    form.submit();
+            })
+        })
 
 
 
 
 
-                    const setError = (element, message) => {
-                        const inputControl = element.parentElement;
-                        console.log(inputControl)
-                        const errorDisplay = document.querySelector('.error');
-                        console.log(errorDisplay)
+        const setError = (element, message) => {
+            const inputControl = element.parentElement;
+            const errorDisplay = document.querySelector('.error');
+            errorDisplay.innerText = message;
+            inputControl.classList.add('error');
+            inputControl.classList.remove('success');
 
-                        errorDisplay.innerText = message;
-                        inputControl.classList.add('error');
-                        inputControl.classList.remove('success');
+        }
 
-                    }
+        const setSuccess = (element) => {          
+            const inputControl = element.parentElement;
+            const errorDisplay = document.querySelector('.error');
+            errorDisplay.innerText = '';
+            inputControl.classList.add('success');
+            inputControl.classList.remove('error');
 
-                    const setSuccess = (element) => {
-                        console.log(element)
-                        const inputControl = element.parentElement;
-                        const errorDisplay = document.querySelector('.error');
-                        console.log(inputControl)
-                        errorDisplay.innerText = '';
-                        inputControl.classList.add('success');
-                        inputControl.classList.remove('error');
+        }
 
-                    }
+        function validateInputs() {
 
-                    function validateInputs() {
+            const nameValue = namePlate.value.trim();
+            const descriptionValue = description.value.trim();
+            const priceValue = price.value.trim();
+            const isVisibleVlue = isVisible.value.trim();
 
-                        let validate = true;
-
-
-                        const nameHtml = document.getElementById('name_1')
-                        const description = document.getElementById('description');
-                        const price = document.getElementById('price');
-                        const isVisible = document.getElementById('is_visible');
+            let validate = true;
 
 
+            if (nameValue === '') {
+                setError(namePlate, 'Campo Obbligatorio');
+                validate = false;
+            } else {
+                setSuccess(namePlate);
+            }
 
-                        // console.log(nameHtml, description, price, isVisible)
+            if (descriptionValue === '') {
+                setError(description, 'Campo Obbligatorio');
+                validate = false;
+            } else {
+                setSuccess(description);
+            }
 
+            if (priceValue === '') {
+                setError(price, 'Campo Obbligatorio');
+                validate = false;
+            } else {
+                setSuccess(price);
+            }
 
-
-
-                        const nameValue = nameHtml.value.trim();
-                        const descriptionValue = description.value.trim();
-                        const priceValue = price.value.trim();
-                        // const priceFloat = parsFloat(priceValue);
-                        const isVisibleVlue = isVisible.value.trim();
-
-
-                        if (nameValue === '') {
-                            setError(nameHtml, 'Campo Obbligatorio');
-                            validate = false;
-                        } else {
-                            setSuccess(nameHtml);
-                        }
-
-                        if (descriptionValue === '') {
-                            setError(description, 'Campo Obbligatorio');
-                            validate = false;
-                        } else {
-                            setSuccess(description);
-                        }
-
-                        if (priceValue === '') {
-                            setError(price, 'Campo Obbligatorio');
-                            validate = false;
-                        } else {
-                            setSuccess(price);
-                        }
-
-                        return validate;
-                    }
-                </script>
-            @endsection
+            return validate;
+        }
+    </script>
+@endsection --}}
