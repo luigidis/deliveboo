@@ -13,6 +13,13 @@ export default {
                 token: "",
                 amount: "",
             },
+            data: JSON.stringify(this.form),
+            config: {
+                method: "post",
+                url: "http://localhost:8000/api/orders/payment",
+                headers: {"Content-Type": "application/json"},
+                data: this.data,
+            },
         }
     },
     props: {
@@ -29,27 +36,21 @@ export default {
             const token = payload.nonce;
             this.form.token = token
 
-            let data = JSON.stringify(this.form);
-
-            let config = {
-                method: "post",
-                url: "http://localhost:8000/api/orders/payment",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                data: data,
-            };
-            axios(config)
+            axios(this.config)
                 .then(function (response) {
                     console.log(JSON.stringify(response.data));
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
+
+            setTimeout(() => {
+                this.$router.push({ name: "SuccessPayment" });
+            }, "1000")
         },
         onError(error) {
             console.log(`onError => ${error.message}`);
-        }
+        },
     },
     mounted() {
         this.form.amount = localStorage.getItem("totalPrice");

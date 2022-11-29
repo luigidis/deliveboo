@@ -5,6 +5,7 @@ import PlateShow from '../pages/PlateShow.vue';
 import Page404 from '../pages/404.vue';
 import Cart from '../pages/Cart.vue';
 import CheckOut from '../pages/CheckOut.vue';
+import SuccessPayment from '../pages/SuccessPayment.vue';
 
 const routes = [
     {
@@ -38,6 +39,11 @@ const routes = [
         path: '/checkout',
         name: 'CheckOut',
         component: CheckOut,
+    },
+    {
+        path: '/success',
+        name: 'SuccessPayment',
+        component: SuccessPayment,
     },
     {
         path: '*',

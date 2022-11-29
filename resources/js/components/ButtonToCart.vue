@@ -6,7 +6,6 @@
 </template>
 
 <script>
-
 import state from "../store";
 
 export default {
@@ -14,7 +13,6 @@ export default {
     props: [
         'plate',
     ],
-
     methods: {
         addCart(plate) {
             if (localStorage.totalPrice) {
@@ -42,7 +40,3 @@ export default {
     },
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>
