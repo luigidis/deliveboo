@@ -4,6 +4,7 @@ import RestaurantsShow from '../pages/RestaurantsShow.vue';
 import PlateShow from '../pages/PlateShow.vue';
 import Page404 from '../pages/404.vue';
 import Cart from '../pages/Cart.vue';
+import CheckOut from '../pages/CheckOut.vue';
 
 const routes = [
     {
@@ -32,6 +33,11 @@ const routes = [
         path: '/carrello',
         name: 'cart',
         component: Cart,
+    },
+    {
+        path: '/checkout',
+        name: 'CheckOut',
+        component: CheckOut,
     },
     {
         path: '*',
