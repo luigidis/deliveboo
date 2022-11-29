@@ -106,8 +106,15 @@
                                             Vuoi modificare il piatto?
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Annulla</button>
-                                            <button type="submit" class="btn btn-secondary">Salva le modifiche</button>
+                                            <button type="button"
+                                                class="bg_seco_color c_text_color box_shadow_stroke_small px-2 py-1 card_button mb-3 ml-auto text-center font-weight-bold"
+                                                data-dismiss="modal">
+                                                Annulla
+                                            </button>
+                                            <button type="submit"
+                                                class="bg_link_color c_text_color box_shadow_stroke_small px-2 py-1 card_button mb-3">
+                                                Salva le modifiche
+                                            </button>
                                         </div>
                                     </div>
                                 </div>

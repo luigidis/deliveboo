@@ -72,8 +72,15 @@
                                             Vuoi eliminare questo piatto dal tuo ristorante?
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Annulla</button>
-                                            <button type="submit" class="btn btn-secondary">Elimina</button>
+                                            <button type="button"
+                                                class="bg_link_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2"
+                                                data-dismiss="modal">
+                                                Torna indietro
+                                            </button>
+                                            <button type="submit"
+                                                class="bg_seco_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2">
+                                                Elimina
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
