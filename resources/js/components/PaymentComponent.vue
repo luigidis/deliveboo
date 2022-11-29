@@ -9,6 +9,8 @@ export default {
     data() {
         return {
             disable: true,
+            ids: new Array,
+            quantity: new Array,
             form: {
                 token: "",
                 amount: "",
@@ -29,6 +31,16 @@ export default {
         },
     },
     methods: {
+        makeOrder(){
+            axios.get(`api/orders/making/${this.ids}`)
+                .then(res => {
+                    console.log(res.data);
+                }).catch(err => {
+                    console.log(err);
+                    //redirect to 404
+                    // this.$router.push({ name: "404" });
+                });
+        },
         onLoad() {
             this.disable = false
         },
@@ -44,6 +56,7 @@ export default {
                     console.log(error);
                 });
 
+            
             setTimeout(() => {
                 this.$router.push({ name: "SuccessPayment" });
             }, "1000")
@@ -54,6 +67,13 @@ export default {
     },
     mounted() {
         this.form.amount = localStorage.getItem("totalPrice");
+
+        for (var i = 0; i < localStorage.length - 1; i++) {
+            if (localStorage.key(i).includes("quantity")) {
+                this.ids.push(localStorage.key(i).split("%")[1]);
+                this.quantity.push(localStorage.getItem(localStorage.key(i)));
+            }
+        }
     }
 }
 </script>

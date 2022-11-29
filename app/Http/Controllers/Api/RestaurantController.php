@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Category;
 use App\Http\Controllers\Controller;
+use App\Order;
+use App\OrderPlate;
 use App\Plate;
 use App\Restaurant;
 use Illuminate\Http\Request;
@@ -158,6 +160,48 @@ class RestaurantController extends Controller
         $restaurant = Restaurant::where('id', $plates[0]->restaurant_id)->first();
 
         return response()->json(compact('plates', 'restaurant'));
+    }
+
+    public function makeOrder($id)
+    {
+        $idArray = [];
+        foreach (explode(',', $id) as $plate_id) {
+            $idArray[] = $plate_id;
+        }
+
+        $plates = [];
+
+        $totalPrice = 0;
+        foreach ($idArray as $id) {
+            $plates[] = Plate::where('id', $id)->first();
+            $totalPrice += $plates[0]->price;
+        }
+
+        $restaurant = Restaurant::where('id', $plates[0]->restaurant_id)->first();
+
+        $params = [
+            'status' => 'In elaborazione',
+            'total' => $totalPrice,
+            'name_client' => 'Giuseppe',
+            'surname_client' => 'Cosenza',
+            'address_client' => 'Non lo so',
+            'phone_client' => '+39 324 808 8907',
+            'email_client' => 'nonloso@gmail.com',
+        ];
+
+        $order = Order::create($params);
+
+        for ($j = 0; $j < count($plates); $j++) {
+            $paramsPivot = [
+                'order_id' => $order->id,
+                'plate_id' => $plates[$j]->id,
+                'quantity' => 1,
+            ];
+            
+            $orderPlate = OrderPlate::create($paramsPivot);
+        }
+
+        return response()->json(compact('plates', 'restaurant', 'order'));
     }
 
     /**

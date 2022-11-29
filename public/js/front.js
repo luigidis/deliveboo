@@ -1993,6 +1993,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       disable: true,
+      ids: new Array(),
+      quantity: new Array(),
       form: {
         token: "",
         amount: ""
@@ -2015,6 +2017,15 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    makeOrder: function makeOrder() {
+      axios.get("api/orders/making/".concat(this.ids)).then(function (res) {
+        console.log(res.data);
+      })["catch"](function (err) {
+        console.log(err);
+        //redirect to 404
+        // this.$router.push({ name: "404" });
+      });
+    },
     onLoad: function onLoad() {
       this.disable = false;
     },
@@ -2039,6 +2050,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.form.amount = localStorage.getItem("totalPrice");
+    for (var i = 0; i < localStorage.length - 1; i++) {
+      if (localStorage.key(i).includes("quantity")) {
+        this.ids.push(localStorage.key(i).split("%")[1]);
+        this.quantity.push(localStorage.getItem(localStorage.key(i)));
+      }
+    }
   }
 });
 
@@ -2311,7 +2328,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     fetchPlates: function fetchPlates() {
       var _this = this;
-      axios.get("api/cart/plates/".concat(this.ids, "}")).then(function (res) {
+      axios.get("api/cart/plates/".concat(this.ids)).then(function (res) {
         _this.plates = res.data.plates;
         _this.restaurant = res.data.restaurant;
         // console.log(res.data.plates);
@@ -2321,6 +2338,15 @@ __webpack_require__.r(__webpack_exports__);
         _this.$router.push({
           name: "404"
         });
+      });
+    },
+    makeOrder: function makeOrder() {
+      axios.get("api/orders/making/".concat(this.ids)).then(function (res) {
+        console.log(res.data);
+      })["catch"](function (err) {
+        console.log(err);
+        //redirect to 404
+        // this.$router.push({ name: "404" });
       });
     }
   },
@@ -3097,7 +3123,10 @@ var render = function render() {
   }), 0), _vm._v(" "), _c("div", {
     staticClass: "flex flex-column gap-4 items-start"
   }, [_c("div", {
-    staticClass: "text-xl"
+    staticClass: "text-xl",
+    on: {
+      click: _vm.makeOrder
+    }
   }, [_vm._v("\n            Totale: " + _vm._s(_vm.totalPrice) + "€\n        ")]), _vm._v(" "), _c("router-link", {
     staticClass: "add_to_cart box_shadow_stroke_small bg_link_color c_text_color text-xl py-1 px-2 hover:shadow-none",
     attrs: {

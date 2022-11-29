@@ -25,11 +25,11 @@
         </div>
 
         <div class="flex flex-column gap-4 items-start">
-            <div class="text-xl">
+            <div class="text-xl" @click="makeOrder">
                 Totale: {{ totalPrice }}€
             </div>
-            <router-link to="/checkout" 
-            class="add_to_cart box_shadow_stroke_small bg_link_color c_text_color text-xl py-1 px-2 hover:shadow-none">
+            <router-link to="/checkout"
+                class="add_to_cart box_shadow_stroke_small bg_link_color c_text_color text-xl py-1 px-2 hover:shadow-none">
                 Checkout
             </router-link>
         </div>
@@ -50,7 +50,7 @@ export default {
     },
     methods: {
         fetchPlates() {
-            axios.get(`api/cart/plates/${this.ids}}`)
+            axios.get(`api/cart/plates/${this.ids}`)
                 .then(res => {
                     this.plates = res.data.plates;
                     this.restaurant = res.data.restaurant;
@@ -59,6 +59,16 @@ export default {
                     console.log(err);
                     //redirect to 404
                     this.$router.push({ name: "404" });
+                });
+        },
+        makeOrder() {
+            axios.get(`api/orders/making/${this.ids}`)
+                .then(res => {
+                    console.log(res.data);
+                }).catch(err => {
+                    console.log(err);
+                    //redirect to 404
+                    // this.$router.push({ name: "404" });
                 });
         },
     },
