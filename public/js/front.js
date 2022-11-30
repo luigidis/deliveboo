@@ -2350,6 +2350,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_PaymentComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/PaymentComponent.vue */ "./resources/js/components/PaymentComponent.vue");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store */ "./resources/js/store.js");
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CheckOut",
@@ -2397,6 +2399,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     clearCart: function clearCart() {
       localStorage.clear();
+      _store__WEBPACK_IMPORTED_MODULE_1__["default"].totalItems = 0;
     },
     submitForm: function submitForm() {
       var _this = this;

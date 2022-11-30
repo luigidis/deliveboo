@@ -44,6 +44,7 @@
 </template>
 <script>
 import PaymentComponent from '../components/PaymentComponent.vue'
+import state from '../store'
 
 export default {
     name: "CheckOut",
@@ -94,6 +95,7 @@ export default {
         },
         clearCart() {
                 localStorage.clear();
+                state.totalItems = 0;
         },
         submitForm() {
             this.$refs.PaymentBtn.$refs.paymentBraintreeBtn.click()
