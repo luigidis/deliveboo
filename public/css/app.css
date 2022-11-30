@@ -11147,26 +11147,32 @@ button.card_button_dark:hover {
   flex-grow: 1;
 }
 
-.card_form {
-  max-width: 500px;
-  min-width: 320px;
+.form_container {
+  padding: 3rem 0;
+  margin: 0 auto;
+  max-width: 800px;
 }
 
-.card_form .form-group.row {
+.form_container .card_form {
+  max-width: 100%;
+  padding: 2rem;
+}
+
+.form_container .card_form .form-group.row {
   flex-grow: 1;
 }
 
-.card_form .form-group.row > .col-md-6 {
+.form_container .card_form .form-group.row > .col-md-6 {
   margin-left: auto;
 }
 
-.card_form label {
+.form_container .card_form label {
   font-weight: bold;
   font-size: 1.05rem;
   line-height: 1.1;
 }
 
-.card_form input {
+.form_container .card_form input {
   border: 2px solid #4C5355;
   border-radius: 0;
   margin-left: auto;

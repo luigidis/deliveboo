@@ -10,15 +10,15 @@
                     </h1>
                 </div>
             </div>
-            <div class="body_content py-2 d-flex justify-content-center align-items-center">
-                <div class="box_shadow_stroke pt-3 card_form px-3">
+            <div class="body_content py-2 form_container">
+                <div class="box_shadow_stroke card_form">
                     <form action="{{ route('admin.categories.update', $category) }}" method="POST"
                         class="d-flex flex-column justify-content-center">
                         @csrf
                         @method('PUT')
 
                         <div class="form-group">
-                            <label for="name">Nome Categoria</label>
+                            <label for="name">Nome Categoria*</label>
                             <input type="text"
                                 class="form-control @error('name')is-invalid @enderror box_shadow_stroke_small"
                                 id="name" value="{{ old('name', $category->name) }}" name="name"

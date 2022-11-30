@@ -145,32 +145,38 @@ button {
     }
 }
 
-.card_form {
-    max-width: 500px;
-    min-width: 320px;
+.form_container {
+    padding: 3rem 0;
+    margin: 0 auto;
+    max-width: 800px;
 
-    .form-group.row {
-        flex-grow: 1;
+    .card_form {
+        max-width: 100%;
+        padding: 2rem;
 
-        >.col-md-6 {
+        .form-group.row {
+            flex-grow: 1;
+
+            >.col-md-6 {
+                margin-left: auto;
+            }
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 1.05rem;
+            line-height: 1.1;
+        }
+
+        input {
+            border: 2px solid $prim-color;
+            border-radius: 0;
             margin-left: auto;
         }
-    }
-
-    label {
-        font-weight: bold;
-        font-size: 1.05rem;
-        line-height: 1.1;
-    }
-
-    input {
-        border: 2px solid $prim-color;
-        border-radius: 0;
-        margin-left: auto;
     }
 }
 
 .card_content,
-.card_restaurant{
+.card_restaurant {
     transition: 800ms cubic-bezier(0.075, 0.82, 0.165, 1);
 }

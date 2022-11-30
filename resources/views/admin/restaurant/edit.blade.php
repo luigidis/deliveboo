@@ -11,14 +11,14 @@
                 </div>
             </div>
 
-            <div class="body_content py-2 d-flex justify-content-center align-items-center">
-                <div class="box_shadow_stroke pt-3 card_form px-3">
+            <div class="body_content form_container">
+                <div class="box_shadow_stroke card_form">
                     <form action="{{ route('admin.restaurant.update', $restaurant) }}" method="POST"
                         enctype="multipart/form-data" class="d-flex flex-column justify-content-center">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label for="name">Nome ristorante</label>
+                            <label for="name">Nome ristorante*</label>
                             <input type="text"
                                 class="form-control @error('name') is-invalid @enderror box_shadow_stroke_small"
                                 id="name" name="name" value="{{ old('name', $restaurant->name) }}"
@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="d-block" for="category">Categorie:</label>
+                            <label class="d-block" for="category">Categorie:*</label>
                             <div class="@error('categories') is-invalid @enderror">
 
                                 @foreach ($categories as $key => $category)
@@ -53,7 +53,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="address">Indirizzo</label>
+                            <label for="address">Indirizzo*</label>
                             <input type="text"
                                 class="form-control @error('address') is-invalid @enderror box_shadow_stroke_small"
                                 id="address" name="address" value="{{ old('address', $restaurant->address) }}"
@@ -66,7 +66,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="phone">Numero di telefono</label>
+                            <label for="phone">Numero di telefono*</label>
                             <input type="text"
                                 class="form-control @error('phone') is-invalid @enderror box_shadow_stroke_small"
                                 id="phone" name="phone" value="{{ old('phone', $restaurant->phone) }}"
@@ -79,7 +79,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="p_iva">Partita IVA</label>
+                            <label for="p_iva">Partita IVA*</label>
                             <input type="text"
                                 class="form-control @error('p_iva') is-invalid @enderror box_shadow_stroke_small"
                                 id="p_iva" name="p_iva" value="{{ old('p_iva', $restaurant->p_iva) }}"
@@ -94,7 +94,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="image" class="font-weight-bold">Scegli foto</label>
+                            <label for="image" class="font-weight-bold">Scegli foto*</label>
                             <input type="file"
                                 class="form-control-file @error('image') is-invalid @enderror box_shadow_stroke_small"
                                 id="image" name="image">

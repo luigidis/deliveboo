@@ -33,7 +33,7 @@
             <PlateCard :plate="plate" v-for="(plate, i) in plates" :key="92 * i" />
 
         </div>
-        <div class="layover" v-if="error">
+        <!-- <div class="layover" v-if="error">
             <div class="my_alert box_shadow_stroke ">
                 <span class="text-xl text-center font-bold">
                     Hai un ordine in corso per un altro ristorante, svuotare il carrello?
@@ -49,36 +49,39 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div> -->
+        <LayoverAlert />
     </div>
 </template>
 
 <script>
+import LayoverAlert from '../components/LayoverAlert.vue'
 import PlateCard from '../components/PlateCard.vue'
 import state from "../store"
 
 export default {
     props: ['slug'],
     components: {
-        PlateCard,
-    },
+    PlateCard,
+    LayoverAlert
+},
     data() {
         return {
             restaurant: '',
             plates: new Array,
         }
     },
-    computed: {
-        error() {
-            const bodyEl = document.querySelector('body')
-            if (state.error) {
-                bodyEl.style.overflowY = 'hidden';
-            } else {
-                bodyEl.style.overflowY = 'auto';
-            }
-            return state.error;
-        }
-    },
+    // computed: {
+    //     error() {
+    //         const bodyEl = document.querySelector('body')
+    //         if (state.error) {
+    //             bodyEl.style.overflowY = 'hidden';
+    //         } else {
+    //             bodyEl.style.overflowY = 'auto';
+    //         }
+    //         return state.error;
+    //     }
+    // },
     methods: {
         fetchRestaurant() {
             axios.get(`/api/restaurants/${this.slug}`).then(res => {
@@ -91,19 +94,19 @@ export default {
                 this.$router.push({ name: '404' });
             })
         },
-        clearCart(bool) {
-            if (!bool) {
-                state.error = false;
-            } else {
-                localStorage.clear();
-                localStorage.setItem('totalPrice', state.lastPlate.price);
-                localStorage.setItem('restaurantId', state.lastPlate.restaurant_id);
-                state.totalItems = 1;
-                localStorage.setItem('totalItems', 1);
-                localStorage.setItem(`quantity%${state.lastPlate.id}`, 1);
-                state.error = false;
-            }
-        },
+        // clearCart(bool) {
+        //     if (!bool) {
+        //         state.error = false;
+        //     } else {
+        //         localStorage.clear();
+        //         localStorage.setItem('totalPrice', state.lastPlate.price);
+        //         localStorage.setItem('restaurantId', state.lastPlate.restaurant_id);
+        //         state.totalItems = 1;
+        //         localStorage.setItem('totalItems', 1);
+        //         localStorage.setItem(`quantity%${state.lastPlate.id}`, 1);
+        //         state.error = false;
+        //     }
+        // },
     },
     beforeMount() {
         console.log(this.$route)
