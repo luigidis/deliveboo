@@ -193,15 +193,21 @@ class RestaurantController extends Controller
         $data['status'] = 'In elaborazione';
         $data['total'] = $totalPrice;
 
+        // dd($request);
         $order = Order::create($data);
+
+        $quantities = [];
+        foreach ($request['quantity_plate'] as $quantity) {
+            $quantities[] = $quantity;
+        }
 
         for ($j = 0; $j < count($plates); $j++) {
             $paramsPivot = [
                 'order_id' => $order->id,
                 'plate_id' => $plates[$j]->id,
-                'quantity' => 1,
+                'quantity' => $quantities[$j],
             ];
-            
+
             $orderPlate = OrderPlate::create($paramsPivot);
         }
 

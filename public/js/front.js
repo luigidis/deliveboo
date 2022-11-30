@@ -1996,15 +1996,6 @@ __webpack_require__.r(__webpack_exports__);
       form: {
         token: "",
         amount: ""
-      },
-      data: JSON.stringify(this.form),
-      config: {
-        method: "post",
-        url: "http://localhost:8000/api/orders/payment",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        data: this.data
       }
     };
   },
@@ -2015,36 +2006,35 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    // makeOrder() {
-    //     axios.get(`api/orders/making/${this.ids}`)
-    //         .then(res => {
-    //             console.log(res.data);
-    //         }).catch(err => {
-    //             console.log(err);
-    //             //redirect to 404
-    //             this.$router.push({ name: "404" });
-    //         });
-    // },
     onLoad: function onLoad() {
       this.disable = false;
     },
     onSuccess: function onSuccess(payload) {
-      var _this = this;
       var token = payload.nonce;
-      this.form.token = token;
-      axios(this.config).then(function (response) {
-        console.log(JSON.stringify(response.data));
-      })["catch"](function (error) {
-        console.log(error);
-      });
-      setTimeout(function () {
-        _this.$router.push({
-          name: "SuccessPayment"
-        });
-      }, "1000");
+      this.$emit('onSuccess', token);
+
+      // this.form.token = token
+
+      // let data = JSON.stringify(this.form)
+
+      // let config = {
+      //     method: "post",
+      //     url: "http://localhost:8000/api/orders/payment",
+      //     headers: { "Content-Type": "application/json" },
+      //     data: data,
+      // }
+
+      // axios(config)
+      //     .then(function (response) {
+      //         console.log(JSON.stringify(response.data));
+      //     })
+      //     .catch(function (error) {
+      //         console.log(`Axios => ${error}`);
+      //     });
     },
     onError: function onError(error) {
-      console.log("onError => ".concat(error.message));
+      // console.log(`onError => ${error.message}`);
+      this.$emit('onError', error);
     }
   },
   mounted: function mounted() {
@@ -2375,20 +2365,43 @@ __webpack_require__.r(__webpack_exports__);
       address_client: '',
       phone_client: '',
       quantity_plate: '',
-      errors: {},
-      success: null
+      form: {
+        token: "",
+        amount: ""
+      }
     };
   },
   components: {
     PaymentComponent: _components_PaymentComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   methods: {
-    getPayment: function getPayment() {
-      this.$refs.PaymentBtn.$refs.paymentBraintreeBtn.click();
+    paymentSuccess: function paymentSuccess(token) {
+      this.form.token = token;
+      var data = JSON.stringify(this.form);
+      var config = {
+        method: "post",
+        url: "http://localhost:8000/api/orders/payment",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        data: data
+      };
+      axios(config).then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })["catch"](function (error) {
+        console.log("Payment => ".concat(error));
+      });
+    },
+    paymentError: function paymentError(error) {
+      console.log(error);
+    },
+    clearCart: function clearCart() {
+      localStorage.clear();
     },
     submitForm: function submitForm() {
       var _this = this;
-      var data = {
+      this.$refs.PaymentBtn.$refs.paymentBraintreeBtn.click();
+      var dataForm = {
         name_client: this.name_client,
         surname_client: this.surname_client,
         email_client: this.email_client,
@@ -2396,16 +2409,17 @@ __webpack_require__.r(__webpack_exports__);
         phone_client: this.phone_client,
         quantity_plate: this.quantity
       };
-      axios.post("api/orders/making/".concat(this.ids), data).then(function () {
+      axios.post("api/orders/making/".concat(this.ids), dataForm).then(function () {
         _this.name_client = _this.surname_client = _this.email_client = _this.address_client = _this.phone_client = '';
-        _this.show = true;
-        _this.errors = {};
-        _this.success = true;
+        _this.clearCart();
       })["catch"](function (err) {
-        console.log(err.response);
-        var errors = err.response.data.errors;
-        _this.errors = errors;
+        console.log("Form => ".concat(err));
       });
+      setTimeout(function () {
+        _this.$router.push({
+          name: "SuccessPayment"
+        });
+      }, "1000");
     }
   },
   mounted: function mounted() {
@@ -2416,6 +2430,8 @@ __webpack_require__.r(__webpack_exports__);
         this.quantity.push(localStorage.getItem(localStorage.key(i)));
       }
     }
+    this.form.amount = localStorage.getItem("totalPrice");
+
     // Genero il token 
     axios.get('api/orders/generate').then(function (res) {
       var token = res.data.token;
@@ -2703,8 +2719,11 @@ var render = function render() {
     scopedSlots: _vm._u([{
       key: "button",
       fn: function fn(slotProps) {
-        return [_c("v-btn", {
+        return [_c("button", {
           ref: "paymentBraintreeBtn",
+          attrs: {
+            color: "success"
+          },
           on: {
             click: slotProps.submit
           }
@@ -3191,7 +3210,7 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("div", {
     staticClass: "flex items-center justify-center h-full md:h-screen flex-col md:flex-row gap-3 py-5 mt-5 md:mt-none"
-  }, [_vm.success ? _c("div", [_vm._v("\n        Form inviato\n    ")]) : _c("form", {
+  }, [_c("form", {
     staticClass: "box_shadow_stroke py-4 px-2 w-4/5 md:w-2/5",
     on: {
       submit: function submit($event) {
@@ -3213,7 +3232,9 @@ var render = function render() {
       value: _vm.name_client,
       expression: "name_client"
     }],
-    staticClass: "py-2 px-1 box_shadow_stroke_small",
+    "class": {
+      "py-2 px-1 box_shadow_stroke_small": true
+    },
     attrs: {
       type: "text",
       id: "name_client",
@@ -3242,7 +3263,9 @@ var render = function render() {
       value: _vm.surname_client,
       expression: "surname_client"
     }],
-    staticClass: "py-2 px-1 box_shadow_stroke_small",
+    "class": {
+      "py-2 px-1 box_shadow_stroke_small": true
+    },
     attrs: {
       type: "text",
       id: "surname_client",
@@ -3271,7 +3294,9 @@ var render = function render() {
       value: _vm.email_client,
       expression: "email_client"
     }],
-    staticClass: "py-2 px-1 box_shadow_stroke_small",
+    "class": {
+      "py-2 px-1 box_shadow_stroke_small": true
+    },
     attrs: {
       type: "text",
       id: "email_client",
@@ -3300,7 +3325,9 @@ var render = function render() {
       value: _vm.phone_client,
       expression: "phone_client"
     }],
-    staticClass: "py-2 px-1 box_shadow_stroke_small",
+    "class": {
+      "py-2 px-1 box_shadow_stroke_small": true
+    },
     attrs: {
       type: "text",
       id: "phone_client",
@@ -3329,7 +3356,9 @@ var render = function render() {
       value: _vm.address_client,
       expression: "address_client"
     }],
-    staticClass: "py-2 px-1 box_shadow_stroke_small",
+    "class": {
+      "py-2 px-1 box_shadow_stroke_small": true
+    },
     attrs: {
       type: "text",
       id: "address_client",
@@ -3348,14 +3377,15 @@ var render = function render() {
     "class": {
       "cursor-pointer add_to_cart box_shadow_stroke_small bg_link_color c_text_color text-xl py-1 px-2 hover:shadow-none": true,
       "opacity-25": !_vm.show
-    },
-    on: {
-      click: _vm.getPayment
     }
   }, [_vm._v("\n            " + _vm._s(!_vm.show ? "Caricamento" : "Procedi col pagamento") + "\n        ")])]), _vm._v(" "), _vm.show ? _c("PaymentComponent", {
     ref: "PaymentBtn",
     attrs: {
       authorization: _vm.tokenApi
+    },
+    on: {
+      onSuccess: _vm.paymentSuccess,
+      onError: _vm.paymentError
     }
   }) : _vm._e()], 1);
 };
