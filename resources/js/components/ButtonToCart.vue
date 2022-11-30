@@ -1,5 +1,5 @@
 <template>
-    <button v-on:click="addCart(plate)"
+    <button @click="(addCart(plate), test())"
         class="add_to_cart box_shadow_stroke_small bg_link_color c_text_color text-xl py-1 px-2 leading-none font-normal hover:shadow-none">
         Aggiungi al carrello
     </button>
@@ -33,8 +33,10 @@ export default {
             }
             if (localStorage.getItem(`quantity%${plate.id}`))
                 localStorage.setItem(`quantity%${plate.id}`, parseFloat(localStorage.getItem(`quantity%${plate.id}`)) + 1);
-            else
+            else {
                 localStorage.setItem(`quantity%${plate.id}`, 1);
+                state.ids.push(plate.id);
+            }
         },
 
     },

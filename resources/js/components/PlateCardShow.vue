@@ -12,18 +12,24 @@
                     {{ plate.price }}€
                 </span>
             </div>
-            <ButtonToCart :plate="plate" />
+            <ButtonToCart :plate="plate"/>
         </div>
     </div>
 </template>
 <script>
 import ButtonToCart from './ButtonToCart.vue'
+import state from '../store'
 
 export default{
     name: 'PlateCardShow',
     props: ['plate'],
     components: {
         ButtonToCart
-    }
+    },
+    computed: {
+        ids() {
+            return state.ids;
+        }
+    },
 }
 </script>

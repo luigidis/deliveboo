@@ -7,7 +7,7 @@
         <div>
             <img class="block object-cover w-full h-full" :src="plate.img" :alt="`Foto piatto ${plate.name}`">
         </div>
-        <div class="desc p-2 flex flex-column h-full">
+        <div class="desc p-2 flex flex-column">
             <h3 class="text-xl font-bold">
                 {{ plate.name }}
             </h3>
@@ -18,24 +18,83 @@
                 {{ plate.price }}€
             </span>
         </div>
-        <ButtonToCart class="cartBtn" :plate="plate" />
+
+        <ButtonToCart class="cartBtn" :plate="plate" v-if="!ids.includes(plate.id)" />
+
+        <div v-else>
+            <span @click="removeCart()" class="text-3xl cursor-pointer">-</span>
+            {{ plateQuantity }}
+            <span @click="addCart()" class="text-3xl cursor-pointer">+</span>
+        </div>
     </div>
 </template>
+
 <script>
-import ButtonToCart from './ButtonToCart.vue'
-export default {
-    name: "PlateCard",
-    props: ['plate'],
-    components: {
-        ButtonToCart
+
+    import ButtonToCart from './ButtonToCart.vue'
+    import state from '../store'
+
+    export default {
+        name: "PlateCard",
+        props: ['plate'],
+        components: {
+            ButtonToCart
+        },
+        data() {
+            return {
+                plateQuantity: 1,
+            }
+        },
+        computed: {
+            ids() {
+                return state.ids;
+            },
+            quantity() {
+                return state.quantity;
+            },
+        },
+        methods: {
+            addCart() {
+                localStorage.setItem(`quantity%${this.plate.id}`, parseFloat(localStorage.getItem(`quantity%${this.plate.id}`)) + 1);
+                this.plateQuantity = localStorage.getItem(`quantity%${this.plate.id}`);
+                state.totalItems++;
+                localStorage.totalItems = parseInt(parseInt(localStorage.totalItems) + 1);
+            },
+            removeCart() {
+                if(this.plateQuantity == 1) {
+                    localStorage.removeItem(`quantity%${this.plate.id}`);
+                    const index = this.ids.indexOf(this.plate.id);
+                    state.ids.splice(index, 1);
+                    state.totalItems--;
+                    localStorage.totalItems = parseInt(parseInt(localStorage.totalItems) - 1);
+                    if(!state.totalItems) {
+                        localStorage.clear();
+                    }
+                }
+                else {
+                    localStorage.setItem(`quantity%${this.plate.id}`, parseFloat(localStorage.getItem(`quantity%${this.plate.id}`)) - 1);
+                    this.plateQuantity = localStorage.getItem(`quantity%${this.plate.id}`);
+                    state.totalItems--;
+                    localStorage.totalItems = parseInt(parseInt(localStorage.totalItems) - 1);
+                }
+            },
+        },
+        mounted() {
+            const index = this.ids.indexOf(this.plate.id);
+            if(index != -1) 
+                this.plateQuantity = this.quantity[index];
+        }
     }
-}
 </script>
+
+
 <style lang="scss" scoped>
-.cartBtn {
-    position: absolute;
-    bottom: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
-}
+
+    .cartBtn {
+        position: absolute;
+        bottom: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
 </style>
