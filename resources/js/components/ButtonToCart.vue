@@ -36,6 +36,7 @@ export default {
             else {
                 localStorage.setItem(`quantity%${plate.id}`, 1);
                 state.ids.push(plate.id);
+                state.quantity.push('1');
             }
         },
 

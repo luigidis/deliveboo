@@ -14,18 +14,18 @@ const routes = [
         component: Home,
     },
     {
-        path: '/ricerca',
+        path: '/ristoranti/ricerca',
         name: 'restaurants.search',
         component: AdvancedSearch,
     },
     {
-        path: '/ristoranti/:slug',
+        path: '/ristoranti/:slug/piatti',
         name: 'restaurants.show',
         component: RestaurantsShow,
         props: true
     },
     {
-        path: '/ristoranti/piatti/:slug',
+        path: '/ristoranti/:restSlug/piatti/:slug',
         name: 'restaurants.plateShow',
         component: PlateShow,
         props: true
