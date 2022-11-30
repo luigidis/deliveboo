@@ -3157,9 +3157,9 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("div", {
     staticClass: "container py-28"
-  }, [_c("h1", {
+  }, [_vm.plates ? _c("div", [_c("h1", {
     staticClass: "text-4xl font-bold text-center pb-6"
-  }, [_vm._v("\n        Ordiner per il ristorante: " + _vm._s(_vm.restaurant.name) + "\n    ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n            Ordiner per il ristorante: " + _vm._s(_vm.restaurant.name) + "\n        ")]), _vm._v(" "), _c("div", {
     staticClass: "grid rid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8"
   }, _vm._l(_vm.plates, function (plate, i) {
     return _c("div", {
@@ -3175,21 +3175,23 @@ var render = function render() {
       staticClass: "desc p-2 flex flex-column gap-3 justify-between grow"
     }, [_c("h3", {
       staticClass: "text-md font-bold mb-2"
-    }, [_vm._v("\n                    " + _vm._s(plate.name) + "\n                ")]), _vm._v(" "), _c("div", [_c("span", {
+    }, [_vm._v("\n                        " + _vm._s(plate.name) + "\n                    ")]), _vm._v(" "), _c("div", [_c("span", {
       staticClass: "font-normal block leading-none mb-2"
-    }, [_vm._v("\n                        Quantità:" + _vm._s(_vm.quantity[i]) + "\n                    ")]), _vm._v(" "), _c("span", {
+    }, [_vm._v("\n                            Quantità:" + _vm._s(_vm.quantity[i]) + "\n                        ")]), _vm._v(" "), _c("span", {
       staticClass: "font-normal block"
-    }, [_vm._v("\n                        Totale: " + _vm._s((parseFloat(plate.price) * parseFloat(_vm.quantity[i])).toFixed(2)) + "€\n                    ")])])])]);
+    }, [_vm._v("\n                            Totale: " + _vm._s((parseFloat(plate.price) * parseFloat(_vm.quantity[i])).toFixed(2)) + "€\n                        ")])])])]);
   }), 0), _vm._v(" "), _c("div", {
     staticClass: "flex flex-column gap-4 items-start"
   }, [_c("div", {
     staticClass: "text-xl"
-  }, [_vm._v("\n            Totale: " + _vm._s(_vm.totalPrice) + "€\n        ")]), _vm._v(" "), _c("router-link", {
+  }, [_vm._v("\n                Totale: " + _vm._s(_vm.totalPrice) + "€\n            ")]), _vm._v(" "), _c("router-link", {
     staticClass: "add_to_cart box_shadow_stroke_small bg_link_color c_text_color text-xl py-1 px-2 hover:shadow-none",
     attrs: {
       to: "/checkout"
     }
-  }, [_vm._v("\n            Checkout\n        ")])], 1)]);
+  }, [_vm._v("\n                Checkout\n            ")])], 1)]) : _c("div", [_c("h1", {
+    staticClass: "text-4xl font-bold text-center pb-6"
+  }, [_vm._v("\n            Carrello vuoto\n        ")])])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
