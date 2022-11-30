@@ -29,4 +29,4 @@ Route::get('cart/plates/{id}', 'Api\RestaurantController@cartPlates')->name('res
 Route::get('orders/generate', 'Api\Orders\OrderController@generate');
 Route::post('orders/payment', 'Api\Orders\OrderController@payment');
 
-Route::get('orders/making/{id}', 'Api\RestaurantController@makeOrder')->name('restaurants.makeOrder');
+Route::post('orders/making/{id}', 'Api\RestaurantController@makeOrder');

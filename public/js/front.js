@@ -1993,8 +1993,6 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       disable: true,
-      ids: new Array(),
-      quantity: new Array(),
       form: {
         token: "",
         amount: ""
@@ -2017,15 +2015,16 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    makeOrder: function makeOrder() {
-      axios.get("api/orders/making/".concat(this.ids)).then(function (res) {
-        console.log(res.data);
-      })["catch"](function (err) {
-        console.log(err);
-        //redirect to 404
-        // this.$router.push({ name: "404" });
-      });
-    },
+    // makeOrder() {
+    //     axios.get(`api/orders/making/${this.ids}`)
+    //         .then(res => {
+    //             console.log(res.data);
+    //         }).catch(err => {
+    //             console.log(err);
+    //             //redirect to 404
+    //             this.$router.push({ name: "404" });
+    //         });
+    // },
     onLoad: function onLoad() {
       this.disable = false;
     },
@@ -2050,12 +2049,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.form.amount = localStorage.getItem("totalPrice");
-    for (var i = 0; i < localStorage.length - 1; i++) {
-      if (localStorage.key(i).includes("quantity")) {
-        this.ids.push(localStorage.key(i).split("%")[1]);
-        this.quantity.push(localStorage.getItem(localStorage.key(i)));
-      }
-    }
   }
 });
 
@@ -2339,15 +2332,6 @@ __webpack_require__.r(__webpack_exports__);
           name: "404"
         });
       });
-    },
-    makeOrder: function makeOrder() {
-      axios.get("api/orders/making/".concat(this.ids)).then(function (res) {
-        console.log(res.data);
-      })["catch"](function (err) {
-        console.log(err);
-        //redirect to 404
-        // this.$router.push({ name: "404" });
-      });
     }
   },
   mounted: function mounted() {
@@ -2382,18 +2366,61 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       show: false,
-      tokenApi: ''
+      tokenApi: '',
+      ids: new Array(),
+      quantity: new Array(),
+      name_client: '',
+      surname_client: '',
+      email_client: '',
+      address_client: '',
+      phone_client: '',
+      quantity_plate: '',
+      errors: {},
+      success: null
     };
   },
   components: {
     PaymentComponent: _components_PaymentComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  methods: {
+    getPayment: function getPayment() {
+      this.$refs.PaymentBtn.$refs.paymentBraintreeBtn.click();
+    },
+    submitForm: function submitForm() {
+      var _this = this;
+      var data = {
+        name_client: this.name_client,
+        surname_client: this.surname_client,
+        email_client: this.email_client,
+        address_client: this.address_client,
+        phone_client: this.phone_client,
+        quantity_plate: this.quantity
+      };
+      axios.post("api/orders/making/".concat(this.ids), data).then(function () {
+        _this.name_client = _this.surname_client = _this.email_client = _this.address_client = _this.phone_client = '';
+        _this.show = true;
+        _this.errors = {};
+        _this.success = true;
+      })["catch"](function (err) {
+        console.log(err.response);
+        var errors = err.response.data.errors;
+        _this.errors = errors;
+      });
+    }
+  },
   mounted: function mounted() {
-    var _this = this;
+    var _this2 = this;
+    for (var i = 0; i < localStorage.length - 1; i++) {
+      if (localStorage.key(i).includes("quantity")) {
+        this.ids.push(localStorage.key(i).split("%")[1]);
+        this.quantity.push(localStorage.getItem(localStorage.key(i)));
+      }
+    }
+    // Genero il token 
     axios.get('api/orders/generate').then(function (res) {
       var token = res.data.token;
-      _this.tokenApi = token;
-      _this.show = true;
+      _this2.tokenApi = token;
+      _this2.show = true;
     })["catch"](function (error) {
       console.log(error);
       this.show = false;
@@ -2672,7 +2699,18 @@ var render = function render() {
       load: _vm.onLoad,
       success: _vm.onSuccess,
       error: _vm.onError
-    }
+    },
+    scopedSlots: _vm._u([{
+      key: "button",
+      fn: function fn(slotProps) {
+        return [_c("v-btn", {
+          ref: "paymentBraintreeBtn",
+          on: {
+            click: slotProps.submit
+          }
+        })];
+      }
+    }])
   });
 };
 var staticRenderFns = [];
@@ -3123,10 +3161,7 @@ var render = function render() {
   }), 0), _vm._v(" "), _c("div", {
     staticClass: "flex flex-column gap-4 items-start"
   }, [_c("div", {
-    staticClass: "text-xl",
-    on: {
-      click: _vm.makeOrder
-    }
+    staticClass: "text-xl"
   }, [_vm._v("\n            Totale: " + _vm._s(_vm.totalPrice) + "€\n        ")]), _vm._v(" "), _c("router-link", {
     staticClass: "add_to_cart box_shadow_stroke_small bg_link_color c_text_color text-xl py-1 px-2 hover:shadow-none",
     attrs: {
@@ -3155,8 +3190,170 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "flex items-center justify-center h-screen flex-column gap-3 py-5"
-  }, [_vm.show ? _c("PaymentComponent", {
+    staticClass: "flex items-center justify-center h-full md:h-screen flex-col md:flex-row gap-3 py-5 mt-5 md:mt-none"
+  }, [_vm.success ? _c("div", [_vm._v("\n        Form inviato\n    ")]) : _c("form", {
+    staticClass: "box_shadow_stroke py-4 px-2 w-4/5 md:w-2/5",
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.submitForm.apply(null, arguments);
+      }
+    }
+  }, [_c("div", {
+    staticClass: "py-2 flex flex-column text-lg"
+  }, [_c("label", {
+    staticClass: "font-bold",
+    attrs: {
+      "for": "name"
+    }
+  }, [_vm._v("Nome")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.name_client,
+      expression: "name_client"
+    }],
+    staticClass: "py-2 px-1 box_shadow_stroke_small",
+    attrs: {
+      type: "text",
+      id: "name_client",
+      name: "name_client"
+    },
+    domProps: {
+      value: _vm.name_client
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.name_client = $event.target.value;
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "py-2 flex flex-column text-lg"
+  }, [_c("label", {
+    staticClass: "font-bold",
+    attrs: {
+      "for": "surname"
+    }
+  }, [_vm._v("Cognome")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.surname_client,
+      expression: "surname_client"
+    }],
+    staticClass: "py-2 px-1 box_shadow_stroke_small",
+    attrs: {
+      type: "text",
+      id: "surname_client",
+      name: "surname_client"
+    },
+    domProps: {
+      value: _vm.surname_client
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.surname_client = $event.target.value;
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "py-2 flex flex-column text-lg"
+  }, [_c("label", {
+    staticClass: "font-bold",
+    attrs: {
+      "for": "email_client"
+    }
+  }, [_vm._v("Email")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.email_client,
+      expression: "email_client"
+    }],
+    staticClass: "py-2 px-1 box_shadow_stroke_small",
+    attrs: {
+      type: "text",
+      id: "email_client",
+      name: "email_client"
+    },
+    domProps: {
+      value: _vm.email_client
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.email_client = $event.target.value;
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "py-2 flex flex-column text-lg"
+  }, [_c("label", {
+    staticClass: "font-bold",
+    attrs: {
+      "for": "phone_client"
+    }
+  }, [_vm._v("Numero di Cellulare")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.phone_client,
+      expression: "phone_client"
+    }],
+    staticClass: "py-2 px-1 box_shadow_stroke_small",
+    attrs: {
+      type: "text",
+      id: "phone_client",
+      name: "phone_client"
+    },
+    domProps: {
+      value: _vm.phone_client
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.phone_client = $event.target.value;
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "py-2 flex flex-column text-lg"
+  }, [_c("label", {
+    staticClass: "font-bold",
+    attrs: {
+      "for": "address_client"
+    }
+  }, [_vm._v("Indirizzo di spedizione")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.address_client,
+      expression: "address_client"
+    }],
+    staticClass: "py-2 px-1 box_shadow_stroke_small",
+    attrs: {
+      type: "text",
+      id: "address_client",
+      name: "address_client"
+    },
+    domProps: {
+      value: _vm.address_client
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.address_client = $event.target.value;
+      }
+    }
+  })]), _vm._v(" "), _c("button", {
+    "class": {
+      "cursor-pointer add_to_cart box_shadow_stroke_small bg_link_color c_text_color text-xl py-1 px-2 hover:shadow-none": true,
+      "opacity-25": !_vm.show
+    },
+    on: {
+      click: _vm.getPayment
+    }
+  }, [_vm._v("\n            " + _vm._s(!_vm.show ? "Caricamento" : "Procedi col pagamento") + "\n        ")])]), _vm._v(" "), _vm.show ? _c("PaymentComponent", {
+    ref: "PaymentBtn",
     attrs: {
       authorization: _vm.tokenApi
     }

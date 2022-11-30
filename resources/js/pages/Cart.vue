@@ -25,7 +25,7 @@
         </div>
 
         <div class="flex flex-column gap-4 items-start">
-            <div class="text-xl" @click="makeOrder">
+            <div class="text-xl">
                 Totale: {{ totalPrice }}€
             </div>
             <router-link to="/checkout"
@@ -59,16 +59,6 @@ export default {
                     console.log(err);
                     //redirect to 404
                     this.$router.push({ name: "404" });
-                });
-        },
-        makeOrder() {
-            axios.get(`api/orders/making/${this.ids}`)
-                .then(res => {
-                    console.log(res.data);
-                }).catch(err => {
-                    console.log(err);
-                    //redirect to 404
-                    // this.$router.push({ name: "404" });
                 });
         },
     },

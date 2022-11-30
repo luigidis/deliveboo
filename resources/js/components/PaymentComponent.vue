@@ -1,7 +1,17 @@
 <template>
     <v-braintree :authorization="authorization" locale="it_IT" @load="onLoad" @success="onSuccess" @error="onError"
         :btnText="disable ? 'Caricamento' : 'Procedi col pagamento'"
-        btnClass="add_to_cart box_shadow_stroke_small bg_link_color c_text_color text-xl py-1 px-2 hover:shadow-none" />
+        btnClass="add_to_cart box_shadow_stroke_small bg_link_color c_text_color text-xl py-1 px-2 hover:shadow-none">
+        <template v-slot:button="slotProps">
+            <!-- <v-btn @click="slotProps.submit" :class="{
+                'cursor-pointer add_to_cart box_shadow_stroke_small bg_link_color c_text_color text-xl py-1 px-2 hover:shadow-none': true,
+                'opacity-25': disable
+                }">
+                {{ disable ? 'Caricamento' : 'Procedi col pagamento' }}
+            </v-btn> -->
+            <v-btn @click="slotProps.submit" ref="paymentBraintreeBtn" />
+        </template>
+    </v-braintree>
 </template>
 <script>
 export default {
@@ -9,8 +19,6 @@ export default {
     data() {
         return {
             disable: true,
-            ids: new Array,
-            quantity: new Array,
             form: {
                 token: "",
                 amount: "",
@@ -19,7 +27,7 @@ export default {
             config: {
                 method: "post",
                 url: "http://localhost:8000/api/orders/payment",
-                headers: {"Content-Type": "application/json"},
+                headers: { "Content-Type": "application/json" },
                 data: this.data,
             },
         }
@@ -31,16 +39,16 @@ export default {
         },
     },
     methods: {
-        makeOrder(){
-            axios.get(`api/orders/making/${this.ids}`)
-                .then(res => {
-                    console.log(res.data);
-                }).catch(err => {
-                    console.log(err);
-                    //redirect to 404
-                    // this.$router.push({ name: "404" });
-                });
-        },
+        // makeOrder() {
+        //     axios.get(`api/orders/making/${this.ids}`)
+        //         .then(res => {
+        //             console.log(res.data);
+        //         }).catch(err => {
+        //             console.log(err);
+        //             //redirect to 404
+        //             this.$router.push({ name: "404" });
+        //         });
+        // },
         onLoad() {
             this.disable = false
         },
@@ -56,7 +64,7 @@ export default {
                     console.log(error);
                 });
 
-            
+
             setTimeout(() => {
                 this.$router.push({ name: "SuccessPayment" });
             }, "1000")
@@ -67,13 +75,6 @@ export default {
     },
     mounted() {
         this.form.amount = localStorage.getItem("totalPrice");
-
-        for (var i = 0; i < localStorage.length - 1; i++) {
-            if (localStorage.key(i).includes("quantity")) {
-                this.ids.push(localStorage.key(i).split("%")[1]);
-                this.quantity.push(localStorage.getItem(localStorage.key(i)));
-            }
-        }
     }
 }
 </script>

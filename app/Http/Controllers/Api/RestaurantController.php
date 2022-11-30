@@ -9,6 +9,7 @@ use App\OrderPlate;
 use App\Plate;
 use App\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class RestaurantController extends Controller
 {
@@ -162,7 +163,7 @@ class RestaurantController extends Controller
         return response()->json(compact('plates', 'restaurant'));
     }
 
-    public function makeOrder($id)
+    public function makeOrder($id, Request $request)
     {
         $idArray = [];
         foreach (explode(',', $id) as $plate_id) {
@@ -177,19 +178,22 @@ class RestaurantController extends Controller
             $totalPrice += $plates[0]->price;
         }
 
-        $restaurant = Restaurant::where('id', $plates[0]->restaurant_id)->first();
+        $restaurant = Restaurant::where('id', $plates[0]->restaurant_id)->first(); 
 
-        $params = [
-            'status' => 'In elaborazione',
-            'total' => $totalPrice,
-            'name_client' => 'Giuseppe',
-            'surname_client' => 'Cosenza',
-            'address_client' => 'Non lo so',
-            'phone_client' => '+39 324 808 8907',
-            'email_client' => 'nonloso@gmail.com',
-        ];
+        $data = $request->all();
+        
+        $validator = Validator::make($data, [
+            'name_client' => 'required|max:255|min:2',
+            'surname_client' => 'required|max:255|min:2',
+            'address_client' => 'required',
+            'phone_client' => 'required|numeric|min:10|max:12',
+            'email_client' => 'required|email',
+        ]);
+        
+        $data['status'] = 'In elaborazione';
+        $data['total'] = $totalPrice;
 
-        $order = Order::create($params);
+        $order = Order::create($data);
 
         for ($j = 0; $j < count($plates); $j++) {
             $paramsPivot = [
@@ -201,7 +205,7 @@ class RestaurantController extends Controller
             $orderPlate = OrderPlate::create($paramsPivot);
         }
 
-        return response()->json(compact('plates', 'restaurant', 'order'));
+        return response()->json(compact('plates', 'restaurant', 'order', 'orderPlate'));
     }
 
     /**
