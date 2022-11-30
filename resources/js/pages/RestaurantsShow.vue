@@ -1,12 +1,30 @@
 <template>
     <div class="container py-20">
-        <h2 class="text-6xl font-bold text-center pb-6">
-            {{ restaurant.name }}
-        </h2>
-        <div class="grid rid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <PlateCard :plate="plate" v-for="(plate, i) in plates" :key="92 * i" />
+
+        <div class="flex gap-3">
+            
+            <h2 class="text-6xl font-bold text-center pb-6">
+                {{ restaurant.name }}
+            </h2>
+
+            <div class="flex items-center justify-end self-start ml-auto pt-2">
+
+                <router-link :to="{
+                    name: 'home'}"
+                    class="bg_seco_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2">
+                    Torna alla home
+                </router-link>
+
+            </div>
+
         </div>
+
+        <div class="grid rid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <PlateCard :slug="slug" :plate="plate" v-for="(plate, i) in plates" :key="92 * i" />
+        </div>
+
         <LayoverAlert />
+
     </div>
 </template>
 

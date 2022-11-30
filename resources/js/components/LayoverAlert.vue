@@ -44,6 +44,9 @@ export default {
                 localStorage.setItem('totalItems', 1);
                 localStorage.setItem(`quantity%${state.lastPlate.id}`, 1);
                 state.error = false;
+                state.ids = new Array();
+                state.ids.push(state.lastPlate.id);
+                state.quantity = [1];
             }
         },
     }
