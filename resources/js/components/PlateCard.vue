@@ -21,10 +21,10 @@
 
         <ButtonToCart class="cartBtn" :plate="plate" v-if="!ids.includes(plate.id)" />
 
-        <div v-else>
-            <span @click="removeCart()" class="text-3xl cursor-pointer">-</span>
-            {{ plateQuantity }}
-            <span @click="addCart()" class="text-3xl cursor-pointer">+</span>
+        <div class="cartBtn flex justify-center items-center gap-3" v-else>
+            <span @click="removeCart()" class="add_to_cart cursor-pointer box_shadow_stroke_small bg_text_color c_prim_color text-2xl py-1 px-2 font-normal hover:shadow-none">-</span>
+            <span class="add_to_cart box_shadow_stroke_small bg_link_color c_text_color text-3xl py-1 px-2 font-bold">{{ plateQuantity }}</span>
+            <span @click="addCart()" class="add_to_cart cursor-pointer box_shadow_stroke_small bg_text_color c_prim_color text-2xl py-1 px-2 font-normal hover:shadow-none">+</span>
         </div>
     </div>
 </template>
@@ -72,6 +72,7 @@
                     }
                 }
                 else {
+                    console.log('Visto fra?')
                     localStorage.setItem(`quantity%${this.plate.id}`, parseFloat(localStorage.getItem(`quantity%${this.plate.id}`)) - 1);
                     this.plateQuantity = localStorage.getItem(`quantity%${this.plate.id}`);
                     state.totalItems--;
