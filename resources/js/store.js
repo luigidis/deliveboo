@@ -16,6 +16,8 @@ const state = Vue.observable({
     totalItems: localStorage.getItem('totalItems') || 0,
     ids: ids,
     quantity: quantity,
+    totalPrice: localStorage.getItem('totalPrice') || 0,
+    restaurantId: localStorage.getItem('restaurantId'),
 });
 
 export default state;

@@ -1,45 +1,61 @@
 <template>
-    <div class="flex items-center justify-center h-full md:h-screen flex-col md:flex-row gap-3 py-5 mt-5 md:mt-none">
-        <form @submit.prevent="submitForm" class="box_shadow_stroke py-4 px-2 w-4/5 md:w-2/5">
-            <div class="py-2 flex flex-column text-lg">
-                <label class="font-bold" for="name">Nome</label>
-                <input :class="{
-                    'py-2 px-1 box_shadow_stroke_small': true,
-                }" type="text" id="name_client" v-model="name_client" name="name_client">
-            </div>
-            <div class="py-2 flex flex-column text-lg">
-                <label class="font-bold" for="surname">Cognome</label>
-                <input :class="{
-                    'py-2 px-1 box_shadow_stroke_small': true,
-                }" type="text" id="surname_client" v-model="surname_client" name="surname_client">
-            </div>
-            <div class="py-2 flex flex-column text-lg">
-                <label class="font-bold" for="email_client">Email</label>
-                <input :class="{
-                    'py-2 px-1 box_shadow_stroke_small': true,
-                }" type="text" id="email_client" v-model="email_client" name="email_client">
-            </div>
-            <div class="py-2 flex flex-column text-lg">
-                <label class="font-bold" for="phone_client">Numero di Cellulare</label>
-                <input :class="{
-                    'py-2 px-1 box_shadow_stroke_small': true,
-                }" type="text" id="phone_client" v-model="phone_client" name="phone_client">
-            </div>
-            <div class="py-2 flex flex-column text-lg">
-                <label class="font-bold" for="address_client">Indirizzo di spedizione</label>
-                <input :class="{
-                    'py-2 px-1 box_shadow_stroke_small': true,
-                }" type="text" id="address_client" v-model="address_client" name="address_client">
-            </div>
-            <button :class="{
-                'cursor-pointer add_to_cart box_shadow_stroke_small bg_link_color c_text_color text-xl py-1 px-2 hover:shadow-none': true,
-                'opacity-25': !show,
-            }">
-                {{ !show ? 'Caricamento' : 'Procedi col pagamento' }}
-            </button>
-        </form>
-        <PaymentComponent ref="PaymentBtn" v-if="show" :authorization="tokenApi" @onSuccess="paymentSuccess"
-            @onError="paymentError" />
+    <div>
+
+        <div v-if="bool" class="flex items-center justify-center h-full md:h-screen flex-col md:flex-row gap-3 py-5 mt-5 md:mt-none">
+            <form @submit.prevent="submitForm" class="box_shadow_stroke py-4 px-2 w-4/5 md:w-2/5">
+                <div class="py-2 flex flex-column text-lg">
+                    <label class="font-bold" for="name">Nome</label>
+                    <input :class="{
+                        'py-2 px-1 box_shadow_stroke_small': true,
+                    }" type="text" id="name_client" v-model="name_client" name="name_client">
+                </div>
+                <div class="py-2 flex flex-column text-lg">
+                    <label class="font-bold" for="surname">Cognome</label>
+                    <input :class="{
+                        'py-2 px-1 box_shadow_stroke_small': true,
+                    }" type="text" id="surname_client" v-model="surname_client" name="surname_client">
+                </div>
+                <div class="py-2 flex flex-column text-lg">
+                    <label class="font-bold" for="email_client">Email</label>
+                    <input :class="{
+                        'py-2 px-1 box_shadow_stroke_small': true,
+                    }" type="text" id="email_client" v-model="email_client" name="email_client">
+                </div>
+                <div class="py-2 flex flex-column text-lg">
+                    <label class="font-bold" for="phone_client">Numero di Cellulare</label>
+                    <input :class="{
+                        'py-2 px-1 box_shadow_stroke_small': true,
+                    }" type="text" id="phone_client" v-model="phone_client" name="phone_client">
+                </div>
+                <div class="py-2 flex flex-column text-lg">
+                    <label class="font-bold" for="address_client">Indirizzo di spedizione</label>
+                    <input :class="{
+                        'py-2 px-1 box_shadow_stroke_small': true,
+                    }" type="text" id="address_client" v-model="address_client" name="address_client">
+                </div>
+                <button :class="{
+                    'cursor-pointer add_to_cart box_shadow_stroke_small bg_link_color c_text_color text-xl py-1 px-2 hover:shadow-none': true,
+                    'opacity-25': !show,
+                }">
+                    {{ !show ? 'Caricamento' : 'Procedi col pagamento' }}
+                </button>
+            </form>
+            <PaymentComponent ref="PaymentBtn" v-if="show" :authorization="tokenApi" @onSuccess="paymentSuccess"
+                @onError="paymentError" />
+        </div>
+
+        <div class="flex items-center justify-center h-screen flex-col gap-3 py-5" v-else>
+            <h1 class="text-4xl font-bold text-center pb-6">
+                Qualcosa è andato storto...
+            </h1>
+
+            <router-link :to="{
+                name: 'cart',
+            }" class="bg_seco_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2" title="Torna al carrello">
+                Torna al carrello
+            </router-link>
+        </div>
+
     </div>
 </template>
 <script>
@@ -48,6 +64,7 @@ import state from '../store'
 
 export default {
     name: "CheckOut",
+    props: ['bool'],
     data() {
         return {
             show: false,
@@ -115,13 +132,13 @@ export default {
                 .then(() => {
                     this.name_client = this.surname_client = this.email_client = this.address_client = this.phone_client = ''
                     this.clearCart()
+                    setTimeout(() => {
+                        this.$router.push({ name: "successpayment", params: {bool: true} });
+                    }, "1000")
                 }).catch(err => {
                     console.log(`Form => ${err}`);
                 })
                 
-            setTimeout(() => {
-                this.$router.push({ name: "SuccessPayment" });
-            }, "1000")                
         }
     },
     mounted() {

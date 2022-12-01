@@ -37,13 +37,15 @@ const routes = [
     },
     {
         path: '/checkout',
-        name: 'CheckOut',
+        name: 'checkout',
         component: CheckOut,
+        props: true
     },
     {
         path: '/success',
-        name: 'SuccessPayment',
+        name: 'successpayment',
         component: SuccessPayment,
+        props: true
     },
     {
         path: '*',
