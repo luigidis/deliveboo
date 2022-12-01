@@ -175,7 +175,7 @@ export default {
                     })
 
                     setTimeout(() => {
-                        this.$router.push({ name: "SuccessPayment" });
+                        this.$router.push({ name: "successpayment" });
                     }, "1000")                
                 } else {
                     this.formError = true
