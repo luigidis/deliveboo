@@ -55,6 +55,7 @@
         outline: 1px solid $prim-color;
     }
 }
+
 .stroke_bottom{
     border-bottom: 2px solid $prim-color;
 }
@@ -62,10 +63,12 @@
 .font_standard{
     font-size: 1.5rem;
 }
+
 .flex_grow{
     flex-grow: 1;
 }
 
+// Menu Button
 .menu_button{
     display: block;
     overflow-y: hidden;

@@ -49,16 +49,6 @@
     }
 }
 
-ul {
-    &.flex_grow {
-        flex-grow: 1;
-    }
-
-    &.stroke_bottom {
-        border-bottom: 3px solid $prim-color;
-    }
-}
-
 h3 {
     &.stroke_bottom {
         border-bottom: 3px solid $prim-color;
@@ -95,16 +85,10 @@ button {
 
 .card_content {
     max-width: 320px;
-    max-height: 500px;
-    flex-grow: 1;
+    aspect-ratio: 3/4;
 
     &.card_restaurant {
         max-width: 400px;
-        min-height: 400px;
-    }
-
-    .card_button_wrapper {
-        flex-grow: 1;
     }
 
     .card_select {
@@ -115,19 +99,13 @@ button {
     .card_description {
         font-size: 1.25rem;
         line-height: 1.1;
-        flex-grow: 1;
-        height: 300px;
     }
 }
 
 .list_wrapper {
-    flex-grow: 1;
-
     .list_item {
-        padding: 0.5rem 1rem;
         font-size: 1.25rem;
         line-height: 1.1;
-        border: 1px solid $prim-color;
     }
 }
 
@@ -135,13 +113,10 @@ button {
     font-size: 1.25rem;
     line-height: 1.1;
     flex-grow: 1;
-    height: 300px;
 
     &.plates {
-        height: 300px;
         font-size: 1.5rem;
         line-height: 1.1;
-        flex-grow: 1;
     }
 }
 

@@ -13,14 +13,14 @@
 // Pagina Layout
 @import './layout.scss';
 
+// Reset 
+
 html body {
 min-width: 350px;
 font-weight: 300;
 color: $prim-color;
     font-family: 'Manrope', sans-serif;
 }
-
-// Reset 
 
 img {
     max-width: 100%;

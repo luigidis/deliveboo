@@ -11044,15 +11044,15 @@ a.text-dark:focus {
 }
 
 .input-control.success {
-  border-color: green;
+  border-color: #f7f7f7;
 }
 
 .input-control.error {
-  border-color: red;
+  border-color: #C44B4F;
 }
 
 .error {
-  color: red;
+  color: #C44B4F;
 }
 
 .navbar.stroke_bottom {
@@ -11096,14 +11096,6 @@ a.text-dark:focus {
      object-fit: cover;
 }
 
-ul.flex_grow {
-  flex-grow: 1;
-}
-
-ul.stroke_bottom {
-  border-bottom: 3px solid #4C5355;
-}
-
 h3.stroke_bottom {
   border-bottom: 3px solid #4C5355;
 }
@@ -11137,17 +11129,11 @@ button.card_button_dark:hover {
 
 .card_content {
   max-width: 320px;
-  max-height: 500px;
-  flex-grow: 1;
+  aspect-ratio: 3/4;
 }
 
 .card_content.card_restaurant {
   max-width: 400px;
-  min-height: 400px;
-}
-
-.card_content .card_button_wrapper {
-  flex-grow: 1;
 }
 
 .card_content .card_select {
@@ -11158,33 +11144,22 @@ button.card_button_dark:hover {
 .card_content .card_description {
   font-size: 1.25rem;
   line-height: 1.1;
-  flex-grow: 1;
-  height: 300px;
-}
-
-.list_wrapper {
-  flex-grow: 1;
 }
 
 .list_wrapper .list_item {
-  padding: 0.5rem 1rem;
   font-size: 1.25rem;
   line-height: 1.1;
-  border: 1px solid #4C5355;
 }
 
 .card_description {
   font-size: 1.25rem;
   line-height: 1.1;
   flex-grow: 1;
-  height: 300px;
 }
 
 .card_description.plates {
-  height: 300px;
   font-size: 1.5rem;
   line-height: 1.1;
-  flex-grow: 1;
 }
 
 .form_container {
