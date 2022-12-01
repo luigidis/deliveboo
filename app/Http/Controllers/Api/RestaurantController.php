@@ -173,9 +173,12 @@ class RestaurantController extends Controller
         $plates = [];
 
         $totalPrice = 0;
-        foreach ($idArray as $id) {
+
+        foreach ($idArray as $key => $id) {
             $plates[] = Plate::where('id', $id)->first();
-            $totalPrice += $plates[0]->price;
+        }
+        foreach ($plates as $key => $plate) {
+            $totalPrice += $plate->price * $request['quantity_plate'][$key];
         }
 
         $restaurant = Restaurant::where('id', $plates[0]->restaurant_id)->first(); 

@@ -28,6 +28,7 @@ export default {
             else {
                 localStorage.setItem('totalPrice', plate.price);
                 localStorage.setItem('restaurantId', plate.restaurant_id);
+                state.restaurantId = localStorage.restaurantId;
                 state.totalItems = 1;
                 localStorage.setItem('totalItems', 1);
             }

@@ -1927,6 +1927,7 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         localStorage.setItem('totalPrice', plate.price);
         localStorage.setItem('restaurantId', plate.restaurant_id);
+        _store__WEBPACK_IMPORTED_MODULE_0__["default"].restaurantId = localStorage.restaurantId;
         _store__WEBPACK_IMPORTED_MODULE_0__["default"].totalItems = 1;
         localStorage.setItem('totalItems', 1);
       }
@@ -1972,13 +1973,13 @@ __webpack_require__.r(__webpack_exports__);
         localStorage.clear();
         localStorage.setItem('totalPrice', _store__WEBPACK_IMPORTED_MODULE_0__["default"].lastPlate.price);
         localStorage.setItem('restaurantId', _store__WEBPACK_IMPORTED_MODULE_0__["default"].lastPlate.restaurant_id);
-        _store__WEBPACK_IMPORTED_MODULE_0__["default"].totalItems = 1;
+        _store__WEBPACK_IMPORTED_MODULE_0__["default"].restaurantId = _store__WEBPACK_IMPORTED_MODULE_0__["default"].lastPlate.restaurant_id;
         localStorage.setItem('totalItems', 1);
+        _store__WEBPACK_IMPORTED_MODULE_0__["default"].totalItems = 1;
         localStorage.setItem("quantity%".concat(_store__WEBPACK_IMPORTED_MODULE_0__["default"].lastPlate.id), 1);
-        _store__WEBPACK_IMPORTED_MODULE_0__["default"].error = false;
-        _store__WEBPACK_IMPORTED_MODULE_0__["default"].ids = new Array();
-        _store__WEBPACK_IMPORTED_MODULE_0__["default"].ids.push(_store__WEBPACK_IMPORTED_MODULE_0__["default"].lastPlate.id);
+        _store__WEBPACK_IMPORTED_MODULE_0__["default"].ids = [_store__WEBPACK_IMPORTED_MODULE_0__["default"].lastPlate.id];
         _store__WEBPACK_IMPORTED_MODULE_0__["default"].quantity = [1];
+        _store__WEBPACK_IMPORTED_MODULE_0__["default"].error = false;
       }
     }
   }
@@ -2134,6 +2135,8 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     addCart: function addCart() {
       localStorage.setItem("quantity%".concat(this.plate.id), parseFloat(localStorage.getItem("quantity%".concat(this.plate.id))) + 1);
+      localStorage.totalPrice = parseFloat(parseFloat(localStorage.totalPrice) + this.plate.price).toFixed(2);
+      _store__WEBPACK_IMPORTED_MODULE_0__["default"].totalPrice = localStorage.totalPrice;
       this.plateQuantity = localStorage.getItem("quantity%".concat(this.plate.id));
       _store__WEBPACK_IMPORTED_MODULE_0__["default"].totalItems++;
       localStorage.totalItems = parseInt(parseInt(localStorage.totalItems) + 1);
@@ -2141,23 +2144,36 @@ __webpack_require__.r(__webpack_exports__);
       if (index != -1) _store__WEBPACK_IMPORTED_MODULE_0__["default"].quantity[index]++;
     },
     removeCart: function removeCart() {
+      localStorage.totalPrice = parseFloat(parseFloat(localStorage.totalPrice) - this.plate.price).toFixed(2);
+      _store__WEBPACK_IMPORTED_MODULE_0__["default"].totalPrice = localStorage.totalPrice;
+      var index = _store__WEBPACK_IMPORTED_MODULE_0__["default"].ids.indexOf(this.plate.id);
+      _store__WEBPACK_IMPORTED_MODULE_0__["default"].totalItems--;
+      localStorage.totalItems = parseInt(parseInt(localStorage.totalItems) - 1);
+
+      // se ha quantità 1
       if (this.plateQuantity == 1) {
-        localStorage.removeItem("quantity%".concat(this.plate.id));
-        var index = _store__WEBPACK_IMPORTED_MODULE_0__["default"].ids.indexOf(this.plate.id);
+        // rimuovo l'id dall'array id dello store
         _store__WEBPACK_IMPORTED_MODULE_0__["default"].ids.splice(index, 1);
+        // rimuovo la quantità dall'array quantity dello store
         _store__WEBPACK_IMPORTED_MODULE_0__["default"].quantity.splice(index, 1);
-        _store__WEBPACK_IMPORTED_MODULE_0__["default"].totalItems--;
-        localStorage.totalItems = parseInt(parseInt(localStorage.totalItems) - 1);
+        // lo rimuovo dal localStorage
+        localStorage.removeItem("quantity%".concat(this.plate.id));
+        // se non sono rimasti altri piati
         if (!_store__WEBPACK_IMPORTED_MODULE_0__["default"].totalItems) {
+          // svuoto lo store
           localStorage.clear();
+          _store__WEBPACK_IMPORTED_MODULE_0__["default"].restaurantId = null;
         }
-      } else {
+      }
+      // altrimenti
+      else {
+        // tolgo 1 alla quantità nel localStorage
         localStorage.setItem("quantity%".concat(this.plate.id), parseFloat(localStorage.getItem("quantity%".concat(this.plate.id))) - 1);
+        // tolgo 1 al plateQuantity
         this.plateQuantity = localStorage.getItem("quantity%".concat(this.plate.id));
-        _store__WEBPACK_IMPORTED_MODULE_0__["default"].totalItems--;
-        localStorage.totalItems = parseInt(parseInt(localStorage.totalItems) - 1);
-        var _index = _store__WEBPACK_IMPORTED_MODULE_0__["default"].ids.indexOf(this.plate.id);
-        if (_index != -1) _store__WEBPACK_IMPORTED_MODULE_0__["default"].quantity[_index]--;
+        if (index != -1)
+          // tolgo 1 alla sua quantity nello store
+          _store__WEBPACK_IMPORTED_MODULE_0__["default"].quantity[index]--;
       }
     }
   },
@@ -2381,23 +2397,31 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_QuantityHandler_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/QuantityHandler.vue */ "./resources/js/components/QuantityHandler.vue");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store */ "./resources/js/store.js");
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      ids: new Array(),
-      quantity: new Array(),
       plates: "",
-      restaurant: "",
-      totalPrice: 0
+      restaurant: ""
     };
+  },
+  computed: {
+    totalPrice: function totalPrice() {
+      return _store__WEBPACK_IMPORTED_MODULE_1__["default"].totalPrice;
+    },
+    quantity: function quantity() {
+      return _store__WEBPACK_IMPORTED_MODULE_1__["default"].quantity;
+    }
   },
   methods: {
     fetchPlates: function fetchPlates() {
       var _this = this;
-      axios.get("api/cart/plates/".concat(this.ids)).then(function (res) {
+      axios.get("api/cart/plates/".concat(_store__WEBPACK_IMPORTED_MODULE_1__["default"].ids)).then(function (res) {
         _this.plates = res.data.plates;
         _this.restaurant = res.data.restaurant;
-        // console.log(res.data.plates);
       })["catch"](function (err) {
         console.log(err);
         //redirect to 404
@@ -2408,16 +2432,10 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    for (var i = 0; i < localStorage.length - 1; i++) {
-      if (localStorage.key(i).includes("quantity")) {
-        this.ids.push(localStorage.key(i).split("%")[1]);
-        this.quantity.push(localStorage.getItem(localStorage.key(i)));
-      }
-    }
-    // console.log(this.ids);
-    // console.log(this.quantity);
     this.fetchPlates();
-    this.totalPrice = localStorage.getItem("totalPrice");
+  },
+  components: {
+    QuantityHandler: _components_QuantityHandler_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
 });
 
@@ -2438,6 +2456,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CheckOut",
+  props: ['bool'],
   data: function data() {
     return {
       show: false,
@@ -2507,6 +2526,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     clearCart: function clearCart() {
       localStorage.clear();
+      _store__WEBPACK_IMPORTED_MODULE_1__["default"].ids = new Array();
+      _store__WEBPACK_IMPORTED_MODULE_1__["default"].quantity = new Array();
       _store__WEBPACK_IMPORTED_MODULE_1__["default"].totalItems = 0;
     },
     submitForm: function submitForm() {
@@ -2646,6 +2667,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_LayoverAlert_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/LayoverAlert.vue */ "./resources/js/components/LayoverAlert.vue");
 /* harmony import */ var _components_PlateCard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/PlateCard.vue */ "./resources/js/components/PlateCard.vue");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store */ "./resources/js/store.js");
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2659,6 +2682,11 @@ __webpack_require__.r(__webpack_exports__);
       restaurant: '',
       plates: new Array()
     };
+  },
+  computed: {
+    restaurantId: function restaurantId() {
+      return _store__WEBPACK_IMPORTED_MODULE_2__["default"].restaurantId;
+    }
   },
   methods: {
     fetchRestaurant: function fetchRestaurant() {
@@ -2695,6 +2723,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SuccessPayment",
+  props: ['bool'],
   mounted: function mounted() {
     var _this = this;
     setTimeout(function () {
@@ -3325,7 +3354,7 @@ var render = function render() {
     staticClass: "container py-28"
   }, [_vm.plates ? _c("div", [_c("h1", {
     staticClass: "text-4xl font-bold text-center pb-6"
-  }, [_vm._v("\n            Ordiner per il ristorante: " + _vm._s(_vm.restaurant.name) + "\n        ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                    Ordine per il ristorante: " + _vm._s(_vm.restaurant.name) + "\n                ")]), _vm._v(" "), _c("div", {
     staticClass: "grid rid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8"
   }, _vm._l(_vm.plates, function (plate, i) {
     return _c("div", {
@@ -3340,12 +3369,14 @@ var render = function render() {
     })]), _vm._v(" "), _c("div", {
       staticClass: "desc p-2 flex flex-column gap-3 justify-between grow"
     }, [_c("h3", {
-      staticClass: "text-md font-bold mb-2"
-    }, [_vm._v("\n                        " + _vm._s(plate.name) + "\n                    ")]), _vm._v(" "), _c("div", [_c("span", {
-      staticClass: "font-normal block leading-none mb-2"
-    }, [_vm._v("\n                            Quantità:" + _vm._s(_vm.quantity[i]) + "\n                        ")]), _vm._v(" "), _c("span", {
-      staticClass: "font-normal block"
-    }, [_vm._v("\n                            Totale: " + _vm._s((parseFloat(plate.price) * parseFloat(_vm.quantity[i])).toFixed(2)) + "€\n                        ")])])])]);
+      staticClass: "text-lg font-bold mb-2"
+    }, [_vm._v("\n                        " + _vm._s(plate.name) + "\n                    ")]), _vm._v(" "), _c("div", [_vm.plates ? _c("QuantityHandler", {
+      attrs: {
+        plate: plate
+      }
+    }) : _vm._e(), _vm._v(" "), _c("span", {
+      staticClass: "font-normal block pt-3 text-md"
+    }, [_vm._v("\n                            Totale: " + _vm._s((parseFloat(_vm.quantity[i]) * parseFloat(plate.price)).toFixed(2)) + "€\n                        ")])], 1)])]);
   }), 0), _vm._v(" "), _c("div", {
     staticClass: "flex flex-column gap-4 items-start"
   }, [_c("div", {
@@ -3353,7 +3384,12 @@ var render = function render() {
   }, [_vm._v("\n                Totale: " + _vm._s(_vm.totalPrice) + "€\n            ")]), _vm._v(" "), _c("router-link", {
     staticClass: "add_to_cart box_shadow_stroke_small bg_link_color c_text_color text-xl py-1 px-2 hover:shadow-none",
     attrs: {
-      to: "/checkout"
+      to: {
+        name: "checkout",
+        params: {
+          bool: true
+        }
+      }
     }
   }, [_vm._v("\n                Checkout\n            ")])], 1)]) : _c("div", [_c("h1", {
     staticClass: "text-4xl font-bold text-center pb-6"
@@ -3379,7 +3415,7 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", {
+  return _c("div", [_vm.bool ? _c("div", {
     staticClass: "flex items-center justify-center h-full md:h-screen flex-col md:flex-row gap-3 py-5 mt-5 md:mt-none"
   }, [_c("form", {
     staticClass: "box_shadow_stroke py-4 px-2 w-4/5 md:w-2/5",
@@ -3556,7 +3592,7 @@ var render = function render() {
       "cursor-pointer add_to_cart box_shadow_stroke_small bg_link_color c_text_color text-xl py-1 px-2 hover:shadow-none": true,
       "opacity-25": !_vm.show
     }
-  }, [_vm._v("\n                " + _vm._s(!_vm.show ? "Caricamento" : "Procedi col pagamento") + "\n            ")]), _vm._v(" "), _vm.formError ? _c("div", {
+  }, [_vm._v("\n                    " + _vm._s(!_vm.show ? "Caricamento" : "Procedi col pagamento") + "\n                ")]), _vm._v(" "), _vm.formError ? _c("div", {
     staticClass: "text-md c_seco_color font-bold"
   }, [_vm._v("\n                Compila tutti i campi per procedere\n            ")]) : _vm._e()])]), _vm._v(" "), _vm.show ? _c("PaymentComponent", {
     ref: "PaymentBtn",
@@ -3567,7 +3603,19 @@ var render = function render() {
       onSuccess: _vm.paymentSuccess,
       onError: _vm.paymentError
     }
-  }) : _vm._e()], 1);
+  }) : _vm._e()], 1) : _c("div", {
+    staticClass: "flex items-center justify-center h-screen flex-col gap-3 py-5"
+  }, [_c("h1", {
+    staticClass: "text-4xl font-bold text-center pb-6"
+  }, [_vm._v("\n            Qualcosa è andato storto...\n        ")]), _vm._v(" "), _c("router-link", {
+    staticClass: "bg_seco_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2",
+    attrs: {
+      to: {
+        name: "cart"
+      },
+      title: "Torna al carrello"
+    }
+  }, [_vm._v("\n            Torna al carrello\n        ")])], 1)]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -3663,7 +3711,7 @@ var render = function render() {
     staticClass: "flex gap-3"
   }, [_c("h2", {
     staticClass: "text-6xl font-bold text-center pb-6"
-  }, [_vm._v("\n            " + _vm._s(_vm.restaurant.name) + "\n        ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                " + _vm._s(_vm.restaurant.name) + "\n            ")]), _vm._v(" "), _c("div", {
     staticClass: "flex items-center justify-end self-start ml-auto pt-2"
   }, [_c("router-link", {
     staticClass: "bg_seco_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2",
@@ -3672,7 +3720,7 @@ var render = function render() {
         name: "home"
       }
     }
-  }, [_vm._v("\n                Torna alla home\n            ")])], 1)]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                    Torna alla home\n                ")])], 1)]), _vm._v(" "), _c("div", {
     staticClass: "grid rid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
   }, _vm._l(_vm.plates, function (plate, i) {
     return _c("PlateCard", {
@@ -3704,19 +3752,21 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _vm._m(0);
-};
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
+  return _c("div", [_vm.bool ? _c("div", {
     staticClass: "h-screen flex flex-column justify-center items-center gap-3"
   }, [_c("h2", {
     staticClass: "text-5xl"
-  }, [_vm._v("\n        Grazie per aver ordinato sul nostro sito!\n    ")]), _vm._v(" "), _c("h3", {
+  }, [_vm._v("\n            Grazie per aver ordinato sul nostro sito!\n        ")]), _vm._v(" "), _c("h3", {
     staticClass: "text-3xl"
-  }, [_vm._v("\n        Il tuo ordine verrà elaborato il prima possibile!\n    ")])]);
-}];
+  }, [_vm._v("\n            Il tuo ordine verrà elaborato il prima possibile!\n        ")])]) : _c("div", {
+    staticClass: "flex items-center justify-center h-screen flex-col gap-3 py-5"
+  }, [_c("h1", {
+    staticClass: "text-4xl font-bold text-center pb-6"
+  }, [_vm._v("\n            Qualcosa è andato storto!\n        ")]), _vm._v(" "), _c("h2", {
+    staticClass: "text-4xl text-center pb-6"
+  }, [_vm._v("\n            A breve verrai reindirizzato alla home...\n        ")])])]);
+};
+var staticRenderFns = [];
 render._withStripped = true;
 
 
@@ -47165,12 +47215,14 @@ var routes = [{
   component: _pages_Cart_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
   path: '/checkout',
-  name: 'CheckOut',
-  component: _pages_CheckOut_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+  name: 'checkout',
+  component: _pages_CheckOut_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+  props: true
 }, {
   path: '/success',
-  name: 'SuccessPayment',
-  component: _pages_SuccessPayment_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+  name: 'successpayment',
+  component: _pages_SuccessPayment_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+  props: true
 }, {
   path: '*',
   name: '404',
@@ -47205,7 +47257,9 @@ var state = vue__WEBPACK_IMPORTED_MODULE_0___default.a.observable({
   lastPlate: '',
   totalItems: localStorage.getItem('totalItems') || 0,
   ids: ids,
-  quantity: quantity
+  quantity: quantity,
+  totalPrice: localStorage.getItem('totalPrice') || 0,
+  restaurantId: localStorage.getItem('restaurantId')
 });
 /* harmony default export */ __webpack_exports__["default"] = (state);
 
@@ -47287,7 +47341,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\franc\Documents\boolean-dev\full-stack-dev\php\deliveboo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! /Users/giusscos/dev/boolean/progetto_finale/deliveboo/resources/js/front.js */"./resources/js/front.js");
 
 
 /***/ })

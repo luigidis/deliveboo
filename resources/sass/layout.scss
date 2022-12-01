@@ -180,3 +180,7 @@ button {
 .card_restaurant {
     transition: 800ms cubic-bezier(0.075, 0.82, 0.165, 1);
 }
+
+.stroke_left {
+    border-left: 3px solid $prim-color;
+}
