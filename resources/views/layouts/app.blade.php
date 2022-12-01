@@ -26,7 +26,7 @@
                 <a class="navbar-brand font-weight-bold font_big" href="{{ url('/admin') }}">
                     Delive<span class="c_seco_color">Boo</span>
                 </a>
-                <div class="box_shadow_stroke_small menu_button ml-auto mb-1" data-toggle="collapse" data-target="#navbarSupportedContent"
+                <div class="box_shadow_stroke_small bg-white menu_button ml-auto mb-1" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="{{ __('Toggle navigation') }}">
                     <span class="invisible">Menu</span>

@@ -22,7 +22,7 @@
             </div>
             <div class="body_content py-5 d-flex flex-wrap justify-content-center">
                 @foreach ($categories as $item)
-                    <div class="m-3 card_content box_shadow_stroke pt-3">
+                    <div class="m-3 box_shadow_stroke pt-3">
                         <div class="d-flex flex-wrap align-items-center stroke_bottom">
                             <h3 class="pl-2">
                                 {{ $item->name }}

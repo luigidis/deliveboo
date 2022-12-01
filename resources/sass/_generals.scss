@@ -68,6 +68,21 @@
     flex-grow: 1;
 }
 
+.cursor_pointer{
+    cursor: pointer;
+}
+
+.check_box_item{
+    color: $prim-color;
+    background-color: #fff;
+    
+    &.checkbox_checked{
+        box-shadow: 0px 0px 0px;
+        color: $text-color;
+        background-color: $link-color;
+    }
+}
+
 // Menu Button
 .menu_button{
     display: block;

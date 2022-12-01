@@ -46,7 +46,7 @@ use App\Restaurant;
                             <li>
                                 <ul class="px-0 py-3 d-flex flex-wrap">
                                     @foreach ($restaurant->categories as $category)
-                                        <li class="mr-3 px-2 box_shadow_stroke_small bg_text_color c_seco_color">
+                                        <li class="mr-3 mb-2 px-2 box_shadow_stroke_small bg_text_color c_seco_color">
                                             {{ $category->name }}
                                         </li>
                                     @endforeach
