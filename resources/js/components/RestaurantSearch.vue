@@ -16,7 +16,7 @@
         </div>
         <!-- <input type="button" value="VAI" @click="fetchRestaurants"> -->
         <router-link :to="{
-            name: 'restaurants.search',
+            name: 'home',
             query: { categories: filterCat, name: filter }
         }" class="text-3xl bg_link_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button font-bold">
             Cerca ristorante
@@ -60,7 +60,7 @@ export default {
                 // console.log(res.data.result.data);
                 // console.log(res);
             }).catch(err => {
-                // console.log(err);
+                console.log(err);
                 this.$router.push({ name: '404' });
             })
         },

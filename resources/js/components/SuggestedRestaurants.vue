@@ -1,10 +1,10 @@
 <template>
-    <div class="container">
-        <h2 class="text-center text-3xl pt-10 pb-4 font-bold">
+    <section class="flex flex-column items-center container">
+        <h2 class="text-3xl pt-10 pb-4 font-bold">
             I ristoranti del momento:
         </h2>
 
-        <div class="grid grid-cols-6 gap-6" v-if="restaurants">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" v-if="restaurants">
 
             <div class="card_content card_restaurant box_shadow_stroke hover:no-underline hover:shadow-none hover:scale-95 relative" v-for="(restaurant,i) in restaurants" :key="i">
                 <router-link :to="{
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-    </div>
+    </section>
 </template>
 
 <script>
@@ -57,7 +57,7 @@
                     console.log(res);
             }).catch(err => {
                 console.log(err);
-                // this.$router.push({ name: '404' });
+                this.$router.push({ name: '404' });
             });
             },
         },

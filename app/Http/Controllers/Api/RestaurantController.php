@@ -239,13 +239,13 @@ class RestaurantController extends Controller
         // prendo gli id dei 6 ristoranti con più ordini
         $bests = [];
         $max = max($orders);
-        while (count($bests) < 6) {
+        while (count($bests) < 4) {
             $maxKey = array_keys($orders, $max);
             if ($maxKey) {
                 if (gettype($maxKey) == 'array') {
                     foreach ($maxKey as $value) {
                         $bests[] = $value;
-                        if (count($bests) == 6)
+                        if (count($bests) == 4)
                             break;
                     }
                 }
