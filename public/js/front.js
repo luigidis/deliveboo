@@ -2667,7 +2667,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_TheLogo_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/TheLogo.vue */ "./resources/js/components/TheLogo.vue");
 /* harmony import */ var _components_RestaurantSearch_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/RestaurantSearch.vue */ "./resources/js/components/RestaurantSearch.vue");
 /* harmony import */ var _components_SuggestedRestaurants_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/SuggestedRestaurants.vue */ "./resources/js/components/SuggestedRestaurants.vue");
-/* harmony import */ var _components_AdvancedSearch_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/AdvancedSearch.vue */ "./resources/js/components/AdvancedSearch.vue");
+/* harmony import */ var _components_AdvancedSearch_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/AdvancedSearch.vue */ "./resources/js/components/AdvancedSearch.vue");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 
@@ -2684,7 +2684,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     // JumboTron
     ,
 
-    AdvancedSearch: _components_AdvancedSearch_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+    AdvancedSearch: _components_AdvancedSearch_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   computed: {
     query: function query() {
@@ -3300,12 +3300,14 @@ var render = function render() {
   }), 0), _vm._v(" "), _c("router-link", {
     staticClass: "text-3xl bg_link_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button font-bold",
     attrs: {
-      to: {
+      to: _vm.filterCat.length || _vm.filter !== "" ? {
         name: "home",
         query: {
           categories: _vm.filterCat,
           name: _vm.filter
         }
+      } : {
+        name: "home"
       }
     }
   }, [_vm._v("\n        Cerca ristorante\n    ")])], 1);

@@ -15,10 +15,16 @@
             </div>
         </div>
         <!-- <input type="button" value="VAI" @click="fetchRestaurants"> -->
-        <router-link :to="{
-            name: 'home',
-            query: { categories: filterCat, name: filter }
-        }" class="text-3xl bg_link_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button font-bold">
+        <router-link 
+            :to="(filterCat.length || filter !== '') ? {
+                name: 'home',
+                query: { categories: filterCat, name: filter }
+            } : 
+            {
+                name: 'home',
+            }"
+            class="text-3xl bg_link_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button font-bold"
+        >
             Cerca ristorante
         </router-link>
     </div>
