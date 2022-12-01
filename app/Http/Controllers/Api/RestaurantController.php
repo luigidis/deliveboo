@@ -181,10 +181,10 @@ class RestaurantController extends Controller
             $totalPrice += $plate->price * $request['quantity_plate'][$key];
         }
 
-        $restaurant = Restaurant::where('id', $plates[0]->restaurant_id)->first(); 
+        $restaurant = Restaurant::where('id', $plates[0]->restaurant_id)->first();
 
         $data = $request->all();
-        
+
         $validator = Validator::make($data, [
             'name_client' => 'required|max:255|min:2',
             'surname_client' => 'required|max:255|min:2',
@@ -192,7 +192,7 @@ class RestaurantController extends Controller
             'phone_client' => 'required|numeric|min:10|max:12',
             'email_client' => 'required|email',
         ]);
-        
+
         $data['status'] = 'In elaborazione';
         $data['total'] = $totalPrice;
 
@@ -217,26 +217,48 @@ class RestaurantController extends Controller
         return response()->json(compact('plates', 'restaurant', 'order', 'orderPlate'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function getBests()
     {
-        //
-    }
+        // creo array di array plates[id_ristorante] = [piatti]
+        $allRestaurants = Restaurant::all();
+        $plates = [];
+        foreach ($allRestaurants as $key => $restaurant) {
+            $plate = Plate::where('restaurant_id', $restaurant->id)->get();
+            $plates[$restaurant->id] = $plate;
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        // ne ricavo un array orders[id_ristorante] = numero ordini
+        $orders = [];
+        foreach ($plates as $key => $restaurantPlates) {
+            $orders[$key] = 0;
+            foreach ($restaurantPlates as $plate) {
+                $orders[$key] += $plate->orders->count();
+            }
+        }
+
+        // prendo gli id dei 6 ristoranti con più ordini
+        $bests = [];
+        $max = max($orders);
+        while (count($bests) < 6) {
+            $maxKey = array_keys($orders, $max);
+            if ($maxKey) {
+                if (gettype($maxKey) == 'array') {
+                    foreach ($maxKey as $value) {
+                        $bests[] = $value;
+                        if (count($bests) == 6)
+                            break;
+                    }
+                }
+            }
+            $max--;
+        }
+
+        // prendo i 6 ristoranti con più ordini
+        $restaurants = [];
+        foreach ($bests as $id) {
+            $restaurants[] = Restaurant::where('id', $id)->with('categories')->first();
+        }
+
+        return response()->json(compact('orders', 'bests', 'restaurants'));
     }
 }
