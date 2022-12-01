@@ -36,12 +36,13 @@
                     </span>
                     <span class="h4">
                         <?php
-                        $tot = 0;
-                        foreach ($plates as $plate) {
-                            $tot += $plate->price;
-                        }
-                        echo 'Totale: ' . $tot . '€';
-                        ?>
+                        // $tot = 0;
+                        // foreach ($plates as $plate) {
+                        //     $tot += $plate->price;
+                        // }
+                        // echo 'Totale: ' . $tot . '€';
+                        // ?>
+                        Totale: &euro;{{ $order->total }}
                     </span>
                 </div>
                 <div class="d-flex flex-column align-items-end justify-content-end">
@@ -91,7 +92,7 @@
                                     {{ $plate->name }}
                                 </h3>
                                 <span class="h4 pr-2 col-4">
-                                    {{ $plate->price }}€
+                                    &euro;{{ $plate->price }}
                                 </span>
                             </div>
                             <p class="overflow-auto stroke_bottom px-2 card_description py-2 m-0">

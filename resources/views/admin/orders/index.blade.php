@@ -44,7 +44,7 @@
                                     {{ $fullname_client }}
                                 </h3>
                                 <span class="h4 pr-2 ml-auto">
-                                    {{ $order->total }}$
+                                    &euro;{{ $order->total }}
                                 </span>
                             </div>
                             <div class="flex_grow">
