@@ -1,12 +1,12 @@
 <template>
     <main class="flex flex-column justify-center py-16">
-        <section>
+        <JumboTron />
+        <section class="py-4">
             <TheLogo />
             <RestaurantSearch />
         </section>
         <SuggestedRestaurants v-if="!Object.keys(query).length"/>
         <AdvancedSearch v-else :par="par" />
-        <!-- <JumboTron /> -->
     </main>
 </template>
 
@@ -16,15 +16,14 @@ import RestaurantSearch from '../components/RestaurantSearch.vue';
 import SuggestedRestaurants from '../components/SuggestedRestaurants.vue';
 import AdvancedSearch from '../components/AdvancedSearch.vue';
 
-// import JumboTron from '../components/JumboTron.vue';
+import JumboTron from '../components/JumboTron.vue';
 
 export default {
     components: {
         RestaurantSearch,
         TheLogo,
-        SuggestedRestaurants
-        // JumboTron
-        ,
+        SuggestedRestaurants,
+        JumboTron,
         AdvancedSearch
     },
     computed: {
@@ -67,3 +66,7 @@ export default {
 }
 
 </script>
+
+<style lang="scss" scoped>
+
+</style>

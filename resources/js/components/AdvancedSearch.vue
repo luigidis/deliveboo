@@ -1,7 +1,7 @@
 <template>
     <section class="flex flex-column items-center container">
 
-        <h2 class="text-3xl pt-10 pb-4 font-bold">
+        <h2 class="text-3xl pb-4 font-bold">
             Ristoranti trovati:
         </h2>
 
