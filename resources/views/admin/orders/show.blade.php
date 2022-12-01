@@ -35,13 +35,6 @@
                         Indirizzo: {{ $order->address_client }}
                     </span>
                     <span class="h4">
-                        <?php
-                        // $tot = 0;
-                        // foreach ($plates as $plate) {
-                        //     $tot += $plate->price;
-                        // }
-                        // echo 'Totale: ' . $tot . '€';
-                        // ?>
                         Totale: &euro;{{ $order->total }}
                     </span>
                 </div>
@@ -84,7 +77,7 @@
                 </div>
             </div>
             <div class="body_content py-5 d-flex flex-wrap justify-content-center">
-                @foreach ($plates as $plate)
+                @foreach ($plates as $key => $plate)
                     <div class="m-3 card_content box_shadow_stroke pt-3">
                         <div class="d-flex flex-column h-100">
                             <div class="d-flex flex-wrap align-items-center justify-content-between stroke_bottom flex_grow">
@@ -95,6 +88,9 @@
                                     &euro;{{ $plate->price }}
                                 </span>
                             </div>
+                            <span class="stroke_bottom px-2 m-0">
+                                {{ $quantity[$key] }}
+                            </span>
                             <p class="overflow-auto stroke_bottom px-2 card_description py-2 m-0">
                                 {{ $plate->description }}
                             </p>
