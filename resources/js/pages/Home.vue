@@ -1,23 +1,21 @@
 <template>
-    <main class="container min-h-screen flex flex-column justify-center items-center">
-        <TheLogo />
-        <RestaurantSearch />
+    <main>
+        <!-- <TheLogo />
+        <RestaurantSearch /> -->
+        <JumboTron />
     </main>
 </template>
 
 <script>
+import TheLogo from '../components/TheLogo.vue';
+import RestaurantSearch from '../components/RestaurantSearch.vue';
+import JumboTron from '../components/JumboTron.vue';
 
-    import TheLogo from '../components/TheLogo.vue';
-    import RestaurantSearch from '../components/RestaurantSearch.vue';
-
-    export default {
-        components: {
-            RestaurantSearch,
-            TheLogo,
-        }
-    }
-
+export default {
+    components: {
+    RestaurantSearch,
+    TheLogo,
+    JumboTron
+}
+}
 </script>
-
-<style lang="scss" scoped>
-</style>
