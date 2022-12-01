@@ -110,9 +110,8 @@
             @yield('content')
         </main>
         <script>
+            // Menu Button
             const menuEl = document.querySelector('.menu_button')
-            // console.log(menuEl)
-
             const menuOpen = document.querySelector('.menu_button_item.apri')
             const menuClose = document.querySelector('.menu_button_item.chiudi')
             let isClicked = false;

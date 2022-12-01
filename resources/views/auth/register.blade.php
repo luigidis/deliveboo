@@ -17,7 +17,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label">{{ __('Nome') }}*</label>
+                            <label for="name" class="col-md-4 col-form-label">{{ __('Nome Completo') }}*</label>
                             <div class="col-md-6">
                                 <input id="name" type="text"
                                     class="form-control input-control @error('name') is-invalid @enderror box_shadow_stroke" name="name"

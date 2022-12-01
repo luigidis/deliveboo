@@ -3,9 +3,9 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-12 text-lg-center p-3">
+            <div class="col-12 text-lg-center">
                 <h2 class="px-3">
-                    Sei loggato come <span class="text-capitalize c_seco_color font-weight-bold">{{ $user->name }}</span>
+                    Ciao <span class="text-capitalize c_seco_color font-weight-bold">{{ $user->name }}</span>!
                 </h2>
             </div>
         </div>

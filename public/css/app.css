@@ -11228,7 +11228,7 @@ button.card_button_dark:hover {
 }
 
 html body {
-  min-width: 320px;
+  min-width: 350px;
   font-weight: 300;
   color: #4C5355;
   font-family: "Manrope", sans-serif;
