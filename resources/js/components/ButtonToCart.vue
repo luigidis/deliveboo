@@ -22,11 +22,13 @@ export default {
                     return;
                 }
                 localStorage.totalPrice = parseFloat(parseFloat(localStorage.totalPrice) + plate.price).toFixed(2);
+                state.totalPrice = localStorage.totalPrice;
                 state.totalItems++;
                 localStorage.totalItems = parseInt(parseInt(localStorage.totalItems) + 1);
             }
             else {
                 localStorage.setItem('totalPrice', plate.price);
+                state.totalPrice = localStorage.totalPrice;
                 localStorage.setItem('restaurantId', plate.restaurant_id);
                 state.restaurantId = localStorage.restaurantId;
                 state.totalItems = 1;

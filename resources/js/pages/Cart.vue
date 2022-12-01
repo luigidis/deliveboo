@@ -1,9 +1,9 @@
 <template>
-    <div class="container py-28">
+    <div class="container" :class="plates ? 'py-28' : ''">
         <div v-if="plates">
-                   <h1 class="text-4xl font-bold text-center pb-6">
-                        Ordine per il ristorante: {{ restaurant.name }}
-                    </h1>
+            <h1 class="text-4xl font-bold text-center pb-6">
+                Ordine per il ristorante: {{ restaurant.name }}
+            </h1>
             <div class="grid rid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
                 <div class="card_restaurant box_shadow_stroke flex flex-column" v-for="plate, i in plates" :key="i">
                     <div class="">
@@ -15,7 +15,7 @@
                         </h3>
                         <div>
 
-                            <QuantityHandler :plate="plate" v-if="plates"/>
+                            <QuantityHandler :plate="plate" v-if="plates" />
 
                             <span class="font-normal block pt-3 text-md">
                                 Totale: {{ (parseFloat(quantity[i]) * parseFloat(plate.price)).toFixed(2) }}€
@@ -38,10 +38,16 @@
                 </router-link>
             </div>
         </div>
-        <div v-else>
+            <div class="flex items-center justify-center h-screen flex-col gap-3" v-else>
             <h1 class="text-4xl font-bold text-center pb-6">
-                Carrello vuoto
+                Carrello vuoto.
             </h1>
+
+            <router-link :to="{
+                name: 'home',
+            }" class="bg_seco_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2" title="Torna al carrello">
+                Torna alla home
+            </router-link>
         </div>
     </div>
 </template>
@@ -64,10 +70,13 @@ export default {
         quantity() {
             return state.quantity;
         },
+        ids() {
+            return state.ids;
+        }
     },
     methods: {
         fetchPlates() {
-            axios.get(`api/cart/plates/${state.ids}`)
+            axios.get(`api/cart/plates/${this.ids}`)
                 .then(res => {
                 this.plates = res.data.plates;
                 this.restaurant = res.data.restaurant;
@@ -80,6 +89,11 @@ export default {
     },
     mounted() {
         this.fetchPlates();
+    },
+    watch: {
+        ids() {
+            window.location.reload();
+        }
     },
     components: { QuantityHandler }
 }
