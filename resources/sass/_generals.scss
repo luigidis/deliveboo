@@ -65,3 +65,41 @@
 .flex_grow{
     flex-grow: 1;
 }
+
+.menu_button{
+    display: block;
+    overflow-y: hidden;
+    position: relative;
+    padding: 0.5rem 1rem;
+    // width: 6rem;
+    // height: 2.8rem;
+    cursor: pointer;
+
+    .menu_button_item{
+        position: absolute;
+        transform: translate(-50%);
+        font-weight: bold;
+        font-size: 1.25rem;
+        transition: 800ms cubic-bezier(0.075, 0.82, 0.165, 1);
+        &.apri{
+            left: 0.6rem;
+            transform: translateY(0);
+            &.trans-x-bot{
+                transform: translateY(-100%);
+            }
+        }
+        &.chiudi{
+            left: 0.35rem;
+            transform: translateY(100%);
+            &.trans-x-top{
+                transform: translateY(0);
+            }
+        }
+    }
+}
+
+@media (min-width: 768px){
+    .menu_button{
+        display: none;
+    }
+}

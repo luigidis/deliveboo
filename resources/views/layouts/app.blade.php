@@ -14,8 +14,6 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
-    {{-- <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> --}}
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -28,19 +26,16 @@
                 <a class="navbar-brand font-weight-bold font_big" href="{{ url('/admin') }}">
                     Delive<span class="c_seco_color">Boo</span>
                 </a>
-                <button class="navbar-toggler bg_prim_color" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                <div class="box_shadow_stroke_small menu_button ml-auto mb-1" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="invisible">Menu</span>
+                    <span class="menu_button_item apri">Menu</span>
+                    <span class="menu_button_item chiudi">Chiudi</span>
+                </div>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto font-weight-normal">
                         <!-- Authentication Links -->
                         @guest
@@ -114,6 +109,24 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <script>
+            const menuEl = document.querySelector('.menu_button')
+            // console.log(menuEl)
+
+            const menuOpen = document.querySelector('.menu_button_item.apri')
+            const menuClose = document.querySelector('.menu_button_item.chiudi')
+            let isClicked = false;
+            menuEl.addEventListener('click', () => {
+                if(!isClicked){
+                    menuClose.classList.add('trans-x-top')
+                    menuOpen.classList.add('trans-x-bot')
+                } else {
+                    menuClose.classList.remove('trans-x-top')
+                    menuOpen.classList.remove('trans-x-bot')
+                }
+                isClicked = !isClicked
+            })
+        </script>
     </div>
     @yield('chart')
     @stack('script-cdn')

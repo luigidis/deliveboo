@@ -71,6 +71,46 @@
   flex-grow: 1;
 }
 
+.menu_button {
+  display: block;
+  overflow-y: hidden;
+  position: relative;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.menu_button .menu_button_item {
+  position: absolute;
+  transform: translate(-50%);
+  font-weight: bold;
+  font-size: 1.25rem;
+  transition: 800ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.menu_button .menu_button_item.apri {
+  left: 0.6rem;
+  transform: translateY(0);
+}
+
+.menu_button .menu_button_item.apri.trans-x-bot {
+  transform: translateY(-100%);
+}
+
+.menu_button .menu_button_item.chiudi {
+  left: 0.35rem;
+  transform: translateY(100%);
+}
+
+.menu_button .menu_button_item.chiudi.trans-x-top {
+  transform: translateY(0);
+}
+
+@media (min-width: 768px) {
+  .menu_button {
+    display: none;
+  }
+}
+
 /*!
  * Bootstrap v4.6.2 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors
