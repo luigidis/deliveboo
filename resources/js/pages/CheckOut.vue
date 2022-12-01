@@ -95,6 +95,8 @@ export default {
         },
         clearCart() {
                 localStorage.clear();
+                state.ids = new Array;
+                state.quantity = new Array;
                 state.totalItems = 0;
         },
         submitForm() {

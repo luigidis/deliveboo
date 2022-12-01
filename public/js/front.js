@@ -2134,6 +2134,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     addCart: function addCart() {
       localStorage.setItem("quantity%".concat(this.plate.id), parseFloat(localStorage.getItem("quantity%".concat(this.plate.id))) + 1);
+      localStorage.totalPrice = parseFloat(parseFloat(localStorage.totalPrice) + this.plate.price).toFixed(2);
       this.plateQuantity = localStorage.getItem("quantity%".concat(this.plate.id));
       _store__WEBPACK_IMPORTED_MODULE_0__["default"].totalItems++;
       localStorage.totalItems = parseInt(parseInt(localStorage.totalItems) + 1);
@@ -2142,17 +2143,18 @@ __webpack_require__.r(__webpack_exports__);
     },
     removeCart: function removeCart() {
       if (this.plateQuantity == 1) {
-        localStorage.removeItem("quantity%".concat(this.plate.id));
         var index = _store__WEBPACK_IMPORTED_MODULE_0__["default"].ids.indexOf(this.plate.id);
         _store__WEBPACK_IMPORTED_MODULE_0__["default"].ids.splice(index, 1);
         _store__WEBPACK_IMPORTED_MODULE_0__["default"].quantity.splice(index, 1);
         _store__WEBPACK_IMPORTED_MODULE_0__["default"].totalItems--;
         localStorage.totalItems = parseInt(parseInt(localStorage.totalItems) - 1);
+        localStorage.removeItem("quantity%".concat(this.plate.id));
         if (!_store__WEBPACK_IMPORTED_MODULE_0__["default"].totalItems) {
           localStorage.clear();
         }
       } else {
         localStorage.setItem("quantity%".concat(this.plate.id), parseFloat(localStorage.getItem("quantity%".concat(this.plate.id))) - 1);
+        localStorage.totalPrice = parseFloat(parseFloat(localStorage.totalPrice) - this.plate.price).toFixed(2);
         this.plateQuantity = localStorage.getItem("quantity%".concat(this.plate.id));
         _store__WEBPACK_IMPORTED_MODULE_0__["default"].totalItems--;
         localStorage.totalItems = parseInt(parseInt(localStorage.totalItems) - 1);
@@ -2482,6 +2484,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     clearCart: function clearCart() {
       localStorage.clear();
+      _store__WEBPACK_IMPORTED_MODULE_1__["default"].ids = new Array();
+      _store__WEBPACK_IMPORTED_MODULE_1__["default"].quantity = new Array();
       _store__WEBPACK_IMPORTED_MODULE_1__["default"].totalItems = 0;
     },
     submitForm: function submitForm() {
@@ -47178,7 +47182,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\franc\Documents\boolean-dev\full-stack-dev\php\deliveboo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! /Users/giusscos/dev/boolean/progetto_finale/deliveboo/resources/js/front.js */"./resources/js/front.js");
 
 
 /***/ })

@@ -23,6 +23,7 @@
         methods: {
             addCart() {
                 localStorage.setItem(`quantity%${this.plate.id}`, parseFloat(localStorage.getItem(`quantity%${this.plate.id}`)) + 1);
+                localStorage.totalPrice = parseFloat(parseFloat(localStorage.totalPrice) + this.plate.price).toFixed(2);
                 this.plateQuantity = localStorage.getItem(`quantity%${this.plate.id}`);
                 state.totalItems++;
                 localStorage.totalItems = parseInt(parseInt(localStorage.totalItems) + 1);
@@ -33,23 +34,24 @@
 
             removeCart() {
                 if(this.plateQuantity == 1) {
-                    localStorage.removeItem(`quantity%${this.plate.id}`);
                     const index = state.ids.indexOf(this.plate.id);
                     state.ids.splice(index, 1);
                     state.quantity.splice(index, 1);
                     state.totalItems--;
                     localStorage.totalItems = parseInt(parseInt(localStorage.totalItems) - 1);
+                    localStorage.removeItem(`quantity%${this.plate.id}`)
                     if(!state.totalItems) {
                         localStorage.clear();
                     }
                 }
                 else {
                     localStorage.setItem(`quantity%${this.plate.id}`, parseFloat(localStorage.getItem(`quantity%${this.plate.id}`)) - 1);
+                    localStorage.totalPrice = parseFloat(parseFloat(localStorage.totalPrice) - this.plate.price).toFixed(2);
                     this.plateQuantity = localStorage.getItem(`quantity%${this.plate.id}`);
                     state.totalItems--;
                     localStorage.totalItems = parseInt(parseInt(localStorage.totalItems) - 1);
                     const index = state.ids.indexOf(this.plate.id);
-                    if(index != -1) 
+                     if(index != -1) 
                         state.quantity[index]--;
                 }
             },
