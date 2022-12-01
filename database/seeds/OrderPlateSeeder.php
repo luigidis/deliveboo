@@ -52,6 +52,10 @@ class OrderPlateSeeder extends Seeder
                 $orderPlate->plate_id = $plates[$j];
                 $orderPlate->order_id = $order->id;
                 $orderPlate->save();
+                
+                $platePrice = Plate::where('id', $plates[$j])->first();
+                $order->total += ($platePrice->price * $quantity[$j]);
+                $order->save();
             }
         }
     }

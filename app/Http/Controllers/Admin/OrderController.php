@@ -167,6 +167,8 @@ class OrderController extends Controller
         $auth_user = Auth::user();
         $restaurant = Restaurant::where('user_id', $auth_user->id)->first();
 
+        $quantity = [];
+
         if ($plates_order[0]->restaurant_id === $restaurant->id || $auth_user->is_admin) {
 
             $fullname_client = $order->name_client . ' ' . $order->surname_client;
@@ -174,9 +176,10 @@ class OrderController extends Controller
             $order_plate = OrderPlate::where('order_id', $order->id)->get();
             foreach ($order_plate as $plate) {
                 $plates[] = Plate::find($plate->plate_id);
+                $quantity[] = $plate->quantity;
             }
             // dd($plates);
-            return view('admin.orders.show', compact('order', 'fullname_client', 'plates', 'status'));
+            return view('admin.orders.show', compact('order', 'fullname_client', 'plates', 'status', 'quantity'));
         } else return redirect()->route('admin.home');
     }
 
