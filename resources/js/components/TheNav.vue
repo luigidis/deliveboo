@@ -28,9 +28,9 @@
 </template>
 <script>
 import state from "../store";
-import SvgAbout from "./SvgAbout.vue";
-import SvgCart from "./SvgCart.vue";
-import SvgRestaurant from "./SvgRestaurant.vue";
+import SvgAbout from "./svgs/SvgAbout.vue";
+import SvgCart from "./svgs/SvgCart.vue";
+import SvgRestaurant from "./svgs/SvgRestaurant.vue";
 
 export default {
     name: "TheHeader",

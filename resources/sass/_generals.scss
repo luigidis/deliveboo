@@ -31,6 +31,7 @@
 .c_text_color {
     color: $text-color;
 }
+
 .card{
     border: 0px solid transparent;
 }
@@ -54,6 +55,11 @@
     &:focus{
         outline: 1px solid $prim-color;
     }
+}
+
+.shadow_stroke_error{
+    border: 2px solid $seco-color;
+    box-shadow: 3px 3px 0px $seco-color;
 }
 
 .stroke_bottom{

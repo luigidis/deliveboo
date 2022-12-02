@@ -1,44 +1,42 @@
 <template>
     <div class="container" :class="plates ? 'py-28' : ''">
         <div v-if="plates">
-            <h1 class="text-4xl font-bold text-center pb-6">
-                Ordine per il ristorante: {{ restaurant.name }}
-            </h1>
-            <div class="grid rid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
-                <div class="card_restaurant box_shadow_stroke flex flex-column" v-for="plate, i in plates" :key="i">
-                    <div class="">
-                        <img class="block object-cover w-full h-full" :src="plate.img" alt="">
+            <div class="flex mb-3 flex-wrap gap-3 items-start">
+                <h1 class="text-5xl px-2 py-3 box_shadow_stroke leading-none grow lg:grow-0">
+                    Ordine per il ristorante: <span class="font-bold">{{ restaurant.name }}</span>
+                </h1>
+                <div class="flex flex-column gap-4 items-start box_shadow_stroke p-2 w-fit sm:mr-auto lg:ml-auto lg:mr-0">
+                    <div class="text-4xl">
+                        Totale: <span class="font-bold">&euro;{{ totalPrice }}</span>
                     </div>
-                    <div class="desc p-2 flex flex-column gap-3 justify-between grow">
-                        <h3 class="text-lg font-bold mb-2">
+                    <router-link :to="{
+                        name: 'checkout',
+                        params: { bool: true }
+                    }"
+                    title="Vai alla cassa"
+                    class="add_to_cart box_shadow_stroke_small bg_link_color c_text_color text-2xl font-bold py-1 px-2 card_button ml-auto hover:shadow-none">
+                        Vai alla cassa
+                    </router-link>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 justify-items-center">
+                <div class="box_shadow_stroke flex flex-column w-full max-w-sm" v-for="plate, i in plates" :key="i">
+                    <div class="h-3/5">
+                        <img class="block object-cover w-full h-full" :src="plate.img" :alt="`Foto piatto ${plate.name}`">
+                    </div>
+                    <div class="p-2 grow flex flex-column gap-2">
+                        <h3 class="text-3xl font-bold leading-none">
                             {{ plate.name }}
                         </h3>
-                        <div>
-
-                            <QuantityHandler :plate="plate" v-if="plates" />
-
-                            <span class="font-normal block pt-3 text-md">
-                                Totale: {{ (parseFloat(quantity[i]) * parseFloat(plate.price)).toFixed(2) }}€
-                            </span>
-                        </div>
+                        <span class="font-normal block text-lg">
+                            Totale piatto: <span class="font-bold">&euro;{{ (parseFloat(quantity[i]) * parseFloat(plate.price)).toFixed(2) }}</span>
+                        </span>
+                        <QuantityHandler :plate="plate" v-if="plates" class="grow" />
                     </div>
                 </div>
             </div>
-
-            <div class="flex flex-column gap-4 items-start">
-                <div class="text-xl">
-                    Totale: {{ totalPrice }}€
-                </div>
-                <router-link :to="{
-                    name: 'checkout',
-                    params: { bool: true }
-                }"
-                    class="add_to_cart box_shadow_stroke_small bg_link_color c_text_color text-xl py-1 px-2 hover:shadow-none">
-                    Checkout
-                </router-link>
-            </div>
         </div>
-            <div class="flex items-center justify-center h-screen flex-col gap-3" v-else>
+        <div class="flex items-center justify-center h-screen flex-col gap-3" v-else>
             <h1 class="text-4xl font-bold text-center pb-6">
                 Carrello vuoto.
             </h1>
