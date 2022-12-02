@@ -26,7 +26,7 @@
                             </label>
                             <div class="error"></div>
                             <input type="file" name="img"
-                                class="form-control-file invisible  @error('img')is-invalid @enderror" id="img">
+                                class="form-control-file d-none @error('img') is-invalid @enderror" id="img">
                             @error('img')
                                 <div id="img" class="invalid-feedback">
                                     {{ $message }}

@@ -157,7 +157,7 @@
 </style>
 
 
-{{-- @section('script-js')
+@section('script-js')
     <script>
         console.log('ciao');
 
@@ -176,10 +176,6 @@
                     form.submit();
             })
         })
-
-
-
-
 
         const setError = (element, message) => {
             const inputControl = element.parentElement;
@@ -233,4 +229,4 @@
             return validate;
         }
     </script>
-@endsection --}}
+@endsection
