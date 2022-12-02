@@ -17,6 +17,7 @@ class PlateSeeder extends Seeder
     {
         $restaurantIds = Restaurant::all()->pluck('id')->all();
 
+        //piatti
         $plates = [
             'Risotto al salto, ricetta classica',
             'Pignato maritato della Campania',
@@ -443,6 +444,64 @@ class PlateSeeder extends Seeder
             'Khao Soi'
         ];
 
+        $platesMexican =[
+            'Chilaquiles',
+            'Cochinita Pibil',
+            'Tamales',
+            'Mole',
+            'Pozole',
+            'Gorditas',
+            'Enchiladas',
+            'Esquites',
+            'Chile en Nogada',
+            'Tacos',
+            'Quesadillas',
+            'Huarache',
+            'Tlayudas',
+            'Tlacoyos',
+            'Pescado a la veracruzana',
+            'Aguachile',
+            'Pollo in salsa Pipián',
+            'Huevos rancheros',
+            'Ate',
+            'La carne a la Tampiqueña',
+            'Il cocktail Vuelve a la vida',
+            'La Birria',
+            'Le carnitas a la michoacanas',
+            'Il Zacahuil',
+            'Pan de cazón',
+            'I Sopitos Colimenses',
+            'Il Caldillo Durangueño',
+            'Chilaquiles',
+            'Cochinita Pibil',
+            'Tamales',
+            'Mole',
+            'Pozole',
+            'Gorditas',
+            'Enchiladas',
+            'Esquites',
+            'Chile en Nogada',
+            'Tacos',
+            'Quesadillas',
+            'Huarache',
+            'Tlayudas',
+            'Tlacoyos',
+            'Pescado a la veracruzana',
+            'Aguachile',
+            'Pollo in salsa Pipián',
+            'Huevos rancheros',
+            'Ate',
+            'La carne a la Tampiqueña',
+            'Il cocktail Vuelve a la vida',
+            'La Birria',
+            'Le carnitas a la michoacanas',
+            'Il Zacahuil',
+            'Pan de cazón',
+            'I Sopitos Colimenses',
+            'Il Caldillo Durangueño'
+        ];
+
+        //immagini dei piatti
         $img = [
             'https://media-assets.lacucinaitaliana.it/photos/61faed8c215f849851de42e5/1:1/w_2240,c_limit/Risotto-al-salto.jpg',
             'https://media-assets.lacucinaitaliana.it/photos/61fac32391ff55922ebd8ddc/1:1/w_2240,c_limit/empty',
@@ -869,6 +928,64 @@ class PlateSeeder extends Seeder
             'https://www.blueberrytravel.it/upload/CONF73/20190402/chicken-khao-soi1.jpg'
         ];
 
+        $imgPlatesMexican = [
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/Chilaquiles-rojos-featured.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/cochinita-pibil.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/tamales.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/mole.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/pozole.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/gorditas.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/enchiladas.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/esquites-1920x1080.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/chiles-nogada-mexicanos.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/tacos-al-pastor.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/quesadillas-la-ricetta-originale-1920x1280.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/huaraches-1.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/tlayudas-oaxaquenas.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/tlacoyos.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/pescado-a-la-veracruzana.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/07/Aguachile.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/07/pollo-en-pipian-rojo.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/07/huevos-rancheros.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/07/ate.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/07/Tampiquena.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/07/es_vuelve-a-la-vida-1920x768.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/07/birria.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/07/carnita.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/10/ZACAHUIL.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/10/pan-cazon.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/10/sopitos.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/10/caldillo.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/Chilaquiles-rojos-featured.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/cochinita-pibil.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/tamales.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/mole.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/pozole.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/gorditas.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/enchiladas.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/esquites-1920x1080.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/chiles-nogada-mexicanos.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/tacos-al-pastor.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/quesadillas-la-ricetta-originale-1920x1280.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/huaraches-1.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/tlayudas-oaxaquenas.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/tlacoyos.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/03/pescado-a-la-veracruzana.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/07/Aguachile.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/07/pollo-en-pipian-rojo.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/07/huevos-rancheros.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/07/ate.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/07/Tampiquena.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/07/es_vuelve-a-la-vida-1920x768.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/07/birria.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/07/carnita.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/10/ZACAHUIL.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/10/pan-cazon.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/10/sopitos.jpeg',
+            'https://ilmeglioditutto.it/wp-content/uploads/2021/10/caldillo.jpeg'
+        ];
+
+        //descrizione dei piatti
         $desc = [
             'Un piatto di recupero della cucina casalinga lombarda. Il buono di questo riso è la croccantezza: stendetelo molto sottile e cuocete quasi senza burro',
             'Una ricetta pasquale meno conosciuta è il pignato maritato, un secondo tipico campano che unisce in un caldo brodo un matrimonio di sapori, tra carni e verdure a foglia',
@@ -1291,6 +1408,63 @@ class PlateSeeder extends Seeder
             'Il Khao Soi è una zuppa di noodles ed il nome significa riso tagliato in tailandese. Tradizionalmente, la pasta viene distesa su un tessuto disteso su acqua bollente e, dopo essere stato cotto a vapore, viene rotolato e tagliato con le forbici. Esistono tantissime varianti di questo piatto, ma generalmente viene servito con maiale, pomodori, fagioli di soia fermentati, germogli di fagioli e scalogno.'
         ];
 
+        $descPlatesMexican = [
+            'Per comporre il piatto di chilaquiles servono i totopos, delle tortillas di mais croccanti tagliate a forma di triangolo (ricordano quelli che qui da noi chiamiamo nachos), una salsa piccante a base di peperoncini rossi o verdi (a seconda del grado di piccantezza e del sapore desiderato) e poi, in base al gusto personale di chi lo consuma, carne tritata, che può essere di pollo o di manzo, formaggio fresco (il queso blanco), una specie di panna acida (la crema), fagioli, avocado e cipolla.',
+            'Prima di essere cotta la carne di maiale viene marinata nell’achiote (una pasta rossa creata a partire dai semi di una pianta tipica del Sudamerica, la bixa orellana o, appunto, achiote) e avvolta in foglie di platano. Dopo una lenta cottura, la carne di maiale sfilacciata viene servita insieme a cipolle marinate nell’arancia e nel peperoncino habanero e consumata con tortillas di mais o riso bianco. Una vera prelibatezza, dalla storia centenaria, della cucina messicana.',
+            'L’impasto ripieno viene avvolto in foglie di pannocchia di mais, di banano, di avocado o di maguey (l’agave americana) e poi viene cotto al vapore o bollito in acqua abbondante. Gli ingredienti contenuti nei tamales cambiano a seconda della regione del Messico in cui ci si trova: in Baja California, ad esempio, vengono riempiti di pollo, olive e frutta secca, nel Nord del Paese, invece, di carne e salsa di peperoncini essiccati.',
+            'Passiamo ora ad uno dei massimi rappresentanti della cucina messicana nel mondo: il mole. Con il termine mole si indica la salsa che accompagna piatti principalmente a base di carne (in particolare il pollo, tacchino e maiale), ma che può essere utilizzata anche in pietanze di pesce o vegetariane. Impossibile fornirvi qui la ricetta di questa salsa, perché si dice che nella sua forma più tradizionale contenga almeno cento ingredienti; possiamo dirvi, però, che in un buon mole non possono mancare diversi tipi di peperoncino, cacao (forse la componente che più risalta al palato in questa preparazione), arachidi, mandorle, il pepe messicano o yerba santa, chiodi di garofano, cannella, e, ovviamente, pomodoro, cipolla e aglio. Tra le ricette di mole più amate quello poblano (ossia originario dello stato di Puebla) o quelle preparate nello stato di Oaxaca (considerata la capitale della gastronomia messicana), ad ogni modo si dice che in Messico ne vengano preparate ben 50 varietà diverse.',
+            'Il pozole è uno di quei piatti che sono originari dell’epoca precolobiana e venivano consumati dalle popolazioni indigene del Messico. Il termine pozole significa “bollito” in nahuatl, ed indica alla perfezione questa pietanza in brodo. In questa saporitissima zuppa troverete chicchi di mais della particolare varietà cacahuacintle (i grani sono grossi e di colore bianco), carne di manzo o di pollo, il tutto condito con cipolla, limone, ravanelli e avocado. Esistono ovviamente molte diverse varietà di pozole, che cambiano colore a seconda degli ingredienti con cui vengono cucinate: pozole rosso, contenente chile guajillo (un particolare tipo di peperoncino), il semplice pozole bianco o quello verde, in cui vengono usati pomodori di questo colore.',
+            'Proseguiamo con un altro piatto a base di mais, le gorditas (tradotto dallo spagnolo potrebbe significare “grassottelle”), delle tortillas rigorosamente preparate a mano di spessore molto più grosso rispetto a quelle tradizionali, farcite con diversi ingredienti ma in particolare carne e formaggio. Possono essere cucinate in due maniere: fritte, come è tipico del Messico centrale e meridionale, o alla piastra, sul tradizionale comal. Tra le gorditas più conosciute c’è senza dubbio quella ripiena di chicharrones, ossia la cotenna di maiale fritta. Anche in questo caso si tratta di una pietanza di origine precolombiana.',
+            'Per comporre questo piatto delizioso è necessario arrotolare le tortillas riempiendole di pollo o un altro tipo di carne (cotti in precedenza), fagioli e altri ingredienti (in questo caso si può lasciare spazio al gusto personale e alla fantasia). Successivamente questi particolari “cannelloni” di tortillas vengono ricoperti di di salsa di peperoncino (i chiles che, appunto, troviamo nella parola enchiladas) e, se gradito, formaggio fresco; poi il piatto viene fatto gratinare al forno. Anche questa pietanza vanta moltissime varietà, una, ad esempio, è quella in cui la salsa piccante viene sostituita con il mole poblano.',
+            'Gli esquites sono tra i cibi da strada più popolari in Messico, è possibile infatti trovarli in diverse varietà in tutti gli angoli del paese. Il termine esquites significa “mais tostato” ed indica un piatto in cui i chicchi di mais vengono cucinati in differenti maniere, possono essere infatti saltati con olio, strutto o burro, e poi vi viene aggiunta una serie di condimenti come formaggio, cipolla o peperoncino (ingredienti che variano, anche in questo caso, a seconda dei gusti e delle tradizioni locali). Spesso questo piatto viene servito in una tazza e, se stufato (altro metodo di cottura particolarmente diffuso) viene accompagnato da un brodo molto saporito.',
+            'Tipico della Festa dell’Indipendenza messicana, che cade il 16 di settembre ma è preceduta e seguita da diverse ricorrenze, il Chile en Nogada è un piatto che nei suoi colori riprende quelli della bandiera del Messico: il bianco, il rosso e il verde. Originario dello stato di Puebla questa pietanza è a base di chile poblano (un peperoncino di una varietà poco piccante che per dimensioni sembra più un peperone), riempito con uno stufato a base di pollo o maiale e alcune varietà di frutta (in particolare ananas, mele o pere), fritto e poi ricoperto di una salsa bianca a base di noci. Il piatto viene poi completato da una spolverata di chicchi di melograno, dal tipico colore rosso brillante.',
+            'I tacos sono a base di sottili tortillas di mais ripiene di carne, pesce o verdure cucinati in un infinità di modi diversi e accompagnati da salse di diverso tipo (piccanti o il più semplice e delicato guacamole). Quelli più conosciuti sono quelli di carne, per esempio i tacos al pastor, a base di carne marinata con achiote e cotti con una tecnica simile a quella del kebab (si presume infatti che siano stati importati dagli immigrati libanesi arrivati in Messico) insieme ad un ananas sbucciata, che viene poi tagliata insieme alla carne e conferisce al tutto un delizioso sapore agrodolce.',
+            'Questa pietanza è a base di una tortilla di mais (ma che può essere anche di farina) ripiena di formaggio e cotta alla piastra, in modo che il suo contenuto si sciolga. Può essere consumata semplice o con aggiunta nel ripieno di carne, pesce, o verdure; una varietà molto particolare ed apprezzata è quella a cui si aggiunge il huitlacoche, un fungo infestante che cresce solo sul mais e che viene consumato in Messico fin dall’epoca precolombiana.',
+            'Questa pietanza è a base di tortillas di mais spesse e di forma allungata, ricoperte di diversi condimenti, in particolare formaggio, verdure, fagioli, formaggio e stufati di manzo o maiale.',
+            'Tipiche dello stato di Oaxaca, le tlayudas sono tortillas di mais molto larghe e sottili, fritte o cotte alla piastra, ricoperte di un’infinità di ingredienti: fagioli (refritos, “fritti due volte”), lardo (il cosiddetto asiento), lattuga, avocado, carne (di solito pollo sfilacciato, ma anche manzo o maiale), formaggio oaxaqueño, e ovviamente salsa piccante (ma che può essere anche sostituita con il mole, ci troviamo a Oaxaca di cui è tipico).',
+            'Le tortillas che si usano per i tlacoyos sono spesse, di forma ovale e ripiene di diversi condimenti, in particolare fagioli e verdure. In cima, poi, viene aggiunto uno stufato di carne, vegetali o semplicemente salsa piccante. Anche questa pietanza è tipica della cucina da strada messicana.',
+            'Il piatto viene servito con riso bianco e patate. Se vi sembra una pietanza di origine mediterranea più che messicana avete ragione, la ricetta del pescado a la veracruzana trova infatti le sue radici nel periodo della Conquista, quando la gastronomia spagnola si fonde con quella indigena. A Veracruz (Hernán Cortés vi fondò nel 1519 la sua Real Villa Rica de la Santa Vera Cruz) avvenne il primo incontro tra queste due tradizioni e qui troviamo tuttora i piatti dai sapori più “fusion” della cucina messicana.',
+            'Adattissimo ai climi più caldi, questa leccornia è molto simile al ceviche (pietanza a base di pesce crudo diffusa in tutta l’America Latina) e unisce gamberi freschi ad un condimento a base di peperoncino, coriandolo e diversi tipi di verdure (in particolare cetrioli).  Per renderlo ancor più saporito spesso gli si aggiunge anche una piccola dose di tequila e mezcal. L’aguachile è tipico della regione costiera di Sinaloa e i messicani lo consumano per alleviare i postumi delle sbornie.',
+            'Questo pollo cotto al forno deve la sua fama tra i messicani che lo consumano nelle grandi occasioni alla salsa Pipián in cui è immerso, che viene preparata con semi di zucca tostati, peperoncino verde o rosso e pomodoro. Il colore ed il gusto possono variare in base al tipo di ingredienti usati.',
+            'Gli huevos rancheros sono un piatto tipico della colazione alla messicana: si tratta di uova fritte e servite su tortillas di mais tostate, accompagnate da fagioli fritti (i frijoles refritos), anelli di peperoncino e cipolla e cubetti di avocado. Dall’altissimo contenuto calorico questa colazione è perfetta per cominciare le giornate più impegnative: la parola rancheros significa infatti “da allevatori”, si tratta infatti di una pietanza che veniva consumata principalmente da chi lavorava nei campi e con gli animali.',
+            'Passiamo finalmente ad un dessert, l’ate, una specialità a base frutta (viene infatti preparato con le mele, le pere, le guayabas, i manghi…) che fu anticamente importata dagli spagnoli (che la preparavano esclusivamente con la mela cotogna). Viene servito sotto forma di piccoli e gustosi cubetti colorati.',
+            'La carne a la tampiqueña è una pietanza in cui carne grigliata viene accompagnata con enchiladas verdi (le abbiamo già citate in questo articolo), formaggio fresco, fagioli, riso e guacamole. La ricetta viene attribuita ai cuochi José Inés e Fidel Loredo, originari proprio di Tampico.',
+            'Si tratta di un cocktail a base di frutti di mare (dal polpo alle ostriche, dai gamberi al granchio) che vengono mescolati con salsa ketchup, lime, salsa di soya, salsa worcestershire, tabasco, pomodoro e cipolla. Per servire, poi, si aggiungono anche avocado e coriandolo. Ma perchè vuelve a la vida (“ritorno alla vita”)? Questa pietanza si consuma durante le festività pasquali e “riporta in vita” dopo le privazioni della quaresima.',
+            'Stufato a base tradizionalmente di carne di capra (ma è comune anche con montone e vitello), la birria è considerato il piatto delle grandi occasioni e si consuma con tortillas di mais, cipolla, coriandolo e lime.  La carne viene fatta cuocere in brodo con aceto, peperoncini essiccati e diversi tipi di spezie.',
+            'Terminiamo questa nostra lista di deliziosi piatti messicani con le carnitas a la michoacanas, un piatto a base di carne di maiale fritta nel lardo che viene utilizzato come ripieno per i tacos. Pur attribuendone l’origine allo stato messicano di Michoacán vengono consumate anche nel resto del Paese.',
+            'In questa classifica vi abbiamo già parlato dei tamales, forse uno dei piatti più conosciuti della cucina messicana nel resto del mondo. Il Zacahuilè una diversa versione del tamal, enorme per dimensioni e tipico della regione della huasteca (situata nel Messico nord-orientale), dove viene consumato durante le festività più importanti. Il Zacahuil può essere lungo fino a cinque metri e dopo essere stato cotto in un forno a legna viene diviso in razioni e distribuito tra i commensali.',
+            'Il Pan de cazón è una pietanza molto particolare a base di squalo galeo ( detto anche canesca), che viene pescato nel  Golfo del Messico. La forma è simile a quella di una nostrana lasagna, a strati di tortillas unti con salsa di fagioli fritti si intervalla a uno stufato di squalo tagliato finemente. Il tutto, poi, viene bagnato da una salsa di pomodori, peperoncino habanero, epazote (un erba aromatica tipica del Messico) e altri ingredienti (a seconda dell’area specifica in cui viene preparato.',
+            'I Sopitos Colimenses, ossia tipici della zona di Colima, sono delle piccole tortillas del diametro di circa 6 centimetri, con un piccolo bordo più spesso e rialzato. Per essere consumati vengono fritti nello strutto e poi ricoperti di carne, di cavolo fatto a strisce, ravanelli, lattufa, cipolla e formaggio. Solitamente ogni porzione contiene circa cinque sopitos, che vengono accompagnati da una salsa di pomodoro e peperoncino de árbol.',
+            'Continuiamo con il Caldillo Durangueño, un brodo fatto di carne di manzo essiccata, tipico della zona di Durango dove è molto comune essiccare la carne per conservarla più a lungo. Alla preparazione vengono aggiunti peperoncini e cumino e solitamente viene consumato insieme a tortillas fatte a mano. Si dice che le origini di questo piatto risalgano ai tempi della colonizzazione spagnola.',
+            'Per comporre il piatto di chilaquiles servono i totopos, delle tortillas di mais croccanti tagliate a forma di triangolo (ricordano quelli che qui da noi chiamiamo nachos), una salsa piccante a base di peperoncini rossi o verdi (a seconda del grado di piccantezza e del sapore desiderato) e poi, in base al gusto personale di chi lo consuma, carne tritata, che può essere di pollo o di manzo, formaggio fresco (il queso blanco), una specie di panna acida (la crema), fagioli, avocado e cipolla.',
+            'Prima di essere cotta la carne di maiale viene marinata nell’achiote (una pasta rossa creata a partire dai semi di una pianta tipica del Sudamerica, la bixa orellana o, appunto, achiote) e avvolta in foglie di platano. Dopo una lenta cottura, la carne di maiale sfilacciata viene servita insieme a cipolle marinate nell’arancia e nel peperoncino habanero e consumata con tortillas di mais o riso bianco. Una vera prelibatezza, dalla storia centenaria, della cucina messicana.',
+            'L’impasto ripieno viene avvolto in foglie di pannocchia di mais, di banano, di avocado o di maguey (l’agave americana) e poi viene cotto al vapore o bollito in acqua abbondante. Gli ingredienti contenuti nei tamales cambiano a seconda della regione del Messico in cui ci si trova: in Baja California, ad esempio, vengono riempiti di pollo, olive e frutta secca, nel Nord del Paese, invece, di carne e salsa di peperoncini essiccati.',
+            'Passiamo ora ad uno dei massimi rappresentanti della cucina messicana nel mondo: il mole. Con il termine mole si indica la salsa che accompagna piatti principalmente a base di carne (in particolare il pollo, tacchino e maiale), ma che può essere utilizzata anche in pietanze di pesce o vegetariane. Impossibile fornirvi qui la ricetta di questa salsa, perché si dice che nella sua forma più tradizionale contenga almeno cento ingredienti; possiamo dirvi, però, che in un buon mole non possono mancare diversi tipi di peperoncino, cacao (forse la componente che più risalta al palato in questa preparazione), arachidi, mandorle, il pepe messicano o yerba santa, chiodi di garofano, cannella, e, ovviamente, pomodoro, cipolla e aglio. Tra le ricette di mole più amate quello poblano (ossia originario dello stato di Puebla) o quelle preparate nello stato di Oaxaca (considerata la capitale della gastronomia messicana), ad ogni modo si dice che in Messico ne vengano preparate ben 50 varietà diverse.',
+            'Il pozole è uno di quei piatti che sono originari dell’epoca precolobiana e venivano consumati dalle popolazioni indigene del Messico. Il termine pozole significa “bollito” in nahuatl, ed indica alla perfezione questa pietanza in brodo. In questa saporitissima zuppa troverete chicchi di mais della particolare varietà cacahuacintle (i grani sono grossi e di colore bianco), carne di manzo o di pollo, il tutto condito con cipolla, limone, ravanelli e avocado. Esistono ovviamente molte diverse varietà di pozole, che cambiano colore a seconda degli ingredienti con cui vengono cucinate: pozole rosso, contenente chile guajillo (un particolare tipo di peperoncino), il semplice pozole bianco o quello verde, in cui vengono usati pomodori di questo colore.',
+            'Proseguiamo con un altro piatto a base di mais, le gorditas (tradotto dallo spagnolo potrebbe significare “grassottelle”), delle tortillas rigorosamente preparate a mano di spessore molto più grosso rispetto a quelle tradizionali, farcite con diversi ingredienti ma in particolare carne e formaggio. Possono essere cucinate in due maniere: fritte, come è tipico del Messico centrale e meridionale, o alla piastra, sul tradizionale comal. Tra le gorditas più conosciute c’è senza dubbio quella ripiena di chicharrones, ossia la cotenna di maiale fritta. Anche in questo caso si tratta di una pietanza di origine precolombiana.',
+            'Per comporre questo piatto delizioso è necessario arrotolare le tortillas riempiendole di pollo o un altro tipo di carne (cotti in precedenza), fagioli e altri ingredienti (in questo caso si può lasciare spazio al gusto personale e alla fantasia). Successivamente questi particolari “cannelloni” di tortillas vengono ricoperti di di salsa di peperoncino (i chiles che, appunto, troviamo nella parola enchiladas) e, se gradito, formaggio fresco; poi il piatto viene fatto gratinare al forno. Anche questa pietanza vanta moltissime varietà, una, ad esempio, è quella in cui la salsa piccante viene sostituita con il mole poblano.',
+            'Gli esquites sono tra i cibi da strada più popolari in Messico, è possibile infatti trovarli in diverse varietà in tutti gli angoli del paese. Il termine esquites significa “mais tostato” ed indica un piatto in cui i chicchi di mais vengono cucinati in differenti maniere, possono essere infatti saltati con olio, strutto o burro, e poi vi viene aggiunta una serie di condimenti come formaggio, cipolla o peperoncino (ingredienti che variano, anche in questo caso, a seconda dei gusti e delle tradizioni locali). Spesso questo piatto viene servito in una tazza e, se stufato (altro metodo di cottura particolarmente diffuso) viene accompagnato da un brodo molto saporito.',
+            'Tipico della Festa dell’Indipendenza messicana, che cade il 16 di settembre ma è preceduta e seguita da diverse ricorrenze, il Chile en Nogada è un piatto che nei suoi colori riprende quelli della bandiera del Messico: il bianco, il rosso e il verde. Originario dello stato di Puebla questa pietanza è a base di chile poblano (un peperoncino di una varietà poco piccante che per dimensioni sembra più un peperone), riempito con uno stufato a base di pollo o maiale e alcune varietà di frutta (in particolare ananas, mele o pere), fritto e poi ricoperto di una salsa bianca a base di noci. Il piatto viene poi completato da una spolverata di chicchi di melograno, dal tipico colore rosso brillante.',
+            'I tacos sono a base di sottili tortillas di mais ripiene di carne, pesce o verdure cucinati in un infinità di modi diversi e accompagnati da salse di diverso tipo (piccanti o il più semplice e delicato guacamole). Quelli più conosciuti sono quelli di carne, per esempio i tacos al pastor, a base di carne marinata con achiote e cotti con una tecnica simile a quella del kebab (si presume infatti che siano stati importati dagli immigrati libanesi arrivati in Messico) insieme ad un ananas sbucciata, che viene poi tagliata insieme alla carne e conferisce al tutto un delizioso sapore agrodolce.',
+            'Questa pietanza è a base di una tortilla di mais (ma che può essere anche di farina) ripiena di formaggio e cotta alla piastra, in modo che il suo contenuto si sciolga. Può essere consumata semplice o con aggiunta nel ripieno di carne, pesce, o verdure; una varietà molto particolare ed apprezzata è quella a cui si aggiunge il huitlacoche, un fungo infestante che cresce solo sul mais e che viene consumato in Messico fin dall’epoca precolombiana.',
+            'Questa pietanza è a base di tortillas di mais spesse e di forma allungata, ricoperte di diversi condimenti, in particolare formaggio, verdure, fagioli, formaggio e stufati di manzo o maiale.',
+            'Tipiche dello stato di Oaxaca, le tlayudas sono tortillas di mais molto larghe e sottili, fritte o cotte alla piastra, ricoperte di un’infinità di ingredienti: fagioli (refritos, “fritti due volte”), lardo (il cosiddetto asiento), lattuga, avocado, carne (di solito pollo sfilacciato, ma anche manzo o maiale), formaggio oaxaqueño, e ovviamente salsa piccante (ma che può essere anche sostituita con il mole, ci troviamo a Oaxaca di cui è tipico).',
+            'Le tortillas che si usano per i tlacoyos sono spesse, di forma ovale e ripiene di diversi condimenti, in particolare fagioli e verdure. In cima, poi, viene aggiunto uno stufato di carne, vegetali o semplicemente salsa piccante. Anche questa pietanza è tipica della cucina da strada messicana.',
+            'Il piatto viene servito con riso bianco e patate. Se vi sembra una pietanza di origine mediterranea più che messicana avete ragione, la ricetta del pescado a la veracruzana trova infatti le sue radici nel periodo della Conquista, quando la gastronomia spagnola si fonde con quella indigena. A Veracruz (Hernán Cortés vi fondò nel 1519 la sua Real Villa Rica de la Santa Vera Cruz) avvenne il primo incontro tra queste due tradizioni e qui troviamo tuttora i piatti dai sapori più “fusion” della cucina messicana.',
+            'Adattissimo ai climi più caldi, questa leccornia è molto simile al ceviche (pietanza a base di pesce crudo diffusa in tutta l’America Latina) e unisce gamberi freschi ad un condimento a base di peperoncino, coriandolo e diversi tipi di verdure (in particolare cetrioli).  Per renderlo ancor più saporito spesso gli si aggiunge anche una piccola dose di tequila e mezcal. L’aguachile è tipico della regione costiera di Sinaloa e i messicani lo consumano per alleviare i postumi delle sbornie.',
+            'Questo pollo cotto al forno deve la sua fama tra i messicani che lo consumano nelle grandi occasioni alla salsa Pipián in cui è immerso, che viene preparata con semi di zucca tostati, peperoncino verde o rosso e pomodoro. Il colore ed il gusto possono variare in base al tipo di ingredienti usati.',
+            'Gli huevos rancheros sono un piatto tipico della colazione alla messicana: si tratta di uova fritte e servite su tortillas di mais tostate, accompagnate da fagioli fritti (i frijoles refritos), anelli di peperoncino e cipolla e cubetti di avocado. Dall’altissimo contenuto calorico questa colazione è perfetta per cominciare le giornate più impegnative: la parola rancheros significa infatti “da allevatori”, si tratta infatti di una pietanza che veniva consumata principalmente da chi lavorava nei campi e con gli animali.',
+            'Passiamo finalmente ad un dessert, l’ate, una specialità a base frutta (viene infatti preparato con le mele, le pere, le guayabas, i manghi…) che fu anticamente importata dagli spagnoli (che la preparavano esclusivamente con la mela cotogna). Viene servito sotto forma di piccoli e gustosi cubetti colorati.',
+            'La carne a la tampiqueña è una pietanza in cui carne grigliata viene accompagnata con enchiladas verdi (le abbiamo già citate in questo articolo), formaggio fresco, fagioli, riso e guacamole. La ricetta viene attribuita ai cuochi José Inés e Fidel Loredo, originari proprio di Tampico.',
+            'Si tratta di un cocktail a base di frutti di mare (dal polpo alle ostriche, dai gamberi al granchio) che vengono mescolati con salsa ketchup, lime, salsa di soya, salsa worcestershire, tabasco, pomodoro e cipolla. Per servire, poi, si aggiungono anche avocado e coriandolo. Ma perchè vuelve a la vida (“ritorno alla vita”)? Questa pietanza si consuma durante le festività pasquali e “riporta in vita” dopo le privazioni della quaresima.',
+            'Stufato a base tradizionalmente di carne di capra (ma è comune anche con montone e vitello), la birria è considerato il piatto delle grandi occasioni e si consuma con tortillas di mais, cipolla, coriandolo e lime.  La carne viene fatta cuocere in brodo con aceto, peperoncini essiccati e diversi tipi di spezie.',
+            'Terminiamo questa nostra lista di deliziosi piatti messicani con le carnitas a la michoacanas, un piatto a base di carne di maiale fritta nel lardo che viene utilizzato come ripieno per i tacos. Pur attribuendone l’origine allo stato messicano di Michoacán vengono consumate anche nel resto del Paese.',
+            'In questa classifica vi abbiamo già parlato dei tamales, forse uno dei piatti più conosciuti della cucina messicana nel resto del mondo. Il Zacahuilè una diversa versione del tamal, enorme per dimensioni e tipico della regione della huasteca (situata nel Messico nord-orientale), dove viene consumato durante le festività più importanti. Il Zacahuil può essere lungo fino a cinque metri e dopo essere stato cotto in un forno a legna viene diviso in razioni e distribuito tra i commensali.',
+            'Il Pan de cazón è una pietanza molto particolare a base di squalo galeo ( detto anche canesca), che viene pescato nel  Golfo del Messico. La forma è simile a quella di una nostrana lasagna, a strati di tortillas unti con salsa di fagioli fritti si intervalla a uno stufato di squalo tagliato finemente. Il tutto, poi, viene bagnato da una salsa di pomodori, peperoncino habanero, epazote (un erba aromatica tipica del Messico) e altri ingredienti (a seconda dell’area specifica in cui viene preparato.',
+            'I Sopitos Colimenses, ossia tipici della zona di Colima, sono delle piccole tortillas del diametro di circa 6 centimetri, con un piccolo bordo più spesso e rialzato. Per essere consumati vengono fritti nello strutto e poi ricoperti di carne, di cavolo fatto a strisce, ravanelli, lattufa, cipolla e formaggio. Solitamente ogni porzione contiene circa cinque sopitos, che vengono accompagnati da una salsa di pomodoro e peperoncino de árbol.',
+            'Continuiamo con il Caldillo Durangueño, un brodo fatto di carne di manzo essiccata, tipico della zona di Durango dove è molto comune essiccare la carne per conservarla più a lungo. Alla preparazione vengono aggiunti peperoncini e cumino e solitamente viene consumato insieme a tortillas fatte a mano. Si dice che le origini di questo piatto risalgano ai tempi della colonizzazione spagnola.'
+        ];
+
         // $k = 0;
 
         for ($i = 0; $i < (count($plates)); $i++) {
@@ -1349,6 +1523,41 @@ class PlateSeeder extends Seeder
             $plate->slug = Plate::getUniqueSlugFromTitle($plate->name);
             if (count($imgPlatesAsian) > $i)
                 $plate->img = $imgPlatesAsian[$i];
+            else
+                $plate->img = "https://picsum.photos/id/$randomImg/400/200";
+
+            // $index = rand(0, count($restaurantIds) - 1);
+            // $restaurantPlates = Plate::where('restaurant_id', $index)->pluck('name');
+            do {
+                $index = rand(1, count($restaurantIds));
+                $restaurantPlates = Plate::where('restaurant_id', $index)->pluck('name');
+            } while (in_array($plate->name, $restaurantPlates->all()));
+            $plate->restaurant_id = $restaurantIds[$index - 1];
+
+            $plate->save();
+        }
+
+        for ($i = 0; $i < (count($platesMexican)); $i++) {
+            $randomImg = rand(1, 300);
+            $plate = new Plate();
+            if (count($platesMexican) > $i) {
+                $plate->name = $platesMexican[$i];
+            } else {
+                $plate->name = $faker->unique()->name();
+            }
+            if (count($descPlatesMexican) > $i) {
+                if ($descPlatesMexican[$i] === '')
+                    $plate->description = 'La nostra ricetta del piatto: ' . $platesMexican[$i];
+                else
+                    $plate->description = $descPlatesMexican[$i];
+            } else
+                $plate->description = $faker->paragraphs(rand(1, 3), true);
+            $plate->price = $faker->randomFloat(1, 5, 15);
+            $plate->is_visible = true;
+            // $plate->slug = Str::slug($plate->name);
+            $plate->slug = Plate::getUniqueSlugFromTitle($plate->name);
+            if (count($imgPlatesMexican) > $i)
+                $plate->img = $imgPlatesMexican[$i];
             else
                 $plate->img = "https://picsum.photos/id/$randomImg/400/200";
 
