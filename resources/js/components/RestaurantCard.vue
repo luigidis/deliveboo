@@ -1,6 +1,6 @@
 <template>
     <div
-        class="transition-transform card_restaurant-size  flex flex-column box_shadow_stroke hover:no-underline hover:shadow-none hover:scale-95 relative">
+        class="transition-transform card_restaurant-size flex flex-column box_shadow_stroke hover:no-underline hover:shadow-none hover:scale-95 relative">
         <router-link :to="{
             name: 'restaurants.show',
             params: { slug: data.slug }
@@ -9,14 +9,12 @@
             <img class="block object-cover w-full h-full" :src="data.image" alt="">
         </div>
         <div class="p-2 grow flex flex-column">
-            <h3 class="text-2xl font-bold leading-none">
+            <h3 class="text-3xl font-bold leading-none">
                 {{ data.name }}
             </h3>
-            <div class="pt-4">
-                <span class="font-normal text-lg block leading-none mb-2">
-                    {{ data.address }}
-                </span>
-            </div>
+            <p class="font-normal text-lg block leading-none mb-2 pt-4">
+                {{ data.address }}
+            </p>
             <ul class="flex flex-wrap gap-2 pt-2 pb-2 grow items-end">
                 <li v-for="(category, i) in data.categories" :key="1000 - i"
                     class="box_shadow_stroke_small py-1 px-2 font-bold c_seco_color">

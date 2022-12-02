@@ -1,8 +1,8 @@
 <template>
-    <div class="flex justify-center items-center gap-3">
-            <span @click="removeCart()" class="add_to_cart cursor-pointer box_shadow_stroke_small bg_text_color c_prim_color text-2xl py-1 px-2 font-normal hover:shadow-none">-</span>
+    <div class="flex justify-center items-end gap-3">
+            <span @click="removeCart()" class="add_to_cart transition-shadow cursor-pointer box_shadow_stroke_small bg_text_color c_prim_color text-2xl py-1 px-2 font-normal hover:shadow-none">-</span>
             <span class="add_to_cart box_shadow_stroke_small bg_link_color c_text_color text-3xl py-1 px-2 font-bold">{{ plateQuantity }}</span>
-            <span @click="addCart()" class="add_to_cart cursor-pointer box_shadow_stroke_small bg_text_color c_prim_color text-2xl py-1 px-2 font-normal hover:shadow-none">+</span>
+            <span @click="addCart()" class="add_to_cart transition-shadow cursor-pointer box_shadow_stroke_small bg_text_color c_prim_color text-2xl py-1 px-2 font-normal hover:shadow-none">+</span>
         </div>
 </template>
 
