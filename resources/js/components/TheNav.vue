@@ -10,13 +10,11 @@
                 </span>
             </li>
             <li class="relative">
-                <a href="/admin" class="absolute inset-0" title="Contatti">
-                </a>
-                <SvgRestaurant class="md:hidden svg_icon" />
+                <SvgAbout class="md:hidden svg_icon" />
                 <span class="hidden md:block font-normal text-xl">
-                    Contatti
+                    Il Team
                 </span>
-                <router-link :to="{ name: 'contacts' }" class="router" title="Contatti"></router-link>
+                <router-link :to="{ name: 'about-us' }" class="router" title="Vai ai Contatti"></router-link>
             </li>
             <li class="flex gap-1 justify-center items-center relative">
                 <span class="rounded-full flex items-center justify-center totalItems text-sm">
@@ -30,6 +28,7 @@
 </template>
 <script>
 import state from "../store";
+import SvgAbout from "./SvgAbout.vue";
 import SvgCart from "./SvgCart.vue";
 import SvgRestaurant from "./SvgRestaurant.vue";
 
@@ -40,10 +39,11 @@ export default {
             return state.totalItems;
         }
     },
-    components: { 
-        SvgCart,
-        SvgRestaurant
-    }
+    components: {
+    SvgCart,
+    SvgRestaurant,
+    SvgAbout
+}
 }
 </script>
 <style lang="scss" scoped>

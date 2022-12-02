@@ -355,7 +355,7 @@ function ValidateEmail(email) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Stefano\Documents\Boolean\Laravel\deliverboo\resources\js\register.js */"./resources/js/register.js");
+module.exports = __webpack_require__(/*! /Users/giusscos/dev/boolean/progetto_finale/deliveboo/resources/js/register.js */"./resources/js/register.js");
 
 
 /***/ })
