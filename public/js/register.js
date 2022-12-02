@@ -357,7 +357,6 @@ function ValidateEmail(email) {
 
 module.exports = __webpack_require__(/*! C:\Users\franc\Documents\boolean-dev\full-stack-dev\php\deliveboo\resources\js\register.js */"./resources/js/register.js");
 
-
 /***/ })
 
 /******/ });

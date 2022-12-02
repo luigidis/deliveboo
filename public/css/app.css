@@ -11208,6 +11208,19 @@ button.card_button_dark:hover {
   margin-left: auto;
 }
 
+
+.main_card {
+  position: relative;
+}
+
+#delete_req {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 150px;
+
 .card_content,
 .card_restaurant {
   transition: 800ms cubic-bezier(0.075, 0.82, 0.165, 1);
