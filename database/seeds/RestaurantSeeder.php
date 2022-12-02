@@ -87,8 +87,8 @@ class RestaurantSeeder extends Seeder
         for ($i = 0; $i < count($img); $i++) {
             // $randomImg = rand(1, 300);
             $restaurant = new Restaurant();
-            // $restaurant->name = $faker->unique()->company();
-            $restaurant->name = $name[$i];
+            $restaurant->name = $faker->unique()->company();
+            // $restaurant->name = $name[$i];
             $restaurant->slug = Restaurant::getUniqueSlugFromTitle($restaurant->name);
             // $restaurant->image = "https://picsum.photos/id/$randomImg/400/200";
             $restaurant->image = $img[$i];
