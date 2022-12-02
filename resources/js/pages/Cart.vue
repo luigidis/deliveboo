@@ -5,7 +5,7 @@
                 <h1 class="text-5xl px-2 py-3 box_shadow_stroke leading-none grow lg:grow-0">
                     Ordine per il ristorante: <span class="font-bold">{{ restaurant.name }}</span>
                 </h1>
-                <div class="flex flex-column gap-4 items-start box_shadow_stroke p-2 w-fit ml-auto">
+                <div class="flex flex-column gap-4 items-start box_shadow_stroke p-2 w-fit sm:mr-auto lg:ml-auto lg:mr-0">
                     <div class="text-4xl">
                         Totale: <span class="font-bold">&euro;{{ totalPrice }}</span>
                     </div>
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 justify-items-center">
-                <div class="box_shadow_stroke flex flex-column w-full" v-for="plate, i in plates" :key="i">
+                <div class="box_shadow_stroke flex flex-column w-full max-w-sm" v-for="plate, i in plates" :key="i">
                     <div class="h-3/5">
                         <img class="block object-cover w-full h-full" :src="plate.img" :alt="`Foto piatto ${plate.name}`">
                     </div>

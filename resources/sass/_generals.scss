@@ -57,6 +57,11 @@
     }
 }
 
+.shadow_stroke_error{
+    border: 2px solid $seco-color;
+    box-shadow: 3px 3px 0px $seco-color;
+}
+
 .stroke_bottom{
     border-bottom: 2px solid $prim-color;
 }
