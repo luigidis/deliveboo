@@ -2,8 +2,10 @@
     <main class="flex flex-column justify-center py-16">
         <JumboTron />
         <RestaurantSearch />
-        <SuggestedRestaurants v-if="!Object.keys(query).length"/>
-        <AdvancedSearch v-else :par="par" />
+        <!-- <SuggestedRestaurants v-if="!Object.keys(query).length"/>
+            <AdvancedSearch v-else :par="par" /> -->
+        <AdvancedSearch v-if="par" :par="par" />
+        <SuggestedRestaurants/>
     </main>
 </template>
 
