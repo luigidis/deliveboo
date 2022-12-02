@@ -53,7 +53,7 @@
                         Modifica Ristorante
                     </a>
                     <!-- Button trigger modal -->
-                    <button type="button" data-toggle="modal" data-target="{{ '#popup' . $key }}"
+                    <button type="button" data-toggle="modal" data-target="{{ '#popup' }}"
                         class="bg_seco_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button">
                         Elimina
                     </button>
@@ -69,26 +69,31 @@
                     </form> --}}
                 </div>
                 <!-- Modal -->
-                <div class="modal fade" id="{{ 'popup' . $key }}" tabindex="-1" aria-labelledby="popupLabel"
+                <div class="modal fade" id="popup" tabindex="-1" aria-labelledby="popupLabel"
                     aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="popupLabel">Elimina Ristorante</h5>
+                    <div class="modal-dialog box_shadow_stroke_small rounded-0">
+                        <div class="modal-content rounded-0">
+                            <div>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
+                                    <span aria-hidden="true" class="px-3 py-2 d-block">&times;</span>
                                 </button>
+                                <h5 class="modal-title px-3 py-2" id="popupLabel">Elimina Ristorante</h5>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body font-weight-bold stroke_bottom">
                                 Eliminare il ristorante? Cancellerai anche il tuo account...
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary btn-sm"
+                                <button type="button"
+                                    class="bg_link_color c_text_color box_shadow_stroke_small px-2 py-1 card_button mb-3 mr-auto"
                                     data-dismiss="modal">Annulla</button>
-                                <form action="{{ route('admin.restaurant.destroy', $restaurant) }}" method="POST">
+                                <form action="{{ route('admin.restaurant.destroy', $restaurant) }}" method="POST"
+                                    class="mb-0">
                                     @csrf
                                     @method('DELETE')
-                                    <input type="submit" class="btn btn-danger btn-sm" value="Elimina">
+                                    <button type="submit"
+                                        class="bg_seco_color c_text_color box_shadow_stroke_small px-2 py-1 card_button mb-3 text-center font-weight-bold">
+                                        Elimina
+                                    </button>
                                 </form>
                             </div>
                         </div>
