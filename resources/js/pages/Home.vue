@@ -2,7 +2,6 @@
     <main class="flex flex-column justify-center py-16">
         <JumboTron />
         <section class="py-4">
-            <TheLogo />
             <RestaurantSearch />
         </section>
         <SuggestedRestaurants v-if="!Object.keys(query).length"/>
