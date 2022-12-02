@@ -1,5 +1,4 @@
 import Home from '../pages/Home.vue';
-import AdvancedSearch from '../pages/AdvancedSearch.vue';
 import RestaurantsShow from '../pages/RestaurantsShow.vue';
 import PlateShow from '../pages/PlateShow.vue';
 import Page404 from '../pages/404.vue';
@@ -12,11 +11,6 @@ const routes = [
         path: '/',
         name: 'home',
         component: Home,
-    },
-    {
-        path: '/ristoranti/ricerca',
-        name: 'restaurants.search',
-        component: AdvancedSearch,
     },
     {
         path: '/ristoranti/:slug/piatti',

@@ -1,11 +1,12 @@
+@import './variables';
 .input-control.success {
-    border-color: green;
+    border-color: $text-color;
 }
 
 .input-control.error {
-    border-color: red;
+    border-color: $seco-color;
 }
 
 .error {
-    color: red;
+    color: $seco-color;
 }

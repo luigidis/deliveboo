@@ -17,7 +17,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label">{{ __('Nome') }}*</label>
+                            <label for="name" class="col-md-4 col-form-label">{{ __('Nome Completo') }}*</label>
                             <div class="col-md-6">
                                 <input id="name" type="text"
                                     class="form-control input-control @error('name') is-invalid @enderror box_shadow_stroke" name="name"
@@ -147,14 +147,14 @@
 
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label" for="category">Categorie:*</label>
-                            <div class="col-md-6">
+                            <div class="col-md-6 px-0">
                                 <div class="@error('categories') is-invalid @enderror" id="categories">
                                     @foreach ($categories as $key => $category)
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" name="categories[]"
+                                            <input class="form-check-input invisible" name="categories[]"
                                                 @if (in_array($category->id, old('categories', []))) checked @endif type="checkbox"
                                                 id="category-{{ $category->id }}" value="{{ $category->id }}">
-                                            <label class="form-check-label"
+                                            <label class="check_box_item cursor_pointer px-2 py-1 text-xl font-normal box_shadow_stroke_small @if (in_array($category->id, old('categories', []))) checkbox_checked @endif"
                                                 for="category-{{ $category->id }}">
                                                 {{ $category->name }}
                                             </label>
@@ -172,11 +172,11 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="image" class="col-md-4 col-form-label">
+                            <div class="col-md-6">
+                            <label for="image" class="box_shadow_stroke_small w-100 px-1 py-2 bg-white @error('image') is-invalid @enderror">
                                 Seleziona un'immagine*
                             </label>
-                            <div class="col-md-6">
-                                <input type="file" class="form-control-file @error('image') is-invalid @enderror"
+                                <input type="file" class="form-control-file d-none @error('image') is-invalid @enderror"
                                     id="image" name="image" value="{{ old('image') }}">
                                 <div class="error"></div>
                             </div>
@@ -188,8 +188,8 @@
                         </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="bg_link_color c_text_color box_shadow_stroke_small px-2 py-1 card_button mb-3" id="submitBtn">
+                            <div class="col-md-6 offset-md-4 d-flex justify-content-md-end justify-content-center">
+                                <button type="submit" class="bg_link_color c_text_color box_shadow_stroke_small px-2 py-1 card_button mb-3 self-end" id="submitBtn">
                                     {{ __('Registrati') }}
                                 </button>
                             </div>
@@ -203,4 +203,19 @@
 
 @section('script-js')
     <script src={{ asset('js/register.js') }}></script>
+    <script>
+        const checkBoxsEl = document.querySelectorAll('.check_box_item')
+        
+        for (let i = 0; i < checkBoxsEl.length; i++) {
+            const currentBox = checkBoxsEl[i]
+
+            currentBox.addEventListener('click', () => {
+                if (!currentBox.classList[currentBox.classList.length -1].includes('checkbox_checked')) {
+                    currentBox.classList.add('checkbox_checked')
+                } else {
+                    currentBox.classList.remove('checkbox_checked')
+                }
+            })
+        }
+    </script>
 @endsection

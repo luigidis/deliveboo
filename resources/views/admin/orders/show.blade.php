@@ -34,15 +34,8 @@
                     <span class="h5 d-block">
                         Indirizzo: {{ $order->address_client }}
                     </span>
-                    <span class="h4">
-                        <?php
-                        // $tot = 0;
-                        // foreach ($plates as $plate) {
-                        //     $tot += $plate->price;
-                        // }
-                        // echo 'Totale: ' . $tot . '€';
-                        // ?>
-                        Totale: &euro;{{ $order->total }}
+                    <span class="h5">
+                        Totale: <span class="h3 font-weight-bold">&euro;{{ $order->total }}</span>
                     </span>
                 </div>
                 <div class="d-flex flex-column align-items-end justify-content-end">
@@ -67,7 +60,7 @@
                         @enderror
 
                         {{-- aggiungo campo id alla request se settato --}}
-                        @if(isset($id)) :
+                        @if(isset($id))
                         <input type="hidden" value="{{ $id }}" name="id">
                         @endif
 
@@ -77,14 +70,14 @@
                         </button>
                     </form>
                     <a href="{{ route('admin.orders.index', ['id' => $plates[0]->restaurant_id]) }}"
-                        class="bg_seco_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2"
+                        class="bg_seco_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2 mr-auto mr-xl-0 ml-xl-auto"
                         title="Torna agli ordini">
                         Torna agli ordini
                     </a>
                 </div>
             </div>
             <div class="body_content py-5 d-flex flex-wrap justify-content-center">
-                @foreach ($plates as $plate)
+                @foreach ($plates as $key => $plate)
                     <div class="m-3 card_content box_shadow_stroke pt-3">
                         <div class="d-flex flex-column h-100">
                             <div class="d-flex flex-wrap align-items-center justify-content-between stroke_bottom flex_grow">
@@ -95,9 +88,12 @@
                                     &euro;{{ $plate->price }}
                                 </span>
                             </div>
-                            <p class="overflow-auto stroke_bottom px-2 card_description py-2 m-0">
+                            <span class="stroke_bottom p-2 m-0 h5">
+                                Quantit&aacute;: <span class="font-weight-bold">{{ $quantity[$key] }}</span> 
+                            </span>
+                            {{-- <p class="overflow-auto stroke_bottom px-2 card_description py-2 m-0">
                                 {{ $plate->description }}
-                            </p>
+                            </p> --}}
                             <div
                                 class="d-flex p-2 flex-wrap align-items-center justify-content-between card_button_wrapper flex_grow">
                                 <a href="{{ route('admin.plates.show', $plate) }}"
