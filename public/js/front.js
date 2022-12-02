@@ -3217,9 +3217,9 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "flex justify-center items-center gap-3"
+    staticClass: "flex justify-center items-end gap-3"
   }, [_c("span", {
-    staticClass: "add_to_cart cursor-pointer box_shadow_stroke_small bg_text_color c_prim_color text-2xl py-1 px-2 font-normal hover:shadow-none",
+    staticClass: "add_to_cart transition-shadow cursor-pointer box_shadow_stroke_small bg_text_color c_prim_color text-2xl py-1 px-2 font-normal hover:shadow-none",
     on: {
       click: function click($event) {
         return _vm.removeCart();
@@ -3228,7 +3228,7 @@ var render = function render() {
   }, [_vm._v("-")]), _vm._v(" "), _c("span", {
     staticClass: "add_to_cart box_shadow_stroke_small bg_link_color c_text_color text-3xl py-1 px-2 font-bold"
   }, [_vm._v(_vm._s(_vm.plateQuantity))]), _vm._v(" "), _c("span", {
-    staticClass: "add_to_cart cursor-pointer box_shadow_stroke_small bg_text_color c_prim_color text-2xl py-1 px-2 font-normal hover:shadow-none",
+    staticClass: "add_to_cart transition-shadow cursor-pointer box_shadow_stroke_small bg_text_color c_prim_color text-2xl py-1 px-2 font-normal hover:shadow-none",
     on: {
       click: function click($event) {
         return _vm.addCart();
@@ -3279,12 +3279,10 @@ var render = function render() {
   })]), _vm._v(" "), _c("div", {
     staticClass: "p-2 grow flex flex-column"
   }, [_c("h3", {
-    staticClass: "text-2xl font-bold leading-none"
-  }, [_vm._v("\n            " + _vm._s(_vm.data.name) + "\n        ")]), _vm._v(" "), _c("div", {
-    staticClass: "pt-4"
-  }, [_c("span", {
-    staticClass: "font-normal text-lg block leading-none mb-2"
-  }, [_vm._v("\n                " + _vm._s(_vm.data.address) + "\n            ")])]), _vm._v(" "), _c("ul", {
+    staticClass: "text-3xl font-bold leading-none"
+  }, [_vm._v("\n            " + _vm._s(_vm.data.name) + "\n        ")]), _vm._v(" "), _c("p", {
+    staticClass: "font-normal text-lg block leading-none mb-2 pt-4"
+  }, [_vm._v("\n            " + _vm._s(_vm.data.address) + "\n        ")]), _vm._v(" "), _c("ul", {
     staticClass: "flex flex-wrap gap-2 pt-2 pb-2 grow items-end"
   }, _vm._l(_vm.data.categories, function (category, i) {
     return _c("li", {
@@ -3721,46 +3719,58 @@ var render = function render() {
   return _c("div", {
     staticClass: "container",
     "class": _vm.plates ? "py-28" : ""
-  }, [_vm.plates ? _c("div", [_c("h1", {
-    staticClass: "text-4xl font-bold text-center pb-6"
-  }, [_vm._v("\n            Ordine per il ristorante: " + _vm._s(_vm.restaurant.name) + "\n        ")]), _vm._v(" "), _c("div", {
-    staticClass: "grid rid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8"
-  }, _vm._l(_vm.plates, function (plate, i) {
-    return _c("div", {
-      key: i,
-      staticClass: "card_restaurant box_shadow_stroke flex flex-column"
-    }, [_c("div", {}, [_c("img", {
-      staticClass: "block object-cover w-full h-full",
-      attrs: {
-        src: plate.img,
-        alt: ""
-      }
-    })]), _vm._v(" "), _c("div", {
-      staticClass: "desc p-2 flex flex-column gap-3 justify-between grow"
-    }, [_c("h3", {
-      staticClass: "text-lg font-bold mb-2"
-    }, [_vm._v("\n                        " + _vm._s(plate.name) + "\n                    ")]), _vm._v(" "), _c("div", [_vm.plates ? _c("QuantityHandler", {
-      attrs: {
-        plate: plate
-      }
-    }) : _vm._e(), _vm._v(" "), _c("span", {
-      staticClass: "font-normal block pt-3 text-md"
-    }, [_vm._v("\n                            Totale: " + _vm._s((parseFloat(_vm.quantity[i]) * parseFloat(plate.price)).toFixed(2)) + "€\n                        ")])], 1)])]);
-  }), 0), _vm._v(" "), _c("div", {
-    staticClass: "flex flex-column gap-4 items-start"
+  }, [_vm.plates ? _c("div", [_c("div", {
+    staticClass: "flex mb-3 flex-wrap gap-3 items-start"
+  }, [_c("h1", {
+    staticClass: "text-5xl px-2 py-3 box_shadow_stroke leading-none grow lg:grow-0"
+  }, [_vm._v("\n                Ordine per il ristorante: "), _c("span", {
+    staticClass: "font-bold"
+  }, [_vm._v(_vm._s(_vm.restaurant.name))])]), _vm._v(" "), _c("div", {
+    staticClass: "flex flex-column gap-4 items-start box_shadow_stroke p-2 w-fit ml-auto"
   }, [_c("div", {
-    staticClass: "text-xl"
-  }, [_vm._v("\n                Totale: " + _vm._s(_vm.totalPrice) + "€\n            ")]), _vm._v(" "), _c("router-link", {
-    staticClass: "add_to_cart box_shadow_stroke_small bg_link_color c_text_color text-xl py-1 px-2 hover:shadow-none",
+    staticClass: "text-4xl"
+  }, [_vm._v("\n                    Totale: "), _c("span", {
+    staticClass: "font-bold"
+  }, [_vm._v("€" + _vm._s(_vm.totalPrice))])]), _vm._v(" "), _c("router-link", {
+    staticClass: "add_to_cart box_shadow_stroke_small bg_link_color c_text_color text-2xl font-bold py-1 px-2 card_button ml-auto hover:shadow-none",
     attrs: {
       to: {
         name: "checkout",
         params: {
           bool: true
         }
-      }
+      },
+      title: "Vai alla cassa"
     }
-  }, [_vm._v("\n                Checkout\n            ")])], 1)]) : _c("div", {
+  }, [_vm._v("\n                    Vai alla cassa\n                ")])], 1)]), _vm._v(" "), _c("div", {
+    staticClass: "grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 justify-items-center"
+  }, _vm._l(_vm.plates, function (plate, i) {
+    return _c("div", {
+      key: i,
+      staticClass: "box_shadow_stroke flex flex-column w-full"
+    }, [_c("div", {
+      staticClass: "h-3/5"
+    }, [_c("img", {
+      staticClass: "block object-cover w-full h-full",
+      attrs: {
+        src: plate.img,
+        alt: "Foto piatto ".concat(plate.name)
+      }
+    })]), _vm._v(" "), _c("div", {
+      staticClass: "p-2 grow flex flex-column gap-2"
+    }, [_c("h3", {
+      staticClass: "text-3xl font-bold leading-none"
+    }, [_vm._v("\n                        " + _vm._s(plate.name) + "\n                    ")]), _vm._v(" "), _c("span", {
+      staticClass: "font-normal block text-lg"
+    }, [_vm._v("\n                        Totale piatto: "), _c("span", {
+      staticClass: "font-bold"
+    }, [_vm._v("€" + _vm._s((parseFloat(_vm.quantity[i]) * parseFloat(plate.price)).toFixed(2)))])]), _vm._v(" "), _vm.plates ? _c("QuantityHandler", {
+      staticClass: "grow",
+      attrs: {
+        plate: plate
+      }
+    }) : _vm._e()], 1)]);
+  }), 0)]) : _c("div", {
     staticClass: "flex items-center justify-center h-screen flex-col gap-3"
   }, [_c("h1", {
     staticClass: "text-4xl font-bold text-center pb-6"
