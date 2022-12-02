@@ -9,6 +9,15 @@
                     Il tuo ristorante
                 </span>
             </li>
+            <li class="relative">
+                <a href="/admin" class="absolute inset-0" title="Contatti">
+                </a>
+                <SvgRestaurant class="md:hidden svg_icon" />
+                <span class="hidden md:block font-normal text-xl">
+                    Contatti
+                </span>
+                <router-link :to="{ name: 'contacts' }" class="router" title="Contatti"></router-link>
+            </li>
             <li class="flex gap-1 justify-center items-center relative">
                 <span class="rounded-full flex items-center justify-center totalItems text-sm">
                     {{ totalItems }}

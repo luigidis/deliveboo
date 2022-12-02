@@ -11208,6 +11208,14 @@ button.card_button_dark:hover {
   margin-left: auto;
 }
 
+.card_content,
+.card_restaurant {
+  transition: 800ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.stroke_left {
+  border-left: 3px solid #4C5355;
+}
 
 .main_card {
   position: relative;
@@ -11220,14 +11228,6 @@ button.card_button_dark:hover {
   left: 50%;
   transform: translate(-50%, -50%);
   height: 150px;
-
-.card_content,
-.card_restaurant {
-  transition: 800ms cubic-bezier(0.075, 0.82, 0.165, 1);
-}
-
-.stroke_left {
-  border-left: 3px solid #4C5355;
 }
 
 html body {
