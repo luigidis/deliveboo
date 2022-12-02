@@ -3,7 +3,7 @@
         <li v-for="(link, i) in links" :key="i"
             class="box_shadow_stroke flex flex-column">
             <div>
-                <img class="object-cover w-full h-full block" :src="link.img" alt="">
+                <img class="object-cover w-full h-full block" :src="link.img" :alt="`Immagine profilo di ${link.name}`">
             </div>
             <div class="flex flex-col grow justify-start p-2 leading-none c_prim_color">
                 <h3 class="mb-2 text-4xl font-bold">

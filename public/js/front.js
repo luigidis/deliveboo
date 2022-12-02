@@ -3061,7 +3061,7 @@ var render = function render() {
       staticClass: "object-cover w-full h-full block",
       attrs: {
         src: link.img,
-        alt: ""
+        alt: "Immagine profilo di ".concat(link.name)
       }
     })]), _vm._v(" "), _c("div", {
       staticClass: "flex flex-col grow justify-start p-2 leading-none c_prim_color"
