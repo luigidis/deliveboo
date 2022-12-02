@@ -13,19 +13,65 @@ class CategoryRestaurantSeeder extends Seeder
      */
     public function run()
     {
-        $categoriesIds = Category::all()->pluck('id');
+        // $categoriesIds = Category::all()->pluck('id');
+        $countRestaurants = Restaurant::all()->count();
 
-        for ($i = 0; $i < 20; $i++) {
+        $asiatico = Category::where('name', 'Asiatico')->first()->id;
+        $asiatici[] = Category::where('name', 'Indiano')->first()->id;
+        $asiatici[] = Category::where('name', 'Giapponese')->first()->id;
+        $asiatici[] = Category::where('name', 'Cinese')->first()->id;
+        $asiatici[] = Category::where('name', 'Sushi')->first()->id;
+
+        $europeo = Category::where('name', 'Europeo')->first()->id;
+        $europei[] = Category::where('name', 'Italiano')->first()->id;
+        $europei[] = Category::where('name', 'Bavarese')->first()->id;
+        $europei[] = Category::where('name', 'Spagnolo')->first()->id;
+        $pizza = Category::where('name', 'Pizza')->first()->id;
+
+        $sudamericano = Category::where('name', 'Sudamericano')->first()->id;
+        $sudamericani[] = Category::where('name', 'Messicano')->first()->id;
+        $sudamericani[] = Category::where('name', 'Brasiliano')->first()->id;
+
+
+        $categories = [$asiatico, $europeo, $sudamericano];
+
+        for ($i = 0; $i < $countRestaurants; $i++) {
+            $category = [];
             $restaurant = Restaurant::find($i + 1);
-            $categories = [];
-            for ($j = 0; $j < rand(1, 3); $j++) {
-                $k = rand(0, count($categoriesIds) - 1);
-                while (in_array($categoriesIds[$k], $categories)) {
-                    $k = rand(0, count($categoriesIds) - 1);
+            $category[] = $categories[rand(0, count($categories) - 1)];
+
+            if ($category[0] === $asiatico) {
+
+                for ($j = 0; $j < rand(1, count($asiatici) - 1); $j++) {
+                    $k = rand(0, count($asiatici) - 1);
+                    while (in_array($asiatici[$k], $category)) {
+                        $k = rand(0, count($asiatici) - 1);
+                    }
+                    $category[] = $asiatici[$k];
                 }
-                $categories[] = $categoriesIds[$k];
+            } else if ($category[0] === $europeo) {
+
+                for ($j = 0; $j < rand(1, count($europei) - 1); $j++) {
+                    $k = rand(0, count($europei) - 1);
+                    while (in_array($europei[$k], $category)) {
+                        $k = rand(0, count($europei) - 1);
+                    }
+                    $category[] = $europei[$k];
+                    if ($europei[$k] === $europei[0])
+                        $category[] = $pizza;
+                }
+            } else if ($category[0] === $sudamericano) {
+
+                for ($j = 0; $j < rand(1, count($sudamericani) - 1); $j++) {
+                    $k = rand(0, count($sudamericani) - 1);
+                    while (in_array($sudamericani[$k], $category)) {
+                        $k = rand(0, count($sudamericani) - 1);
+                    }
+                    $category[] = $sudamericani[$k];
+                }
             }
-            $restaurant->categories()->sync($categories);
+
+            $restaurant->categories()->sync($category);
         }
     }
 }

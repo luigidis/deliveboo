@@ -15,10 +15,10 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             RestaurantSeeder::class,
             CategorySeeder::class,
+            CategoryRestaurantSeeder::class,
             PlateSeeder::class,
             OrderSeeder::class,
             OrderPlateSeeder::class,
-            CategoryRestaurantSeeder::class
         ]);
     }
 }
