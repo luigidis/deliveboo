@@ -9,6 +9,13 @@
                     Il tuo ristorante
                 </span>
             </li>
+            <li class="relative">
+                <SvgAbout class="md:hidden svg_icon" />
+                <span class="hidden md:block font-normal text-xl">
+                    Il Team
+                </span>
+                <router-link :to="{ name: 'about-us' }" class="router" title="Vai ai Contatti"></router-link>
+            </li>
             <li class="flex gap-1 justify-center items-center relative">
                 <span class="rounded-full flex items-center justify-center totalItems text-sm">
                     {{ totalItems }}
@@ -21,6 +28,7 @@
 </template>
 <script>
 import state from "../store";
+import SvgAbout from "./svgs/SvgAbout.vue";
 import SvgCart from "./svgs/SvgCart.vue";
 import SvgRestaurant from "./svgs/SvgRestaurant.vue";
 
@@ -31,10 +39,11 @@ export default {
             return state.totalItems;
         }
     },
-    components: { 
-        SvgCart,
-        SvgRestaurant
-    }
+    components: {
+    SvgCart,
+    SvgRestaurant,
+    SvgAbout
+}
 }
 </script>
 <style lang="scss" scoped>

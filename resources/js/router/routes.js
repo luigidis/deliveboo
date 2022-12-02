@@ -5,6 +5,7 @@ import Page404 from '../pages/404.vue';
 import Cart from '../pages/Cart.vue';
 import CheckOut from '../pages/CheckOut.vue';
 import SuccessPayment from '../pages/SuccessPayment.vue';
+import About from '../pages/About.vue';
 
 const routes = [
     {
@@ -42,10 +43,15 @@ const routes = [
         props: true
     },
     {
+        path: '/chi-siamo',
+        name: 'about-us',
+        component: About,
+    },
+    {
         path: '*',
         name: '404',
         component: Page404,
-    }
+    },
 ];
 
 export default routes;
