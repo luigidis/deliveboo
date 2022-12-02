@@ -30,3 +30,5 @@ Route::get('orders/generate', 'Api\Orders\OrderController@generate');
 Route::post('orders/payment', 'Api\Orders\OrderController@payment');
 
 Route::post('orders/making/{id}', 'Api\RestaurantController@makeOrder');
+
+Route::post('restaurants/best', 'Api\RestaurantController@getBests');

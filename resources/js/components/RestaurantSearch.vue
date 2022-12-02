@@ -1,27 +1,38 @@
 <template>
-    <div class="flex w-full items-center justify-center flex-column gap-5 py-3">
-        <input type="text" v-model="filter" class="w-4/5 sm:w-3/5 md:w-2/5 box_shadow_stroke_small text-3xl font-normal px-2 py-1">
+    <section class="container py-4">
+        <div class="flex w-full items-center justify-center flex-column gap-5 pb-3">
+            <h2 class="text-4xl leading-none font-bold">
+                Cerca il tuo ristorante o la tua categoria di ristorante preferita
+            </h2>
 
-        <div class="flex gap-4 w-2/3 flex-wrap justify-center">
-            <div v-for="(category, i) in categories" :key="20 - i">
-                <!-- <input type="checkbox" :name="category.name" :value="category.id" > -->
-                <span @click="addfilCat(category.name)" :class="{
-                    'cursor-pointer px-2 py-1 text-xl font-normal': true,
-                    'box_shadow_stroke_small ': !filterCat.includes(category.name),
-                    'box_shadow_stroke_small bg_link_color c_text_color checked': filterCat.includes(category.name),}"
-                    :title="`Seleziona ${category.name}`">
-                    {{ category.name }}
-                </span>
+            <input type="text" v-model="filter"
+                class="w-4/5 sm:w-3/5 md:w-2/5 box_shadow_stroke_small text-3xl font-normal px-2 py-1">
+
+            <div class="flex gap-4 w-2/3 flex-wrap justify-center">
+                <div v-for="(category, i) in categories" :key="20 - i">
+                    <!-- <input type="checkbox" :name="category.name" :value="category.id" > -->
+                    <span @click="addfilCat(category.name)" :class="{
+                        'cursor-pointer px-2 py-1 text-xl font-normal': true,
+                        'box_shadow_stroke_small bg-white': !filterCat.includes(category.name),
+                        'box_shadow_stroke_small bg_link_color c_text_color checked': filterCat.includes(category.name),
+                    }"
+                        :title="`Seleziona ${category.name}`">
+                        {{ category.name }}
+                    </span>
+                </div>
             </div>
-        </div>
-        <!-- <input type="button" value="VAI" @click="fetchRestaurants"> -->
-        <router-link :to="{
-            name: 'restaurants.search',
+            <!-- <input type="button" value="VAI" @click="fetchRestaurants"> -->
+            <router-link :to="(filterCat.length || filter !== '') ? {
+            name: 'home',
             query: { categories: filterCat, name: filter }
-        }" class="text-3xl bg_link_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button font-bold">
-            Cerca ristorante
-        </router-link>
-    </div>
+        } :
+            {
+                name: 'home',
+            }" class="text-3xl bg_link_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button font-bold">
+                Cerca ristorante
+            </router-link>
+        </div>
+    </section>
 </template>
 <script>
 export default {
@@ -60,7 +71,7 @@ export default {
                 // console.log(res.data.result.data);
                 // console.log(res);
             }).catch(err => {
-                // console.log(err);
+                console.log(err);
                 this.$router.push({ name: '404' });
             })
         },
