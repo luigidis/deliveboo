@@ -7,12 +7,8 @@
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{link.nome}}</h5>
                     <p class="font-normal text-gray-700 dark:text-gray-400">Full Stack Web Developer</p>
                     <div class="flex gap-3">
-                        <a :href="link.linkedin">
-                            <SvgLinkedIn class="svg_icon w-10 pb-3"  />
-                        </a>
-                        <a :href="link.github">
-                            <SvgGitHub class="svg_icon w-10 " />
-                        </a>
+                        <SvgLinkedIn :href="link.linkedin" class="svg_icon w-10 pb-3"  />
+                        <SvgGitHub :href="link.github" class="svg_icon w-10 " />
                     </div>
                 </div>
             </a>

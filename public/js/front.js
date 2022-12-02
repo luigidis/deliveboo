@@ -3074,19 +3074,17 @@ var render = function render() {
       staticClass: "font-normal text-gray-700 dark:text-gray-400"
     }, [_vm._v("Full Stack Web Developer")]), _vm._v(" "), _c("div", {
       staticClass: "flex gap-3"
-    }, [_c("a", {
+    }, [_c("SvgLinkedIn", {
+      staticClass: "svg_icon w-10 pb-3",
       attrs: {
         href: link.linkedin
       }
-    }, [_c("SvgLinkedIn", {
-      staticClass: "svg_icon w-10 pb-3"
-    })], 1), _vm._v(" "), _c("a", {
+    }), _vm._v(" "), _c("SvgGitHub", {
+      staticClass: "svg_icon w-10",
       attrs: {
         href: link.github
       }
-    }, [_c("SvgGitHub", {
-      staticClass: "svg_icon w-10"
-    })], 1)])])])]);
+    })], 1)])])]);
   }), 0);
 };
 var staticRenderFns = [];
