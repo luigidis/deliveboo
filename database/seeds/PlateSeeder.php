@@ -444,7 +444,7 @@ class PlateSeeder extends Seeder
             'Khao Soi'
         ];
 
-        $platesMexican =[
+        $platesMexican = [
             'Chilaquiles',
             'Cochinita Pibil',
             'Tamales',
@@ -499,6 +499,29 @@ class PlateSeeder extends Seeder
             'Pan de cazón',
             'I Sopitos Colimenses',
             'Il Caldillo Durangueño'
+        ];
+
+        $platesPizza = [
+            'Marinara',
+            'Margherita',
+            'Napoli',
+            'Salame piccante',
+            '4 formaggi',
+            'Bufala',
+            'Capricciosa',
+            'Speck e zola',
+            'Prosciutto',
+            'Funghi',
+            '4 stagioni',
+            'Wurstel',
+            'Salsiccia',
+            'Pugliese',
+            'Tonno e cipolle',
+            'Vegetariana',
+            'Bismark',
+            'Esotica',
+            'Contadina',
+            'Cipolla rossa'
         ];
 
         //immagini dei piatti
@@ -985,6 +1008,29 @@ class PlateSeeder extends Seeder
             'https://ilmeglioditutto.it/wp-content/uploads/2021/10/caldillo.jpeg'
         ];
 
+        $imgPlatesPizza = [
+            'https://ilsalvagente.it/wp-content/uploads/2022/06/pizza-696x464.jpeg',
+            'https://www.scattidigusto.it/wp-content/uploads/2018/03/pizza-margherita-originale-Scatti-di-Gusto-1568x821.jpg',
+            'https://www.donnamoderna.com/content/uploads/2021/08/pizza-napoli.jpg',
+            'https://www.petitchef.it/imgupl/recipe/la-pizza-salame-piccante-e-pomodorini-secchi-ma-anche-una-margherita--md-94185p135938.jpg',
+            'https://media-cdn.tripadvisor.com/media/photo-s/0a/c2/e2/89/pizza-4-formaggi-con.jpg',
+            'https://www.cuocicuoci.com/wp-content/uploads/2022/03/pizza-bufalotta.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/2/2a/Pizza_capricciosa.jpg',
+            'https://www.silviocicchi.com/pizzachef/wp-content/uploads/2015/10/pizza-speck-e-goronzola-ev.jpg',
+            'https://connexia-rovagnati-us-prod.s3.amazonaws.com/wp-content/uploads/2020/11/09161042/08_pizza-prosciutto.jpg',
+            'https://images.fidhouse.com/fidelitynews/wp-content/uploads/sites/6/2016/03/1457510916_110db3373692fa8c5a4526c9c5822483cdb11ffd-1046049218.jpg',
+            'https://wips.plug.it/cips/buonissimo.org/cms/2012/05/147574919_s.jpg',
+            'https://www.langolodelleprelibatezze.it/wp-content/uploads/2018/06/pizza-wurstel-gouda-ed-olive-taggiasche-lievito-madre-1.jpg',
+            'https://www.cuocicuoci.com/wp-content/uploads/2022/02/pizza-con-salsiccia.jpg',
+            'https://www.gorgonzola.com/wp-content/uploads/2017/03/pizza-cipolle-810x420.jpg',
+            'https://saporilucani.com/wp-content/uploads/2016/04/pizza-con-cipolle-e-tonno-saporilucani.jpg',
+            'https://www.fruttaweb.com/consigli/wp-content/uploads/2018/06/pizza-vegana.jpg',
+            'https://www.ricettedicultura.com/wp-content/uploads/2017/05/pizza-bismark_1.jpg',
+            'https://blog.giallozafferano.it/dolcesalatomiky/wp-content/uploads/2016/08/Untitled.jpg',
+            'https://live.staticflickr.com/8161/7672522142_17a7a6942a_b.jpg',
+            'https://www.funetta.it/_______vecchiowp/wp-content/uploads/2018/11/pizza_cipolla_rossa_pancetta.jpg'
+        ];
+
         //descrizione dei piatti
         $desc = [
             'Un piatto di recupero della cucina casalinga lombarda. Il buono di questo riso è la croccantezza: stendetelo molto sottile e cuocete quasi senza burro',
@@ -1465,6 +1511,29 @@ class PlateSeeder extends Seeder
             'Continuiamo con il Caldillo Durangueño, un brodo fatto di carne di manzo essiccata, tipico della zona di Durango dove è molto comune essiccare la carne per conservarla più a lungo. Alla preparazione vengono aggiunti peperoncini e cumino e solitamente viene consumato insieme a tortillas fatte a mano. Si dice che le origini di questo piatto risalgano ai tempi della colonizzazione spagnola.'
         ];
 
+        $descPlatesPizza = [
+            'pomodoro, aglio, olio',
+            'pomodoro, mozzarella',
+            'pomodoro, mozzarella, acciughe, origano',
+            'pomodoro , mozzarella e salame piccante',
+            'pomodoro , mozzarella e formaggi misti',
+            'pomodorini pachino, mozzarella di Bufala del caseificio Giordano, basilico fresco',
+            'pomodoro, mozzarella, prosciutto cotto, funghi, carciofi, olive',
+            'pomodoro, mozzarella, speck, zola',
+            'pomodoro, mozzarella, prosciutto cotto',
+            'pomodoro, mozzarella, funghi',
+            'pomodoro, mozzarella, prosciutto cotto, funghi, carciofi',
+            'pomodoro, mozzarella, wurstel',
+            'pomodoro, mozzarella, salsiccia',
+            'pomodoro, mozzarella, cipolla',
+            'pomodoro, mozzarella, tonno, cipolle',
+            'pomodoro, mozzarella e verdure grigliate',
+            'pomodoro, mozzarella, prosciutto cotto, uova, origano',
+            'pomodoro, mozzarella, gamberoni, polpa di granchio',
+            'pomodoro, mozzarella, salamella trevigiana, prosciutto cotto, uova, funghi champignon',
+            'pomodoro, mozzarella, cipolla rossa'
+        ];
+
         // $k = 0;
 
         for ($i = 0; $i < (count($plates)); $i++) {
@@ -1558,6 +1627,41 @@ class PlateSeeder extends Seeder
             $plate->slug = Plate::getUniqueSlugFromTitle($plate->name);
             if (count($imgPlatesMexican) > $i)
                 $plate->img = $imgPlatesMexican[$i];
+            else
+                $plate->img = "https://picsum.photos/id/$randomImg/400/200";
+
+            // $index = rand(0, count($restaurantIds) - 1);
+            // $restaurantPlates = Plate::where('restaurant_id', $index)->pluck('name');
+            do {
+                $index = rand(1, count($restaurantIds));
+                $restaurantPlates = Plate::where('restaurant_id', $index)->pluck('name');
+            } while (in_array($plate->name, $restaurantPlates->all()));
+            $plate->restaurant_id = $restaurantIds[$index - 1];
+
+            $plate->save();
+        }
+
+        for ($i = 0; $i < (count($platesPizza)); $i++) {
+            $randomImg = rand(1, 300);
+            $plate = new Plate();
+            if (count($platesPizza) > $i) {
+                $plate->name = $platesPizza[$i];
+            } else {
+                $plate->name = $faker->unique()->name();
+            }
+            if (count($descPlatesPizza) > $i) {
+                if ($descPlatesPizza[$i] === '')
+                    $plate->description = 'La nostra ricetta del piatto: ' . $platesPizza[$i];
+                else
+                    $plate->description = $descPlatesPizza[$i];
+            } else
+                $plate->description = $faker->paragraphs(rand(1, 3), true);
+            $plate->price = $faker->randomFloat(1, 5, 15);
+            $plate->is_visible = true;
+            // $plate->slug = Str::slug($plate->name);
+            $plate->slug = Plate::getUniqueSlugFromTitle($plate->name);
+            if (count($imgPlatesPizza) > $i)
+                $plate->img = $imgPlatesPizza[$i];
             else
                 $plate->img = "https://picsum.photos/id/$randomImg/400/200";
 
