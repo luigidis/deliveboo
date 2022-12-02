@@ -49,16 +49,6 @@
     }
 }
 
-ul {
-    &.flex_grow {
-        flex-grow: 1;
-    }
-
-    &.stroke_bottom {
-        border-bottom: 3px solid $prim-color;
-    }
-}
-
 h3 {
     &.stroke_bottom {
         border-bottom: 3px solid $prim-color;
@@ -95,11 +85,10 @@ button {
 
 .card_content {
     max-width: 320px;
-    max-height: 500px;
-    flex-grow: 1;
+    aspect-ratio: 3/4;
 
-    .card_button_wrapper {
-        flex-grow: 1;
+    &.card_restaurant {
+        max-width: 400px;
     }
 
     .card_select {
@@ -110,19 +99,13 @@ button {
     .card_description {
         font-size: 1.25rem;
         line-height: 1.1;
-        flex-grow: 1;
-        height: 300px;
     }
 }
 
 .list_wrapper {
-    flex-grow: 1;
-
     .list_item {
-        padding: 0.5rem 1rem;
         font-size: 1.25rem;
         line-height: 1.1;
-        border: 1px solid $prim-color;
     }
 }
 
@@ -130,34 +113,49 @@ button {
     font-size: 1.25rem;
     line-height: 1.1;
     flex-grow: 1;
-    height: 300px;
 
     &.plates {
-        height: 300px;
         font-size: 1.5rem;
         line-height: 1.1;
-        flex-grow: 1;
     }
 }
 
-.card_form{
-    max-width: 500px;
-    .form-group.row{
-        flex-grow: 1;
-        >.col-md-6{
+.form_container {
+    padding: 3rem 0;
+    margin: 0 auto;
+    max-width: 800px;
+
+    .card_form {
+        max-width: 100%;
+        padding: 2rem;
+
+        .form-group.row {
+            flex-grow: 1;
+
+            >.col-md-6 {
+                margin-left: auto;
+            }
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 1.05rem;
+            line-height: 1.1;
+        }
+
+        input {
+            border: 2px solid $prim-color;
+            border-radius: 0;
             margin-left: auto;
         }
     }
+}
 
-    label{
-        font-weight: bold;
-        font-size: 1.05rem;
-        line-height: 1.1;
-    }
+.card_content,
+.card_restaurant {
+    transition: 800ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
 
-    input{
-        border: 2px solid $prim-color;
-        border-radius: 0;
-        margin-left: auto;
-    }
+.stroke_left {
+    border-left: 3px solid $prim-color;
 }

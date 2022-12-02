@@ -75,6 +75,8 @@ class RegisterController extends Controller
 
         $params['password'] = Hash::make($params['password']);
 
+        $params['slug'] = Restaurant::getUniqueSlugFromTitle($params['restaurant_name']);
+
         $user = User::create($params);
 
         if (array_key_exists('image', $params)) {
@@ -89,6 +91,7 @@ class RegisterController extends Controller
             'p_iva' => $params['p_iva'],
             'image' => $params['image'],
             'user_id' => $user->id,
+            'slug' => $params['slug']
         ]);
 
         if (array_key_exists('categories', $params)) {

@@ -2,7 +2,7 @@
 
 @section('content')
     <?php
-    if(isset($_GET['id'])) {
+    if (isset($_GET['id'])) {
         $id = $_GET['id']; // è lo user id del proprietario del ristorante
     }
     ?>
@@ -15,9 +15,7 @@
                     </h1>
                 </div>
                 <div class="d-flex flex-lg-wrap align-items-center justify-content-center box_shadow_stroke p-3">
-                    <a href="{{ route('admin.plates.create', [
-                        'id' => isset($id) ? $id : ''
-                        ]) }}"
+                    <a href="{{ route('admin.plates.create', ['id' => isset($id) ? $id : '']) }}"
                         class="bg_link_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2">
                         Aggiungi un nuovo piatto
                     </a>
@@ -51,10 +49,38 @@
                             <form action="{{ route('admin.plates.destroy', $plate) }}" method="POST" class="m-0">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit"
-                                    class="bg_seco_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2">
+                                <button type="button"
+                                    class="bg_seco_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2"
+                                    data-toggle="modal" data-target="#exampleModal">
                                     Elimina piatto
                                 </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog box_shadow_stroke_small rounded-0" role="document">
+                                        <div class="modal-content rounded-0">
+                                            <div>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true" class="px-3 py-2 d-block">&times;</span>
+                                                </button>
+                                                <h5 class="modal-title px-3 py-2" id="exampleModalLabel"> {{ $plate->name }} </h5>
+                                            </div>
+                                            <div class="modal-body font-weight-bold stroke_bottom">
+                                                Vuoi eliminare questo piatto dal tuo ristorante?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button"
+                                                    class="bg_link_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2"
+                                                    data-dismiss="modal">
+                                                    Torna indietro
+                                                </button>
+                                                <button type="submit"
+                                                    class="bg_seco_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2 ml-auto">
+                                                    Elimina
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>

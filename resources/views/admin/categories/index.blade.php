@@ -3,46 +3,52 @@
 @section('content')
     <section>
         <div class="container">
-            <div class="head_content10">
-                <h1>
-                    Categorie
-                </h1>
-                <a href="{{ route('admin.categories.create') }}"><button type="button" class="btn btn-secondary btn-lg mt-3 mb-3">Aggiungi Categoria</button></a>
-                <a href="{{ route('admin.home') }}"><button type="button" class="btn btn-warning btn-lg btn__header__item mt-3 mb-3">Torna alla home</button></a>   
-            </div>
-            <div class="body_content">
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>#</th>
-                                <th>Name Category</th>
-                                <th>Slug</th>
-                                <th>Created At</th>
-                                <th> </th>
-                                <th> </th>
-                            </tr>
-                        </thead>
-                        @foreach ($categories as $item)
-                            <tr>
-                                <td> {{ $item->id }} </td>
-                                <td> {{ $item->name }} </td>
-                                <td> {{ $item->slug }}</td>
-                                <td> {{ $item->created_at }} </td>
-                                <td>
-                                    <a href="{{ route('admin.categories.edit', $item) }}" type="button" class="btn btn-secondary btn-sm">Modifica</a>
-                                </td>
-                                <td>
-                                    <form action="{{ route('admin.categories.destroy', $item) }}" method="POST">
-                                      @csrf
-                                      @method('DELETE')
-                                      <input type="submit" value="Elimina" class="btn btn-danger btn-sm">
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </table>
+            <div class="header_content d-flex flex-wrap justify-content-between align-items-center">
+                <div class="box_shadow_stroke py-2 px-3 mb-3">
+                    <h1 class="m-0">
+                        Lista categorie
+                    </h1>
+                </div>
+                <div class="d-flex flex-lg-wrap align-items-center justify-content-center box_shadow_stroke p-3">
+                    <a href="{{ route('admin.categories.create') }}"
+                        class="bg_link_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2">
+                        Aggiungi categoria
+                    </a>
+                    <a href="{{ route('admin.home') }}"
+                        class="bg_seco_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2">
+                        Torna alla home
+                    </a>
                 </div>
             </div>
+            <div class="body_content py-5 d-flex flex-wrap justify-content-center">
+                @foreach ($categories as $item)
+                    <div class="m-3 box_shadow_stroke pt-3">
+                        <div class="d-flex flex-wrap align-items-center stroke_bottom">
+                            <h3 class="pl-2">
+                                {{ $item->name }}
+                            </h3>
+                            <span class="h4 pr-2 ml-auto">
+                                #{{ $item->id }}
+                            </span>
+                        </div>
+                        <div
+                            class="d-flex px-2 flex-wrap align-items-end justify-content-center card_button_wrapper flex_grow">
+                            <a href="{{ route('admin.categories.edit', $item) }}" type="button"
+                                class="bg_link_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2">
+                                Modifica
+                            </a>
+                            <form action="{{ route('admin.categories.destroy', $item) }}" method="POST" class="m-0">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                    class="bg_seco_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2">
+                                    Elimina categoria
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
     </section>
 @endsection

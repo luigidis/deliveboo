@@ -10,14 +10,14 @@
                     </h1>
                 </div>
             </div>
-            <div class="body_content py-5 d-flex justify-content-center align-items-center">
-                <div class="box_shadow_stroke pt-3 card_form px-3">
+            <div class="body_content py-2 form_container">
+                <div class="box_shadow_stroke card_form">
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" id="form"
                     class="d-flex flex-column justify-content-center">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label">{{ __('Nome') }}</label>
+                            <label for="name" class="col-md-4 col-form-label">{{ __('Nome Completo') }}*</label>
                             <div class="col-md-6">
                                 <input id="name" type="text"
                                     class="form-control input-control @error('name') is-invalid @enderror box_shadow_stroke" name="name"
@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label">{{ __('Indirizzo e-mail') }}</label>
+                            <label for="email" class="col-md-4 col-form-label">{{ __('Indirizzo e-mail') }}*</label>
                             <div class="col-md-6">
                                 <input id="email" type="email"
                                     class="form-control input-control @error('email') is-invalid @enderror box_shadow_stroke" name="email"
@@ -48,7 +48,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label">{{ __('Password') }}*</label>
 
 
                             <div class="col-md-6">
@@ -67,7 +67,7 @@
 
                         <div class="form-group row">
                             <label for="password-confirm"
-                                class="col-md-4 col-form-label">{{ __('Conferma password') }}</label>
+                                class="col-md-4 col-form-label">{{ __('Conferma password') }}*</label>
 
 
                             <div class="col-md-6">
@@ -79,7 +79,7 @@
 
                         <div class="form-group row">
                             <label for="restaurant_name" class="col-md-4 col-form-label">Nome
-                                Attività</label>
+                                ristorante*</label>
                             <div class="col-md-6">
                                 <input id="restaurant_name" type="string" name="restaurant_name"
                                     value="{{ old('restaurant_name') }}"
@@ -96,7 +96,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="address" class="col-md-4 col-form-label">Indirizzo ristorante</label>
+                            <label for="address" class="col-md-4 col-form-label">Indirizzo ristorante*</label>
                             <div class="col-md-6">
                                 <input id="address" type="string" name="address" value="{{ old('address') }}"
                                     class="form-control input-control @error('address') is-invalid @enderror box_shadow_stroke">
@@ -111,7 +111,7 @@
 
                         <div class="form-group row">
                             <label for="phone" class="col-md-4 col-form-label">Numero di
-                                telefono</label>
+                                telefono*</label>
                             <div class="col-md-6">
                                 <input id="phone" type="tel" name="phone" value="{{ old('phone') }}"
                                     class="form-control input-control @error('phone') is-invalid @enderror box_shadow_stroke">
@@ -125,7 +125,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="p_iva" class="col-md-4 col-form-label">P.IVA</label>
+                            <label for="p_iva" class="col-md-4 col-form-label">P.IVA*</label>
                             <div class="col-md-6">
                                 <input id="p_iva" type="string" name="p_iva" value="{{ old('p_iva') }}"
                                     class="form-control input-control @error('p_iva') is-invalid @enderror box_shadow_stroke">
@@ -146,15 +146,15 @@
                         ?>
 
                         <div class="form-group row">
-                            <label class="col-md-4 col-form-label" for="category">Categorie:</label>
+                            <label class="col-md-4 col-form-label" for="category">Categorie:*</label>
                             <div class="col-md-6">
                                 <div class="@error('categories') is-invalid @enderror" id="categories">
                                     @foreach ($categories as $key => $category)
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" name="categories[]"
+                                            <input class="form-check-input invisible" name="categories[]"
                                                 @if (in_array($category->id, old('categories', []))) checked @endif type="checkbox"
                                                 id="category-{{ $category->id }}" value="{{ $category->id }}">
-                                            <label class="form-check-label"
+                                            <label class="check_box_item cursor_pointer px-2 py-1 text-xl font-normal box_shadow_stroke_small @if (in_array($category->id, old('categories', []))) checkbox_checked @endif"
                                                 for="category-{{ $category->id }}">
                                                 {{ $category->name }}
                                             </label>
@@ -173,7 +173,7 @@
 
                         <div class="form-group row">
                             <label for="image" class="col-md-4 col-form-label">
-                                Seleziona un'immagine
+                                Seleziona un'immagine*
                             </label>
                             <div class="col-md-6">
                                 <input type="file" class="form-control-file @error('image') is-invalid @enderror"
@@ -203,4 +203,19 @@
 
 @section('script-js')
     <script src={{ asset('js/register.js') }}></script>
+    <script>
+        const checkBoxsEl = document.querySelectorAll('.check_box_item')
+        
+        for (let i = 0; i < checkBoxsEl.length; i++) {
+            const currentBox = checkBoxsEl[i]
+
+            currentBox.addEventListener('click', () => {
+                if (!currentBox.classList[currentBox.classList.length -1].includes('checkbox_checked')) {
+                    currentBox.classList.add('checkbox_checked')
+                } else {
+                    currentBox.classList.remove('checkbox_checked')
+                }
+            })
+        }
+    </script>
 @endsection

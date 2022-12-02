@@ -39,23 +39,23 @@
                             {{-- <span class="h6 text-capitalize">
                                 {{ $restaurant->name }}
                             </span> --}}
-                            <div class="d-flex flex-wrap align-items-center justify-content-between stroke_bottom">
-                                <h3 class="pl-3">
+                            <div class="d-flex flex-wrap align-items-center stroke_bottom">
+                                <h3 class="pl-2">
                                     {{ $fullname_client }}
                                 </h3>
-                                <span class="h4 pr-3">
-                                    {{ $order->total }}$
+                                <span class="h4 pr-2 ml-auto">
+                                    &euro;{{ $order->total }}
                                 </span>
                             </div>
-                            <div class="flex_grow">
-                                <ul class="d-flex flex-column overflow-hidden px-0 list_wrapper stroke_bottom mb-0">
-                                    <li class="list_item overflow-auto" style="height: 2.5rem">{{ $order->address_client }}</li>
-                                    <li class="list_item overflow-auto">{{ $order->phone_client }}</li>
-                                    <li class="list_item overflow-auto">{{ $order->email_client }}</li>
-                                    <li class="list_item overflow-auto">{{ $order->created_at }}</li>
+                            <div class="flex_grow stroke_bottom">
+                                <ul class="overflow-hidden px-0 list_wrapper mb-0 p-2">
+                                    <li class="list_item">{{ $order->address_client }}</li>
+                                    {{-- <li class="list_item overflow-auto">{{ $order->phone_client }}</li> --}}
+                                    {{-- <li class="list_item overflow-auto">{{ $order->email_client }}</li> --}}
+                                    {{-- <li class="list_item overflow-auto">{{ $order->created_at }}</li> --}}
                                 </ul>
                             </div>
-                            <div class="d-flex px-2 flex-wrap align-items-end justify-content-start card_button_wrapper flex_grow">
+                            <div class="d-flex px-2 py-2 flex-wrap align-items-end justify-content-start card_button_wrapper">
                                 <a href="{{ route('admin.orders.show', $order) }}" class="bg_link_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2">
                                     Vai all'ordine
                                 </a>
@@ -79,7 +79,7 @@
                                     @enderror
 
                                     {{-- aggiungo campo id alla request se settato --}}
-                                    @if(isset($id)) :
+                                    @if(isset($id))
                                     <input type="hidden" value="{{ $id }}" name="id">
                                     @endif
 

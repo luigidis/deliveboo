@@ -10,8 +10,8 @@
                     </h1>
                 </div>
             </div>
-            <div class="body_content py-5 d-flex justify-content-center align-items-center">
-                <div class="box_shadow_stroke pt-3 card_form px-3">
+            <div class="body_content py-2 form_container">
+                <div class="box_shadow_stroke card_form">
                     <form method="POST" action="{{ route('login') }}" class="d-flex flex-column justify-content-center">
                         @csrf
 

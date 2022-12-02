@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Restaurant extends Model
 {
@@ -13,7 +14,8 @@ class Restaurant extends Model
         'address',
         'p_iva',
         'user_id',
-        'image'
+        'image',
+        'slug'
     ];
 
     public function user()
@@ -31,10 +33,26 @@ class Restaurant extends Model
         return $this->hasMany('App\Plate');
     }
 
+    public static function getUniqueSlugFromTitle($name)
+    {
+        $slug_base = Str::slug($name);
+        $slug = $slug_base;
+        // controllare che sia unico
+        $restaurant_exist = Restaurant::where('slug', $slug)->first();
+        $count = 1;
+        while ($restaurant_exist) {
+            $slug = $slug_base . '-' . $count;
+            $restaurant_exist = Restaurant::where('slug', $slug)->first();
+            $count++;
+        }
+
+        return $slug;
+    }
+
     public function getImagePathAttribute()
     {
         if (filter_var($this->image, FILTER_VALIDATE_URL))
             return $this->image;
-        return $this->image ? asset('images/' . $this->image) : null;
+        return $this->image ? asset('images/' . $this->image) : '';
     }
 }

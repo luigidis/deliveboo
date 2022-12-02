@@ -13,13 +13,12 @@ class OrderSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-
         $status = ['Cancellato' ,'In elaborazione', 'In lavorazione', 'Completato', 'In transito', 'In consegna'];
-
-        for ($i = 0; $i < 50; $i++) {
+        
+        for ($i = 0; $i < 200; $i++) {
             $order = new Order();
             $order->status = $faker->randomElement($status);
-            $order->total = floatval($faker->numerify('###.##'));
+            $order->total = 0;
             $order->name_client = $faker->firstName();
             $order->surname_client = $faker->lastName();
             $order->address_client = $faker->address();
