@@ -15,7 +15,7 @@
             </div>
             <ul class="list flex items-center gap-3 px-2">
                 <li class="list_item relative">
-                    <a target="_blank" ef="link.linkedin" class="absolute inset-0" :title="`Profilo linkedin di ${link.name}`"></a>
+                    <a target="_blank" :href="link.linkedin" class="absolute inset-0" :title="`Profilo linkedin di ${link.name}`"></a>
                     <SvgLinkedIn class="svg_icon" />
                 </li>
                 <li class="list_item relative">
@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import SvgLinkedIn from "./SvgLinkedIn.vue";
-import SvgGitHub from "./SvgGitHub.vue";
+import SvgLinkedIn from "./svgs/SvgLinkedIn.vue";
+import SvgGitHub from "./svgs/SvgGitHub.vue";
 
 export default {
     components: {
@@ -38,11 +38,6 @@ export default {
     },
     props: {
         links: Array
-    },
-    data() {
-        return {
-
-        }
     }
 }
 </script>

@@ -8,17 +8,17 @@
             </div>
         </div>
         <div>
-            <ContactCard :links="linksTeam" />
+            <TeamCards :links="linksTeam" />
         </div>
     </section>
 </template>
 
 <script>
-import ContactCard from '../components/ContactCard.vue';
+import TeamCards from '../components/TeamCards.vue';
 
 export default {
     components: {
-        ContactCard
+        TeamCards
     },
     data() {
         return {
