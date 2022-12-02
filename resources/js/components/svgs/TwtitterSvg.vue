@@ -57,5 +57,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+svg {
+    height: 35px;
+}
 </style>
