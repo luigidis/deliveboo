@@ -1,9 +1,7 @@
 <template>
     <main class="flex flex-column justify-center py-16">
         <JumboTron />
-        <section class="py-4">
-            <RestaurantSearch />
-        </section>
+        <RestaurantSearch />
         <SuggestedRestaurants v-if="!Object.keys(query).length"/>
         <AdvancedSearch v-else :par="par" />
     </main>
@@ -65,7 +63,3 @@ export default {
 }
 
 </script>
-
-<style lang="scss" scoped>
-
-</style>

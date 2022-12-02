@@ -1,11 +1,10 @@
 <template>
-    <section class="flex flex-column items-center container">
-
-        <h2 class="text-3xl pb-4 font-bold">
+    <section class="flex flex-column items-center container py-4">
+        <h2 class="text-5xl text-center pb-4 font-bold">
             Ristoranti trovati:
         </h2>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <RestaurantCard :data="restaurant" v-for="(restaurant, i) in restaurantsArray" :key="i" />
         </div>
     </section>
