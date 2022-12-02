@@ -55,6 +55,7 @@
         outline: 1px solid $prim-color;
     }
 }
+
 .stroke_bottom{
     border-bottom: 2px solid $prim-color;
 }
@@ -62,6 +63,61 @@
 .font_standard{
     font-size: 1.5rem;
 }
+
 .flex_grow{
     flex-grow: 1;
+}
+
+.cursor_pointer{
+    cursor: pointer;
+}
+
+.check_box_item{
+    color: $prim-color;
+    background-color: #fff;
+    
+    &.checkbox_checked{
+        box-shadow: 0px 0px 0px;
+        color: $text-color;
+        background-color: $link-color;
+    }
+}
+
+// Menu Button
+.menu_button{
+    display: block;
+    overflow-y: hidden;
+    position: relative;
+    padding: 0.5rem 1rem;
+    // width: 6rem;
+    // height: 2.8rem;
+    cursor: pointer;
+
+    .menu_button_item{
+        position: absolute;
+        transform: translate(-50%);
+        font-weight: bold;
+        font-size: 1.25rem;
+        transition: 800ms cubic-bezier(0.075, 0.82, 0.165, 1);
+        &.apri{
+            left: 0.6rem;
+            transform: translateY(0);
+            &.trans-x-bot{
+                transform: translateY(-100%);
+            }
+        }
+        &.chiudi{
+            left: 0.35rem;
+            transform: translateY(100%);
+            &.trans-x-top{
+                transform: translateY(0);
+            }
+        }
+    }
+}
+
+@media (min-width: 768px){
+    .menu_button{
+        display: none;
+    }
 }

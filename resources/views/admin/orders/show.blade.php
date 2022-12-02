@@ -34,8 +34,8 @@
                     <span class="h5 d-block">
                         Indirizzo: {{ $order->address_client }}
                     </span>
-                    <span class="h4">
-                        Totale: &euro;{{ $order->total }}
+                    <span class="h5">
+                        Totale: <span class="h3 font-weight-bold">&euro;{{ $order->total }}</span>
                     </span>
                 </div>
                 <div class="d-flex flex-column align-items-end justify-content-end">
@@ -60,7 +60,7 @@
                         @enderror
 
                         {{-- aggiungo campo id alla request se settato --}}
-                        @if(isset($id)) :
+                        @if(isset($id))
                         <input type="hidden" value="{{ $id }}" name="id">
                         @endif
 
@@ -70,7 +70,7 @@
                         </button>
                     </form>
                     <a href="{{ route('admin.orders.index', ['id' => $plates[0]->restaurant_id]) }}"
-                        class="bg_seco_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2"
+                        class="bg_seco_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2 mr-auto mr-xl-0 ml-xl-auto"
                         title="Torna agli ordini">
                         Torna agli ordini
                     </a>
@@ -88,12 +88,12 @@
                                     &euro;{{ $plate->price }}
                                 </span>
                             </div>
-                            <span class="stroke_bottom px-2 m-0">
-                                {{ $quantity[$key] }}
+                            <span class="stroke_bottom p-2 m-0 h5">
+                                Quantit&aacute;: <span class="font-weight-bold">{{ $quantity[$key] }}</span> 
                             </span>
-                            <p class="overflow-auto stroke_bottom px-2 card_description py-2 m-0">
+                            {{-- <p class="overflow-auto stroke_bottom px-2 card_description py-2 m-0">
                                 {{ $plate->description }}
-                            </p>
+                            </p> --}}
                             <div
                                 class="d-flex p-2 flex-wrap align-items-center justify-content-between card_button_wrapper flex_grow">
                                 <a href="{{ route('admin.plates.show', $plate) }}"

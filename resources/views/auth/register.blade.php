@@ -17,7 +17,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label">{{ __('Nome') }}*</label>
+                            <label for="name" class="col-md-4 col-form-label">{{ __('Nome Completo') }}*</label>
                             <div class="col-md-6">
                                 <input id="name" type="text"
                                     class="form-control input-control @error('name') is-invalid @enderror box_shadow_stroke" name="name"
@@ -151,10 +151,10 @@
                                 <div class="@error('categories') is-invalid @enderror" id="categories">
                                     @foreach ($categories as $key => $category)
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" name="categories[]"
+                                            <input class="form-check-input invisible" name="categories[]"
                                                 @if (in_array($category->id, old('categories', []))) checked @endif type="checkbox"
                                                 id="category-{{ $category->id }}" value="{{ $category->id }}">
-                                            <label class="form-check-label"
+                                            <label class="check_box_item cursor_pointer px-2 py-1 text-xl font-normal box_shadow_stroke_small @if (in_array($category->id, old('categories', []))) checkbox_checked @endif"
                                                 for="category-{{ $category->id }}">
                                                 {{ $category->name }}
                                             </label>
@@ -203,4 +203,19 @@
 
 @section('script-js')
     <script src={{ asset('js/register.js') }}></script>
+    <script>
+        const checkBoxsEl = document.querySelectorAll('.check_box_item')
+        
+        for (let i = 0; i < checkBoxsEl.length; i++) {
+            const currentBox = checkBoxsEl[i]
+
+            currentBox.addEventListener('click', () => {
+                if (!currentBox.classList[currentBox.classList.length -1].includes('checkbox_checked')) {
+                    currentBox.classList.add('checkbox_checked')
+                } else {
+                    currentBox.classList.remove('checkbox_checked')
+                }
+            })
+        }
+    </script>
 @endsection
