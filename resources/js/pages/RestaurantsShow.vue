@@ -8,6 +8,7 @@
                 </h2>
 
                 <div class="flex items-center justify-end self-start ml-auto pt-2">
+                    
                     <router-link :to="{
                         name: 'home'}"
                         class="bg_seco_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2">
@@ -40,11 +41,13 @@ import LayoverAlert from '../components/LayoverAlert.vue'
 import PlateCard from '../components/PlateCard.vue'
 import state from '../store'
 
+
 export default {
     props: ['slug'],
     components: {
         PlateCard,
-        LayoverAlert
+        LayoverAlert,
+        
     },
     data() {
         return {
