@@ -1,13 +1,14 @@
 <template>
-    <section class="flex flex-column items-center container py-20 sm:px-20">
-        <h2 class="text-5xl text-center pb-4 font-bold">
+    <section class="flex flex-column items-center container py-20">
+        <h2 class="text-6xl text-center mb-10 font-bold">
             I ristoranti del momento
         </h2>
 
-        <div class="grid grid-cols-1 justify-items-start w-full gap-6" v-if="restaurants">
+        <div class="grid grid-cols-1 lg:justify-items-start w-full gap-6" v-if="restaurants">
             <RestaurantSuggestedCard :data="restaurant" :index="i" v-for="(restaurant, i) in restaurants" :key="i" 
             :class="{
-                'justify-self-end': i%2 == 1,
+                'w-full': true,
+                'lg:justify-self-end': i%2 == 1,
                 }"/>
         </div>
 
