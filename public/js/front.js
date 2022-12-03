@@ -2607,7 +2607,7 @@ __webpack_require__.r(__webpack_exports__);
         linkedin: 'https://www.linkedin.com/in/giuseppepio-cosenza',
         github: 'https://github.com/giusscos'
       }, {
-        name: 'Luigi Di Stefano',
+        name: 'Luigi Distefano',
         img: __webpack_require__(/*! ../assets/images/profile-luigi.webp */ "./resources/js/assets/images/profile-luigi.webp"),
         linkedin: 'https://www.linkedin.com/in/luigi-distefano/',
         github: 'https://github.com/luigidis'
@@ -50072,7 +50072,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\franc\Documents\boolean-dev\full-stack-dev\php\deliveboo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\webdev\deliveboo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })

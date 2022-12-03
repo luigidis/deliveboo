@@ -57,7 +57,7 @@ export default {
                     github: 'https://github.com/giusscos'
                 },
                 {
-                    name: 'Luigi Di Stefano',
+                    name: 'Luigi Distefano',
                     img: require('../assets/images/profile-luigi.webp'),
                     linkedin: 'https://www.linkedin.com/in/luigi-distefano/',
                     github: 'https://github.com/luigidis'
