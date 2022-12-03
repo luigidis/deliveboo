@@ -2617,7 +2617,7 @@ __webpack_require__.r(__webpack_exports__);
         linkedin: 'https://www.linkedin.com/in/fabio-longoni/',
         github: 'https://github.com/FabioLongoni'
       }, {
-        nome: 'Stefano Cracco',
+        name: 'Stefano Cracco',
         img: __webpack_require__(/*! ../assets/images/profile-stefano.webp */ "./resources/js/assets/images/profile-stefano.webp"),
         linkedin: 'https://www.linkedin.com/in/stefanocracco',
         github: 'https://github.com/Ste-cracco'
@@ -50013,7 +50013,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/giusscos/dev/boolean/progetto_finale/deliveboo/resources/js/front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\franc\Documents\boolean-dev\full-stack-dev\php\deliveboo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })

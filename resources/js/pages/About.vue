@@ -48,7 +48,7 @@ export default {
                     github: 'https://github.com/FabioLongoni'
                 },
                 {
-                    nome: 'Stefano Cracco',
+                    name: 'Stefano Cracco',
                     img: require('../assets/images/profile-stefano.webp'),
                     linkedin: 'https://www.linkedin.com/in/stefanocracco',
                     github: 'https://github.com/Ste-cracco'
