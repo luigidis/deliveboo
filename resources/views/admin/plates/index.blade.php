@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="body_content py-5 d-flex flex-wrap container justify-content-center">
-            @foreach ($plates as $plate)
+            @foreach ($plates as $key => $plate)
                 <div class="m-3 card_content box_shadow_stroke py-3">
                     <div class="d-flex flex-column h-100">
                         <div class="d-flex flex-wrap align-items-center justify-content-between stroke_bottom">
@@ -51,11 +51,11 @@
                                 @method('DELETE')
                                 <button type="button"
                                     class="bg_seco_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2"
-                                    data-toggle="modal" data-target="#exampleModal">
+                                    data-toggle="modal" data-target="{{'#exampleModal' . $key}}">
                                     Elimina piatto
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="{{ 'exampleModal' .$key}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog box_shadow_stroke_small rounded-0" role="document">
                                         <div class="modal-content rounded-0">
                                             <div>
