@@ -1,6 +1,6 @@
 <template>
     <section class="py-20">
-        <div class="container">
+        <div class="container" v-if="plate">
             <div class="flex flex-wrap items-center gap-3 pb-20">
                 <div class="box_shadow_stroke p-2">
                     <h2 class="text-6xl font-bold">
@@ -22,19 +22,22 @@
             <PlateCardShow :plate="plate" v-if="plate"/>
             <LayoverAlert />
         </div>
+        <TheLoading v-else />
     </section>
 </template>
 
 <script>
     import LayoverAlert from '../components/LayoverAlert.vue';
     import PlateCardShow from '../components/PlateCardShow.vue';
+import TheLoading from '../components/TheLoading.vue';
 
     export default {
         props: ["slug","restSlug"],
         components: {
-        PlateCardShow,
-        LayoverAlert
-    },
+    PlateCardShow,
+    LayoverAlert,
+    TheLoading
+},
         data() {
             return {
                 plate: "",

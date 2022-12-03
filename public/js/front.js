@@ -2955,13 +2955,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_LayoverAlert_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/LayoverAlert.vue */ "./resources/js/components/LayoverAlert.vue");
 /* harmony import */ var _components_PlateCardShow_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/PlateCardShow.vue */ "./resources/js/components/PlateCardShow.vue");
+/* harmony import */ var _components_TheLoading_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/TheLoading.vue */ "./resources/js/components/TheLoading.vue");
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["slug", "restSlug"],
   components: {
     PlateCardShow: _components_PlateCardShow_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    LayoverAlert: _components_LayoverAlert_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    LayoverAlert: _components_LayoverAlert_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    TheLoading: _components_TheLoading_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
@@ -3003,7 +3006,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_LayoverAlert_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/LayoverAlert.vue */ "./resources/js/components/LayoverAlert.vue");
 /* harmony import */ var _components_PlateCard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/PlateCard.vue */ "./resources/js/components/PlateCard.vue");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store */ "./resources/js/store.js");
+/* harmony import */ var _components_TheLoading_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/TheLoading.vue */ "./resources/js/components/TheLoading.vue");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store */ "./resources/js/store.js");
+
 
 
 
@@ -3011,7 +3016,8 @@ __webpack_require__.r(__webpack_exports__);
   props: ['slug'],
   components: {
     PlateCard: _components_PlateCard_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    LayoverAlert: _components_LayoverAlert_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    LayoverAlert: _components_LayoverAlert_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    TheLoading: _components_TheLoading_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
@@ -3021,7 +3027,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     restaurantId: function restaurantId() {
-      return _store__WEBPACK_IMPORTED_MODULE_2__["default"].restaurantId;
+      return _store__WEBPACK_IMPORTED_MODULE_3__["default"].restaurantId;
     }
   },
   methods: {
@@ -5249,7 +5255,7 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("section", {
     staticClass: "py-20"
-  }, [_c("div", {
+  }, [_vm.plate ? _c("div", {
     staticClass: "container"
   }, [_c("div", {
     staticClass: "flex flex-wrap items-center gap-3 pb-20"
@@ -5275,7 +5281,7 @@ var render = function render() {
     attrs: {
       plate: _vm.plate
     }
-  }) : _vm._e(), _vm._v(" "), _c("LayoverAlert")], 1)]);
+  }) : _vm._e(), _vm._v(" "), _c("LayoverAlert")], 1) : _c("TheLoading")], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -5299,7 +5305,7 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("section", {
     staticClass: "py-20"
-  }, [_c("div", {
+  }, [_vm.restaurant ? _c("div", {
     staticClass: "container"
   }, [_c("div", {
     staticClass: "flex flex-wrap items-center gap-3 pb-20"
@@ -5316,7 +5322,7 @@ var render = function render() {
         name: "home"
       }
     }
-  }, [_vm._v("\n                        Torna alla home\n                    ")])], 1)]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                    Torna alla home\n                ")])], 1)]), _vm._v(" "), _c("div", {
     staticClass: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
   }, _vm._l(_vm.plates, function (plate, i) {
     return _c("PlateCard", {
@@ -5326,7 +5332,7 @@ var render = function render() {
         plate: plate
       }
     });
-  }), 1), _vm._v(" "), _c("LayoverAlert")], 1)]);
+  }), 1), _vm._v(" "), _c("LayoverAlert")], 1) : _c("TheLoading")], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -50609,7 +50615,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/giusscos/dev/boolean/progetto_finale/deliveboo/resources/js/front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\webdev\deliveboo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
