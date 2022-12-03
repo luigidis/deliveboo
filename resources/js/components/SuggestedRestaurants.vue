@@ -1,5 +1,5 @@
 <template>
-    <section class="flex flex-column items-center container py-4 sm:px-20">
+    <section class="flex flex-column items-center container py-20 sm:px-20">
         <h2 class="text-5xl text-center pb-4 font-bold">
             I ristoranti del momento
         </h2>

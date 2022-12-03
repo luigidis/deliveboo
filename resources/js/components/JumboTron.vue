@@ -5,7 +5,7 @@
                 Scegli<br>Ordina<br>Mangia comodamente a casa tua!
             </h2>
         </div>
-        <img class="block object-cover object-center h-full w-full" src="../assets/images/prova.jpg">
+        <img class="block object-cover object-center h-full w-full" src="../assets/images/jumbotron.webp">
         <div class="layover absolute inset-0"></div>
     </section>
 </template>

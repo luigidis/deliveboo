@@ -1,6 +1,6 @@
 <template>
     <nav class="navigation ml-auto">
-        <ul class="flex items-center h-full gap-6">
+        <ul class="flex items-center h-full gap-3">
             <li class="relative">
                 <a href="/admin" class="absolute inset-0" title="Accedi al tuo ristorante">
                 </a>
