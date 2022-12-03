@@ -1,6 +1,6 @@
 <template>
     <button @click="addCart(plate)"
-        class="add_to_cart box_shadow_stroke_small bg_link_color c_text_color text-xl py-1 px-2 leading-none font-normal hover:shadow-none">
+        class="add_to_cart box_shadow_stroke_small bg_link_color c_text_color text-2xl py-1 px-2 leading-none font-bold hover:shadow-none">
         Aggiungi al carrello
     </button>
 </template>

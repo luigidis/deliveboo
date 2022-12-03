@@ -3086,7 +3086,7 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("button", {
-    staticClass: "add_to_cart box_shadow_stroke_small bg_link_color c_text_color text-xl py-1 px-2 leading-none font-normal hover:shadow-none",
+    staticClass: "add_to_cart box_shadow_stroke_small bg_link_color c_text_color text-2xl py-1 px-2 leading-none font-bold hover:shadow-none",
     on: {
       click: function click($event) {
         return _vm.addCart(_vm.plate);
@@ -3242,10 +3242,10 @@ render._withStripped = true;
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PlateCard.vue?vue&type=template&id=644ae66b&scoped=true&":
-/*!******************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PlateCard.vue?vue&type=template&id=644ae66b&scoped=true& ***!
-  \******************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PlateCard.vue?vue&type=template&id=644ae66b&":
+/*!******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PlateCard.vue?vue&type=template&id=644ae66b& ***!
+  \******************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3257,7 +3257,7 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "relative card_restaurant box_shadow_stroke pb-20 hover:shadow-none hover:scale-95"
+    staticClass: "relative box_shadow_stroke pb-20 hover:shadow-none hover:scale-95 transition-transform"
   }, [_c("router-link", {
     staticClass: "absolute inset-0",
     attrs: {
@@ -3270,31 +3270,35 @@ var render = function render() {
       },
       title: "Vedi piatto ".concat(_vm.plate.name)
     }
-  }), _vm._v(" "), _c("div", [_c("img", {
+  }), _vm._v(" "), _c("div", {
+    staticClass: "h-60"
+  }, [_c("img", {
     staticClass: "block object-cover w-full h-full",
     attrs: {
       src: _vm.plate.img,
       alt: "Foto piatto ".concat(_vm.plate.name)
     }
   })]), _vm._v(" "), _c("div", {
-    staticClass: "desc p-2 flex flex-column"
+    staticClass: "p-2 flex flex-column"
   }, [_c("h3", {
-    staticClass: "text-xl font-bold"
+    staticClass: "text-4xl font-bold truncate"
   }, [_vm._v("\n            " + _vm._s(_vm.plate.name) + "\n        ")]), _vm._v(" "), _c("p", {
-    staticClass: "font-normal text-lg block leading-none mb-2"
+    staticClass: "font-normal text-xl block leading-none mb-2 truncate"
   }, [_vm._v("\n            " + _vm._s(_vm.plate.description) + "\n        ")]), _vm._v(" "), _c("span", {
-    staticClass: "font-bold block text-xl items-end grow"
-  }, [_vm._v("\n            " + _vm._s(_vm.plate.price) + "€\n        ")])]), _vm._v(" "), !_vm.ids.includes(_vm.plate.id) ? _c("ButtonToCart", {
-    staticClass: "cartBtn",
+    staticClass: "font-bold text-4xl text-center items-end"
+  }, [_vm._v("\n            " + _vm._s(_vm.plate.price) + "€\n        ")])]), _vm._v(" "), _c("div", {
+    staticClass: "absolute bottom-5 inset-x-0 flex justify-center"
+  }, [!_vm.ids.includes(_vm.plate.id) ? _c("ButtonToCart", {
+    staticClass: "w-4/5",
     attrs: {
       plate: _vm.plate
     }
   }) : _c("QuantityHandler", {
-    staticClass: "cartBtn",
+    staticClass: "w-4/5",
     attrs: {
       plate: _vm.plate
     }
-  })], 1);
+  })], 1)], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -3317,8 +3321,8 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "card_restaurant box_shadow_stroke max-w-xl mx-auto relative"
-  }, [_c("div", {}, [_c("img", {
+    staticClass: "box_shadow_stroke max-w-xl mx-auto relative"
+  }, [_c("div", [_c("img", {
     staticClass: "block object-cover w-full h-full",
     attrs: {
       src: _vm.plate.img,
@@ -3329,10 +3333,8 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "py-2"
   }, [_c("span", {
-    staticClass: "font-normal text-lg block leading-none mb-2"
-  }, [_vm._v("\n                " + _vm._s(_vm.plate.description) + "\n            ")]), _vm._v(" "), _c("span", {
-    staticClass: "font-bold text-xl block"
-  }, [_vm._v("\n                " + _vm._s(_vm.plate.price) + "€\n            ")])]), _vm._v(" "), !_vm.ids.includes(_vm.plate.id) ? _c("ButtonToCart", {
+    staticClass: "font-normal text-3xl block leading-none mb-2"
+  }, [_vm._v("\n                " + _vm._s(_vm.plate.description) + "\n            ")])]), _vm._v(" "), !_vm.ids.includes(_vm.plate.id) ? _c("ButtonToCart", {
     attrs: {
       plate: _vm.plate
     }
@@ -4556,13 +4558,13 @@ var render = function render() {
       title: "Vai alla cassa"
     }
   }, [_vm._v("\n                    Vai alla cassa\n                ")])], 1)]), _vm._v(" "), _c("div", {
-    staticClass: "grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 justify-items-center"
+    staticClass: "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6"
   }, _vm._l(_vm.plates, function (plate, i) {
     return _c("div", {
       key: i,
-      staticClass: "box_shadow_stroke flex flex-column w-full max-w-sm"
+      staticClass: "box_shadow_stroke"
     }, [_c("div", {
-      staticClass: "h-3/5"
+      staticClass: "h-60"
     }, [_c("img", {
       staticClass: "block object-cover w-full h-full",
       attrs: {
@@ -4570,15 +4572,14 @@ var render = function render() {
         alt: "Foto piatto ".concat(plate.name)
       }
     })]), _vm._v(" "), _c("div", {
-      staticClass: "p-2 grow flex flex-column gap-2"
+      staticClass: "p-2 flex flex-column"
     }, [_c("h3", {
-      staticClass: "text-3xl font-bold leading-none"
+      staticClass: "text-4xl font-bold truncate"
     }, [_vm._v("\n                        " + _vm._s(plate.name) + "\n                    ")]), _vm._v(" "), _c("span", {
-      staticClass: "font-normal block text-lg"
+      staticClass: "font-normal text-lg py-3"
     }, [_vm._v("\n                        Totale piatto: "), _c("span", {
       staticClass: "font-bold"
     }, [_vm._v("€" + _vm._s((parseFloat(_vm.quantity[i]) * parseFloat(plate.price)).toFixed(2)))])]), _vm._v(" "), _vm.plates ? _c("QuantityHandler", {
-      staticClass: "grow",
       attrs: {
         plate: plate
       }
@@ -4919,16 +4920,22 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "container py-20"
+  return _c("section", {
+    staticClass: "py-20"
   }, [_c("div", {
-    staticClass: "flex gap-3"
+    staticClass: "container"
+  }, [_c("div", {
+    staticClass: "flex flex-wrap items-center gap-3 pb-20"
+  }, [_c("div", {
+    staticClass: "box_shadow_stroke p-2"
   }, [_c("h2", {
-    staticClass: "text-6xl font-bold pb-24 basis-1/2"
-  }, [_vm._v("\n            " + _vm._s(_vm.plate.name) + "\n        ")]), _vm._v(" "), _c("div", {
-    staticClass: "flex items-center justify-end self-start ml-auto pt-2"
+    staticClass: "text-6xl font-bold"
+  }, [_vm._v("\n                    " + _vm._s(_vm.plate.name) + "\n                ")]), _vm._v(" "), _c("span", {
+    staticClass: "font-bold text-5xl c_link_color py-2"
+  }, [_vm._v("\n                        €" + _vm._s(_vm.plate.price) + "\n                ")])]), _vm._v(" "), _c("div", {
+    staticClass: "box_shadow_stroke lg:ml-auto p-3"
   }, [_c("router-link", {
-    staticClass: "bg_seco_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2",
+    staticClass: "bg_seco_color c_text_color text-3xl font-bold box_shadow_stroke_small py-1 px-2 hover:shadow-none hover:text-white hover:no-underline",
     attrs: {
       to: {
         name: "restaurants.show",
@@ -4937,11 +4944,11 @@ var render = function render() {
         }
       }
     }
-  }, [_vm._v("\n                Torna ai piatti\n            ")])], 1)]), _vm._v(" "), _vm.plate ? _c("PlateCardShow", {
+  }, [_vm._v("\n                    Torna ai piatti\n                ")])], 1)]), _vm._v(" "), _vm.plate ? _c("PlateCardShow", {
     attrs: {
       plate: _vm.plate
     }
-  }) : _vm._e(), _vm._v(" "), _c("LayoverAlert")], 1);
+  }) : _vm._e(), _vm._v(" "), _c("LayoverAlert")], 1)]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -4963,23 +4970,27 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "container py-20"
+  return _c("section", {
+    staticClass: "py-20"
   }, [_c("div", {
-    staticClass: "flex gap-3"
+    staticClass: "container"
+  }, [_c("div", {
+    staticClass: "flex flex-wrap items-center gap-3 pb-20"
+  }, [_c("div", {
+    staticClass: "box_shadow_stroke p-2"
   }, [_c("h2", {
-    staticClass: "text-6xl font-bold text-center pb-6"
-  }, [_vm._v("\n                " + _vm._s(_vm.restaurant.name) + "\n            ")]), _vm._v(" "), _c("div", {
-    staticClass: "flex items-center justify-end self-start ml-auto pt-2"
+    staticClass: "text-6xl font-bold"
+  }, [_vm._v("\n                    " + _vm._s(_vm.restaurant.name) + "\n                ")])]), _vm._v(" "), _c("div", {
+    staticClass: "box_shadow_stroke lg:ml-auto p-3"
   }, [_c("router-link", {
-    staticClass: "bg_seco_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button mb-2",
+    staticClass: "bg_seco_color c_text_color text-3xl font-bold box_shadow_stroke_small py-1 px-2 hover:shadow-none hover:text-white hover:no-underline",
     attrs: {
       to: {
         name: "home"
       }
     }
-  }, [_vm._v("\n                    Torna alla home\n                ")])], 1)]), _vm._v(" "), _c("div", {
-    staticClass: "grid rid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+  }, [_vm._v("\n                        Torna alla home\n                    ")])], 1)]), _vm._v(" "), _c("div", {
+    staticClass: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
   }, _vm._l(_vm.plates, function (plate, i) {
     return _c("PlateCard", {
       key: 92 * i,
@@ -4988,7 +4999,7 @@ var render = function render() {
         plate: plate
       }
     });
-  }), 1), _vm._v(" "), _c("LayoverAlert")], 1);
+  }), 1), _vm._v(" "), _c("LayoverAlert")], 1)]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -30185,25 +30196,6 @@ exports.push([module.i, "", ""]);
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PlateCard.vue?vue&type=style&index=0&id=644ae66b&lang=scss&scoped=true&":
-/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PlateCard.vue?vue&type=style&index=0&id=644ae66b&lang=scss&scoped=true& ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".cartBtn[data-v-644ae66b] {\n  position: absolute;\n  bottom: 1rem;\n  left: 50%;\n  transform: translateX(-50%);\n}", ""]);
-
-// exports
-
-
-/***/ }),
-
 /***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SocialLinks.vue?vue&type=style&index=0&id=2d2ed931&lang=scss&scoped=true&":
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SocialLinks.vue?vue&type=style&index=0&id=2d2ed931&lang=scss&scoped=true& ***!
@@ -30867,36 +30859,6 @@ if(false) {}
 
 
 var content = __webpack_require__(/*! !../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./PaymentComponent.vue?vue&type=style&index=0&id=4f61e082&lang=scss&scoped=true& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PaymentComponent.vue?vue&type=style&index=0&id=4f61e082&lang=scss&scoped=true&");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PlateCard.vue?vue&type=style&index=0&id=644ae66b&lang=scss&scoped=true&":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PlateCard.vue?vue&type=style&index=0&id=644ae66b&lang=scss&scoped=true& ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./PlateCard.vue?vue&type=style&index=0&id=644ae66b&lang=scss&scoped=true& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PlateCard.vue?vue&type=style&index=0&id=644ae66b&lang=scss&scoped=true&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -47632,11 +47594,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _PlateCard_vue_vue_type_template_id_644ae66b_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PlateCard.vue?vue&type=template&id=644ae66b&scoped=true& */ "./resources/js/components/PlateCard.vue?vue&type=template&id=644ae66b&scoped=true&");
+/* harmony import */ var _PlateCard_vue_vue_type_template_id_644ae66b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PlateCard.vue?vue&type=template&id=644ae66b& */ "./resources/js/components/PlateCard.vue?vue&type=template&id=644ae66b&");
 /* harmony import */ var _PlateCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PlateCard.vue?vue&type=script&lang=js& */ "./resources/js/components/PlateCard.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _PlateCard_vue_vue_type_style_index_0_id_644ae66b_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PlateCard.vue?vue&type=style&index=0&id=644ae66b&lang=scss&scoped=true& */ "./resources/js/components/PlateCard.vue?vue&type=style&index=0&id=644ae66b&lang=scss&scoped=true&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -47644,13 +47604,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _PlateCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _PlateCard_vue_vue_type_template_id_644ae66b_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _PlateCard_vue_vue_type_template_id_644ae66b_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _PlateCard_vue_vue_type_template_id_644ae66b___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PlateCard_vue_vue_type_template_id_644ae66b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "644ae66b",
+  null,
   null
   
 )
@@ -47676,35 +47636,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/PlateCard.vue?vue&type=style&index=0&id=644ae66b&lang=scss&scoped=true&":
-/*!*********************************************************************************************************!*\
-  !*** ./resources/js/components/PlateCard.vue?vue&type=style&index=0&id=644ae66b&lang=scss&scoped=true& ***!
-  \*********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_PlateCard_vue_vue_type_style_index_0_id_644ae66b_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./PlateCard.vue?vue&type=style&index=0&id=644ae66b&lang=scss&scoped=true& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PlateCard.vue?vue&type=style&index=0&id=644ae66b&lang=scss&scoped=true&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_PlateCard_vue_vue_type_style_index_0_id_644ae66b_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_PlateCard_vue_vue_type_style_index_0_id_644ae66b_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_PlateCard_vue_vue_type_style_index_0_id_644ae66b_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_PlateCard_vue_vue_type_style_index_0_id_644ae66b_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
-
-/***/ }),
-
-/***/ "./resources/js/components/PlateCard.vue?vue&type=template&id=644ae66b&scoped=true&":
-/*!******************************************************************************************!*\
-  !*** ./resources/js/components/PlateCard.vue?vue&type=template&id=644ae66b&scoped=true& ***!
-  \******************************************************************************************/
+/***/ "./resources/js/components/PlateCard.vue?vue&type=template&id=644ae66b&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/PlateCard.vue?vue&type=template&id=644ae66b& ***!
+  \******************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_PlateCard_vue_vue_type_template_id_644ae66b_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../node_modules/vue-loader/lib??vue-loader-options!./PlateCard.vue?vue&type=template&id=644ae66b&scoped=true& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PlateCard.vue?vue&type=template&id=644ae66b&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_PlateCard_vue_vue_type_template_id_644ae66b_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_PlateCard_vue_vue_type_template_id_644ae66b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../node_modules/vue-loader/lib??vue-loader-options!./PlateCard.vue?vue&type=template&id=644ae66b& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PlateCard.vue?vue&type=template&id=644ae66b&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_PlateCard_vue_vue_type_template_id_644ae66b___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_PlateCard_vue_vue_type_template_id_644ae66b_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_PlateCard_vue_vue_type_template_id_644ae66b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
