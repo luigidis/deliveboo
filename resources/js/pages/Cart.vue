@@ -35,6 +35,7 @@
                     </div>
                 </div>
             </div>
+            <ClearCartButton class="flex justify-content-end mt-12"/>
         </div>
         <div class="flex items-center justify-center h-screen flex-col gap-3" v-else>
             <h1 class="text-4xl font-bold text-center pb-6">
@@ -53,6 +54,7 @@
 <script>
 import QuantityHandler from '../components/QuantityHandler.vue';
 import state from '../store';
+import ClearCartButton from '../components/ClearCartButton.vue';
 
 export default {
     data() {
@@ -93,6 +95,6 @@ export default {
             window.location.reload();
         }
     },
-    components: { QuantityHandler }
+    components: { QuantityHandler, ClearCartButton }
 }
 </script>
