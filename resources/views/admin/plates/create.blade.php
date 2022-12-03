@@ -23,7 +23,7 @@
 
                         <div class="form-group mb-0">
                             <label for="img"
-                                class="box_shadow_stroke_small w-100 px-1 py-2 bg-white @error('img')is-invalid @enderror">
+                                class="box_shadow_stroke_small w-100 px-1 py-2 bg-white @error('img')shadow_stroke_error @enderror">
                                 Foto del piatto*
                             </label>
                             <div class="error"></div>
@@ -33,17 +33,16 @@
                                 </div>
                             @enderror
                             <input type="file" name="img" value="{{ old('img') }}"
-                                class="form-file-input @error('img')is-invalid @enderror invisible" id="img">
-
+                                class="form-file-input @error('img')shadow_stroke_error @enderror invisible" id="img">
                         </div>
 
                         <div class="form-group">
-                            <label for="name_plate">Nome del piatto*</label>
+                            <label for="name">Nome del piatto*</label>
                             <input type="text"
-                                class="form-control input-control @error('name_plate')is-invalid @enderror box_shadow_stroke_small"
-                                id="name_plate" value="{{ old('name') }}" name="name_plate">
+                                class="form-control input-control @error('name')shadow_stroke_error @enderror box_shadow_stroke_small"
+                                id="name_plate" value="{{ old('name') }}" name="name">
                             <div class="error"></div>
-                            @error('name_plate')
+                            @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -52,7 +51,7 @@
 
                         <div class="form-group">
                             <label for="description" class="d-block">Descrizione*</label>
-                            <textarea class="@error('description')is-invalid @enderror box_shadow_stroke_small w-100" id="description"
+                            <textarea class="@error('description')shadow_stroke_error @enderror box_shadow_stroke_small w-100" id="description"
                                 name="description" rows="5">{{ old('description') }}</textarea>
                             <div class="error"></div>
                             @error('description')
@@ -66,7 +65,7 @@
 
                             <label for="price">Prezzo*</label>
                             <input type="string"
-                                class="form-control input-control @error('price')is-invalid @enderror box_shadow_stroke_small"
+                                class="form-control input-control @error('price')shadow_stroke_error @enderror box_shadow_stroke_small"
                                 id="price" value="{{ old('price') }}" name="price">
                             <div class="error"></div>
                             @error('price')
@@ -80,7 +79,7 @@
                         <div class="form-group">
                             <label for="is_visible">Disponibilità*</label>
                             <select name="is_visible"
-                                class="@error('is_visible') is-invalid @enderror card_select bg-white font-weight-bold c_prim_color box_shadow_stroke_small py-2 px-2 mb-1 w-100"
+                                class="@error('is_visible') shadow_stroke_error @enderror card_select bg-white font-weight-bold c_prim_color box_shadow_stroke_small py-2 px-2 mb-1 w-100"
                                 id="is_visible">
                                 <option value="1" default>Disponibile</option>
                                 <option value="0">Non Disponibile</option>
@@ -157,7 +156,7 @@
 </style>
 
 
-@section('script-js')
+{{-- @section('script-js')
     <script>
         console.log('ciao');
 
@@ -228,5 +227,5 @@
 
             return validate;
         }
-    </script>
-@endsection
+    </script> 
+@endsection--}}
