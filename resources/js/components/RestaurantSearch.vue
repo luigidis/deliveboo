@@ -1,14 +1,14 @@
 <template>
-    <section class="container py-4">
+    <section class="container py-20">
         <div class="flex w-full items-center justify-center flex-column gap-5 pb-3">
-            <h2 class="text-4xl leading-none font-bold">
-                Cerca il tuo ristorante o la tua categoria di ristorante preferita
+            <h2 class="text-6xl leading-none font-bold text-center">
+                Cerca il tuo ristorante preferito
             </h2>
 
             <input type="text" v-model="filter"
                 class="w-4/5 sm:w-3/5 md:w-2/5 box_shadow_stroke_small text-3xl font-normal px-2 py-1">
 
-            <div class="flex gap-4 w-2/3 flex-wrap justify-center">
+            <div class="flex gap-4 w-4/5 flex-wrap justify-center">
                 <div v-for="(category, i) in categories" :key="20 - i">
                     <!-- <input type="checkbox" :name="category.name" :value="category.id" > -->
                     <span @click="addfilCat(category.name)" :class="{

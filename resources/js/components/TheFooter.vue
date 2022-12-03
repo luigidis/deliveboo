@@ -68,7 +68,7 @@ export default {
                     },
                     {
                         'name': 'Contatti',
-                        'route': '/',
+                        'route': 'contacts',
                     },
                 ],
             ]
