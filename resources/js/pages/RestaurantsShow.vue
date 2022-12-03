@@ -42,11 +42,13 @@ import LayoverAlert from '../components/LayoverAlert.vue'
 import PlateCard from '../components/PlateCard.vue'
 import state from '../store'
 
+
 export default {
     props: ['slug'],
     components: {
         PlateCard,
-        LayoverAlert
+        LayoverAlert,
+        
     },
     data() {
         return {
