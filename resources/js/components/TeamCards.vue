@@ -1,5 +1,5 @@
 <template>
-    <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-6">
         <li v-for="(link, i) in links" :key="i"
             class="box_shadow_stroke flex flex-column">
             <div>

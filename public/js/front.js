@@ -3738,7 +3738,7 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("ul", {
-    staticClass: "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+    staticClass: "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-6"
   }, _vm._l(_vm.links, function (link, i) {
     return _c("li", {
       key: i,
@@ -4493,11 +4493,13 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("section", {
     staticClass: "container py-20"
-  }, [_vm._m(0), _vm._v(" "), _c("div", [_c("TeamCards", {
+  }, [_vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "pb-20"
+  }, [_c("TeamCards", {
     attrs: {
       links: _vm.linksTeam
     }
-  })], 1)]);
+  })], 1), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2)]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -4511,6 +4513,40 @@ var staticRenderFns = [function () {
   }, [_vm._v("\n                Il nostro "), _c("span", {
     staticClass: "c_seco_color"
   }, [_vm._v("Team")])])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "flex flex-wrap items-center"
+  }, [_c("div", {
+    staticClass: "box_shadow_stroke py-2 px-3 mb-5"
+  }, [_c("h2", {
+    staticClass: "font-bold text-6xl"
+  }, [_vm._v("\n                I nostri "), _c("span", {
+    staticClass: "c_seco_color"
+  }, [_vm._v("Valori")])])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "lg:flex gap-6 items-center"
+  }, [_c("div", {
+    staticClass: "basis-1/2 mb-4 mb-lg-0"
+  }, [_c("div", {
+    staticClass: "box_shadow_stroke"
+  }, [_c("img", {
+    staticClass: "block w-full",
+    attrs: {
+      src: __webpack_require__(/*! ../assets/images/values.webp */ "./resources/js/assets/images/values.webp"),
+      alt: "In cosa Crediamo"
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "basis-2/5"
+  }, [_c("div", {
+    staticClass: "box_shadow_stroke p-4"
+  }, [_c("p", {
+    staticClass: "text-3xl"
+  }, [_vm._v("\n                    In DeliveBoo, i nostri valori sono al centro di tutto ciò che facciamo. Guidano il modo in cui lavoriamo insieme e prendiamo decisioni, che si tratti di reclutamento o evoluzione e sviluppo delle nostre persone, team e prodotti.\n                ")])])])]);
 }];
 render._withStripped = true;
 
@@ -4869,9 +4905,21 @@ var staticRenderFns = [function () {
     staticClass: "c_seco_color"
   }, [_vm._v("Contatti")])])]), _vm._v(" "), _c("div", {
     staticClass: "flex justify-center gap-10 lg:px-10"
-  }, [_c("ul", {
-    staticClass: "box_shadow_stroke p-2 sm:p-3 w-full lg:w-3/5 font-bold text-2xl sm:text-3xl md:text-4xl overflow-hidden"
-  }, [_c("li", [_vm._v("\n                    Email: admin.01@deliveboo.com\n                ")]), _vm._v(" "), _c("li", [_vm._v("\n                    Telefono: +39 333 123 4567\n                ")]), _vm._v(" "), _c("li", [_vm._v("\n                    Telepatia: Ammmmmhh\n                ")])])])])]);
+  }, [_c("div", {
+    staticClass: "box_shadow_stroke p-2 sm:p-3 w-full lg:w-3/5"
+  }, [_c("h3", {
+    staticClass: "font-bold text-3xl mb-3"
+  }, [_vm._v("\n                    Assistenza Clienti\n                ")]), _vm._v(" "), _c("p", {
+    staticClass: "text-xl mb-3"
+  }, [_vm._v("\n                    Domande sul tuo ordine? "), _c("br"), _vm._v("\n                    Siamo qui per aiutare! Il modo più rapido per ottenere una risposta è utilizzare l'app o il sito web. Basta accedere al proprio account, selezionare un ordine recente e quindi utilizzare la guida all'ordine per segnalare la query. "), _c("br"), _c("br"), _vm._v("\n\n                    Oppure puoi scriverci a "), _c("span", {
+    staticClass: "c_link_color cursor-pointer hover:text-red-400"
+  }, [_vm._v("support@deliveBoo.com")]), _vm._v(" "), _c("br"), _c("br"), _vm._v("\n\n                    Tieni presente che non accettiamo ordini per telefono, quindi se desideri effettuare un ordine, effettualo online.\n                ")]), _vm._v(" "), _c("h3", {
+    staticClass: "font-bold text-3xl mb-3"
+  }, [_vm._v("\n                    Richieste media\n                ")]), _vm._v(" "), _c("p", {
+    staticClass: "text-xl mb-3"
+  }, [_vm._v("\n                    Per preventivi, interviste o altre richieste dei media, inviare un'e-mail a: "), _c("span", {
+    staticClass: "c_link_color cursor-pointer hover:text-red-400"
+  }, [_vm._v("press@deliveBoo.com")]), _vm._v("."), _c("br"), _c("br"), _vm._v("\n\n                    Sfortunatamente l'ufficio stampa non ha accesso alle informazioni sull'account, quindi non può aiutare con le richieste dei clienti."), _c("br"), _c("br"), _vm._v("\n\n                    Sede legale: via Boolean 123, Milano Italia\n                ")])])])])]);
 }];
 render._withStripped = true;
 
@@ -47164,6 +47212,17 @@ module.exports = "/images/profile-stefano.webp?47ba5068cca5addf0de687c071e6abb2"
 /***/ (function(module, exports) {
 
 module.exports = "/images/services.webp?d7bc6cf6f280b761903bbef5529ec66c";
+
+/***/ }),
+
+/***/ "./resources/js/assets/images/values.webp":
+/*!************************************************!*\
+  !*** ./resources/js/assets/images/values.webp ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/values.webp?671faaee1d57cc3768163c8f116390f4";
 
 /***/ }),
 

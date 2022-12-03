@@ -11240,6 +11240,7 @@ html body {
   font-weight: 300;
   color: #4C5355;
   font-family: "Manrope", sans-serif;
+  overflow-y: overlay;
 }
 
 img {
@@ -11252,5 +11253,18 @@ ul {
 
 button {
   border: 0px solid transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  box-shadow: inset 1rem 1rem rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
