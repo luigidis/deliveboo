@@ -1,11 +1,14 @@
 <template>
-    <footer class="w-full py-5 px-3 bg_link_color text-white">
-        <div class="container">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-5 pb-3">
+    <footer class="w-full bg_link_color text-white relative">
+        <span class="absolute top-0 left-10 w-[150px]">
+            <SvgLogo class="w-full h-full object-cover fill-white"/>
+        </span>
+        <div class="container py-20">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-10 pb-3">
                 <div class="box_shadow_stroke bg_seco_color py-3 px-2 w-full" v-for="(link, i) in footerLinks" :key="i">
                     <ul class="list">
                         <li class="list_item" v-for="(item, j) in link" :key="1000 - j">
-                            <router-link :to="item.route"
+                            <router-link :to="{name: item.route}"
                                 class="item_link font-bold text-3xl hover:opacity-75 hover:text-white py-2 px-1 block"
                                 :title="`Vai a ${item.name}`">
                                 {{ item.name }}
@@ -20,6 +23,7 @@
 </template>
 <script>
 import SocialLinks from './SocialLinks.vue';
+import SvgLogo from './svgs/SvgLogo.vue';
 
 export default {
     data() {
@@ -28,19 +32,15 @@ export default {
                 [
                     {
                         'name': 'Scopri DeliveBoo',
-                        'route': '/',
+                        'route': 'home',
                     },
                     {
                         'name': 'Chi Siamo',
-                        'route': '/',
+                        'route': 'about-us',
                     },
                     {
                         'name': 'Ristoranti',
-                        'route': '/',
-                    },
-                    {
-                        'name': 'Altro',
-                        'route': '/',
+                        'route': 'home',
                     },
                 ],
                 [
@@ -72,15 +72,16 @@ export default {
                     },
                     {
                         'name': 'Contatti',
-                        'route': '/',
+                        'route': 'contacts',
                     },
                 ],
             ]
         }
     },
     components: {
-        SocialLinks
-    }
+    SocialLinks,
+    SvgLogo
+}
 }
 </script>
 

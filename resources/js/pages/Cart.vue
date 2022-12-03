@@ -24,22 +24,19 @@
                     </router-link>
                 </div>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 justify-items-center">
-                <div class="box_shadow_stroke flex flex-column w-full max-w-sm" v-for="plate, i in plates" :key="i">
-                    <div class="h-3/5">
-                        <img class="block object-cover w-full h-full" :src="plate.img"
-                            :alt="`Foto piatto ${plate.name}`">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div class="box_shadow_stroke" v-for="plate, i in plates" :key="i">
+                    <div class="h-60">
+                        <img class="block object-cover w-full h-full" :src="plate.img" :alt="`Foto piatto ${plate.name}`">
                     </div>
-                    <div class="p-2 grow flex flex-column gap-2">
-                        <h3 class="text-3xl font-bold leading-none">
+                    <div class="p-2 flex flex-column">
+                        <h3 class="text-4xl font-bold truncate">
                             {{ plate.name }}
                         </h3>
-                        <span class="font-normal block text-lg">
-                            Totale piatto: <span class="font-bold">&euro;{{ (parseFloat(quantity[i]) *
-                                    parseFloat(plate.price)).toFixed(2)
-                            }}</span>
+                        <span class="font-normal text-lg py-3">
+                            Totale piatto: <span class="font-bold">&euro;{{ (parseFloat(quantity[i]) * parseFloat(plate.price)).toFixed(2) }}</span>
                         </span>
-                        <QuantityHandler :plate="plate" v-if="plates" class="grow" />
+                        <QuantityHandler :plate="plate" v-if="plates" />
                     </div>
                 </div>
             </div>

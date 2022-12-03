@@ -6,6 +6,7 @@ import Cart from '../pages/Cart.vue';
 import CheckOut from '../pages/CheckOut.vue';
 import SuccessPayment from '../pages/SuccessPayment.vue';
 import About from '../pages/About.vue';
+import Contacts from '../pages/Contacts.vue';
 
 const routes = [
     {
@@ -46,6 +47,11 @@ const routes = [
         path: '/chi-siamo',
         name: 'about-us',
         component: About,
+    },
+    {
+        path: '/contatti',
+        name: 'contacts',
+        component: Contacts,
     },
     {
         path: '*',

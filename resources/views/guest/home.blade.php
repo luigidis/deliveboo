@@ -14,6 +14,7 @@
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link rel="icon" href="favicon.png"> 
 
         {{-- Tailwind --}}
         <script src="https://cdn.tailwindcss.com"></script>

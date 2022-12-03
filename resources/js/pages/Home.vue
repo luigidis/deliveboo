@@ -6,6 +6,7 @@
             <AdvancedSearch v-else :par="par" /> -->
         <AdvancedSearch v-if="par" :par="par" />
         <SuggestedRestaurants/>
+        <TheServices />
     </main>
 </template>
 
@@ -16,15 +17,17 @@ import SuggestedRestaurants from '../components/SuggestedRestaurants.vue';
 import AdvancedSearch from '../components/AdvancedSearch.vue';
 
 import JumboTron from '../components/JumboTron.vue';
+import TheServices from '../components/TheServices.vue';
 
 export default {
     components: {
-        RestaurantSearch,
-        TheLogo,
-        SuggestedRestaurants,
-        JumboTron,
-        AdvancedSearch
-    },
+    RestaurantSearch,
+    TheLogo,
+    SuggestedRestaurants,
+    JumboTron,
+    AdvancedSearch,
+    TheServices
+},
     computed: {
         query() {
             return this.$route.query;

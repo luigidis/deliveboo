@@ -1,5 +1,5 @@
 <template>
-    <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-6">
         <li v-for="(link, i) in links" :key="i"
             class="box_shadow_stroke flex flex-column">
             <div>
@@ -46,8 +46,17 @@ export default {
 @import '../../sass/variables';
 
 .svg_icon {
-    width: 2rem;
+    width: 2.5rem;
     aspect-ratio: 1/1;
     fill: $seco-color;
+    transition: 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.list_item{
+    &:hover{
+        .svg_icon{
+            fill: $prim-color;
+        }
+    }
 }
 </style>

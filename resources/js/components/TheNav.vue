@@ -1,6 +1,6 @@
 <template>
     <nav class="navigation ml-auto">
-        <ul class="flex items-center h-full gap-6">
+        <ul class="flex items-center h-full gap-3">
             <li class="relative">
                 <a href="/admin" class="absolute inset-0" title="Accedi al tuo ristorante">
                 </a>
@@ -14,7 +14,14 @@
                 <span class="hidden md:block font-normal text-xl">
                     Il Team
                 </span>
-                <router-link :to="{ name: 'about-us' }" class="router" title="Vai ai Contatti"></router-link>
+                <router-link :to="{ name: 'about-us' }" class="router" title="Scopri il nostro Team"></router-link>
+            </li>
+            <li class="relative">
+                <SvgContacts class="md:hidden svg_icon" />
+                <span class="hidden md:block font-normal text-xl">
+                    Contatti
+                </span>
+                <router-link :to="{ name: 'contacts' }" class="router" title="Vai ai Contatti"></router-link>
             </li>
             <li class="flex gap-1 justify-center items-center relative">
                 <span class="rounded-full flex items-center justify-center totalItems text-sm">
@@ -30,6 +37,7 @@
 import state from "../store";
 import SvgAbout from "./svgs/SvgAbout.vue";
 import SvgCart from "./svgs/SvgCart.vue";
+import SvgContacts from "./svgs/SvgContacts.vue";
 import SvgRestaurant from "./svgs/SvgRestaurant.vue";
 
 export default {
@@ -42,7 +50,8 @@ export default {
     components: {
     SvgCart,
     SvgRestaurant,
-    SvgAbout
+    SvgAbout,
+    SvgContacts
 }
 }
 </script>
