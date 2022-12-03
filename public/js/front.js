@@ -2454,16 +2454,13 @@ __webpack_require__.r(__webpack_exports__);
     return {
       footerLinks: [[{
         'name': 'Scopri DeliveBoo',
-        'route': '/'
+        'route': 'home'
       }, {
         'name': 'Chi Siamo',
-        'route': '/'
+        'route': 'about-us'
       }, {
         'name': 'Ristoranti',
-        'route': '/'
-      }, {
-        'name': 'Altro',
-        'route': '/'
+        'route': 'home'
       }], [{
         'name': 'Note legali',
         'route': '/'
@@ -3118,8 +3115,10 @@ var staticRenderFns = [function () {
   return _c("section", {
     staticClass: "jumbo_wrapper w-full relative"
   }, [_c("div", {
-    staticClass: "jumbo_header c_text_color font-bold text-4xl absolute w-3/5 md:w-1/3 xl:w-1/4 z-10"
-  }, [_vm._v("\n        Scegli"), _c("br"), _vm._v("Ordina"), _c("br"), _vm._v("Mangia comodamente a casa tua!\n    ")]), _vm._v(" "), _c("img", {
+    staticClass: "jumbo_header absolute w-3/5 md:w-1/3 xl:w-1/4 z-10"
+  }, [_c("h2", {
+    staticClass: "c_text_color font-bold text-4xl sm:text-5xl md:text-6xl"
+  }, [_vm._v("\n            Scegli"), _c("br"), _vm._v("Ordina"), _c("br"), _vm._v("Mangia comodamente a casa tua!\n        ")])]), _vm._v(" "), _c("img", {
     staticClass: "block object-cover object-center h-full w-full",
     attrs: {
       src: __webpack_require__(/*! ../assets/images/prova.jpg */ "./resources/js/assets/images/prova.jpg")
@@ -3805,7 +3804,9 @@ var render = function render() {
       }, [_c("router-link", {
         staticClass: "item_link font-bold text-3xl hover:opacity-75 hover:text-white py-2 px-1 block",
         attrs: {
-          to: item.route,
+          to: {
+            name: item.route
+          },
           title: "Vai a ".concat(item.name)
         }
       }, [_vm._v("\n                            " + _vm._s(item.name) + "\n                        ")])], 1);
@@ -29962,7 +29963,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".jumbo_wrapper[data-v-0f5e9df1] {\n  height: calc(50vh - 4rem);\n}\n.jumbo_wrapper .jumbo_header[data-v-0f5e9df1] {\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n}\n.layover[data-v-0f5e9df1] {\n  background-color: rgba(0, 0, 0, 0.5);\n}", ""]);
+exports.push([module.i, ".jumbo_wrapper[data-v-0f5e9df1] {\n  height: calc(60vh - 4rem);\n}\n.jumbo_wrapper .jumbo_header[data-v-0f5e9df1] {\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n}\n.layover[data-v-0f5e9df1] {\n  background-color: rgba(0, 0, 0, 0.5);\n}\n@media (min-width: 768px) {\n.jumbo_wrapper[data-v-0f5e9df1] {\n    height: calc(70vh - 4rem);\n}\n.jumbo_wrapper .jumbo_header[data-v-0f5e9df1] {\n    left: 50%;\n    top: 50%;\n    transform: translate(-100%, -50%);\n}\n}", ""]);
 
 // exports
 
@@ -30095,7 +30096,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".svg_icon[data-v-21ff5e2b] {\n  width: 2rem;\n  aspect-ratio: 1/1;\n  fill: #C44B4F;\n}", ""]);
+exports.push([module.i, ".svg_icon[data-v-21ff5e2b] {\n  width: 2.5rem;\n  aspect-ratio: 1/1;\n  fill: #C44B4F;\n  transition: 300ms cubic-bezier(0.075, 0.82, 0.165, 1);\n}\n.list_item:hover .svg_icon[data-v-21ff5e2b] {\n  fill: #4C5355;\n}", ""]);
 
 // exports
 
