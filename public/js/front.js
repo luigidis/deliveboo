@@ -2804,7 +2804,10 @@ __webpack_require__.r(__webpack_exports__);
           });
           setTimeout(function () {
             _this.$router.push({
-              name: "successpayment"
+              name: "successpayment",
+              params: {
+                bool: true
+              }
             });
           }, "1000");
         } else {
