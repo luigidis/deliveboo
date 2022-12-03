@@ -23,7 +23,7 @@ class RestaurantSeeder extends Seeder
             'https://media-cdn.tripadvisor.com/media/photo-s/1a/16/32/e3/wine-room-dari-ristorante.jpg',
             'https://www.finedininglovers.it/sites/g/files/xknfdk1106/files/styles/im_landscape_100/public/fdl_content_import_it/ristoranti-gourmet-firenze.jpg.webp?itok=CBx1XuAG',
             'https://media-assets.lacucinaitaliana.it/photos/61fac87d07be724774c9c789/16:9/w_2560%2Cc_limit/A5A4473.jpeg',
-            'https://buonricordo.com/ristoranti/veneto/ristorante-da-gigetto/@@images/eac57071-7f07-4456-b738-b279ab56dd13.jpeg',
+            'https://www.unicoebello.it/wp-content/uploads/2020/09/Oro-2-1300x867-1.jpg',
             'https://media-assets.lacucinaitaliana.it/photos/61fabb4351116b1ead93053e/16:9/w_2560%2Cc_limit/landscape-italiani-nel-mondo.jpg',
             'https://www.milanotoday.it/~media/horizontal-hi/12626845478540/ristorante-forte-milano-5.jpeg',
             'https://flawless.life/wp-content/uploads/2021/11/I-Ristoranti-a-Milano-da-Provare-a-Dicembre-La-briciola-cover.jpg',

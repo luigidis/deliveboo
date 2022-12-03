@@ -22,7 +22,9 @@
             <PlateCardShow :plate="plate" v-if="plate"/>
             <LayoverAlert />
         </div>
-        <TheLoading v-else />
+
+        <TheLoading class="min-h-screen" v-else />
+        
     </section>
 </template>
 

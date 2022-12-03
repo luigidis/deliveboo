@@ -24,7 +24,7 @@
             </div>
             <LayoverAlert />
         </div>
-        <TheLoading v-else />
+        <TheLoading class="min-h-screen" v-else />
     </section>
 
     <!-- <div v-if="(restaurant.id == restaurantId)" class="py-20 stroke_left px-3">

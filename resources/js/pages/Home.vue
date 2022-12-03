@@ -4,7 +4,7 @@
         <RestaurantSearch />
         <!-- <SuggestedRestaurants v-if="!Object.keys(query).length"/>
             <AdvancedSearch v-else :par="par" /> -->
-        <AdvancedSearch v-if="par" :par="par" />
+        <AdvancedSearch v-if="Object.keys(query).length" :par="par" />
         <SuggestedRestaurants/>
         <TheServices />
     </main>

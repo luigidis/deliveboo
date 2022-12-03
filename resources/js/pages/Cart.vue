@@ -3,8 +3,8 @@
 
 
         <TheLoading v-if="load" />
-        <div v-if="plates">
 
+        <div v-if="(plates && !empty)">
 
             <div class="flex mb-3 flex-wrap gap-3 items-start">
                 <h1 class="text-5xl px-2 py-3 box_shadow_stroke leading-none grow lg:grow-0">
@@ -47,9 +47,10 @@
                 </button>
             </div>
 
-
         </div>
-        <div class="flex items-center justify-center h-screen flex-col gap-3" v-else>
+        <TheLoading class="min-h-screen" v-if="!plates && !empty" />
+
+        <div class="flex items-center justify-center h-screen flex-col gap-3" v-if="empty">
             <h1 class="text-4xl font-bold text-center pb-6">
                 Carrello vuoto.
             </h1>
@@ -68,7 +69,7 @@
 <script>
 import QuantityHandler from '../components/QuantityHandler.vue';
 import state from '../store';
-import TheLoading from '../components/TheLoading.vue'
+import TheLoading from '../components/TheLoading.vue';
 
 
 export default {
@@ -77,6 +78,7 @@ export default {
             plates: "",
             restaurant: "",
             load: false,
+            empty: false,
         };
     },
     computed: {
@@ -95,6 +97,8 @@ export default {
             axios.get(`api/cart/plates/${this.ids}`)
                 .then(res => {
                     this.plates = res.data.plates;
+                    if(!this.plates)
+                        this.empty = true;
                     this.restaurant = res.data.restaurant;
                 }).catch(err => {
                     console.log(err);

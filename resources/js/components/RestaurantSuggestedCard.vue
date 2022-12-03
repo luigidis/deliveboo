@@ -4,7 +4,7 @@
         'justify-end': index % 2 == 1,
     }">
         <div :class="{
-            'w-full box_shadow_stroke': true,
+            'w-full box_shadow_stroke h-[600px]': true,
             'lg:order-1': index % 2 == 1,
         }">
             <img class="block object-cover object-center w-full h-full" :src="data.image" :alt="`Sala ristorante ${data.name}`">
