@@ -12,7 +12,7 @@
                         te.
                     </p>
                 </div>
-                <div class="box_shadow_stroke w-full">
+                <div class="box_shadow_stroke w-full h-[600px]">
                     <img class="object-cover object-center w-full h-full block" src="../assets/images/services.webp" alt="I nostri riders">
                 </div>
             </div>
