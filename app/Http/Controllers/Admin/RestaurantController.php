@@ -85,8 +85,8 @@ class RestaurantController extends Controller
         $params = $request->validate([
             'name' => 'required|max:255',
             'address' => 'required|max:255',
-            'phone' => 'required|max:255',
-            'p_iva' => 'required|max:255',
+            'phone' => 'required|max:30',
+            'p_iva' => 'required|max:20',
             'categories' => 'exists:categories,id|required',
             'image' => 'nullable|image|max:2048'
         ]);
