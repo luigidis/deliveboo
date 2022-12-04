@@ -1,1 +1,52 @@
-//
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;700&display=swap');
+
+// Generals
+@import 'generals';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Pagina di registrazione
+@import './register.scss';
+
+// Pagina Layout
+@import './layout.scss';
+
+// Stile per l'errore
+@import './delete.scss';
+
+// Reset 
+
+html body {
+    min-width: 350px;
+    font-weight: 300;
+    color: $prim-color;
+    font-family: 'Manrope', sans-serif;
+    overflow-y: overlay;
+}
+
+img {
+    max-width: 100%;
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    border: 0px solid transparent;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 1rem;
+    box-shadow: inset 1rem 1rem rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.5);
+}

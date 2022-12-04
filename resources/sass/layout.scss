@@ -1,0 +1,158 @@
+.navbar {
+    &.stroke_bottom {
+        border-bottom: 3px solid $prim-color;
+        // box-shadow: 0px 0px 5px $prim-color;
+    }
+}
+
+.navbar-brand {
+    &.font_big {
+        font-size: 2.5rem;
+        color: $prim-color;
+    }
+}
+
+.navbar-nav {
+    a {
+        color: $prim-color;
+        font-size: 1.25rem;
+    }
+}
+
+.dropdown-menu {
+    &.bg_text_color {
+        background-color: $text-color;
+        color: $prim-color;
+    }
+
+    &.stroke_full {
+        border-radius: 0px;
+        border: 2px solid $prim-color;
+        box-shadow: 3px 3px 0px $prim-color;
+    }
+}
+
+.navbar-toggler {
+    &.bg_prim_color {
+        background-color: $prim-color;
+    }
+}
+
+.img_cover {
+    min-height: 500px;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+h3 {
+    &.stroke_bottom {
+        border-bottom: 3px solid $prim-color;
+    }
+}
+
+div {
+    &.stroke_bottom {
+        border-bottom: 3px solid $prim-color;
+    }
+}
+
+a,
+button {
+    transition: 300ms ease-in-out;
+
+    &.card_button {
+        font-size: 1.25rem;
+
+        &:hover {
+            color: $text-color;
+            text-decoration: none;
+            border: 2px solid $prim-color;
+            box-shadow: 1px 1px 0px $prim-color;
+        }
+    }
+
+    &.card_button_dark {
+        &:hover {
+            color: $prim-color;
+        }
+    }
+}
+
+.card_content {
+    width: 320px;
+
+    &.card_restaurant {
+        width: 400px;
+    }
+
+    .card_select {
+        cursor: pointer;
+        font-size: 1.25rem;
+    }
+
+    .card_description {
+        font-size: 1.25rem;
+        line-height: 1.1;
+    }
+}
+
+.list_wrapper {
+    .list_item {
+        font-size: 1.25rem;
+        line-height: 1.1;
+    }
+}
+
+.card_description {
+    font-size: 1.25rem;
+    line-height: 1.1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &.plates {
+        font-size: 1.5rem;
+        line-height: 1.1;
+    }
+}
+
+.form_container {
+    padding: 3rem 0;
+    margin: 0 auto;
+    max-width: 800px;
+
+    .card_form {
+        max-width: 100%;
+        padding: 2rem;
+
+        .form-group.row {
+            flex-grow: 1;
+
+            >.col-md-6 {
+                margin-left: auto;
+            }
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 1.05rem;
+            line-height: 1.1;
+        }
+
+        input {
+            border: 2px solid $prim-color;
+            border-radius: 0;
+            margin-left: auto;
+        }
+    }
+}
+
+.card_content,
+.card_restaurant {
+    transition: 800ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}

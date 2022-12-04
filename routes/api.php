@@ -17,3 +17,18 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::resource('restaurants', 'Api\RestaurantController')->only('index', 'show');
+
+Route::get('restaurants/categories/{categories}', 'Api\RestaurantController@search')->name('restaurants.search');
+
+Route::get('plates/{slug}', 'Api\RestaurantController@plateShow')->name('restaurants.plateShow');
+
+Route::get('cart/plates/{id}', 'Api\RestaurantController@cartPlates')->name('restaurants.cartPlates');
+
+Route::get('orders/generate', 'Api\Orders\OrderController@generate');
+Route::post('orders/payment', 'Api\Orders\OrderController@payment');
+
+Route::post('orders/making/{id}', 'Api\RestaurantController@makeOrder');
+
+Route::post('restaurants/best', 'Api\RestaurantController@getBests');
