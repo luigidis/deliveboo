@@ -26,7 +26,6 @@
                                 class="box_shadow_stroke_small w-100 px-1 py-2 bg-white @error('img')shadow_stroke_error @enderror input_color">
                                 Foto del piatto*
                             </label>
-                            <div class="error"></div>
                             @error('img')
                                 <div id="img" class="invalid-feedback">
                                     {{ $message }}
@@ -42,7 +41,6 @@
                             <input type="text"
                                 class="form-control input-control error_js @error('name')shadow_stroke_error @enderror input_color box_shadow_stroke_small"
                                 id="name_plate" value="{{ old('name') }}" name="name">
-                            <div class="error"></div>
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -67,7 +65,6 @@
                             <input type="string"
                                 class="form-control input-control error_js @error('price')shadow_stroke_error @enderror input_color box_shadow_stroke_small"
                                 id="price" value="{{ old('price') }}" name="price">
-                            <div class="error_js"></div>
                             @error('price')
                                 <div class="invalid-feedback" role="alert">
                                     {{ $message }}
@@ -154,8 +151,6 @@
         color: red;
     }
 </style>
-
-
 @section('script-js')
     <script>
         window.addEventListener('load', () => {
