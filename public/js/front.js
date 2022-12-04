@@ -30701,7 +30701,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.container[data-v-82158542] {\r\n    height: 95vh;\n}\r\n", ""]);
+exports.push([module.i, "\n.container[data-v-82158542] {\n    height: 95vh;\n}\n", ""]);
 
 // exports
 
@@ -50677,7 +50677,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\franc\Documents\boolean-dev\full-stack-dev\php\deliveboo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! /Users/giusscos/dev/boolean/progetto_finale/deliveboo/resources/js/front.js */"./resources/js/front.js");
 
 
 /***/ })
