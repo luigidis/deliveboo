@@ -93,7 +93,6 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// console.log('yo');
 /*****************************************************************************
  * per un corretto funzionamento dei controlli devo eseguire il tutto dopo
  * il caricamento della pagina
@@ -113,10 +112,19 @@ window.addEventListener('load', function () {
   var phone = document.getElementById('phone');
   var pIva = document.getElementById('p_iva');
   var image = document.getElementById('image');
+  var imageLabel = document.getElementById('imageLabel');
   var submitButton = document.getElementById('submitBtn');
   submitButton.addEventListener('click', function (e) {
     e.preventDefault();
     if (validateInputs()) form.submit();
+  });
+
+  /*****************************************************************************
+   * gestisco la label dell-immagine
+  *****************************************************************************/
+  image.addEventListener('change', function (el) {
+    var fileName = el.target.files[0].name;
+    imageLabel.innerHTML = "File selezionato: ".concat(fileName);
   });
 
   /*****************************************************************************
@@ -355,7 +363,7 @@ function ValidateEmail(email) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/giusscos/dev/boolean/progetto_finale/deliveboo/resources/js/register.js */"./resources/js/register.js");
+module.exports = __webpack_require__(/*! C:\Users\franc\Documents\boolean-dev\full-stack-dev\php\deliveboo\resources\js\register.js */"./resources/js/register.js");
 
 
 /***/ })

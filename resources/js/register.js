@@ -1,4 +1,3 @@
-// console.log('yo');
 /*****************************************************************************
  * per un corretto funzionamento dei controlli devo eseguire il tutto dopo
  * il caricamento della pagina
@@ -17,12 +16,21 @@ window.addEventListener('load', () => {
     const address = document.getElementById('address');
     const phone = document.getElementById('phone');
     const pIva = document.getElementById('p_iva');
-    const image = document.getElementById('image')
+    const image = document.getElementById('image');
+    const imageLabel = document.getElementById('imageLabel');
     const submitButton = document.getElementById('submitBtn');
     submitButton.addEventListener('click', e => {
         e.preventDefault();
         if (validateInputs())
             form.submit();
+    })
+
+    /*****************************************************************************
+     * gestisco la label dell-immagine
+    *****************************************************************************/
+    image.addEventListener('change', (el) => {
+        const fileName = el.target.files[0].name
+        imageLabel.innerHTML = `File selezionato: ${fileName}`
     })
 
     /*****************************************************************************
