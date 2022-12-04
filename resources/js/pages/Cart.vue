@@ -113,13 +113,10 @@ export default {
             state.ids = [];
             state.quantity = [];
         },
-        
-            
-
-
     },
     mounted() {
         this.fetchPlates();
+        window.scrollTo(0,0)
     },
     watch: {
         ids() {
@@ -129,8 +126,4 @@ export default {
     },
     components: { QuantityHandler, TheLoading }
 }
-
-
-
-
 </script>

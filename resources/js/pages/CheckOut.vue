@@ -201,6 +201,8 @@ export default {
                 console.log(error)
                 this.show = false
             });
+
+            window.scrollTo(0,0)
     }
 }
 </script>

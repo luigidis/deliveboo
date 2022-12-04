@@ -28,6 +28,7 @@ export default {
         setTimeout(() => {
             this.$router.push({ name: "home" });
         }, "4000")
+        window.scrollTo(0,0)
     }
 }
 </script>
