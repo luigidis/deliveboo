@@ -22,28 +22,26 @@
                         @csrf
 
                         <div class="form-group mb-0">
-                            <label for="img"
-                                class="box_shadow_stroke_small w-100 px-1 py-2 bg-white @error('img')is-invalid @enderror">
+                            <label for="img" id="fileLabel"
+                                class="box_shadow_stroke_small w-100 px-1 py-2 bg-white @error('img')shadow_stroke_error @enderror input_color">
                                 Foto del piatto*
                             </label>
-                            <div class="error"></div>
                             @error('img')
                                 <div id="img" class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
                             <input type="file" name="img" value="{{ old('img') }}"
-                                class="form-file-input @error('img')is-invalid @enderror invisible" id="img">
-
+                                class="form-file-input @error('img')shadow_stroke_error @enderror input_color invisible"
+                                id="img">
                         </div>
 
                         <div class="form-group">
-                            <label for="name_plate">Nome del piatto*</label>
+                            <label for="name">Nome del piatto*</label>
                             <input type="text"
-                                class="form-control input-control @error('name_plate')is-invalid @enderror box_shadow_stroke_small"
-                                id="name_plate" value="{{ old('name') }}" name="name_plate">
-                            <div class="error"></div>
-                            @error('name_plate')
+                                class="form-control input-control error_js @error('name')shadow_stroke_error @enderror input_color box_shadow_stroke_small"
+                                id="name_plate" value="{{ old('name') }}" name="name">
+                            @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -52,9 +50,8 @@
 
                         <div class="form-group">
                             <label for="description" class="d-block">Descrizione*</label>
-                            <textarea class="@error('description')is-invalid @enderror box_shadow_stroke_small w-100" id="description"
-                                name="description" rows="5">{{ old('description') }}</textarea>
-                            <div class="error"></div>
+                            <textarea class="error_js @error('description')shadow_stroke_error @enderror input_color box_shadow_stroke_small w-100"
+                                id="description" name="description" rows="5">{{ old('description') }}</textarea>
                             @error('description')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -66,9 +63,8 @@
 
                             <label for="price">Prezzo*</label>
                             <input type="string"
-                                class="form-control input-control @error('price')is-invalid @enderror box_shadow_stroke_small"
+                                class="form-control input-control error_js @error('price')shadow_stroke_error @enderror input_color box_shadow_stroke_small"
                                 id="price" value="{{ old('price') }}" name="price">
-                            <div class="error"></div>
                             @error('price')
                                 <div class="invalid-feedback" role="alert">
                                     {{ $message }}
@@ -80,7 +76,7 @@
                         <div class="form-group">
                             <label for="is_visible">Disponibilità*</label>
                             <select name="is_visible"
-                                class="@error('is_visible') is-invalid @enderror card_select bg-white font-weight-bold c_prim_color box_shadow_stroke_small py-2 px-2 mb-1 w-100"
+                                class="@error('is_visible') shadow_stroke_error @enderror input_color card_select bg-white font-weight-bold c_prim_color box_shadow_stroke_small py-2 px-2 mb-1 w-100"
                                 id="is_visible">
                                 <option value="1" default>Disponibile</option>
                                 <option value="0">Non Disponibile</option>
@@ -107,7 +103,7 @@
                                             Vuoi aggiungere questo piatto al tuo ristorante?
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="submit"
+                                            <button type="submit" id="submitBtnModal"
                                                 class="bg_link_color c_text_color box_shadow_stroke_small px-2 py-1 card_button mb-3">
                                                 Aggiungi
                                             </button>
@@ -154,79 +150,8 @@
     .error {
         color: red;
     }
+
 </style>
-
-
 @section('script-js')
-    <script>
-        console.log('ciao');
-
-        window.addEventListener('load', () => {
-
-            const form = document.getElementById('form');
-
-            const namePlate = document.getElementById('name_plate')
-            const description = document.getElementById('description');
-            const price = document.getElementById('price');
-            const isVisible = document.getElementById('is_visible');
-            const submitButton = document.getElementById('submitBtn');
-            submitButton.addEventListener('click', e => {
-                e.preventDefault();
-                if (validateInputs())
-                    form.submit();
-            })
-        })
-
-        const setError = (element, message) => {
-            const inputControl = element.parentElement;
-            const errorDisplay = document.querySelector('.error');
-            errorDisplay.innerText = message;
-            inputControl.classList.add('error');
-            inputControl.classList.remove('success');
-
-        }
-
-        const setSuccess = (element) => {          
-            const inputControl = element.parentElement;
-            const errorDisplay = document.querySelector('.error');
-            errorDisplay.innerText = '';
-            inputControl.classList.add('success');
-            inputControl.classList.remove('error');
-
-        }
-
-        function validateInputs() {
-
-            const nameValue = namePlate.value.trim();
-            const descriptionValue = description.value.trim();
-            const priceValue = price.value.trim();
-            const isVisibleVlue = isVisible.value.trim();
-
-            let validate = true;
-
-
-            if (nameValue === '') {
-                setError(namePlate, 'Campo Obbligatorio');
-                validate = false;
-            } else {
-                setSuccess(namePlate);
-            }
-
-            if (descriptionValue === '') {
-                setError(description, 'Campo Obbligatorio');
-                validate = false;
-            } else {
-                setSuccess(description);
-            }
-
-            if (priceValue === '') {
-                setError(price, 'Campo Obbligatorio');
-                validate = false;
-            } else {
-                setSuccess(price);
-            }
-
-            return validate;
-        }
-    </script>
+    <script src={{ asset('js/createPlate.js') }}></script>
 @endsection

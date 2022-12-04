@@ -31,7 +31,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #4c5355bb;
+    background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     z-index: 999999999;

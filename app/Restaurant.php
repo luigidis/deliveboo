@@ -55,4 +55,6 @@ class Restaurant extends Model
             return $this->image;
         return $this->image ? asset('images/' . $this->image) : '';
     }
+
+    protected $appends = ['image_path'];
 }

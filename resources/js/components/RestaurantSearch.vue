@@ -6,11 +6,10 @@
             </h2>
 
             <input type="text" v-model="filter"
-                class="w-4/5 sm:w-3/5 md:w-2/5 box_shadow_stroke_small text-3xl font-normal px-2 py-1">
+                class="w-4/5 sm:w-3/5 md:w-2/5 box_shadow_stroke_small text-3xl font-normal px-2 py-1" placeholder="Nome del ristorante...">
 
             <div class="flex gap-4 w-4/5 flex-wrap justify-center">
                 <div v-for="(category, i) in categories" :key="20 - i">
-                    <!-- <input type="checkbox" :name="category.name" :value="category.id" > -->
                     <span @click="addfilCat(category.name)" :class="{
                         'cursor-pointer px-2 py-1 text-xl font-normal': true,
                         'box_shadow_stroke_small bg-white': !filterCat.includes(category.name),
@@ -21,14 +20,16 @@
                     </span>
                 </div>
             </div>
-            <!-- <input type="button" value="VAI" @click="fetchRestaurants"> -->
-            <router-link :to="(filterCat.length || filter !== '') ? {
-            name: 'home',
-            query: { categories: filterCat, name: filter }
-        } :
-            {
-                name: 'home',
-            }" class="text-3xl bg_link_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button font-bold">
+            <router-link
+                :to="(filterCat.length || filter !== '') ? {
+                    name: 'home',
+                    query: { categories: filterCat, name: filter }
+                } :
+                {
+                    name: 'home',
+                }"
+                class="text-3xl bg_link_color c_text_color box_shadow_stroke_small py-1 px-2 m-1 card_button font-bold"
+            >
                 Cerca ristorante
             </router-link>
         </div>

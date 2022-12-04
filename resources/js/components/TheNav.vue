@@ -2,7 +2,7 @@
     <nav class="navigation ml-auto">
         <ul class="flex items-center h-full gap-3">
             <li class="relative">
-                <a href="/admin" class="absolute inset-0" title="Accedi al tuo ristorante">
+                <a href="/admin/home" class="absolute inset-0" title="Accedi al tuo ristorante">
                 </a>
                 <SvgRestaurant class="md:hidden svg_icon" />
                 <span class="hidden md:block font-normal text-xl">
@@ -48,15 +48,16 @@ export default {
         }
     },
     components: {
-    SvgCart,
-    SvgRestaurant,
-    SvgAbout,
-    SvgContacts
-}
+        SvgCart,
+        SvgRestaurant,
+        SvgAbout,
+        SvgContacts
+    }
 }
 </script>
 <style lang="scss" scoped>
 @import '../../sass/variables';
+
 .totalItems {
     position: absolute;
     top: -0.5rem;

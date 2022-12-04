@@ -4,8 +4,8 @@
         <RestaurantSearch />
         <!-- <SuggestedRestaurants v-if="!Object.keys(query).length"/>
             <AdvancedSearch v-else :par="par" /> -->
-        <AdvancedSearch v-if="par" :par="par" />
-        <SuggestedRestaurants/>
+        <AdvancedSearch v-if="Object.keys(query).length" :par="par" />
+        <SuggestedRestaurants />
         <TheServices />
     </main>
 </template>
@@ -21,13 +21,13 @@ import TheServices from '../components/TheServices.vue';
 
 export default {
     components: {
-    RestaurantSearch,
-    TheLogo,
-    SuggestedRestaurants,
-    JumboTron,
-    AdvancedSearch,
-    TheServices
-},
+        RestaurantSearch,
+        TheLogo,
+        SuggestedRestaurants,
+        JumboTron,
+        AdvancedSearch,
+        TheServices
+    },
     computed: {
         query() {
             return this.$route.query;
@@ -51,19 +51,16 @@ export default {
                             par.push(this.query.categories);
                         }
                     }
-    
+
                     if (this.query.name !== '') {
                         par.push('%');
                         par.push(this.query.name);
                     }
-    
+
                     this.par = par;
                 }
             }
         }
-    },
-    mounted() {
-        console.log(this.$route.query);
     },
 }
 

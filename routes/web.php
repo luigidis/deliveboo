@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
+
 Route::middleware('auth')->get('/admin', function () {
     return view('welcome');
 });
-
-Auth::routes();
 
 Route::middleware('auth')
     ->prefix('admin')  //questo mi da il prefisso su admin/home in get

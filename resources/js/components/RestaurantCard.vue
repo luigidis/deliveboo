@@ -6,7 +6,7 @@
             params: { slug: data.slug }
         }" class="absolute inset-0"></router-link>
         <div class="h-60">
-            <img class="block object-cover object-center w-full h-full" :src="data.image" :alt="`Sala ristorante ${data.name}`">
+            <img class="block object-cover object-center w-full h-full" :src="data.image_path">
         </div>
         <div class="p-2 flex grow flex-column w-full">
             <h3 class="text-3xl font-bold leading-none">
@@ -29,7 +29,7 @@
 
 export default {
     name: 'RestaurantCard',
-    props: ['data']
+    props: ['data'],
 }
 
 </script>

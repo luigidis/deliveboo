@@ -4,10 +4,10 @@
         'justify-end': index % 2 == 1,
     }">
         <div :class="{
-            'w-full box_shadow_stroke': true,
+            'w-full box_shadow_stroke h-[600px]': true,
             'lg:order-1': index % 2 == 1,
         }">
-            <img class="block object-cover object-center w-full h-full" :src="data.image" :alt="`Sala ristorante ${data.name}`">
+            <img class="block object-cover object-center w-full h-full" :src="data.image_path">
         </div>
         <div :class="{
             'flex flex-column box_shadow_stroke bg-white py-4 w-full lg:w-3/5': true,
@@ -32,12 +32,10 @@
             <router-link :to="{
                 name: 'restaurants.show',
                 params: { slug: data.slug }
-            }"
-                :title="`Vedi il menù di ${data.name}`"
-                :class="{
-                    'box_shadow_stroke_small bg_link_color c_text_color font-bold px-2 py-1 leading-none text-3xl w-fit hover:no-underline hover:text-white hover:shadow-none': true,
-                    'lg:ml-auto': index % 2 == 1,
-                    }">
+            }" :title="`Vedi il menù di ${data.name}`" :class="{
+    'box_shadow_stroke_small bg_link_color c_text_color font-bold px-2 py-1 leading-none text-3xl w-fit hover:no-underline hover:text-white hover:shadow-none': true,
+    'lg:ml-auto': index % 2 == 1,
+}">
                 Vai al men&uacute;
             </router-link>
         </div>
@@ -48,7 +46,7 @@
 
 export default {
     name: 'RestaurantSuggestedCard',
-    props: ['data', 'index']
+    props: ['data', 'index'],
 }
 
 </script>

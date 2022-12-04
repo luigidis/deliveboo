@@ -173,7 +173,7 @@
 
                         <div class="form-group row">
                             <div class="col-md-6">
-                            <label for="image" class="box_shadow_stroke_small w-100 px-1 py-2 bg-white @error('image') is-invalid @enderror">
+                            <label for="image" class="box_shadow_stroke_small w-100 px-1 py-2 bg-white @error('image') is-invalid @enderror" id="imageLabel">
                                 Seleziona un'immagine*
                             </label>
                                 <input type="file" class="form-control-file d-none @error('image') is-invalid @enderror"

@@ -1,5 +1,5 @@
 <template>
-    <section class="flex flex-column items-center container py-4">
+    <section class="flex flex-column items-center container py-4" v-if="restaurantsArray">
         <h2 class="text-6xl text-center mb-10 font-bold">
             Ristoranti trovati:
         </h2>
@@ -8,17 +8,20 @@
             <RestaurantCard :data="restaurant" v-for="(restaurant, i) in restaurantsArray" :key="i" 
             class="w-full"/>
         </div>
+
     </section>
 </template>
 <script>
 import RestaurantCard from '../components/RestaurantCard.vue';
+import TheLoading from './TheLoading.vue';
 
 export default {
     name: 'AdvancedSearch',
     props: ['par'],
     components: {
-        RestaurantCard
-    },
+    RestaurantCard,
+    TheLoading
+},
     data() {
         return {
             restaurantsArray: new Array,

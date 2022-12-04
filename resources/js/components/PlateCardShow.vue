@@ -1,7 +1,7 @@
 <template>
     <div class="box_shadow_stroke max-w-xl mx-auto relative">
         <div>
-            <img class="block object-cover w-full h-full" :src="plate.img" alt="">
+            <img class="block object-cover w-full h-full" :src="plate.image_path" :alt="`Foto piatto ${plate.name}`">
         </div>
         <div class="desc p-2">
             <div class="py-2">

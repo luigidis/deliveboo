@@ -46,29 +46,29 @@ export default {
                 [
                     {
                         'name': 'Note legali',
-                        'route': '/',
+                        'route': 'home',
                     },
                     {
                         'name': 'Termini & condizioni',
-                        'route': '/',
+                        'route': 'home',
                     },
                     {
                         'name': 'Informativa sulla privacy',
-                        'route': '/',
+                        'route': 'home',
                     },
                     {
                         'name': 'Cookies',
-                        'route': '/',
+                        'route': 'home',
                     },
                 ],
                 [
                     {
                         'name': 'Help',
-                        'route': '/',
+                        'route': 'home',
                     },
                     {
                         'name': 'FAQ',
-                        'route': '/',
+                        'route': 'home',
                     },
                     {
                         'name': 'Contatti',

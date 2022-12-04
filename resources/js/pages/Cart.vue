@@ -3,8 +3,8 @@
 
 
         <TheLoading v-if="load" />
-        <div v-if="plates">
 
+        <div v-if="(plates && !empty)">
 
             <div class="flex mb-3 flex-wrap gap-3 items-start">
                 <h1 class="text-5xl px-2 py-3 box_shadow_stroke leading-none grow lg:grow-0">
@@ -27,14 +27,17 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
                 <div class="box_shadow_stroke" v-for="plate, i in plates" :key="i">
                     <div class="h-60">
-                        <img class="block object-cover w-full h-full" :src="plate.img" :alt="`Foto piatto ${plate.name}`">
+                        <img class="block object-cover w-full h-full" :src="plate.image_path"
+                            :alt="`Foto piatto ${plate.name}`">
                     </div>
                     <div class="p-2 flex flex-column">
                         <h3 class="text-4xl font-bold truncate">
                             {{ plate.name }}
                         </h3>
                         <span class="font-normal text-lg py-3">
-                            Totale piatto: <span class="font-bold">&euro;{{ (parseFloat(quantity[i]) * parseFloat(plate.price)).toFixed(2) }}</span>
+                            Totale piatto: <span class="font-bold">&euro;{{ (parseFloat(quantity[i]) *
+                                    parseFloat(plate.price)).toFixed(2)
+                            }}</span>
                         </span>
                         <QuantityHandler :plate="plate" v-if="plates" />
                     </div>
@@ -47,9 +50,10 @@
                 </button>
             </div>
 
-
         </div>
-        <div class="flex items-center justify-center h-screen flex-col gap-3" v-else>
+        <TheLoading class="min-h-screen" v-if="!plates && !empty" />
+
+        <div class="flex items-center justify-center h-screen flex-col gap-3" v-if="empty">
             <h1 class="text-4xl font-bold text-center pb-6">
                 Carrello vuoto.
             </h1>
@@ -68,7 +72,7 @@
 <script>
 import QuantityHandler from '../components/QuantityHandler.vue';
 import state from '../store';
-import TheLoading from '../components/TheLoading.vue'
+import TheLoading from '../components/TheLoading.vue';
 
 
 export default {
@@ -77,6 +81,7 @@ export default {
             plates: "",
             restaurant: "",
             load: false,
+            empty: false,
         };
     },
     computed: {
@@ -95,6 +100,8 @@ export default {
             axios.get(`api/cart/plates/${this.ids}`)
                 .then(res => {
                     this.plates = res.data.plates;
+                    if (!this.plates)
+                        this.empty = true;
                     this.restaurant = res.data.restaurant;
                 }).catch(err => {
                     console.log(err);
@@ -109,10 +116,6 @@ export default {
             state.ids = [];
             state.quantity = [];
         },
-        
-            
-
-
     },
     mounted() {
         this.fetchPlates();
@@ -125,8 +128,4 @@ export default {
     },
     components: { QuantityHandler, TheLoading }
 }
-
-
-
-
 </script>

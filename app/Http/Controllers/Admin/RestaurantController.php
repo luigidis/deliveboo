@@ -85,14 +85,14 @@ class RestaurantController extends Controller
         $params = $request->validate([
             'name' => 'required|max:255',
             'address' => 'required|max:255',
-            'phone' => 'required|max:255',
-            'p_iva' => 'required|max:255',
+            'phone' => 'required|max:30',
+            'p_iva' => 'required|max:20',
             'categories' => 'exists:categories,id|required',
             'image' => 'nullable|image|max:2048'
         ]);
 
         if ($params['name'] !== $restaurant->name) {
-            $params['slug'] = Restaurant::getUniqueSlugFromTitle($params['title']);
+            $params['slug'] = Restaurant::getUniqueSlugFromTitle($params['name']);
         }
 
         if (array_key_exists('image', $params) && $params['image'] !== null) {
