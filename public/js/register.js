@@ -134,7 +134,9 @@ window.addEventListener('load', function () {
     var inputControl = element.parentElement;
     var errorDisplay = inputControl.querySelector('.error');
     errorDisplay.innerText = message;
+    errorDisplay.classList.add('pt-2');
     inputControl.classList.add('error');
+    element.classList.add('shadow_stroke_error');
     inputControl.classList.remove('success');
   };
 
@@ -156,6 +158,7 @@ window.addEventListener('load', function () {
     var errorDisplay = inputControl.querySelector('.error');
     errorDisplay.innerText = '';
     inputControl.classList.add('success');
+    element.classList.remove('shadow_stroke_error');
     inputControl.classList.remove('error');
   };
 
