@@ -164,12 +164,13 @@ class OrderController extends Controller
     public function show(Order $order,  Request $request)
     {
         $plates_order = OrderPlate::where('order_id', $order->id)->get();
+        $restaurantPlate = Plate::where('id', $plates_order[0]->plate_id)->first();
         $auth_user = Auth::user();
         $restaurant = Restaurant::where('user_id', $auth_user->id)->first();
 
         $quantity = [];
-
-        if ($plates_order[0]->restaurant_id === $restaurant->id || $auth_user->is_admin) {
+        // dd($restaurantPlate->restaurant_id, $auth_user, $restaurant->id);
+        if ($restaurantPlate->restaurant_id === $restaurant->id || $auth_user->is_admin) {
 
             $fullname_client = $order->name_client . ' ' . $order->surname_client;
             $status = ['Cancellato', 'In elaborazione', 'In lavorazione', 'Completato', 'In transito', 'In consegna'];
