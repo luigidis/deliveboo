@@ -1,5 +1,5 @@
 <template>
-    <div class="box_shadow_stroke max-w-xl mx-auto relative">
+    <div class="box_shadow_stroke max-w-xl mx-auto relative gsap_anim-opac">
         <div>
             <img class="block object-cover w-full h-full" :src="plate.image_path" :alt="`Foto piatto ${plate.name}`">
         </div>
@@ -20,6 +20,7 @@
 
 </template>
 <script>
+import gsap from 'gsap'
 import ButtonToCart from './ButtonToCart.vue'
 import state from '../store'
 import QuantityHandler from './QuantityHandler.vue';
@@ -36,5 +37,19 @@ export default {
             return state.ids;
         },
     },
+    mounted(){
+        gsap.to('.gsap_anim-opac', {
+            y: 0,
+            opacity: 1,
+            duration: 2,
+            ease: 'power4.inOut',
+        })
+    }
 }
 </script>
+<style lang="scss" scoped>
+.gsap_anim-opac{
+    opacity: 0;
+    transform: translateY(100px);
+}
+</style>

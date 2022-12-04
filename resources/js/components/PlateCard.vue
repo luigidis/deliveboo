@@ -1,5 +1,5 @@
 <template>
-    <div class="relative box_shadow_stroke pb-20 hover:shadow-none hover:scale-95 transition-transform ">
+    <div class="gsap_anim relative box_shadow_stroke pb-20 hover:shadow-none">
         <router-link :to="{
             name: 'restaurants.plateShow',
             params: { slug: plate.slug, restSlug: slug }
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-
+import gsap from 'gsap'
 import ButtonToCart from './ButtonToCart.vue'
 import state from '../store'
 import QuantityHandler from './QuantityHandler.vue';
@@ -47,5 +47,24 @@ export default {
             return state.ids;
         },
     },
+    mounted(){
+        gsap.to('.gsap_anim', {
+            y: 0,    
+            opacity: 1,
+            stagger: 0.2,
+            duration: 2.5,
+            ease: "power4.inOut",
+        })
+    }
 }
 </script>
+<style lang="scss" scoped>
+.gsap_anim{
+    transform: translateY(200px);
+    opacity: 0;
+    transition: transform 800ms cubic-bezier(0.075, 0.82, 0.165, 1);
+    &:hover{
+        transform: scale(0.95) !important;
+    }
+}
+</style>

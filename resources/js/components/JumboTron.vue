@@ -1,9 +1,11 @@
 <template>
     <section class="jumbo_wrapper w-full relative">
         <div class="jumbo_header absolute w-3/5 md:w-1/3 xl:w-1/4 z-10">
-            <h2 class="c_text_color font-bold text-4xl sm:text-5xl md:text-6xl">
-                Scegli<br>Ordina<br>Mangia comodamente a casa tua!
-            </h2>
+            <Transition appear @before-enter="beforeEnter" @enter="enter">
+                <h2 class="c_text_color font-bold text-4xl sm:text-5xl md:text-6xl">
+                    Scegli<br>Ordina<br>Mangia comodamente a casa tua!
+                </h2>
+            </Transition>
         </div>
         <img class="block object-cover object-center h-full w-full" src="../assets/images/jumbotron.webp">
         <div class="layover absolute inset-0"></div>
@@ -12,9 +14,24 @@
 
 <script>
 import TheLogo from './TheLogo.vue';
+import gsap from 'gsap'
 
 export default {
-    components: { TheLogo }
+    components: { TheLogo },
+    setup() {
+        const beforeEnter = (el) => {
+            el.style.opacity = '0'
+        }
+        const enter = (el) => {
+            gsap.to(el, {
+                opacity: 1,
+                duration: 1.5,
+                ease: "expo.inOut",
+            })
+        }
+
+        return {beforeEnter, enter}
+    }
 }
 </script>
 

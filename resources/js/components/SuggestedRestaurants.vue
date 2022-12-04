@@ -18,7 +18,6 @@
 <script>
 import RestaurantSuggestedCard from './RestaurantSuggestedCard.vue';
 
-
 export default {
     name: "SuggestedRestaurants",
     data() {
