@@ -2,7 +2,7 @@
     <div>
         <TheHeader />
         <router-view></router-view>
-        <TheFooter  />
+        <TheFooter />
     </div>
 </template>
 
@@ -14,6 +14,14 @@ export default {
     components: {
         TheHeader,
         TheFooter
-    }
+    },
+    watch: {
+        $route() {
+            console.log('aioaiao');
+            window.scrollTo({
+                top: 0
+            });
+        },
+    },
 }
 </script>

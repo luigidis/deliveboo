@@ -49,10 +49,10 @@ import state from '../store'
 export default {
     props: ['slug'],
     components: {
-    PlateCard,
-    LayoverAlert,
-    TheLoading
-},
+        PlateCard,
+        LayoverAlert,
+        TheLoading
+    },
     data() {
         return {
             restaurant: '',
@@ -76,9 +76,6 @@ export default {
                 this.$router.push({ name: '404' });
             })
         },
-    },
-    mounted(){
-        window.scrollTo(0,0)
     },
     beforeMount() {
         console.log(this.$route)

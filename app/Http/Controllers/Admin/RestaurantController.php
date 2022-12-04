@@ -92,7 +92,7 @@ class RestaurantController extends Controller
         ]);
 
         if ($params['name'] !== $restaurant->name) {
-            $params['slug'] = Restaurant::getUniqueSlugFromTitle($params['title']);
+            $params['slug'] = Restaurant::getUniqueSlugFromTitle($params['name']);
         }
 
         if (array_key_exists('image', $params) && $params['image'] !== null) {

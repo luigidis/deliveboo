@@ -7,7 +7,7 @@
             'w-full box_shadow_stroke h-[600px]': true,
             'lg:order-1': index % 2 == 1,
         }">
-            <img class="block object-cover object-center w-full h-full" :src="data.image" :alt="`Sala ristorante ${data.name}`">
+            <img class="block object-cover object-center w-full h-full" :src="checkImg(data.image) ? data.image : 'images/' + data.image" :alt="`Sala ristorante ${data.name}`">
         </div>
         <div :class="{
             'flex flex-column box_shadow_stroke bg-white py-4 w-full lg:w-3/5': true,
@@ -48,7 +48,20 @@
 
 export default {
     name: 'RestaurantSuggestedCard',
-    props: ['data', 'index']
+    props: ['data', 'index'],
+    methods: {
+        checkImg(src) {
+            if (this.isValidUrl(src))
+                return true;
+            else
+                return false;
+        },
+        isValidUrl(urlString) {
+            const expression = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
+            const regex = new RegExp(expression);
+            return regex.test(urlString);
+        }
+    },
 }
 
 </script>

@@ -59,9 +59,6 @@ export default {
             });
         },
     },
-    mounted() {
-        window.scrollTo(0, 0)
-    },
     beforeMount() {
         // console.log(this.restSlug);
         this.fetchPlate();

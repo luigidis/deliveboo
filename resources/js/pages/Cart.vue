@@ -27,14 +27,17 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
                 <div class="box_shadow_stroke" v-for="plate, i in plates" :key="i">
                     <div class="h-60">
-                        <img class="block object-cover w-full h-full" :src="plate.img" :alt="`Foto piatto ${plate.name}`">
+                        <img class="block object-cover w-full h-full" :src="plate.img"
+                            :alt="`Foto piatto ${plate.name}`">
                     </div>
                     <div class="p-2 flex flex-column">
                         <h3 class="text-4xl font-bold truncate">
                             {{ plate.name }}
                         </h3>
                         <span class="font-normal text-lg py-3">
-                            Totale piatto: <span class="font-bold">&euro;{{ (parseFloat(quantity[i]) * parseFloat(plate.price)).toFixed(2) }}</span>
+                            Totale piatto: <span class="font-bold">&euro;{{ (parseFloat(quantity[i]) *
+                                    parseFloat(plate.price)).toFixed(2)
+                            }}</span>
                         </span>
                         <QuantityHandler :plate="plate" v-if="plates" />
                     </div>
@@ -97,7 +100,7 @@ export default {
             axios.get(`api/cart/plates/${this.ids}`)
                 .then(res => {
                     this.plates = res.data.plates;
-                    if(!this.plates)
+                    if (!this.plates)
                         this.empty = true;
                     this.restaurant = res.data.restaurant;
                 }).catch(err => {
@@ -116,7 +119,6 @@ export default {
     },
     mounted() {
         this.fetchPlates();
-        window.scrollTo(0,0)
     },
     watch: {
         ids() {

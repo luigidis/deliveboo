@@ -52,7 +52,7 @@
                             <textarea class="error_js @error('description')shadow_stroke_error @enderror input_color box_shadow_stroke_small w-100" id="description"
                                 name="description" rows="5">{{ old('description', $plate->description) }}</textarea>
                             @error('description')
-                                <div id="title" class="invalid-feedback">
+                                <div id="validationServer03Feedback" class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
@@ -221,12 +221,14 @@
 
                 let validate = true;
 
-                if (photoLabelEl.innerHTML === 'Foto del piatto*') {
-                    setError(photoLabelEl, 'Campo Obbligatorio');
-                    validate = false;
-                } else {
-                    setSuccess(photoLabelEl);
-                }
+                //TODO: LA FOTO NELL'EDIT NON E' OBBLIGATORIA!!!
+
+                // if (photoLabelEl.innerHTML === 'Foto del piatto*') {
+                //     setError(photoLabelEl, 'Campo Obbligatorio');
+                //     validate = false;
+                // } else {
+                //     setSuccess(photoLabelEl);
+                // }
 
                 if (nameValue === '') {
                     setError(namePlate, 'Campo Obbligatorio');

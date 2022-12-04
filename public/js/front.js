@@ -2251,7 +2251,20 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'RestaurantCard',
-  props: ['data']
+  props: ['data'],
+  methods: {
+    checkImg: function checkImg(src) {
+      if (this.isValidUrl(src)) return true;else return false;
+    },
+    isValidUrl: function isValidUrl(urlString) {
+      // https://media-assets.lacucinaitaliana.it/photos/61fabb4351116b1ead93053e/16:9/w_2560%2Cc_limit/landscape-italiani-nel-mondo.jpg
+
+      // https://images2.corriereobjects.it/methode_image/2018/12/18/Cucina/Foto%20Cucina%20-%20Trattate/3_l3hXlyM-kyJI-RMonksirHP8Q8h6Urr6Et5O-590x445@Corriere-Web-Sezioni.jpg?v=201812181819
+      var expression = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
+      var regex = new RegExp(expression);
+      return regex.test(urlString);
+    }
+  }
 });
 
 /***/ }),
@@ -2344,7 +2357,17 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'RestaurantSuggestedCard',
-  props: ['data', 'index']
+  props: ['data', 'index'],
+  methods: {
+    checkImg: function checkImg(src) {
+      if (this.isValidUrl(src)) return true;else return false;
+    },
+    isValidUrl: function isValidUrl(urlString) {
+      var expression = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
+      var regex = new RegExp(expression);
+      return regex.test(urlString);
+    }
+  }
 });
 
 /***/ }),
@@ -2427,6 +2450,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.fetchBestRestaurants();
+  },
+  watch: {
+    restaurants: function restaurants() {
+      window.scrollTo(0, 0);
+    }
   },
   components: {
     RestaurantSuggestedCard: _RestaurantSuggestedCard_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -2630,7 +2658,6 @@ __webpack_require__.r(__webpack_exports__);
         name: "home"
       });
     }, "2000");
-    window.scrollTo(0, 0);
   }
 });
 
@@ -2680,9 +2707,6 @@ __webpack_require__.r(__webpack_exports__);
         github: 'https://github.com/Ste-cracco'
       }]
     };
-  },
-  mounted: function mounted() {
-    window.scrollTo(0, 0);
   }
 });
 
@@ -2748,7 +2772,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.fetchPlates();
-    window.scrollTo(0, 0);
   },
   watch: {
     ids: function ids() {
@@ -2888,7 +2911,6 @@ __webpack_require__.r(__webpack_exports__);
       console.log(error);
       this.show = false;
     });
-    window.scrollTo(0, 0);
   }
 });
 
@@ -2903,11 +2925,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    window.scrollTo(0, 0);
-  }
-});
+/* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
 
@@ -2973,10 +2991,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         }
       }
     }
-  },
-  mounted: function mounted() {
-    // console.log(this.$route.query);
-    window.scrollTo(0, 0);
   }
 });
 
@@ -3024,9 +3038,6 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     }
-  },
-  mounted: function mounted() {
-    window.scrollTo(0, 0);
   },
   beforeMount: function beforeMount() {
     // console.log(this.restSlug);
@@ -3087,9 +3098,6 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
-  mounted: function mounted() {
-    window.scrollTo(0, 0);
-  },
   beforeMount: function beforeMount() {
     console.log(this.$route);
     this.fetchRestaurant();
@@ -3117,7 +3125,6 @@ __webpack_require__.r(__webpack_exports__);
         name: "home"
       });
     }, "4000");
-    window.scrollTo(0, 0);
   }
 });
 
@@ -3140,6 +3147,14 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     TheHeader: _components_TheHeader_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     TheFooter: _components_TheFooter_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  watch: {
+    $route: function $route() {
+      console.log('aioaiao');
+      window.scrollTo({
+        top: 0
+      });
+    }
   }
 });
 
@@ -3531,7 +3546,7 @@ var render = function render() {
   }, [_c("img", {
     staticClass: "block object-cover object-center w-full h-full",
     attrs: {
-      src: _vm.data.image,
+      src: _vm.checkImg(_vm.data.image) ? _vm.data.image : "images/" + _vm.data.image,
       alt: "Sala ristorante ".concat(_vm.data.name)
     }
   })]), _vm._v(" "), _c("div", {
@@ -3664,7 +3679,7 @@ var render = function render() {
   }, [_c("img", {
     staticClass: "block object-cover object-center w-full h-full",
     attrs: {
-      src: _vm.data.image,
+      src: _vm.checkImg(_vm.data.image) ? _vm.data.image : "images/" + _vm.data.image,
       alt: "Sala ristorante ".concat(_vm.data.name)
     }
   })]), _vm._v(" "), _c("div", {
@@ -4874,7 +4889,7 @@ var staticRenderFns = [function () {
     staticClass: "box_shadow_stroke p-4"
   }, [_c("p", {
     staticClass: "text-3xl"
-  }, [_vm._v("\n                    In DeliveBoo, i nostri valori sono al centro di tutto ciò che facciamo. Guidano il modo in cui lavoriamo insieme e prendiamo decisioni, che si tratti di reclutamento o evoluzione e sviluppo delle nostre persone, team e prodotti.\n                ")])])])]);
+  }, [_vm._v("\n                    In DeliveBoo, i nostri valori sono al centro di tutto ciò che facciamo. Guidano il modo in cui\n                    lavoriamo insieme e prendiamo decisioni, che si tratti di reclutamento o evoluzione e sviluppo\n                    delle nostre persone, team e prodotti.\n                ")])])])]);
 }];
 render._withStripped = true;
 
@@ -5248,15 +5263,15 @@ var staticRenderFns = [function () {
     staticClass: "font-bold text-3xl mb-3"
   }, [_vm._v("\n                    Assistenza Clienti\n                ")]), _vm._v(" "), _c("p", {
     staticClass: "text-xl mb-3"
-  }, [_vm._v("\n                    Domande sul tuo ordine? "), _c("br"), _vm._v("\n                    Siamo qui per aiutare! Il modo più rapido per ottenere una risposta è utilizzare l'app o il sito web. Basta accedere al proprio account, selezionare un ordine recente e quindi utilizzare la guida all'ordine per segnalare la query. "), _c("br"), _c("br"), _vm._v("\n\n                    Oppure puoi scriverci a "), _c("span", {
+  }, [_vm._v("\n                    Domande sul tuo ordine? "), _c("br"), _vm._v("\n                    Siamo qui per aiutare! Il modo più rapido per ottenere una risposta è utilizzare l'app o il sito\n                    web. Basta accedere al proprio account, selezionare un ordine recente e quindi utilizzare la\n                    guida all'ordine per segnalare la query. "), _c("br"), _c("br"), _vm._v("\n\n                    Oppure puoi scriverci a "), _c("span", {
     staticClass: "c_link_color cursor-pointer hover:text-red-400"
-  }, [_vm._v("support@deliveBoo.com")]), _vm._v(" "), _c("br"), _c("br"), _vm._v("\n\n                    Tieni presente che non accettiamo ordini per telefono, quindi se desideri effettuare un ordine, effettualo online.\n                ")]), _vm._v(" "), _c("h3", {
+  }, [_vm._v("support@deliveBoo.com")]), _vm._v(" "), _c("br"), _c("br"), _vm._v("\n\n                    Tieni presente che non accettiamo ordini per telefono, quindi se desideri effettuare un ordine,\n                    effettualo online.\n                ")]), _vm._v(" "), _c("h3", {
     staticClass: "font-bold text-3xl mb-3"
   }, [_vm._v("\n                    Richieste media\n                ")]), _vm._v(" "), _c("p", {
     staticClass: "text-xl mb-3"
   }, [_vm._v("\n                    Per preventivi, interviste o altre richieste dei media, inviare un'e-mail a: "), _c("span", {
     staticClass: "c_link_color cursor-pointer hover:text-red-400"
-  }, [_vm._v("press@deliveBoo.com")]), _vm._v("."), _c("br"), _c("br"), _vm._v("\n\n                    Sfortunatamente l'ufficio stampa non ha accesso alle informazioni sull'account, quindi non può aiutare con le richieste dei clienti."), _c("br"), _c("br"), _vm._v("\n\n                    Sede legale: via Boolean 123, Milano Italia\n                ")])])])])]);
+  }, [_vm._v("press@deliveBoo.com")]), _vm._v("."), _c("br"), _c("br"), _vm._v("\n\n                    Sfortunatamente l'ufficio stampa non ha accesso alle informazioni sull'account, quindi non può\n                    aiutare con le richieste dei clienti."), _c("br"), _c("br"), _vm._v("\n\n                    Sede legale: via Boolean 123, Milano Italia\n                ")])])])])]);
 }];
 render._withStripped = true;
 
@@ -30711,7 +30726,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.container[data-v-82158542]{\n    height: 95vh;\n}\n", ""]);
+exports.push([module.i, "\n.container[data-v-82158542] {\r\n    height: 95vh;\n}\r\n", ""]);
 
 // exports
 

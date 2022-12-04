@@ -26,7 +26,9 @@
             <div class="basis-2/5">
                 <div class="box_shadow_stroke p-4">
                     <p class="text-3xl">
-                        In DeliveBoo, i nostri valori sono al centro di tutto ciò che facciamo. Guidano il modo in cui lavoriamo insieme e prendiamo decisioni, che si tratti di reclutamento o evoluzione e sviluppo delle nostre persone, team e prodotti.
+                        In DeliveBoo, i nostri valori sono al centro di tutto ciò che facciamo. Guidano il modo in cui
+                        lavoriamo insieme e prendiamo decisioni, che si tratti di reclutamento o evoluzione e sviluppo
+                        delle nostre persone, team e prodotti.
                     </p>
                 </div>
             </div>
@@ -76,9 +78,6 @@ export default {
                 },
             ]
         }
-    },
-    mounted(){
-        window.scrollTo(0,0)
     },
 }
 </script>
