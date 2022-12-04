@@ -30,15 +30,15 @@
             @foreach ($plates as $key => $plate)
                 <div class="m-3 card_content box_shadow_stroke py-3">
                     <div class="d-flex flex-column h-100">
-                        <div class="d-flex flex-wrap align-items-center justify-content-between stroke_bottom">
+                        <div class="d-flex flex-wrap align-items-start stroke_bottom flex_grow">
                             <h3 class="pl-2 col-8">
                                 {{ $plate->name }}
                             </h3>
-                            <span class="h4 pr-2 col-4">
-                                € {{ $plate->price }}
+                            <span class="h4 pr-2 ml-auto">
+                                €{{ $plate->price }}
                             </span>
                         </div>
-                        <p class="overflow-auto stroke_bottom px-2 card_description py-2">
+                        <p class="stroke_bottom px-2 card_description py-2">
                             {{ $plate->description }}
                         </p>
                         <div class="d-flex px-2 flex-wrap align-items-center justify-content-between card_button_wrapper">

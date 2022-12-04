@@ -84,11 +84,10 @@ button {
 }
 
 .card_content {
-    max-width: 320px;
-    aspect-ratio: 3/4;
+    width: 320px;
 
     &.card_restaurant {
-        max-width: 400px;
+        width: 400px;
     }
 
     .card_select {
@@ -112,7 +111,9 @@ button {
 .card_description {
     font-size: 1.25rem;
     line-height: 1.1;
-    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     &.plates {
         font-size: 1.5rem;
@@ -154,8 +155,4 @@ button {
 .card_content,
 .card_restaurant {
     transition: 800ms cubic-bezier(0.075, 0.82, 0.165, 1);
-}
-
-.stroke_left {
-    border-left: 3px solid $prim-color;
 }

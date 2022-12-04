@@ -24,24 +24,11 @@
                     <img src="{{ $plate->image_path }}" alt="Foto {{ $plate->name }}">
                 </div>
                 <div class="col-12 col-lg-5 box_shadow_stroke mb-3 mx-lg-3 px-0 d-flex flex-column overflow-hidden">
-                    <p class="px-2 plates card_description stroke_bottom py-2 m-0 font_standard overflow-auto">
+                    <p class="px-2 plates stroke_bottom py-2 m-0 font_standard overflow-auto">
                         {{ $plate->description }}
                     </p>
-                    {{-- <div>
-                        <span>Disponibilità</span>
-                        <ul>
-                            <li>
-                                @if ($plate->is_visible)
-                                    disponibile
-                                @else
-                                    non disponibile
-                                @endif
-                            </li>
-                        </ul>
-                    </div> --}}
                     <div class="w-100 px-0 stroke_bottom h4 p-2">
                         Prezzo : € {{ $plate->price }}
-                        {{-- <p><strong>Ristorante</strong> : #{{ $plate->restaurant_id }}, {{ $plate->restaurant->name }} </p> --}}
                     </div>
                     <div class="d-flex justify-content-between align-items-center flex-wrap px-2 py-3">
                         <a href="{{ route('admin.plates.edit', $plate) }}" type="button"
