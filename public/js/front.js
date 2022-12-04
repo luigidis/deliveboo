@@ -2251,20 +2251,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'RestaurantCard',
-  props: ['data'],
-  methods: {
-    checkImg: function checkImg(src) {
-      if (this.isValidUrl(src)) return true;else return false;
-    },
-    isValidUrl: function isValidUrl(urlString) {
-      // https://media-assets.lacucinaitaliana.it/photos/61fabb4351116b1ead93053e/16:9/w_2560%2Cc_limit/landscape-italiani-nel-mondo.jpg
-
-      // https://images2.corriereobjects.it/methode_image/2018/12/18/Cucina/Foto%20Cucina%20-%20Trattate/3_l3hXlyM-kyJI-RMonksirHP8Q8h6Urr6Et5O-590x445@Corriere-Web-Sezioni.jpg?v=201812181819
-      var expression = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
-      var regex = new RegExp(expression);
-      return regex.test(urlString);
-    }
-  }
+  props: ['data']
 });
 
 /***/ }),
@@ -2357,17 +2344,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'RestaurantSuggestedCard',
-  props: ['data', 'index'],
-  methods: {
-    checkImg: function checkImg(src) {
-      if (this.isValidUrl(src)) return true;else return false;
-    },
-    isValidUrl: function isValidUrl(urlString) {
-      var expression = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
-      var regex = new RegExp(expression);
-      return regex.test(urlString);
-    }
-  }
+  props: ['data', 'index']
 });
 
 /***/ }),
@@ -3028,7 +3005,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchPlate: function fetchPlate() {
       var _this = this;
       axios.get("/api/plates/".concat(this.slug)).then(function (res) {
-        console.log(res.data);
+        // console.log(res.data);
         _this.plate = res.data.plate;
       })["catch"](function (err) {
         console.log(err);
@@ -3400,7 +3377,7 @@ var render = function render() {
   }, [_c("img", {
     staticClass: "block object-cover w-full h-full",
     attrs: {
-      src: _vm.plate.img,
+      src: _vm.plate.image_path,
       alt: "Foto piatto ".concat(_vm.plate.name)
     }
   })]), _vm._v(" "), _c("div", {
@@ -3450,8 +3427,8 @@ var render = function render() {
   }, [_c("div", [_c("img", {
     staticClass: "block object-cover w-full h-full",
     attrs: {
-      src: _vm.plate.img,
-      alt: ""
+      src: _vm.plate.image_path,
+      alt: "Foto piatto ".concat(_vm.plate.name)
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "desc p-2"
@@ -3546,8 +3523,7 @@ var render = function render() {
   }, [_c("img", {
     staticClass: "block object-cover object-center w-full h-full",
     attrs: {
-      src: _vm.checkImg(_vm.data.image) ? _vm.data.image : "images/" + _vm.data.image,
-      alt: "Sala ristorante ".concat(_vm.data.name)
+      src: _vm.data.image_path
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "p-2 flex grow flex-column w-full"
@@ -3679,8 +3655,7 @@ var render = function render() {
   }, [_c("img", {
     staticClass: "block object-cover object-center w-full h-full",
     attrs: {
-      src: _vm.checkImg(_vm.data.image) ? _vm.data.image : "images/" + _vm.data.image,
-      alt: "Sala ristorante ".concat(_vm.data.name)
+      src: _vm.data.image_path
     }
   })]), _vm._v(" "), _c("div", {
     "class": {
@@ -3690,9 +3665,9 @@ var render = function render() {
     }
   }, [_c("h3", {
     staticClass: "text-4xl font-bold leading-none"
-  }, [_vm._v("\n            " + _vm._s(_vm.data.name) + "\n        ")]), _vm._v(" "), _c("p", {
+  }, [_vm._v("\n                " + _vm._s(_vm.data.name) + "\n            ")]), _vm._v(" "), _c("p", {
     staticClass: "font-normal text-2xl block leading-none mb-2 pt-4"
-  }, [_vm._v("\n            " + _vm._s(_vm.data.address) + "\n        ")]), _vm._v(" "), _c("ul", {
+  }, [_vm._v("\n                " + _vm._s(_vm.data.address) + "\n            ")]), _vm._v(" "), _c("ul", {
     "class": {
       "flex flex-wrap gap-2 py-3 items-end mt-auto": true,
       "lg:justify-end": _vm.index % 2 == 1
@@ -3701,7 +3676,7 @@ var render = function render() {
     return _c("li", {
       key: 1000 - i,
       staticClass: "box_shadow_stroke_small py-1 px-2 font-bold c_seco_color"
-    }, [_vm._v("\n                " + _vm._s(category.name) + "\n            ")]);
+    }, [_vm._v("\n                    " + _vm._s(category.name) + "\n                ")]);
   }), 0), _vm._v(" "), _c("router-link", {
     "class": {
       "box_shadow_stroke_small bg_link_color c_text_color font-bold px-2 py-1 leading-none text-3xl w-fit hover:no-underline hover:text-white hover:shadow-none": true,
@@ -3716,7 +3691,7 @@ var render = function render() {
       },
       title: "Vedi il men\xF9 di ".concat(_vm.data.name)
     }
-  }, [_vm._v("\n            Vai al menú\n        ")])], 1)]);
+  }, [_vm._v("\n                Vai al menú\n            ")])], 1)]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -4081,7 +4056,7 @@ var render = function render() {
   }, [_c("a", {
     staticClass: "absolute inset-0",
     attrs: {
-      href: "/admin",
+      href: "/admin/home",
       title: "Accedi al tuo ristorante"
     }
   }), _vm._v(" "), _c("SvgRestaurant", {
@@ -4947,7 +4922,7 @@ var render = function render() {
     }, [_c("img", {
       staticClass: "block object-cover w-full h-full",
       attrs: {
-        src: plate.img,
+        src: plate.image_path,
         alt: "Foto piatto ".concat(plate.name)
       }
     })]), _vm._v(" "), _c("div", {

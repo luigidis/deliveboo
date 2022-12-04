@@ -50,7 +50,7 @@ export default {
     methods: {
         fetchPlate() {
             axios.get(`/api/plates/${this.slug}`).then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 this.plate = res.data.plate;
             }).catch(err => {
                 console.log(err);

@@ -49,4 +49,6 @@ class Plate extends Model
             return $this->img;
         return $this->img ? asset('images/' . $this->img) : null;
     }
+
+    protected $appends = ['image_path'];
 }
